@@ -7,8 +7,8 @@
     ...
   }: {
     imports = [
-      ./devshells.nix
       ./pre-commit.nix
+      ./devShells.nix
     ];
   };
 }
