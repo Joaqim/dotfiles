@@ -9,7 +9,10 @@
       "sv_SE.UTF-8/UTF-8"
     ];
 
-    inputMethod.enabled = "fcitx5";
+    inputMethod = { 
+      enable = true;
+      type = "fcitx5"; 
+    };
 
     extraLocaleSettings = lib.mkDefault {
       LC_ADDRESS = "en_US.UTF-8";

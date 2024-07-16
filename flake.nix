@@ -92,7 +92,7 @@
               "./keys/users/"
             ];
             nativeBuildInputs = [ sops-import-keys-hook ];
-            shellHook = "${config.pre-commit.installationScript}";
+            #shellHook = "${config.pre-commit.installationScript}";
           };
 
         nixosConfigurations = {

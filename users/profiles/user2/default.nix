@@ -39,7 +39,7 @@ in {
       };
       imports = [
         {home.stateVersion = config.system.stateVersion;}
-        (import ./configs/${hostname}.nix {flake = flake;})
+        (import ./configs/${hostname}.nix { inherit flake;})
       ];
     };
   };

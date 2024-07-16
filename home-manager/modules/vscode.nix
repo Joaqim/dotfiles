@@ -9,7 +9,7 @@
       package = pkgs.vscode;
       extensions = with pkgs.vscode-extensions; [
         eamodio.gitlens
-        mgt19937.typst-preview
+        myriad-dreamin.tinymist
         nvarner.typst-lsp
         catppuccin.catppuccin-vsc
         james-yu.latex-workshop

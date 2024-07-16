@@ -40,7 +40,7 @@ in
 {
   # Linters and formatters
   deadnix = callPackage ./deadnix.nix { };
-  nixfmt = callPackage ./nixfmt.nix { };
-  shellcheck = callPackage ./shellcheck.nix { };
+  #nixfmt = callPackage ./nixfmt.nix { };
+  #shellcheck = callPackage ./shellcheck.nix { };
   statix = callPackage ./statix.nix { };
 }

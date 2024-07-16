@@ -8,7 +8,6 @@
   }: {
     imports = [
       ./pre-commit.nix
-      ./devShells.nix
     ];
   };
 }
