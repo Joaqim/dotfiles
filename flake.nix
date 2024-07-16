@@ -22,6 +22,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
+
+    nvfetcher = {
+      url = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    deadnix.url = "github:astro/deadnix";
   };
 
   outputs = inputs:
@@ -36,6 +42,51 @@
       ];
 
       flake = {config, ...}: {
+
+        packages.x86_64-linux = import ./pkgs {
+          inherit self;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          flake-inputs = inputs;
+        };
+
+        apps.x86_64-linux.commit-nvfetcher = {
+          type = "app";
+          program = toString (
+            nixpkgs.legacyPackages.x86_64-linux.writeShellScript "commit-nvfetcher" ''
+              ${self.packages.x86_64-linux.commit-nvfetcher}/bin/commit-nvfetcher -k /tmp/github-key.toml
+            ''
+          );
+        };
+
+        checks.x86_64-linux = import ./checks {
+          inherit (nixpkgs) lib;
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          flake-inputs = inputs;
+        };
+
+        devShells.x86_64-linux.default =
+          let
+            inherit (inputs.sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
+            inherit (inputs.self.packages.x86_64-linux) commit-nvfetcher;
+            inherit (inputs.nixpkgs.legacyPackages.x86_64-linux) nvchecker;
+            home-manager-bin = inputs.home-manager.packages.x86_64-linux.default;
+          in
+          nixpkgs.legacyPackages.x86_64-linux.mkShell {
+            packages = [
+              nvfetcher.packages.x86_64-linux.default
+              nvchecker
+              commit-nvfetcher
+              home-manager-bin
+              sops-init-gpg-key
+            ];
+
+            sopsPGPKeyDirs = [
+              "./keys/hosts/"
+              "./keys/users/"
+            ];
+            nativeBuildInputs = [ sops-import-keys-hook ];
+          };
+
         nixosConfigurations = {
           desktop = inputs.self.lib.mkLinuxSystem [
             ./systems/desktop

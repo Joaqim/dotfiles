@@ -1,0 +1,36 @@
+name: update
+on:
+  schedule:
+    - cron: '0 2 * * 6'
+  workflow_dispatch:
+jobs:
+  update:
+    name: Update flake inputs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - uses: cachix/install-nix-action@v27
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          # Used only for things like nix-prefetch-*, which do not yet
+          # seem to universally support flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+          git_committer_name: GitHub automation
+          git_committer_email: mail@joaqim.xyz 
+      - run: nix flake update --commit-lock-file
+      - run: |
+          echo -e '[keys]\ngithub = "${{ secrets.GITHUB_TOKEN }}"' > /tmp/github-key.toml
+          nix run .#commit-nvfetcher -L
+      - uses: peter-evans/create-pull-request@v6
+        with:
+          branch: bot/update
+          delete-branch: true
+          title: Update flake inputs
