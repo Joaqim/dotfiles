@@ -1,0 +1,12 @@
+ewwEdit:
+    eww --config /home/jq/dotfiles/home-manager/modules/eww/config/ open centerPanel
+
+ewwLaunch:
+    ./home/jq/dotfiles/home-manager/modules/eww/config/scripts/master.sh
+
+hmSwitch:
+    home-manager switch --flake ~/dotfiles#desktop
+
+nixosSwitch:
+    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles#desktop
+

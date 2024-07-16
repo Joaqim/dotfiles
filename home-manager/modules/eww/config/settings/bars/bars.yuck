@@ -1,0 +1,56 @@
+(defwindow centerPanel
+  :monitor "0"
+  :stacking "bg"
+  :exclusive true
+  :windowtype "dock"
+  :wm-ignore false
+  :geometry (geometry
+    :x "10px"
+    :anchor "left center"
+    :height "1060px"
+    :width "52px"
+  )
+  :namespace "centerPanel"
+  (box
+    :class "bar"
+    (overlay
+    :space-evenly false
+    :orientation "v"
+    (startModules)
+    (centerModules)
+    (endModules)
+    )
+  )
+)
+
+(defwidget centerModules []
+  (box 
+    :halign "center"
+    :valign "center"
+    :space-evenly false
+    :orientation "v"
+  )
+)
+
+(defwidget startModules []
+  (box 
+    :valign "start"
+    :halign "center"
+    :space-evenly false
+    :orientation "v"
+     (powermenu)
+     (launcher)
+     (workspaces)
+  )
+)
+
+(defwidget endModules []
+  (box 
+    :halign "center"
+    :valign "end"
+    :space-evenly false
+    :orientation "v"
+    (systemMenu)
+    (systemstats)
+  )
+)

@@ -1,0 +1,78 @@
+.powermenu {
+    background-color: rgb(108, 112, 134, 0.35);
+    margin: 7px 7px 0px 7px;
+    border-radius: 50px;
+}
+
+.powermenuEventboxOpen {
+    background-color: rgb(108, 112, 134, 0.35);
+    border-radius: 50px;
+    transition: all 400ms;
+}
+
+.powermenuEventboxOpen:hover {
+    background-color: rgb(108, 112, 134, 0.35);
+    transition: all 400ms;
+}
+
+.powermenuEventboxClosed {
+    border-radius: 150px;
+    transition: all 400ms;
+}
+
+.powermenuEventboxClosed:hover {
+    background-color: rgb(108, 112, 134, 0.35);
+    transition: all 400ms;
+}
+
+.nix {
+    padding: 7px 0px 7px 0px;
+}
+
+.lock {
+    border-radius: 50px 50px 5px 5px;
+}
+
+.lock:hover {
+    background-color: rgb(108, 112, 134, 0.2);
+}
+
+.lockButton {
+	opacity: 0.75;
+}
+
+.reboot {
+    border-radius: 5px;
+}
+
+.reboot:hover {
+    background-color: rgb(108, 112, 134, 0.2);
+}
+
+.rebootButton {
+	opacity: 0.75;
+}
+
+.suspend {
+    border-radius: 5px;
+}
+
+.suspend:hover {
+    background-color: rgb(108, 112, 134, 0.2);
+}
+
+.suspendButton {
+	opacity: 0.75;
+}
+
+.shutdown {
+    border-radius: 0px 0px 50px 50px;
+}
+
+.shutdown:hover {
+    background-color: rgb(108, 112, 134, 0.2);
+}
+
+.shutdownButton {
+	opacity: 0.75;
+}

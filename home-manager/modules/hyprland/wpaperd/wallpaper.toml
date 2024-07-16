@@ -1,0 +1,5 @@
+[default]
+path = "/home/jq/dotfiles/home-manager/modules/hyprland/wpaperd/wallpaper/"
+duration = "1m"
+sorting = "random"
+apply-shadow = false

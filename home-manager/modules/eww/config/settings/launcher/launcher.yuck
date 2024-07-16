@@ -1,0 +1,265 @@
+(defwidget launcher []
+	(box
+	  :class "launcher"
+	  :space-evenly false
+	  :orientation "v"
+	  (eventbox
+		:class launcherEventClass
+		:cursor "pointer"
+		:onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher.sh"
+		(image
+		  :class "menu"
+		  :image-width 35
+		  :image-height 35
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/apps.png"
+		)
+	  )
+	  (revealer
+		:transition "slideup"
+		:reveal launch
+		(box
+			:orientation "v"
+			(bitwarden)
+			(discord)
+			(firefox)
+			(krita)
+			(lutris)
+			(matrix)
+			(monitor)
+			(obs)
+			(obsidian)
+			(resolve)
+			(signal)
+			(spotify)
+			(steam)
+			(vscode)
+		)
+	  )
+	)
+  )
+
+(defvar launch false)
+(defvar launcherEventClass "launcherEventClassClosed")
+
+(defwidget bitwarden []
+	(eventbox
+	  :class "bitwarden"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "bitwarden"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/bitwarden.sh"
+			(image
+		  :class "bitwardenButton"
+		  :image-width 23
+		  :image-height 23
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/bitwarden.png"
+		)
+	)
+  )
+
+  (defwidget resolve []
+	(eventbox
+	  :class "resolve"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "resolve"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/kdenlive.sh"
+			(image
+		  :class "resolveButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/resolve.png"
+		)
+	)
+  )
+
+  (defwidget krita []
+	(eventbox
+	  :class "krita"
+	  :cursor "pointer"
+	  :tooltip "krita"
+	  :width 25
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/krita.sh"
+			(image
+		  :class "kritaButton"
+		  :image-width 25
+		  :image-height 25
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/krita.png"
+		)
+	)
+  )
+
+  (defwidget monitor []
+	(eventbox
+	  :class "monitor"
+	  :cursor "pointer"
+	  :width 25
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/monitor.sh"
+			(image
+		  :class "monitorButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/monitor.png"
+		)
+	)
+  )
+
+  (defwidget obs []
+	(eventbox
+	  :class "obs"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "obs"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/obs.sh"
+			(image
+		  :class "obsButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/obs.png"
+		)
+	)
+  )
+
+  (defwidget obsidian []
+	(eventbox
+	  :class "obsidian"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "obsidian"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/obsidian.sh"
+			(image
+		  :class "obsidianButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/obsidian.png"
+		)
+	)
+  )
+
+  (defwidget vscode []
+	(eventbox
+	  :class "vscode"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "vscode"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/vscode.sh"
+			(image
+		  :class "vscodeButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/vscode.png"
+		)
+	)
+  )
+
+  (defwidget discord []
+	(eventbox
+	  :class "discord"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "discord"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/discord.sh"
+			(image
+		  :class "discordButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/discord.png"
+		)
+	)
+  )
+
+  (defwidget matrix []
+	(eventbox
+	  :class "matrix"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "matrix"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/element.sh"
+			(image
+		  :class "matrixButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/matrix.png"
+		)
+	)
+  )
+
+  (defwidget firefox []
+	(eventbox
+	  :class "firefox"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "firefox"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/firefox.sh"
+			(image
+		  :class "firefoxButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/firefox.png"
+		)
+	)
+  )
+
+  (defwidget lutris []
+	(eventbox
+	  :class "lutris"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "lutris"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/lutris.sh"
+			(image
+		  :class "lutrisButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/lutris.png"
+		)
+	)
+  )
+
+  (defwidget signal []
+	(eventbox
+	  :class "signal"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "signal"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/signal.sh"
+			(image
+		  :class "signalButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/signal.png"
+		)
+	)
+  )
+
+  (defwidget steam []
+	(eventbox
+	  :class "steam"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "steam"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/steam.sh"
+			(image
+		  :class "steamButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/steam.png"
+		)
+	)
+  )
+
+  (defwidget spotify []
+	(eventbox
+	  :class "spotify"
+	  :cursor "pointer"
+	  :width 25
+	  :tooltip "spotify"
+	  :onclick "/home/jq/dotfiles/home-manager/modules/eww/config/scripts/launcher/spotify.sh"
+			(image
+		  :class "spotifyButton"
+		  :image-width 20
+		  :image-height 20
+		  :path "/home/jq/dotfiles/home-manager/modules/eww/config/images/spotify.png"
+		)
+	)
+  )

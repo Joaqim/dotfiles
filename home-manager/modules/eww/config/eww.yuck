@@ -1,0 +1,6 @@
+(include "./settings/bars/bars.yuck")
+(include "./settings/system/system.yuck")
+(include "./settings/stats/stats.yuck")
+(include "./settings/power/power.yuck")
+(include "./settings/spaces/spaces.yuck")
+(include "./settings/launcher/launcher.yuck")
