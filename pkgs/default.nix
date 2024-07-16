@@ -1,4 +1,3 @@
-# See: https://github.com/TLATER/dotfiles
 {
   self,
   pkgs,

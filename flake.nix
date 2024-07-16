@@ -44,23 +44,24 @@
       flake = {config, ...}: {
 
         packages.x86_64-linux = import ./pkgs {
-          inherit self;
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          #inherit self;
+          inherit (inputs) self;
+          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
           flake-inputs = inputs;
         };
 
         apps.x86_64-linux.commit-nvfetcher = {
           type = "app";
           program = toString (
-            nixpkgs.legacyPackages.x86_64-linux.writeShellScript "commit-nvfetcher" ''
-              ${self.packages.x86_64-linux.commit-nvfetcher}/bin/commit-nvfetcher -k /tmp/github-key.toml
+            inputs.nixpkgs.legacyPackages.x86_64-linux.writeShellScript "commit-nvfetcher" ''
+              ${inputs.self.packages.x86_64-linux.commit-nvfetcher}/bin/commit-nvfetcher -k /tmp/github-key.toml
             ''
           );
         };
 
         checks.x86_64-linux = import ./checks {
-          inherit (nixpkgs) lib;
-          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          inherit (inputs.nixpkgs) lib;
+          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
           flake-inputs = inputs;
         };
 
@@ -71,9 +72,9 @@
             inherit (inputs.nixpkgs.legacyPackages.x86_64-linux) nvchecker;
             home-manager-bin = inputs.home-manager.packages.x86_64-linux.default;
           in
-          nixpkgs.legacyPackages.x86_64-linux.mkShell {
+          inputs.nixpkgs.legacyPackages.x86_64-linux.mkShell {
             packages = [
-              nvfetcher.packages.x86_64-linux.default
+              inputs.nvfetcher.packages.x86_64-linux.default
               nvchecker
               commit-nvfetcher
               home-manager-bin

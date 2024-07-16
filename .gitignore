@@ -1,7 +1,6 @@
 .direnv
 .vscode
 .pre-commit-config.yaml
-flake.lock
 
 # VM state and build results
 *.qcow2
