@@ -1,36 +1,38 @@
 {
   imports = [];
 
-  fileSystems."/" = {
-    device = "zpool/local/root";
-    fsType = "zfs";
-  };
+  fileSystems = {
+    "/" = {
+      device = "zpool/local/root";
+      fsType = "zfs";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/1C83-F77B";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
-  };
+    "/boot" = {
+      device = "/dev/disk/by-uuid/1C83-F77B";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
 
-  fileSystems."/home" = {
-    device = "zpool/local/home";
-    fsType = "zfs";
-  };
+    "/home" = {
+      device = "zpool/local/home";
+      fsType = "zfs";
+    };
 
-  fileSystems."/nix" = {
-    device = "zpool/local/nix";
-    fsType = "zfs";
-  };
+    "/nix" = {
+      device = "zpool/local/nix";
+      fsType = "zfs";
+    };
 
-  fileSystems."/persist" = {
-    device = "zpool/local/persist";
-    fsType = "zfs";
-    neededForBoot = true;
-  };
+    "/persist" = {
+      device = "zpool/local/persist";
+      fsType = "zfs";
+      neededForBoot = true;
+    };
 
-  fileSystems."/tmp" = {
-    device = "zpool/local/tmp";
-    fsType = "zfs";
+    "/tmp" = {
+      device = "zpool/local/tmp";
+      fsType = "zfs";
+    };
   };
 
   swapDevices = [
