@@ -16,7 +16,7 @@
 
     kernelModules = ["kvm-amd" "vfio-pci" "v4l2loopback"];
 
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
 
     zfs = {
       extraPools = ["zpool"];
