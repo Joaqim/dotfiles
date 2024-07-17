@@ -1,60 +1,41 @@
 {
   imports = [];
 
-  fileSystems = {
-    "/" = {
-      device = "/dev/disk/by-uuid/07b9fd6b-7627-4d61-b1b5-a56d52bdacb4";
-      fsType = "ext4";
-    };
-    "/boot" = {
-      device = "/dev/disk/by-uuid/DBA6-FD9D";
-      fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
-    };
-    "/home/jq/Drives/Games" = {
-      device = "/dev/disk/by-label/Games";
-      fsType = "ext4";
-      options = [
-        "rw"
-      ];
-    };
-#    "/home/jq/Drives/Storage" = {
-#      device = "/dev/disk/by-label/Storage";
-#      fsType = "ext4";
-#      options = [
-#        "rw"
-#      ];
-#   };
-    "/home/jq/Drives/Synology/jq" = {
-      device = "//10.0.0.122/homes/jq";
-      fsType = "cifs";
-      options = [
-        "credentials=/etc/cifs"
-        "rw"
-        "uid=1000"
-        "gid=100"
-      ];
-    };
-    "/home/jq/Drives/Synology/Garnet" = {
-      device = "//10.0.0.122/homes/Garnet";
-      fsType = "cifs";
-      options = [
-        "credentials=/etc/cifs"
-        "rw"
-        "uid=1000"
-        "gid=100"
-      ];
-    };
+  fileSystems."/" = {
+    device = "zpool/local/root";
+    fsType = "zfs";
   };
 
-  swapDevices = [];
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1C83-F77B";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
 
-  system.activationScripts.setPermissions = ''
- #  chown -R jq:wheel /home/jq/Drives/Storage
- #  chmod -R 700 /home/jq/Drives/Storage
-    chown -R jq:wheel /home/jq/Drives/Games
-    chmod -R 700 /home/jq/Drives/Games
-  '';
+  fileSystems."/home" = {
+    device = "zpool/local/home";
+    fsType = "zfs";
+  };
+
+  fileSystems."/nix" = {
+    device = "zpool/local/nix";
+    fsType = "zfs";
+  };
+
+  fileSystems."/persist" = {
+    device = "zpool/local/persist";
+    fsType = "zfs";
+    neededForBoot = true;
+  };
+
+  fileSystems."/tmp" = {
+    device = "zpool/local/tmp";
+    fsType = "zfs";
+  };
+
+  swapDevices = [
+    #"/dev/disk/by-partuuid/7b81af9e-ac3f-4759-a533-4b78270b80e4"
+  ];
 
   services.udisks2.enable = true;
 }

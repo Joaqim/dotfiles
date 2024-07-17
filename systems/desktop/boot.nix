@@ -7,7 +7,7 @@
     extraModulePackages = [
       config.boot.kernelPackages.v4l2loopback.out
     ];
-    supportedFilesystems = ["ntfs"];
+    supportedFilesystems = ["zfs"];
     initrd = {
       network.openvpn.enable = true;
       availableKernelModules = ["nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
@@ -18,18 +18,27 @@
 
     kernelPackages = pkgs.linuxPackages_latest;
 
+    zfs = {
+      extraPools = ["zpool"];
+      forceImportAll = true;
+      forceImportRoot = true;
+    };
+
     loader = {
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/boot";
       };
-      systemd-boot.enable = true;
-#      grub = {
-#        enable = true;
-#        device = "nodev";
-#        useOSProber = true;
-#        efiSupport = true;
-#      };
+      generationsDir = {
+        copyKernels = true;
+      };
+      grub = {
+        enable = true;
+        copyKernels = true;
+        device = "nodev";
+        efiSupport = true;
+        zfsSupport = true;
+      };
     };
   };
 }
