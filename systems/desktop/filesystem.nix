@@ -35,6 +35,8 @@
     };
   };
 
+  networking.hostId = "16048c09";
+
   swapDevices = [
     #"/dev/disk/by-partuuid/7b81af9e-ac3f-4759-a533-4b78270b80e4"
   ];
