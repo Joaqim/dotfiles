@@ -2,16 +2,14 @@
   pkgs,
   lib,
   flake-inputs,
-}:
-let
+}: let
   inherit (lib) callPackageWith;
 
   generatedFiles = [
     "pkgs/_sources"
   ];
 
-  mkTest =
-    test:
+  mkTest = test:
     pkgs.stdenv.mkDerivation (
       {
         dontPatch = true;
@@ -36,11 +34,9 @@ let
       };
     }
   );
-in
-{
+in {
   # Linters and formatters
-  deadnix = callPackage ./deadnix.nix { };
-  #nixfmt = callPackage ./nixfmt.nix { };
-  #shellcheck = callPackage ./shellcheck.nix { };
-  statix = callPackage ./statix.nix { };
+  deadnix = callPackage ./deadnix.nix {};
+  nixfmt = callPackage ./nixfmt.nix {};
+  statix = callPackage ./statix.nix {};
 }
