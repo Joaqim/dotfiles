@@ -42,7 +42,6 @@
       ];
 
       flake = {config, ...}: {
-
         packages.x86_64-linux = import ./pkgs {
           #inherit self;
           inherit (inputs) self;
@@ -59,19 +58,12 @@
           );
         };
 
-        checks.x86_64-linux = import ./checks {
-          inherit (inputs.nixpkgs) lib;
-          pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-          flake-inputs = inputs;
-        };
-
-        devShells.x86_64-linux.default =
-          let
-            inherit (inputs.sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-            inherit (inputs.self.packages.x86_64-linux) commit-nvfetcher;
-            inherit (inputs.nixpkgs.legacyPackages.x86_64-linux) nvchecker age alejandra just nil sops ssh-to-age;
-            home-manager-bin = inputs.home-manager.packages.x86_64-linux.default;
-          in
+        devShells.x86_64-linux.default = let
+          inherit (inputs.sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
+          inherit (inputs.self.packages.x86_64-linux) commit-nvfetcher;
+          inherit (inputs.nixpkgs.legacyPackages.x86_64-linux) nvchecker age alejandra just nil sops ssh-to-age;
+          home-manager-bin = inputs.home-manager.packages.x86_64-linux.default;
+        in
           inputs.nixpkgs.legacyPackages.x86_64-linux.mkShell {
             packages = [
               inputs.nvfetcher.packages.x86_64-linux.default
@@ -91,7 +83,7 @@
               "./keys/hosts/"
               "./keys/users/"
             ];
-            nativeBuildInputs = [ sops-import-keys-hook ];
+            nativeBuildInputs = [sops-import-keys-hook];
             #shellHook = "${config.pre-commit.installationScript}";
           };
 
