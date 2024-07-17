@@ -58,35 +58,6 @@
           );
         };
 
-        devShells.x86_64-linux.default = let
-          inherit (inputs.sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-          inherit (inputs.self.packages.x86_64-linux) commit-nvfetcher;
-          inherit (inputs.nixpkgs.legacyPackages.x86_64-linux) nvchecker age alejandra just nil sops ssh-to-age;
-          home-manager-bin = inputs.home-manager.packages.x86_64-linux.default;
-        in
-          inputs.nixpkgs.legacyPackages.x86_64-linux.mkShell {
-            packages = [
-              inputs.nvfetcher.packages.x86_64-linux.default
-              nvchecker
-              commit-nvfetcher
-              home-manager-bin
-              sops-init-gpg-key
-              age
-              alejandra
-              just
-              nil
-              sops
-              ssh-to-age
-            ];
-
-            sopsPGPKeyDirs = [
-              "./keys/hosts/"
-              "./keys/users/"
-            ];
-            nativeBuildInputs = [sops-import-keys-hook];
-            #shellHook = "${config.pre-commit.installationScript}";
-          };
-
         nixosConfigurations = {
           desktop = inputs.self.lib.mkLinuxSystem [
             ./systems/desktop

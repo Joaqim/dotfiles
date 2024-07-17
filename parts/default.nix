@@ -6,8 +6,6 @@
     self',
     ...
   }: {
-    imports = [
-      ./pre-commit.nix
-    ];
+    imports = [./devshells.nix ./pre-commit.nix];
   };
 }
