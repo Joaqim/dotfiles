@@ -29,8 +29,21 @@ jobs:
       - run: |
           echo -e '[keys]\ngithub = "${{ secrets.GITHUB_TOKEN }}"' > /tmp/github-key.toml
           nix run .#commit-nvfetcher -L
-      - uses: peter-evans/create-pull-request@v6
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        id: cpr
         with:
           branch: bot/update
           delete-branch: true
           title: Update flake inputs
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
+      - name: Auto Approve Pull Request
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        run: gh pr review --approve "${{ steps.cpr.outputs.pull-request-number }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
