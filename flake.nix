@@ -11,6 +11,9 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence = {
+      url = "github:nix-community/impermanence";
+    };
     nur.url = "github:nix-community/NUR";
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
@@ -65,6 +68,7 @@
             config.nixosModules.shared
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
+            inputs.impermanence.nixosModules.impermanence
             inputs.nur.nixosModules.nur
           ];
           laptop = inputs.self.lib.mkLinuxSystem [
