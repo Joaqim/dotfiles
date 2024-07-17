@@ -10,10 +10,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-key: ${{ secrets.PR_CREATE_KEY }}
       - uses: cachix/install-nix-action@v27
         with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          github_access_token: ${{ secrets.CI_BOT_GH_REPO_TOKEN }}
           # Used only for things like nix-prefetch-*, which do not yet
           # seem to universally support flakes
           nix_path: nixpkgs=channel:nixos-unstable
@@ -23,11 +23,11 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
           git_user_signingkey: true
           git_commit_gpgsign: true
-          git_committer_name: GitHub automation
+          git_committer_name:  GitHub automation
           git_committer_email: mail@joaqim.xyz 
       - run: nix flake update --commit-lock-file
       - run: |
-          echo -e '[keys]\ngithub = "${{ secrets.GITHUB_TOKEN }}"' > /tmp/github-key.toml
+          echo -e '[keys]\ngithub = "${{ secrets.CI_BOT_GH_REPO_TOKEN }}"' > /tmp/github-key.toml
           nix run .#commit-nvfetcher -L
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
@@ -42,8 +42,3 @@ jobs:
         with:
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
           merge-method: squash
-      - name: Auto Approve Pull Request
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        run: gh pr review --approve "${{ steps.cpr.outputs.pull-request-number }}"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
