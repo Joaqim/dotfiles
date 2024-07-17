@@ -5,6 +5,7 @@
     useDHCP = lib.mkDefault true;
     firewall = {
       enable = true;
+      allowedTCPPorts = [8080 25565];
     };
   };
   services = {
