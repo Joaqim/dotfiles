@@ -37,6 +37,5 @@
 in {
   # Linters and formatters
   deadnix = callPackage ./deadnix.nix {};
-  nixfmt = callPackage ./nixfmt.nix {};
   statix = callPackage ./statix.nix {};
 }
