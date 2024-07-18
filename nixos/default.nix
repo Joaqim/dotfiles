@@ -34,7 +34,7 @@ let
   thunar = import ./modules/thunar.nix;
   touchegg = import ./modules/touchegg.nix;
   tumbler = import ./modules/tumbler.nix;
-  virtualization = import ./modules/virtualization.nix;
+  virtualisation = import ./modules/virtualisation.nix;
   xserver = import ./modules/xserver.nix;
 in {
   flake = {
@@ -72,7 +72,7 @@ in {
         thunar
         touchegg
         tumbler
-        virtualization
+        virtualisation
         xserver
         ;
       server = {
@@ -133,7 +133,7 @@ in {
           system
           thunar
           tumbler
-          virtualization
+          virtualisation
           xserver
         ];
       };

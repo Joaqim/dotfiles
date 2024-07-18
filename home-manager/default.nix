@@ -37,7 +37,7 @@ let
   misc-productionVideo = import ./modules/misc/production-video.nix;
   misc-productionWriting = import ./modules/misc/production-writing.nix;
   misc-themes = import ./modules/misc/themes.nix;
-  misc-virtualization = import ./modules/misc/virtualization.nix;
+  misc-virtualisation = import ./modules/misc/virtualisation.nix;
   misc-yazi = import ./modules/misc/yazi.nix;
   mpv = import ./modules/mpv.nix;
   network = import ./modules/network.nix;
@@ -94,7 +94,7 @@ in {
       misc-productionVideo
       misc-productionWriting
       misc-themes
-      misc-virtualization
+      misc-virtualisation
       misc-yazi
       mpv
       network
@@ -120,7 +120,7 @@ in {
         lazygit
         misc-android
         misc-commandLine
-        misc-virtualization
+        misc-virtualisation
         misc-yazi
         nushell
         playerctl

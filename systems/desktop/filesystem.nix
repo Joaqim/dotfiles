@@ -41,7 +41,7 @@
     #"/dev/disk/by-partuuid/7b81af9e-ac3f-4759-a533-4b78270b80e4"
   ];
 
-  virtualization = {
+  virtualisation = {
     docker = {
       extraOptions = ["--storage-opt=zfs.fsname=zpool/local"];
       storageDriver = "zfs";
