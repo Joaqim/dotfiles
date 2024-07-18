@@ -1,6 +1,6 @@
 {
   force = true;
-  default = "Kagi";
+  default = "DuckDuckGo";
   engines = {
     "AlternativeTo" = {
       definedAliases = ["@al"];
@@ -86,5 +86,6 @@
     "Nix Options"
     "Brave"
     "Google"
+    "Kagi"
   ];
 }

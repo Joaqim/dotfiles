@@ -1,15 +1,15 @@
 {
-  pkgs,
   config,
   nur,
   ...
-}: {
+}: let
+  user = config.home.username;
+in {
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox;
-    profiles = let
-      user = config.home.username;
-    in {
+    # TODO: Couldn't get policies to work here:
+    #policies = import ./config-${user}/policies.nix;
+    profiles = {
       ${user} = {
         isDefault = true;
         search = import ./config-${user}/search.nix;
@@ -17,6 +17,13 @@
         settings = import ./config-${user}/settings.nix;
         extensions = import ./config-${user}/extensions.nix {inherit nur;};
         userChrome = builtins.readFile ./config-${user}/userChrome.css;
+
+        # Darker background for new tabs (to not blast eyes with blinding white).
+        userContent = ''
+          .tab:not(:hover) .closebox {
+            display: none;
+          }
+        '';
       };
     };
   };
