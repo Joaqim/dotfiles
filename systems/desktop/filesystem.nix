@@ -42,7 +42,7 @@
 
   networking.hostId = "5b0659ea";
   swapDevices = [
-    "/dev/disk/by-partuuid/b2778b43-82b1-42f0-8215-93e4c0c64166"
+    {device = "/dev/disk/by-partuuid/b2778b43-82b1-42f0-8215-93e4c0c64166";}
   ];
 
   virtualisation = {
