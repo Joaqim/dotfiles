@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
@@ -56,4 +56,7 @@
       ];
     };
   };
+  boot.initrd.postDeviceCommands = lib.mkAfter ''
+    zfs rollback -r zpool/local/root@blank
+  '';
 }
