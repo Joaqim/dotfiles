@@ -5,7 +5,7 @@ in {
     user0
     ;
   users = {
-    immutableUsers = true;
+    mutableUsers = false;
     "${user0}" = {
       name = "Joaqim";
       email = "mail@joaqim.xyz";
