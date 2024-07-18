@@ -11,4 +11,8 @@ in {
     userName = userConfig.name;
     userEmail = userConfig.email;
   };
+  programs.keychain = {
+    enable = true;
+    keys = ["id_ed25519"];
+  };
 }
