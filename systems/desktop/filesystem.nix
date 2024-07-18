@@ -5,10 +5,11 @@
     "/" = {
       device = "zpool/local/root";
       fsType = "zfs";
+      options = ["zfsutil"];
     };
 
     "/boot" = {
-      device = "/dev/disk/by-uuid/1C83-F77B";
+      device = "/dev/disk/by-uuid/A8CD-AECE";
       fsType = "vfat";
       options = ["fmask=0022" "dmask=0022"];
     };
@@ -16,29 +17,32 @@
     "/home" = {
       device = "zpool/local/home";
       fsType = "zfs";
+      options = ["zfsutil"];
     };
 
     "/nix" = {
       device = "zpool/local/nix";
       fsType = "zfs";
+      options = ["zfsutil"];
     };
 
     "/persist" = {
       device = "zpool/local/persist";
       fsType = "zfs";
       neededForBoot = true;
+      options = ["zfsutil"];
     };
 
     "/tmp" = {
       device = "zpool/local/tmp";
       fsType = "zfs";
+      options = ["zfsutil"];
     };
   };
 
-  networking.hostId = "85e3f44e";
-
+  networking.hostId = "5b0659ea";
   swapDevices = [
-    #"/dev/disk/by-partuuid/7b81af9e-ac3f-4759-a533-4b78270b80e4"
+    "/dev/disk/by-partuuid/b2778b43-82b1-42f0-8215-93e4c0c64166"
   ];
 
   virtualisation = {
