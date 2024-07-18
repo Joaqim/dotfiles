@@ -10,6 +10,7 @@ let
   dconf = import ./modules/dconf.nix;
   disks = import ./modules/disks.nix;
   doas = import ./modules/doas.nix;
+  docker = import ./modules/docker.nix;
   environment = import ./modules/environment.nix;
   firejail = import ./modules/firejail.nix;
   flatpak = import ./modules/flatpak.nix;
@@ -90,20 +91,20 @@ in {
       };
       nas = {
         imports = [
-        accounts
-        disks
-        doas
-        environment
-        gvfs
-        home-manager
-        jellyfin
-        locale
-        network
-        nix
-        plasma
-        sops
-        system
-        xserver
+          accounts
+          disks
+          doas
+          environment
+          gvfs
+          home-manager
+          jellyfin
+          locale
+          network
+          nix
+          plasma
+          sops
+          system
+          xserver
         ];
       };
       shared = {
@@ -116,6 +117,7 @@ in {
           dconf
           disks
           doas
+          docker
           environment
           firejail
           gvfs
