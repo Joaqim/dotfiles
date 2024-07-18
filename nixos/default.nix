@@ -36,6 +36,7 @@ let
   tumbler = import ./modules/tumbler.nix;
   virtualisation = import ./modules/virtualisation.nix;
   xserver = import ./modules/xserver.nix;
+  zram = import ./modules/zram.nix;
 in {
   flake = {
     nixosModules = {
@@ -74,6 +75,7 @@ in {
         tumbler
         virtualisation
         xserver
+        zram
         ;
       server = {
         imports = [
