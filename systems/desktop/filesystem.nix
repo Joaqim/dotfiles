@@ -43,7 +43,7 @@
 
   virtualisation = {
     docker = {
-      extraOptions = ["--storage-opt=zfs.fsname=zpool/local"];
+      extraOptions = "--storage-opt=zfs.fsname=zpool/local";
       storageDriver = "zfs";
     };
   };
