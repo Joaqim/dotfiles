@@ -28,8 +28,4 @@ in {
       url."ssh://git@".pushInsteadOf = "https://";
     };
   };
-  programs.keychain = {
-    enable = true;
-    keys = ["id_ed25519"];
-  };
 }

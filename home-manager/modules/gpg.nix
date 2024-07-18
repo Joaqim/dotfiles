@@ -1,4 +1,10 @@
 {
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    defaultCacheTtl = 86400;
+    maxCacheTtl = 2592000;
+  };
   programs.gpg = {
     enable = true;
     settings = {
