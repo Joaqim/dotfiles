@@ -26,9 +26,27 @@
         "Videos"
         "VirtualBox VMs"
 
+        ".mozilla/firefox/Crash Reports"
+        ".mozilla/firefox/Pending Pings"
+        ".mozilla/firefox/jq" # Do this for now, until we enable syncstorage-rs
+
         ".local/share/direnv"
         ".local/share/Steam"
 
+        ".local/share/PrismLauncher"
+        ".local/share/Trash"
+
+        ".local/share/baloo"
+        ".local/share/dolphin"
+        ".local/share/kactivitymanagerd"
+        ".local/share/kate"
+        ".local/share/klipper"
+        ".local/share/konsole"
+        ".local/share/kscreen"
+        ".local/share/kwalletd"
+        ".local/share/kxmlgui5"
+        ".local/share/RecentDocuments"
+        ".local/share/sddm"
         {
           directory = ".gnupg";
           mode = "0700";
@@ -45,6 +63,13 @@
           directory = ".local/share/keyrings";
           mode = "0700";
         }
+      ];
+
+      files = [
+        ".local/share/krunnerstaterc"
+        ".local/share/user-places.xbel"
+        ".local/share/user-places.xbel.bak"
+        ".local/share/user-places.xbel.tbcache"
       ];
     };
   };
