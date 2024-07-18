@@ -16,7 +16,6 @@
       pciutils
       pinentry
       playerctl
-      snscrape
       tomb
       unrar
       unzip
