@@ -4,6 +4,7 @@
     ./filesystem.nix
     ./graphics.nix
     ./hardware.nix
+    ./liquidctl.nix
     ./networking.nix
     ./ssh.nix
     ./impermanence.nix
