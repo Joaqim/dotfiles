@@ -14,6 +14,7 @@ let
   cursor = import ./modules/cursor.nix;
   direnv = import ./modules/direnv.nix;
   git = import ./modules/git.nix;
+  gpg = import ./modules/gpg.nix;
   gtk = import ./modules/gtk.nix;
   helix = import ./modules/helix.nix;
   home-manager = import ./modules/home-manager.nix;
@@ -71,6 +72,7 @@ in {
       direnv
       gammastep
       git
+      gpg
       gtk
       helix
       home-manager
