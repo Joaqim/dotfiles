@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  import = [pkgs.liquidctl];
-
   systemd.services.liquidctl = {
     enable = true;
     description = "AIO Startup Service";
