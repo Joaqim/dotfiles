@@ -7,6 +7,9 @@
       gparted
       simple-mtpfs
       usbimager
+      trash-cli
+      neovim
+      ripgrep
       ;
   };
 
