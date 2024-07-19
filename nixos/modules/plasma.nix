@@ -13,6 +13,8 @@
     };
   };
 
+  programs.kdeconnect.enable = true;
+
   environment = {
     # Disable baloo indexer
     etc."xdg/baloofilerc".source = (pkgs.formats.ini {}).generate "baloorc" {
@@ -30,7 +32,6 @@
         kate
         gwenview
         spectacle
-        kdeconnect-kde
         khelpcenter
         baloo
       ];
