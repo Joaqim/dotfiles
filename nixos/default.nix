@@ -124,7 +124,6 @@ in {
           firejail
           gvfs
           home-manager
-          jellyfin
           locale
           nix
           plasma
