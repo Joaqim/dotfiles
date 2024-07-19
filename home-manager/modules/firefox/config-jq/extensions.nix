@@ -6,7 +6,6 @@ builtins.attrValues {
     clearurls
     cookie-autodelete
     darkreader
-    english-dictionary
     greasemonkey
     reddit-enhancement-suite
     sponsorblock
