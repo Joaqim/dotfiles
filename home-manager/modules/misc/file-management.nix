@@ -9,4 +9,6 @@
       usbimager
       ;
   };
+
+  xdg.mime.enable = true;
 }
