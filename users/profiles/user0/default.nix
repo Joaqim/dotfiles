@@ -34,7 +34,7 @@ in {
         homeDirectory = "/home/${user0}";
         file = {
           "./justfile".source = ./justfile;
-          "./.steam/steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
+          "./.local/share/Steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
         };
         sessionVariables = {};
       };

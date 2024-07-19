@@ -8,7 +8,7 @@
         font_name = "Open Sans 10";
         cursor_theme_name = "Catppuccin-Macchiato-Dark-Cursors";
         icon_theme_name = "Papirus-Dark";
-        theme_name = "Catppuccin-Macchiato-Standard-Mauve-Dark";
+        theme_name = "catppuccin-macchiato-mauve-standard";
       };
     };
   };

@@ -20,7 +20,7 @@
         size = "standard";
         variant = "macchiato";
       };
-      name = "catppuccin-macchiato-standard-mauve-dark";
+      name = "catppuccin-macchiato-mauve-standard";
     };
   };
 }

@@ -33,13 +33,13 @@ in {
         homeDirectory = "/home/${user1}";
         file = {
           "./justfile".source = ./justfile;
-          "./.steam/steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
+          "./.local/share/Steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
         };
         sessionVariables = {};
       };
       imports = [
         {home.stateVersion = config.system.stateVersion;}
-        (import ./configs/${hostname}.nix { inherit flake;})
+        (import ./configs/${hostname}.nix {inherit flake;})
       ];
     };
   };
