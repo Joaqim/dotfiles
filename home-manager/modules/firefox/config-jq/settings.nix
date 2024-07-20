@@ -19,13 +19,13 @@ in {
   "browser.urlbar.placeholderName.private" = "DuckDuckGo";
   "browser.uidensity" = compact;
   "browser.toolbars.bookmarks.visibility" = "never";
-  "browser.tabs.warnOnClose" = true;
+  "browser.tabs.warnOnClose" = false;
   "browser.tabs.tabmanager.enabled" = false;
   "browser.tabs.loadBookmarksInBackground" = true;
   "browser.tabs.inTitlebar" = "1";
   "browser.tabs.firefox-view" = false;
   "browser.tabs.firefox-view-newIcon" = false;
-  "browser.tabs.closeWindowWithLastTab" = false;
+  "browser.tabs.closeWindowWithLastTab" = true;
   "browser.startup.page" = restorePreviousSessions;
   "browser.startup.homepage" = "about:blank";
   "browser.startup.blankWindow" = false;

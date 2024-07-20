@@ -46,7 +46,6 @@
 
       flake = {config, ...}: {
         packages.x86_64-linux = import ./pkgs {
-          #inherit self;
           inherit (inputs) self;
           pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
           flake-inputs = inputs;
@@ -60,6 +59,10 @@
             ''
           );
         };
+
+        # NixOS home configuration setup lives in
+        # ./home-manager/modules` as individual `homeModules`
+        homeConfigurations = {};
 
         nixosConfigurations = {
           desktop = inputs.self.lib.mkLinuxSystem [
