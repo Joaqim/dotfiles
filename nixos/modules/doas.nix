@@ -16,7 +16,7 @@
       extraRules = [
         {
           keepEnv = true;
-          noPass = true;
+          noPass = false;
           users = [flake.config.people.user0];
           persist = true;
         }
