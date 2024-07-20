@@ -38,6 +38,10 @@
         device = "nodev";
         efiSupport = true;
         zfsSupport = true;
+        theme = pkgs.sleek-grub-theme.override {
+          withBanner = "Grub Bootloader";
+          withStyle = "bigSur";
+        };
       };
     };
   };
