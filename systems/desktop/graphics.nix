@@ -3,8 +3,7 @@
     # opengl = {
     graphics = {
       enable = true;
-      # driSupport = true;
-      # driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [
         rocm-opencl-icd
         rocm-opencl-runtime
@@ -16,5 +15,8 @@
       ];
     };
   };
-  boot.initrd.kernelModules = ["amdgpu"];
+  boot = {
+    initrd.kernelModules = ["amdgpu"];
+    kernelParams = ["video=card1-DP-3:3440x1440@100"];
+  };
 }
