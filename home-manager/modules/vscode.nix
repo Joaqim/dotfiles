@@ -62,25 +62,35 @@
 
         ## Extensions
         #### Material Icon Theme
+        "material-icon-theme.activeIconPack" = "react";
         "material-icon-theme.files.associations" = {
           "*.ts" = "typescript";
           "**.json" = "json";
           "filename.tsx" = "react";
           "fileName.ts" = "typescript";
+          "justfile" = "template";
         };
         "material-icon-theme.folders.associations" = {
-          "applications" = "folder-apps";
-          "home-manager" = "folder-home";
-          "laptop" = "folder-desktop";
+          ".direnv" = "Generator";
+          "applications" = "App";
+          "home-manager" = "Home";
+          "hyprland" = "Theme";
+          "laptop" = "Desktop";
           "MinecraftModpack" = "Minecraft";
           "nas" = "Context";
-          "nixos" = "Projects";
-          "parts" = "folder-components";
+          "nixos" = "Project";
+          "parts" = "Components";
+          "profiles" = "Content";
+          "steam" = "Console";
           "systems" = "Decorators";
           "user0" = "Guard";
+          "user0/configs" = "Client";
           "user1" = "Private";
+          "user1/configs" = "Client";
           "user2" = "Private";
-          "work" = "folder-desktop";
+          "user2/configs" = "Client";
+          "users" = "Global";
+          "work" = "Desktop";
         };
 
         ### Nix Language
@@ -105,6 +115,7 @@
         catppuccin.catppuccin-vsc
         eamodio.gitlens
         esbenp.prettier-vscode
+        github.vscode-github-actions
         james-yu.latex-workshop
         jnoortheen.nix-ide
         kamadorueda.alejandra
