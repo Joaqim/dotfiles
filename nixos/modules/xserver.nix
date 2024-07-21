@@ -1,11 +1,11 @@
-{ lib, ... }: {
+{lib, ...}: {
   services = {
     xserver = {
       enable = true;
       xkb = lib.mkDefault {
         layout = "us,se";
         variant = "dvp,";
-        options = "caps:swapescape";
+        options = "caps:escape";
       };
     };
     libinput = {
@@ -14,8 +14,11 @@
         tapping = true;
         naturalScrolling = false;
       };
-      mouse.accelProfile = "flat";
-      touchpad.accelProfile = "flat";
+      mouse = {
+        accelProfile = lib.mkDefault "adaptive";
+        accelSpeed = lib.mkDefault "0.7";
+      };
+      touchpad.accelProfile = lib.mkDefault "adaptive";
     };
   };
   console.useXkbConfig = true;
