@@ -6,6 +6,9 @@
   home.packages = with pkgs; [
     # Nix Language
     alejandra
+
+    material-icons
+    material-design-icons
   ];
 
   programs = {
@@ -84,6 +87,19 @@
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = lib.getExe pkgs.nil;
         "nix.formatterPath" = lib.getExe pkgs.alejandra;
+
+        # TODO(jq): Define and use SOPS_AGE_KEY_FILE instead
+        "sops.defaults.ageKeyFile" = "/var/lib/sops-nix/key.txt";
+
+        ### Custom Dictionary
+        "cSpell.customDictionaries" = {
+          "custom-dictionary-user" = {
+            "name" = "custom-dictionary-user";
+            "path" = "~/.cspell/custom-dictionary-user.txt";
+            "addWords" = true;
+            "scope" = "user";
+          };
+        };
       };
       extensions = with pkgs.vscode-extensions; [
         catppuccin.catppuccin-vsc
@@ -99,8 +115,8 @@
         mkhl.direnv
         myriad-dreamin.tinymist
         nvarner.typst-lsp
-        oavbls.pretty-ts-errors
         pkief.material-icon-theme
+        pkief.material-product-icons
         signageos.signageos-vscode-sops
         signageos.signageos-vscode-sops
         streetsidesoftware.code-spell-checker

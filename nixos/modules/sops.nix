@@ -20,6 +20,11 @@ in {
         path = "/home/${user0}/.ssh/id_ed25519.pub";
         owner = user0;
       };
+      "wakatime_api_key/${user0}" = {
+        path = "/home/${user0}/.wakatime/api_key.txt";
+        owner = user0;
+        mode = "400";
+      };
       "synology/${user0}" = {
         path = "/etc/cifs";
         owner = "root";
