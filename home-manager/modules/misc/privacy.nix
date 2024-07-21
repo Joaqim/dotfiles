@@ -5,7 +5,6 @@
       bitwarden
       firejail
       homebank
-      ledger-live-desktop
       protonvpn-gui
       ;
   };
