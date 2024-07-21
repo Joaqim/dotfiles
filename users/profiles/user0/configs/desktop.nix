@@ -7,6 +7,7 @@ in {
     self.homeModules.extras
     self.homeModules.fileManagement
     self.homeModules.firefoxHM
+    self.homeModules.gpg
     self.homeModules.internet
     self.homeModules.jellyfin
     self.homeModules.privacy
