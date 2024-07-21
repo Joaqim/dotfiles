@@ -6,7 +6,6 @@
       kdenlive
       shotcut
       syncplay # group streaming thingie
-      yt-dlp # dependency for syncplay
       ;
   };
 }

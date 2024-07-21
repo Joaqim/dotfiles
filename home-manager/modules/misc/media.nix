@@ -8,7 +8,6 @@
       jellycli
       jellyfin
       jellyfin-media-player
-      mpv
       spotify
       stremio
       vlc
