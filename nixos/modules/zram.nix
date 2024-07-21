@@ -1,7 +1,7 @@
 {lib, ...}: {
   zramSwap = {
-    enable = lib.mkDefault true;
-    memoryPrecent = lib.mkDefault 150;
+    enable = true;
+    memoryPercent = lib.mkDefault 150;
   };
   boot.kernel.sysctl = lib.mkDefault {
     "vm.swappiness" = 200;

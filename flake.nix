@@ -69,6 +69,7 @@
             ./systems/desktop
             ./users/profiles/user0
             config.nixosModules.shared
+            config.nixosModules.zram
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
@@ -78,6 +79,7 @@
             ./systems/work
             ./users/profiles/user0
             config.nixosModules.shared
+            config.nixosModules.zram
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
