@@ -103,10 +103,8 @@
       };
       extensions = with pkgs.vscode-extensions; [
         catppuccin.catppuccin-vsc
-        codeium.codeium
         eamodio.gitlens
         esbenp.prettier-vscode
-        evolution-gaming.evolution-gaming--vscode-eslint # ESLint 'autoFixOnSave'
         james-yu.latex-workshop
         jnoortheen.nix-ide
         kamadorueda.alejandra
