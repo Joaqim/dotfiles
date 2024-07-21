@@ -1,11 +1,5 @@
 {
-  perSystem = {
-    pkgs,
-    lib,
-    config,
-    self',
-    ...
-  }: {
+  perSystem = {...}: {
     imports = [./devshells.nix ./pre-commit.nix];
   };
 }

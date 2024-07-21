@@ -1,17 +1,17 @@
-{ lib, ...}: {
+{lib, ...}: {
   time.timeZone = lib.mkDefault "Europe/Stockholm";
 
   i18n = {
     defaultLocale = lib.mkDefault "en_US.UTF-8";
 
-    supportedLocales = [ 
+    supportedLocales = [
       "en_US.UTF-8/UTF-8"
       "sv_SE.UTF-8/UTF-8"
     ];
 
-    inputMethod = { 
+    inputMethod = {
       enable = true;
-      type = "fcitx5"; 
+      type = "fcitx5";
     };
 
     extraLocaleSettings = lib.mkDefault {
