@@ -26,6 +26,7 @@ let
   locale = import ./modules/locale.nix;
   network = import ./modules/network.nix;
   nix = import ./modules/nix.nix;
+  oom = import ./modules/oom.nix;
   plasma = import ./modules/plasma.nix;
   printing = import ./modules/printing.nix;
   regreet = import ./modules/regreet.nix;
@@ -65,6 +66,7 @@ in {
         minecraft-server-1
         network
         nix
+        oom
         plasma
         printing
         regreet
@@ -128,6 +130,7 @@ in {
           home-manager
           locale
           nix
+          oom
           plasma
           printing
           sops
