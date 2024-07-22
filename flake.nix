@@ -68,6 +68,7 @@
           desktop = inputs.self.lib.mkLinuxSystem [
             ./systems/desktop
             ./users/profiles/user0
+            config.nixosModules.minecraft-server-1
             config.nixosModules.shared
             config.nixosModules.zram
             inputs.sops-nix.nixosModules.sops
