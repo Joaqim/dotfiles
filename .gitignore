@@ -5,3 +5,4 @@
 # VM state and build results
 *.qcow2
 result
+.decrypted~secrets.yaml
