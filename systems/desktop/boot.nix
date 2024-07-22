@@ -1,8 +1,12 @@
 {
   pkgs,
   config,
+  flake,
   ...
-}: {
+}: let
+  inherit (flake.config) people;
+  userName = people.users.${people.user0}.name;
+in {
   boot = {
     extraModulePackages = [
       config.boot.kernelPackages.v4l2loopback.out
@@ -39,7 +43,7 @@
         efiSupport = true;
         zfsSupport = true;
         theme = pkgs.sleek-grub-theme.override {
-          withBanner = "Grub Bootloader";
+          withBanner = "Welcome, ${userName}!";
           withStyle = "bigSur";
         };
       };
