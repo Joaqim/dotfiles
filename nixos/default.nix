@@ -6,6 +6,7 @@ let
   android = import ./modules/android.nix;
   audio = import ./modules/audio.nix;
   bluetooth = import ./modules/bluetooth.nix;
+  cockpit = import ./modules/cockpit.nix;
   corectrl = import ./modules/corectrl.nix;
   dconf = import ./modules/dconf.nix;
   disks = import ./modules/disks.nix;
@@ -47,6 +48,7 @@ in {
         android
         audio
         bluetooth
+        cockpit
         corectrl
         dconf
         disks
