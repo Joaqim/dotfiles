@@ -6,7 +6,6 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
-      "/var/lib/sops-nix"
       {
         directory = "/var/lib/sops";
         user = "root";

@@ -16,12 +16,15 @@
       pciutils
       pinentry
       playerctl
+      systemctl-tui
       tomb
+      tuir
       unrar
       unzip
       wezterm
       wget
       wine
+      wtwitch
       xdotool
       zip
       ;

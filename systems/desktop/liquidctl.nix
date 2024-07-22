@@ -1,6 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   systemd.services.liquidctl = {
-    enable = true;
+    enable = lib.mkDefault true;
     description = "AIO Startup Service";
     serviceConfig = {
       Type = "oneshot";
