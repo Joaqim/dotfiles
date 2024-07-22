@@ -15,6 +15,11 @@
 
   programs.kdeconnect.enable = true;
 
+  security.pam.services.kwallet = {
+    name = "kwallet";
+    enableKwallet = true;
+  };
+
   environment = {
     # Disable baloo indexer
     etc."xdg/baloofilerc".source = (pkgs.formats.ini {}).generate "baloorc" {
