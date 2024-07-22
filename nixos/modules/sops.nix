@@ -7,10 +7,13 @@ in {
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     validateSopsFiles = false;
-    age = {
-      keyFile = "/persist/var/lib/sops-nix/key.txt";
-      generateKey = false;
+    gnupg = {
+      # root gnugpg dir, see: https://github.com/Mic92/sops-nix#use-with-gpg-instead-of-ssh-keys
+      home = "/var/lib/sops";
+      # disable importing host ssh keys
+      sshKeyPaths = [];
     };
+    age.generateKey = false;
     secrets = {
       "private_key/${user0}" = {
         path = "/home/${user0}/.ssh/id_ed25519";

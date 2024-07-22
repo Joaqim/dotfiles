@@ -1,7 +1,15 @@
 keys:
   - &user0 age1l4wz6djjwrev5y4pkrfu9lz7qukuwcsl4cghujg4m7wm3l37yp4saeajj8
+  - &desktop 1D3443103716D82E840382FCCC5E009CE6212C60
 creation_rules:
+  - key_groups:
+      - age:
+          - *user0
+        pgp:
+          - *desktop
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
-        - *user0
+          - *user0
+        pgp:
+          - *desktop

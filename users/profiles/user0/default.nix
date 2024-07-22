@@ -17,13 +17,14 @@ in {
       hashedPassword = "$y$j9T$5s53WJ9/xHH/8sY1X4eLk/$nkNlK3879UGpALjflkIUdN7j245Qp36dBYPrboAuJz8";
       shell = pkgs.nushell;
       extraGroups = [
-        "libvirtd"
+        "adbusers"
         "disk"
+        "keys"
+        "libvirtd"
+        "netdev"
         "networkmanager"
         "vboxusers"
         "wheel"
-        "adbusers"
-        "netdev"
       ];
     };
   };

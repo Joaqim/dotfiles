@@ -98,9 +98,6 @@
         "nix.serverPath" = lib.getExe pkgs.nil;
         "nix.formatterPath" = lib.getExe pkgs.alejandra;
 
-        # TODO(jq): Define and use SOPS_AGE_KEY_FILE instead
-        "sops.defaults.ageKeyFile" = "/var/lib/sops-nix/key.txt";
-
         ### Custom Dictionary
         "cSpell.customDictionaries" = {
           "custom-dictionary-user" = {

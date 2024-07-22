@@ -1,6 +1,7 @@
 {
   config,
   flake,
+  lib,
   ...
 }: let
   user = config.home.username;
@@ -10,6 +11,10 @@ in {
     enable = true;
     userName = userConfig.name;
     userEmail = userConfig.email;
+    signing = {
+      key = lib.mkDefault null;
+      signByDefault = true;
+    };
     ignores = [
       ".envrc"
       ".direnv/"
@@ -17,6 +22,12 @@ in {
     extraConfig = {
       branch.autoSetupRebase = "always";
       checkout.defaultRemote = "origin";
+
+      # Sign all commits using ssh key
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
+      gpg.ssh.allowedSignersFile = "~/.ssh/allowed_signers";
 
       pull.rebase = true;
       pull.ff = "only";

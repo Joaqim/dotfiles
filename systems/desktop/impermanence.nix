@@ -7,6 +7,12 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/sops-nix"
+      {
+        directory = "/var/lib/sops";
+        user = "root";
+        group = "wheel";
+        mode = "u=rwx,g=rx,o=";
+      }
       "/etc/NetworkManager/system-connections"
       {
         directory = "/var/lib/colord";
