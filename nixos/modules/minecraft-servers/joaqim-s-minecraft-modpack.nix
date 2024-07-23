@@ -23,12 +23,15 @@
           EULA = "TRUE";
           FORGE_VERSION = "47.3.1";
           MEMORY = "16G";
+          MODPACK_NAME = "Joaqim's Minecraft Modpack";
+          MODPACK_VERSION = "1.0.1-rc3";
+          MOTD = "Running %MODPACK_NAME% version %env:MODPACK_VERSION%";
           ONLINE_MODE = "FALSE";
-          PACKWIZ_URL = "https://github.com/Joaqim/MinecraftModpack/raw/1.0.1-rc3/pack.toml";
+          PACKWIZ_URL = "https://github.com/Joaqim/MinecraftModpack/raw/%MODPACK_VERSION%/pack.toml";
           TYPE = "FORGE";
           TZ = "Europe/Stockholm";
-          VERSION = "1.20.1";
           USE_AIKAR_FLAGS = "TRUE";
+          VERSION = "1.20.1";
         };
         volumes = [
           "/srv/joaqim-s-minecraft-modpack-data:/data:rw"
