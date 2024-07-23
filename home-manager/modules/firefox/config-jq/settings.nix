@@ -3,7 +3,7 @@ let
   # ~/.mozilla/firefox/$PROFILE/user.js file and the about:config and
   # about:preferences pages.
   restorePreviousSessions = 3;
-  compact = 1;
+  compact = 3;
 in {
   "general.smoothScroll" = false;
   "font.size.variable.x-western" = 15;
@@ -65,7 +65,10 @@ in {
   "media.eme.enabled" = true;
   "privacy.clearOnShutdown.cookies" = false;
   "privacy.fingerprintingProtection" = true;
-  "privacy.sanitize.sanitizeOnShutdown" = true;
+
+  # This Clears history when Firefox closes:
+  # "privacy.sanitize.sanitizeOnShutdown" = true;
+
   "privacy.donottrackheader.enabled" = true;
   "privacy.globalprivacycontrol.enabled" = true;
   "privacy.globalprivacycontrol.functionality.enabled" = true;
@@ -74,7 +77,7 @@ in {
   "privacy.trackingprotection.socialtracking.enabled" = true;
   "browser.contentblocking.category" = "custom";
 
-  # Password management. Disabled because we will use a Password Manager Addon instead.
+  # Password management. Disabled because we will use an extrenal Password Manager instead.
   "signon.rememberSignons" = false;
   "signon.autofillForms" = false;
   "signon.management.page.breach-alerts.enabled" = false;
