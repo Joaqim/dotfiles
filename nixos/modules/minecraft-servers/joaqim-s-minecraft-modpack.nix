@@ -3,7 +3,11 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  MODPACK_VERSION = "1.0.2";
+  MODPACK_NAME = "Joaqim's Minecraft Modpack";
+  REMOTE_MODPACK_URL = "https://github.com/Joaqim/MinecraftModpack/raw/${MODPACK_VERSION}";
+in {
   # Runtime
   virtualisation = {
     docker = {
@@ -16,25 +20,33 @@
       # Containers
       containers."joaqim-s-minecraft-modpack" = {
         image = "itzg/minecraft-server";
+
         environment = {
           ALLOW_FLIGHT = "TRUE";
           DEBUG = "FALSE";
           DIFFICULTY = "easy";
           EULA = "TRUE";
           FORGE_VERSION = "47.3.1";
+          LEVEL = "${MODPACK_NAME} World 1";
+          MAX_PLAYERS = "10";
           MEMORY = "16G";
-          MODPACK_NAME = "Joaqim's Minecraft Modpack";
-          MODPACK_VERSION = "1.0.1-rc3";
-          MOTD = "Running %MODPACK_NAME% version %env:MODPACK_VERSION%";
+          MOTD = "Running `${MODPACK_NAME}` version ${MODPACK_VERSION}";
           ONLINE_MODE = "FALSE";
-          PACKWIZ_URL = "https://github.com/Joaqim/MinecraftModpack/raw/%MODPACK_VERSION%/pack.toml";
+          PACKWIZ_URL = "${REMOTE_MODPACK_URL}/pack.toml";
+          SEED = "8016074285773694051";
+          SERVER_ICON = "${REMOTE_MODPACK_URL}/icon.jpeg";
+          SERVER_NAME = MODPACK_NAME;
+          SNOOPER_ENABLED = "FALSE";
+          SPAWN_PROTECTION = "0";
           TYPE = "FORGE";
           TZ = "Europe/Stockholm";
           USE_AIKAR_FLAGS = "TRUE";
           VERSION = "1.20.1";
+          VIEW_DISTANCE = "20";
+          WHITELIST = "TRUE";
         };
         volumes = [
-          "/srv/joaqim-s-minecraft-modpack-data:/data:rw"
+          "/srv/minecraft/joaqim-s-minecraft-modpack-data:/data:rw"
         ];
         ports = [
           "25565:25565/tcp"
@@ -56,6 +68,8 @@
         serviceConfig = {
           Restart = lib.mkOverride 500 "no";
         };
+        #restartIfChanged = true;
+
         after = [
           service
         ];
@@ -73,6 +87,7 @@
       # Networks
       "docker-network-joaqim-s-minecraft-modpack_default" = {
         path = [pkgs.docker];
+        restartIfChanged = true;
         serviceConfig = {
           Type = "oneshot";
           RemainAfterExit = true;
