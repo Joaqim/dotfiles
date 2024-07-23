@@ -7,6 +7,12 @@
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       {
+        directory = "/srv/minecraft";
+        user = "root";
+        group = "wheel";
+        mode = "u=rwx,g=rwx,o=";
+      }
+      {
         directory = "/var/lib/sops";
         user = "root";
         group = "wheel";
