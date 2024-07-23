@@ -98,6 +98,11 @@
         "nix.serverPath" = lib.getExe pkgs.nil;
         "nix.formatterPath" = lib.getExe pkgs.alejandra;
 
+        ### GitLens
+        "gitlens.telemetry.enabled" = false;
+        "gitlens.ai.experimental.model" = "openai:gpt-3.5-turbo";
+        "gitlens.experimental.generateCommitMessagePrompt" = "Generate a commit message using the Conventional Commits format. Examples: ['feat: Add new feature to the project', 'fix: Fix a bug in the project', 'chore: Update build configuration or task', 'docs: Update project documentation', 'style: Update code formatting or style', 'refactor: Refactor existing code', 'test: Add or update tests', 'perf: Improve performance of the project', 'ci: Update continuous integration configuration', 'build: Make changes related to the build process', 'revert: Revert a previous commit']";
+
         ### Custom Dictionary
         "cSpell.customDictionaries" = {
           "custom-dictionary-user" = {
