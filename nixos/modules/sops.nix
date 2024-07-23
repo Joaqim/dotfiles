@@ -23,6 +23,14 @@ in {
         path = "/home/${user0}/.ssh/id_ed25519.pub";
         owner = user0;
       };
+      "private_key/jq-ci-bot" = {
+        path = "/home/${user0}/.ssh/id_joaqim-ci-bot";
+        owner = user0;
+      };
+      "public_key/jq-ci-bot" = {
+        path = "/home/${user0}/.ssh/id_joaqim-ci-bot.pub";
+        owner = user0;
+      };
       "wakatime_api_key/${user0}" = {
         path = "/home/${user0}/.wakatime/api_key.txt";
         owner = user0;
