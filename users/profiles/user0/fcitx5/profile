@@ -1,0 +1,23 @@
+[Groups/0]
+# Group Name
+Name="Group 1"
+# Layout
+Default Layout=se-nodeadkeys
+# Default Input Method
+DefaultIM=keyboard-se-nodeadkeys
+
+[Groups/0/Items/0]
+# Name
+Name=keyboard-us-dvp
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
+Name=keyboard-se-nodeadkeys
+# Layout
+Layout=
+
+[GroupOrder]
+0="Group 1"
+
