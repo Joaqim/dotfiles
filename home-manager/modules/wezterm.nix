@@ -8,7 +8,7 @@
         enable_tab_bar = false,
         window_close_confirmation = 'NeverPrompt',
         term = 'wezterm',
-        enable_wayland = false,
+        enable_wayland = true,
       }
     '';
   };

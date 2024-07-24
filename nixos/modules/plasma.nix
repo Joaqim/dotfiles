@@ -2,13 +2,17 @@
   services = {
     xserver = {
       enable = true;
-      desktopManager.plasma5.enable = true;
+      desktopManager = {
+        plasma5.enable = true;
+      };
     };
     # desktopManager.plasma6.enable = true;
     displayManager = {
+      defaultSession = "plasmawayland";
       sddm = {
         enable = true;
         wayland.enable = true;
+        autoNumlock = true;
       };
     };
   };
@@ -30,20 +34,21 @@
     plasma5.excludePackages = with pkgs.libsForQt5;
     # with pkgs.kdePackages;
       [
-        plasma-browser-integration
+        #plasma-browser-integration
         konsole
         oxygen
-        dolphin
-        kate
+        #dolphin
+        #kate
         gwenview
         spectacle
         khelpcenter
         baloo
       ];
   };
-  # qt = {
-  #   enable = true;
-  #   platformTheme = "gnome";
-  #   style = "adwaita-dark";
-  # };
+
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+    style = "kvantum"; # See ./home-manager/modules/misc/kvantum.nix
+  };
 }
