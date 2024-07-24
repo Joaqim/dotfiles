@@ -34,6 +34,7 @@ let
   sops = import ./modules/sops.nix;
   sysstat = import ./modules/sysstat.nix;
   system = import ./modules/system.nix;
+  tailscale = import ./modules/tailscale.nix;
   thunar = import ./modules/thunar.nix;
   touchegg = import ./modules/touchegg.nix;
   tumbler = import ./modules/tumbler.nix;
@@ -76,6 +77,7 @@ in {
         steam
         sysstat
         system
+        tailscale
         thunar
         touchegg
         tumbler
@@ -139,6 +141,7 @@ in {
           steam
           sysstat
           system
+          tailscale
           thunar
           tumbler
           virtualisation
