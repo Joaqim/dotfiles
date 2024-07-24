@@ -9,6 +9,9 @@
 
     material-icons
     material-design-icons
+
+    # https://mynixos.com/nixpkgs/package/codeium
+    codeium
   ];
 
   programs = {
@@ -112,30 +115,52 @@
             "scope" = "user";
           };
         };
+
+        ### Codeium
+        "codeium.enableConfig" = {
+          "*" = true;
+          "nix" = true;
+        };
       };
-      extensions = with pkgs.vscode-extensions; [
-        catppuccin.catppuccin-vsc
-        eamodio.gitlens
-        esbenp.prettier-vscode
-        github.vscode-github-actions
-        james-yu.latex-workshop
-        jnoortheen.nix-ide
-        kamadorueda.alejandra
-        marp-team.marp-vscode
-        mattn.lisp
-        mkhl.direnv
-        myriad-dreamin.tinymist
-        nvarner.typst-lsp
-        pkief.material-icon-theme
-        pkief.material-product-icons
-        signageos.signageos-vscode-sops
-        signageos.signageos-vscode-sops
-        streetsidesoftware.code-spell-checker
-        tamasfe.even-better-toml
-        thenuprojectcontributors.vscode-nushell-lang
-        wakatime.vscode-wakatime
-        yzhang.markdown-all-in-one
-      ];
+      extensions = with pkgs.vscode-extensions;
+        [
+          catppuccin.catppuccin-vsc
+          #codeium.codeium
+          eamodio.gitlens
+          esbenp.prettier-vscode
+          github.vscode-github-actions
+          james-yu.latex-workshop
+          jnoortheen.nix-ide
+          kamadorueda.alejandra
+          marp-team.marp-vscode
+          mattn.lisp
+          mkhl.direnv
+          ms-azuretools.vscode-docker
+          myriad-dreamin.tinymist
+          nvarner.typst-lsp
+          pkief.material-icon-theme
+          pkief.material-product-icons
+          signageos.signageos-vscode-sops
+          streetsidesoftware.code-spell-checker
+          tamasfe.even-better-toml
+          thenuprojectcontributors.vscode-nushell-lang
+          wakatime.vscode-wakatime
+          yzhang.markdown-all-in-one
+        ]
+        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+          {
+            name = "codeium";
+            publisher = "Codeium";
+            version = "1.9.86";
+            sha256 = "sha256-1r6lUD7mM12NGb3l279HzSNRi7VLVe/zrQdBVAJtPyw=";
+          }
+          {
+            name = "vscode-tailscale";
+            publisher = "Tailscale";
+            version = "1.0.0";
+            sha256 = "sha256-MKiCZ4Vu+0HS2Kl5+60cWnOtb3udyEriwc+qb/7qgUg=";
+          }
+        ];
       userSettings = {
       };
     };
