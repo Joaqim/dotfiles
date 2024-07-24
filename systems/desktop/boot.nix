@@ -30,7 +30,7 @@ in {
 
     loader = {
       efi = {
-        canTouchEfiVariables = true;
+        canTouchEfiVariables = false;
         efiSysMountPoint = "/boot";
       };
       generationsDir = {
@@ -42,6 +42,11 @@ in {
         device = "nodev";
         efiSupport = true;
         zfsSupport = true;
+
+        # Enable while transferring systems between different machines, also toggle `efi.canTouchEfiVariables` to false
+        # https://mynixos.com/nixpkgs/option/boot.loader.grub.efiInstallAsRemovable
+        efiInstallAsRemovable = true;
+
         theme = pkgs.sleek-grub-theme.override {
           withBanner = "Welcome, ${userName}!";
           withStyle = "bigSur";
