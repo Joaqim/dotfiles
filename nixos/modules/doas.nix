@@ -10,8 +10,9 @@
       enable = true;
 
       extraConfig = ''
-        permit nopass :wheel as root cmd /usr/bin/liquidctl
-        permit nopass :wheel as root cmd /usr/bin/nixos-rebuild
+        permit nopass :wheel as root cmd /run/current-system/sw/bin/nixos-rebuild
+        permit nopass :wheel as root cmd /etc/profiles/per-user/jq/bin/systemctl
+        permit nopass :wheel as root cmd /etc/profiles/per-user/jq/bin/journalctl
       '';
 
       extraRules = [
