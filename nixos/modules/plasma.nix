@@ -46,9 +46,9 @@
       ];
   };
 
-  qt = {
-    enable = true;
-    platformTheme = "qt5ct";
-    style = "kvantum"; # See ./home-manager/modules/misc/kvantum.nix
-  };
+  #qt = {
+  #  enable = true;
+  #  platformTheme = "qt5ct";
+  #  style = "kvantum"; # See ./home-manager/modules/misc/kvantum.nix
+  #};
 }
