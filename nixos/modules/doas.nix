@@ -11,6 +11,7 @@
 
       extraConfig = ''
         permit nopass :wheel as root cmd /usr/bin/liquidctl
+        permit nopass :wheel as root cmd /usr/bin/nixos-rebuild
       '';
 
       extraRules = [
