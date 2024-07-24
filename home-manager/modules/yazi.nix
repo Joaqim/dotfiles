@@ -1,14 +1,23 @@
-{
+{pkgs, ...}: {
+  home.packages = builtins.attrValues {
+    inherit
+      (pkgs)
+      exiftool
+      nomacs
+      tokei
+      mediainfo
+      ;
+  };
   programs.yazi = {
     enable = true;
     enableNushellIntegration = true;
     keymap.manager.prepend_keymap = [
       {
-        exec = "quit";
+        run = "quit";
         on = ["Q"];
       }
       {
-        exec = "quit --no-cwd-file";
+        run = "quit --no-cwd-file";
         on = ["q"];
       }
     ];
@@ -31,7 +40,7 @@
       opener = {
         reveal = [
           {
-            exec = "exiftool \"$1\" | $PAGER";
+            run = "exiftool \"$1\" | $PAGER";
             block = true;
             desc = "Show EXIF";
             for = "unix";
@@ -39,25 +48,25 @@
         ];
         open = [
           {
-            exec = "nomacs \"$@\"";
+            run = "nomacs \"$@\"";
             desc = "Nomacs";
             orphan = true;
             for = "unix";
           }
           {
-            exec = "code \"$@\"";
+            run = "code \"$@\"";
             desc = "VSCode";
             orphan = true;
             for = "unix";
           }
           {
-            exec = "firefox \"$@\"";
+            run = "firefox \"$@\"";
             desc = "Firefox";
             orphan = true;
             for = "unix";
           }
           {
-            exec = "krita \"$@\"";
+            run = "krita \"$@\"";
             desc = "Krita";
             orphan = true;
             for = "unix";
@@ -65,19 +74,19 @@
         ];
         edit = [
           {
-            exec = "wezterm -e hx \"$@\"";
+            run = "wezterm -e hx \"$@\"";
             desc = "Helix";
             orphan = true;
             for = "unix";
           }
           {
-            exec = "code \"$@\"";
+            run = "code \"$@\"";
             desc = "VSCode";
             orphan = true;
             for = "unix";
           }
           {
-            exec = "tokei \"$1\" | $PAGER";
+            run = "tokei \"$1\" | $PAGER";
             block = true;
             desc = "Count Lines";
             for = "unix";
@@ -85,19 +94,19 @@
         ];
         play = [
           {
-            exec = "celluloid \"$@\"";
+            run = "celluloid \"$@\"";
             desc = "MPV";
             orphan = true;
             for = "unix";
           }
           {
-            exec = "vlc \"$@\"";
+            run = "vlc \"$@\"";
             desc = "VLC";
             orphan = true;
             for = "unix";
           }
           {
-            exec = "mediainfo \"$1\" | $PAGER";
+            run = "mediainfo \"$1\" | $PAGER";
             block = true;
             desc = "Media Info";
             for = "unix";
