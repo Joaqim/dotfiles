@@ -1,6 +1,7 @@
 {
   config,
   nur,
+  pkgs,
   ...
 }: let
   user = config.home.username;
@@ -15,7 +16,7 @@ in {
         search = import ./config-${user}/search.nix;
         bookmarks = import ./config-${user}/bookmarks.nix;
         settings = import ./config-${user}/settings.nix;
-        extensions = import ./config-${user}/extensions.nix {inherit nur;};
+        extensions = import ./config-${user}/extensions.nix {inherit nur pkgs;};
         userChrome = builtins.readFile ./config-${user}/userChrome.css;
 
         # Darker background for new tabs (to not blast eyes with blinding white).
