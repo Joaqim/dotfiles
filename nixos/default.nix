@@ -22,7 +22,7 @@ let
   home-manager = import ./modules/home-manager.nix;
   hyprland = import ./modules/hyprland.nix;
   jellyfin = import ./modules/jellyfin.nix;
-  minecraft-server-1 = import ./modules/minecraft-servers/joaqim-s-minecraft-modpack.nix;
+  minecraft-server-1 = import ./modules/minecraft-servers/better-minecraft-modpack.nix;
   laptop-extras = import ./modules/laptop.nix;
   locale = import ./modules/locale.nix;
   network = import ./modules/network.nix;
