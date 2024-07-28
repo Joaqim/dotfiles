@@ -85,6 +85,27 @@ in {
         xserver
         zram
         ;
+      deck = {
+        imports = [
+          accounts
+          #audio
+          #bluetooth
+          doas
+          home-manager
+          locale
+          nix
+          oom
+          sops
+          #steam
+          system
+
+          # Mostly for xkb layout
+          xserver
+
+          # Already assigned by jovian
+          #zram
+        ];
+      };
       server = {
         imports = [
           accounts

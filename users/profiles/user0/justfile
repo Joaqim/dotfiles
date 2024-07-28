@@ -5,8 +5,11 @@ ewwLaunch:
     ./home/jq/dotfiles/home-manager/modules/eww/config/scripts/master.sh
 
 hmSwitch:
-    home-manager switch --flake ~/dotfiles#desktop
+    home-manager switch --flake ~/dotfiles
 
 nixosSwitch:
-    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles#desktop
+    doas nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles
+
+nixosTest:
+    doas nixos-rebuild test --use-remote-sudo --flake /home/jq/dotfiles
 

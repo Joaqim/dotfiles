@@ -2,7 +2,7 @@
 # Group Name
 Name="Group 1"
 # Layout
-Default Layout=se-nodeadkeys
+#Default Layout=us-dvp
 # Default Input Method
 DefaultIM=keyboard-se-nodeadkeys
 

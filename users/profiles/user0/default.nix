@@ -2,6 +2,7 @@
   config,
   flake,
   pkgs,
+  lib,
   ...
 }: let
   hostname = config.networking.hostName;
@@ -14,7 +15,7 @@ in {
     users.${flake.config.people.user0} = {
       description = flake.config.people.users.${flake.config.people.user0}.name;
       isNormalUser = true;
-      hashedPassword = "$y$j9T$5s53WJ9/xHH/8sY1X4eLk/$nkNlK3879UGpALjflkIUdN7j245Qp36dBYPrboAuJz8";
+      hashedPassword = lib.mkDefault "$y$j9T$5s53WJ9/xHH/8sY1X4eLk/$nkNlK3879UGpALjflkIUdN7j245Qp36dBYPrboAuJz8";
       shell = pkgs.nushell;
       extraGroups = [
         "adbusers"
