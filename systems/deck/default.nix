@@ -1,7 +1,7 @@
 {lib, ...}: {
   imports = [
     ./boot.nix
-    ./disko-config.nix
+    ./hardware-config.nix
     ./networking.nix
   ];
 

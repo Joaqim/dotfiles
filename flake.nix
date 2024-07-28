@@ -33,10 +33,6 @@
     deadnix.url = "github:astro/deadnix";
 
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = inputs:
@@ -99,7 +95,6 @@
             config.nixosModules.deck
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
-            inputs.disko.nixosModules.disko
             inputs.jovian.nixosModules.jovian
           ];
           laptop = inputs.self.lib.mkLinuxSystem [
