@@ -10,6 +10,7 @@ let
   corectrl = import ./modules/corectrl.nix;
   dconf = import ./modules/dconf.nix;
   disks = import ./modules/disks.nix;
+  distributed-builder = import ./modules/distributed-builder.nix;
   doas = import ./modules/doas.nix;
   docker = import ./modules/docker.nix;
   environment = import ./modules/environment.nix;
@@ -53,6 +54,7 @@ in {
         corectrl
         dconf
         disks
+        distributed-builder
         doas
         environment
         firejail
@@ -91,6 +93,7 @@ in {
           #audio
           bluetooth
           doas
+          distributed-builder
           home-manager
           locale
           nix
