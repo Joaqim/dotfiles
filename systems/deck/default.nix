@@ -6,7 +6,12 @@
     ./ssh.nix
   ];
 
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager.plasma5.enable = true;
+  };
+
+  hardware.xpadneo.enable = true;
 
   jovian = {
     devices.steamdeck.enable = true;

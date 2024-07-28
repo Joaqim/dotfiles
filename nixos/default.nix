@@ -89,7 +89,7 @@ in {
         imports = [
           accounts
           #audio
-          #bluetooth
+          bluetooth
           doas
           home-manager
           locale
