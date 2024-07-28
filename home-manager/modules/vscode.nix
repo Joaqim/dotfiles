@@ -38,6 +38,9 @@
         };
         "files.associations" = {};
 
+        # Accept linux keymapping
+        "keyboard.dispatch" = "keyCode";
+
         # Git
         "git.confirmSync" = false;
         "git.enableSmartCommit" = true;
@@ -121,6 +124,11 @@
           "*" = true;
           "nix" = true;
         };
+
+        ### VSCode Helix Emulation
+        "extensions.experimental.affinity" = {
+          "jasew.vscode-helix-emulation" = 1;
+        };
       };
       extensions = with pkgs.vscode-extensions;
         [
@@ -159,6 +167,12 @@
             publisher = "Tailscale";
             version = "1.0.0";
             sha256 = "sha256-MKiCZ4Vu+0HS2Kl5+60cWnOtb3udyEriwc+qb/7qgUg=";
+          }
+          {
+            name = "vscode-helix-emulation";
+            publisher = "jasew";
+            version = "0.6.2";
+            sha256 = "sha256-V/7Tu1Ze/CYRmtxwU2+cQLOxLwH7YRYYeHSUGbGTb5I=";
           }
         ];
       userSettings = {

@@ -22,12 +22,12 @@
     };
     config = {
       profile = "gpu-hq";
-      ytdl-format = "bestvideo+bestaudio";
     };
   };
 
   programs.yt-dlp = {
     enable = true;
+    # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#sponsorblock-options
     extraConfig = "--cookies-from-browser=firefox";
   };
 }

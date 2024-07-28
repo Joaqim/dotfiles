@@ -8,19 +8,31 @@
     sudo.enable = false;
     doas = {
       enable = true;
+      wheelNeedsPassword = false;
 
-      extraConfig = ''
-        permit nopass :wheel as root cmd /run/current-system/sw/bin/nixos-rebuild
-        permit nopass :wheel as root cmd /etc/profiles/per-user/jq/bin/systemctl
-        permit nopass :wheel as root cmd /etc/profiles/per-user/jq/bin/journalctl
-      '';
-
-      extraRules = [
+      extraRules = let
+        users = [flake.config.people.user0];
+      in [
         {
+          inherit users;
           keepEnv = true;
           noPass = false;
-          users = [flake.config.people.user0];
           persist = true;
+        }
+        {
+          inherit users;
+          noPass = true;
+          cmd = "systemctl";
+        }
+        {
+          inherit users;
+          noPass = true;
+          cmd = "journalctl";
+        }
+        {
+          inherit users;
+          noPass = true;
+          cmd = "nixos-rebuild";
         }
       ];
     };

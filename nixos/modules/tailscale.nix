@@ -10,6 +10,7 @@
 
   # create a oneshot job to authenticate to Tailscale
   systemd.services.tailscale-autoconnect = {
+    enable = lib.mkDefault false;
     description = "Automatic connection to Tailscale";
 
     # make sure tailscale is running before trying to connect to tailscale

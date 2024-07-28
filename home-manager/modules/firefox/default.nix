@@ -2,6 +2,7 @@
   config,
   nur,
   pkgs,
+  lib,
   ...
 }: let
   user = config.home.username;
@@ -30,7 +31,7 @@ in {
   };
 
   xdg.mimeApps = {
-    enable = true;
+    enable = lib.mkDefault true;
     defaultApplications = {
       "text/html" = "firefox.desktop";
       "x-scheme-handler/http" = "firefox.desktop";

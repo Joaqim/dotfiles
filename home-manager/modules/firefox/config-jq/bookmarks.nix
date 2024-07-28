@@ -49,8 +49,8 @@
       }
       # Streaming
       {
-        name = "YouTube";
-        url = "https://www.youtube.com/";
+        name = "YouTube ( Subscriptions )";
+        url = "https://www.youtube.com/feed/subscriptions";
         tags = ["youtube" "you" "tube" "yt"];
         keyword = "You";
       }
