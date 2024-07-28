@@ -1,7 +1,6 @@
 {
   config,
   flake,
-  pkgs,
   ...
 }: let
   hostname = config.networking.hostName;
@@ -14,7 +13,6 @@ in {
     users."${user1}" = {
       description = flake.config.people.users."${user1}".name;
       isNormalUser = true;
-      shell = pkgs.zsh;
       extraGroups = [
         "input"
         "networkmanager"

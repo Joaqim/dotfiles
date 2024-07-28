@@ -3,6 +3,7 @@
     ./boot.nix
     ./hardware-config.nix
     ./networking.nix
+    ./ssh.nix
   ];
 
   services.xserver.desktopManager.plasma5.enable = true;
