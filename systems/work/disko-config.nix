@@ -4,7 +4,7 @@
     disk = {
       main = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        #device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -19,7 +19,7 @@
               };
             };
             swap = {
-              size = "16G";
+              size = "32G";
               type = "8200";
               content = {
                 type = "swap";
@@ -30,7 +30,7 @@
               size = "100%";
               content = {
                 type = "zfs";
-                pool = "zpool";
+                pool = "zpool-work";
               };
             };
           };
@@ -38,7 +38,7 @@
       };
     };
     zpool = {
-      zpool = {
+      "zpool-work" = {
         type = "zpool";
         rootFsOptions = {
           # https://wiki.archlinux.org/title/Install_Arch_Linux_on_ZFS
@@ -77,7 +77,7 @@
           "local/root" = {
             type = "zfs_fs";
             mountpoint = "/";
-            postCreateHook = "zfs snapshot zpool/local/root@blank";
+            postCreateHook = "zfs snapshot zpool-work/local/root@blank";
           };
           "local/tmp" = {
             type = "zfs_fs";

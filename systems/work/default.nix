@@ -1,15 +1,17 @@
 {lib, ...}: {
   imports = [
-    ./boot.nix
+    ../desktop/boot.nix
+    ../desktop/hardware.nix
+    ../desktop/networking.nix
+    ../desktop/ssh.nix
     ./filesystem.nix
     ./graphics.nix
-    ./hardware.nix
-    ./networking.nix
-    ./ssh.nix
     ./impermanence.nix
   ];
   nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
   system.stateVersion = lib.mkForce "24.05";
+
+  boot.zfs.extraPools = lib.mkForce ["zpool"];
 
   # When booting into emergency or rescue targets, do not require the password
   # of the root user to start a root shell.  I am ok with the security

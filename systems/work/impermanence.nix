@@ -6,7 +6,18 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
-      "/var/lib/sops-nix"
+      {
+        directory = "/srv/minecraft";
+        user = "root";
+        group = "wheel";
+        mode = "u=rwx,g=rwx,o=";
+      }
+      {
+        directory = "/var/lib/sops";
+        user = "root";
+        group = "wheel";
+        mode = "u=rwx,g=rx,o=";
+      }
       "/etc/NetworkManager/system-connections"
       {
         directory = "/var/lib/colord";
@@ -27,6 +38,6 @@
     };
   };
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r zpool/local/root@blank
+    zfs rollback -r zpool-work/local/root@blank
   '';
 }
