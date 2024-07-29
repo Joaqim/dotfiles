@@ -18,8 +18,10 @@ sudo qemu-kvm -enable-kvm -hda /dev/sda
 [TLATER/dotfiles - Sops secrets](https://github.com/TLATER/dotfiles/tree/e2432f2928ed2462852416dd54068f8c0c45dc6d#dotfiles)
 
 
-[TLATER/nixos-config](https://github.com/TLATER/nixos-config)
+[TLATER/dotfiles](https://github.com/TLATER/dotfiles)
 
 [Misterio77/nix-config](https://github.com/Misterio77/nix-config)
 
 [BRBWaffles/dotfiles](https://gitlab.com/BRBWaffles/dotfiles)
+
+[Faupi/nixos-configs](https://github.com/Faupi/nixos-configs/tree/master)
