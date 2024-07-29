@@ -96,6 +96,7 @@ in {
           bluetooth
           doas
           distributed-builder
+          gamemode
           home-manager
           locale
           nix
@@ -109,6 +110,18 @@ in {
 
           # Already assigned by jovian
           #zram
+        ];
+      };
+      desktop = {
+        imports = [
+          gamemode
+          minecraft-server-1
+          zram
+        ];
+      };
+      work = {
+        imports = [
+          zram
         ];
       };
       server = {

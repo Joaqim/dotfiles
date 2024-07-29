@@ -70,9 +70,8 @@
           desktop = inputs.self.lib.mkLinuxSystem [
             ./systems/desktop
             ./users/profiles/user0
-            config.nixosModules.minecraft-server-1
             config.nixosModules.shared
-            config.nixosModules.zram
+            config.nixosModules.desktop
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
@@ -82,7 +81,7 @@
             ./systems/work
             ./users/profiles/user0
             config.nixosModules.shared
-            config.nixosModules.zram
+            config.nixosModules.work
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
