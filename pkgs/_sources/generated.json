@@ -15,6 +15,7 @@
             "repo": "bauer",
             "rev": "v2.0.1",
             "sha256": "sha256-jenFLJeVX1OlckvCv+c/u2GG8UNQatfQ8OwPu1cs4Q8=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v2.0.1"
@@ -35,6 +36,7 @@
             "repo": "gauth",
             "rev": "v1.3.0",
             "sha256": "sha256-GU6HKha7Y01HJX6pyYHORUkFKgl9mWtDd65d+3pYxjI=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v1.3.0"
@@ -53,10 +55,11 @@
             "name": null,
             "owner": "richardwilkes",
             "repo": "gcs",
-            "rev": "v5.24.0",
-            "sha256": "sha256-7JSCiXtfmOXxbqUGnJPhr2FNTSlngJ0oh1yoY8J/doE=",
+            "rev": "v5.25.1",
+            "sha256": "sha256-+HpWL+FlQ4io4CsDDRiNjFw8UWtcXjilGnanGAXM2+k=",
+            "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v5.24.0"
+        "version": "v5.25.1"
     }
 }
