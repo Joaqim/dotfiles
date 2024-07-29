@@ -16,6 +16,7 @@ let
   environment = import ./modules/environment.nix;
   firejail = import ./modules/firejail.nix;
   flatpak = import ./modules/flatpak.nix;
+  gamemode = import ./modules/gamemode.nix;
   geoclue2 = import ./modules/geoclue2.nix;
   gnome = import ./modules/gnome.nix;
   greetd = import ./modules/greetd.nix;
@@ -59,6 +60,7 @@ in {
         environment
         firejail
         flatpak
+        gamemode
         geoclue2
         gnome
         greetd
