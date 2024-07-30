@@ -3,6 +3,7 @@ keys:
   - &user1 age13rzm8legd2efdc202vrp06jgunf0qn2ecx5and20ff5pwg8t8gnq2m7jzd
   - &deck 62F580BEC408A2DAC14D4C0C1311C65498CF3427
   - &desktop 1D3443103716D82E840382FCCC5E009CE6212C60
+  - &work 860FDFF5DCC9CF2315EE42DA2E376FD0794F56D3
 creation_rules:
   - key_groups:
       - age:
@@ -11,6 +12,7 @@ creation_rules:
         pgp:
           - *desktop
           - *deck
+          - *work
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
@@ -19,3 +21,4 @@ creation_rules:
         pgp:
           - *desktop
           - *deck
+          - *work
