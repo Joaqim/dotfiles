@@ -10,6 +10,7 @@ let
   qbittorrent = import ./modules/qbittorrent;
   tofi = import ./modules/tofi;
   # Files
+  atuin = import ./modules/atuin.nix;
   bottom = import ./modules/bottom.nix;
   cursor = import ./modules/cursor.nix;
   direnv = import ./modules/direnv.nix;
@@ -67,6 +68,7 @@ in {
       tofi
       # Files
       
+      atuin
       bottom
       cursor
       direnv
@@ -114,6 +116,7 @@ in {
       ;
     commandLine = {
       imports = [
+        atuin
         bat
         bottom
         git

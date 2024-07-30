@@ -4,6 +4,7 @@ let
   # Files
   accounts = import ./modules/accounts.nix;
   android = import ./modules/android.nix;
+  atuin = import ./modules/atuin.nix;
   audio = import ./modules/audio.nix;
   bluetooth = import ./modules/bluetooth.nix;
   cockpit = import ./modules/cockpit.nix;
@@ -49,6 +50,7 @@ in {
       inherit
         accounts
         android
+        atuin
         audio
         bluetooth
         cockpit
@@ -114,6 +116,7 @@ in {
       };
       desktop = {
         imports = [
+          atuin
           gamemode
           minecraft-server-1
           zram
