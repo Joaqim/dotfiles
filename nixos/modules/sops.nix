@@ -15,10 +15,10 @@ in {
     };
     age.generateKey = false;
     secrets = {
-      # "atuin_key/${user0}" = {
-      #   path = "/";
-      #   owner = user0;
-      # };
+      "atuin_key/${user0}" = {
+        path = "/home/${user0}/.local/share/atuin/key";
+        owner = user0;
+      };
       "private_key/${user0}" = {
         path = "/home/${user0}/.ssh/id_ed25519";
         owner = user0;

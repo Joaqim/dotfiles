@@ -1,12 +1,10 @@
-{config, ...}: let
-  user = config.home.username;
-in {
+{
   programs.atuin = {
     enable = true;
     enableNushellIntegration = true;
+    flags = ["--disable-up-arrow"];
     settings = {
-      #sync_address = "http://0.0.0.0:8888";
-      #key_path = config.sops.secrets."atuin_key/${user}".path;
+      sync_address = "http://desktop.joaqim.com:8888";
     };
   };
 }
