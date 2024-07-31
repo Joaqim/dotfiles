@@ -12,6 +12,7 @@ in {
     self.homeModules.privacy
     self.homeModules.productionCode
     self.homeModules.productionWriting
+    self.homeModules.syncthing
     self.homeModules.themes
   ];
 }

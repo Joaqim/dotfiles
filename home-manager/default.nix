@@ -48,6 +48,7 @@ let
   playerctl = import ./modules/playerctl.nix;
   pulse = import ./modules/pulse.nix;
   starship = import ./modules/starship.nix;
+  syncthing = import ./modules/syncthing.nix;
   vscode = import ./modules/vscode.nix;
   wezterm = import ./modules/wezterm.nix;
   yazi = import ./modules/yazi.nix;
@@ -107,6 +108,7 @@ in {
       playerctl
       pulse
       starship
+      syncthing
       vscode
       wezterm
       yazi

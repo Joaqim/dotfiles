@@ -35,6 +35,7 @@ let
   printing = import ./modules/printing.nix;
   regreet = import ./modules/regreet.nix;
   sops = import ./modules/sops.nix;
+  syncthing = import ./modules/syncthing.nix;
   sysstat = import ./modules/sysstat.nix;
   system = import ./modules/system.nix;
   tailscale = import ./modules/tailscale.nix;
@@ -81,6 +82,7 @@ in {
         regreet
         sops
         steam
+        syncthing
         sysstat
         system
         tailscale
@@ -119,6 +121,7 @@ in {
           atuin
           gamemode
           minecraft-server-1
+          syncthing
           zram
         ];
       };

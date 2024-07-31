@@ -16,6 +16,7 @@ in {
     self.homeModules.productionCode
     self.homeModules.productionVideo
     self.homeModules.productionWriting
+    self.homeModules.syncthing
     self.homeModules.themes
   ];
 }
