@@ -8,8 +8,8 @@ hmSwitch:
     home-manager switch --flake ~/dotfiles
 
 nixosSwitch:
-    doas nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles
+    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles
 
 nixosTest:
-    doas nixos-rebuild test --use-remote-sudo --flake /home/jq/dotfiles
+    nixos-rebuild test --use-remote-sudo --flake /home/jq/dotfiles
 
