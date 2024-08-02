@@ -37,10 +37,6 @@ in {
         file = {
           "./justfile".source = ./justfile;
           "./.local/share/Steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
-
-          "./.config/fcitx5/conf/notfifications.conf".source = ./fcitx5/conf/notifications.conf;
-          "./.config/fcitx5/config".source = ./fcitx5/config;
-          "./.config/fcitx5/profile".source = ./fcitx5/profile;
         };
 
         sessionVariables = {};
