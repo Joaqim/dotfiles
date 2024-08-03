@@ -23,8 +23,8 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
           git_user_signingkey: true
           git_commit_gpgsign: true
-          git_committer_name:  GitHub automation
-          git_committer_email: mail@joaqim.xyz 
+          git_committer_name:  Joaqim's GitHub Bot
+          git_committer_email: joaqim-ci-bot@joaqim.xyz 
       - run: nix flake update --commit-lock-file
       - run: |
           echo -e '[keys]\ngithub = "${{ secrets.CI_BOT_GH_REPO_TOKEN }}"' > /tmp/github-key.toml
