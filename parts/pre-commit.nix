@@ -3,7 +3,7 @@
     check.enable = true;
 
     settings.hooks = let
-      # Define shared settings
+      # Exclude generated _sources by nvfeatcher
       excludes = ["_sources"];
     in {
       alejandra = {

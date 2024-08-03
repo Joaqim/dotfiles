@@ -24,7 +24,7 @@
     https://mediafilez.forgecdn.net/files/5399/941/mowziesmobs-1.6.5.jar
 
     # https://modrinth.com/mod/endless-biomes
-    https://cdn.modrinth.com/data/pzR01ieE/versions/XgoP2NR5/EndlessBiomes%201.4.2s%20-%201.20.1.jar
+    https://cdn.modrinth.com/data/pzR01ieE/versions/BE83J8T2/EndlessBiomes%201.5.2s%20-%201.20.1.jar
 
     #https://mediafilez.forgecdn.net/files/5468/648/twilightforest-1.20.1-4.3.2508-universal.jar
 

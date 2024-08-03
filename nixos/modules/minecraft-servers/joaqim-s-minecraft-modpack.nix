@@ -1,10 +1,9 @@
-# Auto-generated using compose2nix v0.2.1-pre.
 {
   pkgs,
   lib,
   ...
 }: let
-  MODPACK_VERSION = "1.0.2";
+  MODPACK_VERSION = "1.0.3";
   MODPACK_NAME = "Joaqim's Minecraft Modpack";
   REMOTE_MODPACK_URL = "https://github.com/Joaqim/MinecraftModpack/raw/${MODPACK_VERSION}";
 in {
