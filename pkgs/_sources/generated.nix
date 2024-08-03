@@ -25,13 +25,13 @@
   };
   gcs = {
     pname = "gcs";
-    version = "v5.25.1";
+    version = "v5.26.1";
     src = fetchFromGitHub {
       owner = "richardwilkes";
       repo = "gcs";
-      rev = "v5.25.1";
+      rev = "v5.26.1";
       fetchSubmodules = false;
-      sha256 = "sha256-+HpWL+FlQ4io4CsDDRiNjFw8UWtcXjilGnanGAXM2+k=";
+      sha256 = "sha256-bTzOpioT/O9ACl+dJlVif67KvQEG9mjP/KAJsm6YEc8=";
     };
   };
 }
