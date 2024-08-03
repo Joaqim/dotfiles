@@ -1,9 +1,10 @@
-{
+{pkgs, ...}: {
   services.gpg-agent = {
     enable = true;
     enableSshSupport = true;
     defaultCacheTtl = 86400;
     maxCacheTtl = 2592000;
+    pinentryPackage = pkgs.pinentry-gtk2;
   };
   programs.gpg = {
     enable = true;
