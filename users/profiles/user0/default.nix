@@ -37,6 +37,10 @@ in {
         file = {
           "./justfile".source = ./justfile;
           "./.local/share/Steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
+          "./.config/fcitx5/conf/notifications.conf".text = ''
+            [HiddenNotifications]
+            0=wayland-diagnose-kde
+          '';
         };
 
         sessionVariables = {};
