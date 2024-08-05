@@ -5,12 +5,6 @@
     bookmarks = [
       # File Management
       {
-        name = "Bitwarden";
-        url = "https://bitwarden.com/";
-        tags = ["bitwarden" "bit" "warden"];
-        keyword = "Bit";
-      }
-      {
         name = "GitHub";
         url = "https://github.com/BRBWaffles";
         tags = ["git" "github"];
@@ -29,10 +23,10 @@
         keyword = "Home";
       }
       {
-        name = "Synology";
-        url = "https://10.0.0.122:5001/#/signin";
-        tags = ["synology" "dsm" "cloud"];
-        keyword = "DSM";
+        name = "Syncthing";
+        url = "https://desktop:8384";
+        tags = ["syncthing" "sync" "cloud"];
+        keyword = "Sync";
       }
       # Social Media
       {
@@ -53,6 +47,12 @@
         url = "https://www.youtube.com/feed/subscriptions";
         tags = ["youtube" "you" "tube" "yt"];
         keyword = "You";
+      }
+      {
+        name = "Dropout";
+        url = "https://www.dropout.tv/new-releases";
+        tags = ["dropout" "drop" "dtv"];
+        keyword = "Op";
       }
       # Shopping
       {
@@ -85,6 +85,13 @@
         url = "https://steamdb.info/";
         tags = ["steamdb" "steam" "db"];
         keyword = "SteamDB";
+      }
+      # Work
+      {
+        name = "Slack";
+        url = "https://app.slack.com/client/T0VGY738S/D01S0DACFCK";
+        tags = ["slack"];
+        keyword = "Sl";
       }
       # Misc
       {
