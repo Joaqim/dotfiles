@@ -15,6 +15,7 @@ let
   doas = import ./modules/doas.nix;
   docker = import ./modules/docker.nix;
   environment = import ./modules/environment.nix;
+  firefox-syncserver = import ./modules/firefox-syncserver.nix;
   firejail = import ./modules/firejail.nix;
   flatpak = import ./modules/flatpak.nix;
   gamemode = import ./modules/gamemode.nix;
@@ -62,6 +63,7 @@ in {
         distributed-builder
         doas
         environment
+        firefox-syncserver
         firejail
         flatpak
         gamemode
@@ -120,6 +122,7 @@ in {
       desktop = {
         imports = [
           atuin
+          firefox-syncserver
           gamemode
           minecraft-server-1
           syncthing

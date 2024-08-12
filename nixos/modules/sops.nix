@@ -49,6 +49,7 @@ in {
         owner = "root";
         mode = "600";
       };
+      "firefox_syncserver_master_secret" = {};
     };
   };
 }
