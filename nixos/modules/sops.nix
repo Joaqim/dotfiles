@@ -49,7 +49,13 @@ in {
         owner = "root";
         mode = "600";
       };
-      "firefox_syncserver_master_secret" = {};
+      "user_hashed_password/${user0}" = {
+        neededForUsers = true;
+      };
+      "firefox_syncserver_secrets" = {
+        owner = user0;
+        mode = "400";
+      };
     };
   };
 }
