@@ -8,5 +8,6 @@
       disabledPlugins = ["sap"];
     };
   };
+  # Plasma KDE provides GUI for connecting Bluetooth devices
   # services.blueman.enable = true;
 }

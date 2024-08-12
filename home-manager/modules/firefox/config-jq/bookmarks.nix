@@ -6,15 +6,15 @@
       # File Management
       {
         name = "GitHub";
-        url = "https://github.com/BRBWaffles";
+        url = "https://github.com/Joaqim";
         tags = ["git" "github"];
         keyword = "GitHub";
       }
       {
-        name = "Github (joaqim)";
-        url = "https://gitlab.com/Joaqim/dotfiles";
-        tags = ["github" "git"];
-        keyword = "Github";
+        name = "Github (dotfiles)";
+        url = "https://githubab.com/Joaqim/dotfiles";
+        tags = ["dot" "dotfiles"];
+        keyword = "Dotfiles";
       }
       {
         name = "Nix Home Manager Options";
