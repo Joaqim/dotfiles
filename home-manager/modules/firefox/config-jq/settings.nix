@@ -56,6 +56,9 @@ in {
   "browser.aboutwelcome.enabled" = false;
   "browser.aboutConfig.showWarning" = false;
 
+  # Enable self-hosted syncserver
+  "identity.sync.tokenserver.uri" = "http://syncserver:5000/1.0/sync/1.5";
+
   "extensions.activeThemeID" = "{703d1dec-5792-4715-aa4d-77405b9b10e4}";
   "extensions.formautofill.addresses.enabled" = false;
   "extensions.formautofill.creditCards.enabled" = false;
