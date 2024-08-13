@@ -77,6 +77,11 @@
       icon = ./icons/tg.png;
       urls = [{template = "https://torrentgalaxy.to/torrents.php?search={searchTerms}";}];
     };
+    "AnimeTosho" = {
+      definedAliases = ["@at"];
+      icon = ./icons/at.png;
+      urls = [{template = "https://mirror.animetosho.org/search?q={searchTerms}";}];
+    };
     "Amazon.com".metaData.hidden = true;
     "Bing".metaData.hidden = true;
     "eBay".metaData.hidden = true;
@@ -89,6 +94,7 @@
     "Knaben"
     "TorrentGalaxy"
     "The Pirate Bay"
+    "AnimeTosho"
     "Reddit"
     "VSTorrent"
     "Wikipedia"

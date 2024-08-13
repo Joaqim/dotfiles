@@ -54,6 +54,13 @@
         tags = ["dropout" "drop" "dtv"];
         keyword = "Op";
       }
+      # Anime
+      {
+        name = "Anilist";
+        url = "https://www.anilist.co/home";
+        tags = ["anilist" "ani" "al"];
+        keyword = "al";
+      }
       # Shopping
       {
         name = "Amazon";
