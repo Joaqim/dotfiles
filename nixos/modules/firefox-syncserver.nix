@@ -12,6 +12,8 @@
       url = "http://syncserver:5000";
     };
 
-    secrets = config.sops.secrets.firefox_syncserver_secrets.path;
+    secrets = builtins.toFile "sync-secrets" ''
+      SYNC_MASTER_SECRET=${config.sops.secrets."firefox_syncserver_secret/jq"};
+    '';
   };
 }

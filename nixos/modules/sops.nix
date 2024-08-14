@@ -52,8 +52,7 @@ in {
       "user_hashed_password/${user0}" = {
         neededForUsers = true;
       };
-      "firefox_syncserver_secrets" = {
-        owner = user0;
+      "firefox_syncserver_secret/${user0}" = {
         mode = "400";
       };
     };
