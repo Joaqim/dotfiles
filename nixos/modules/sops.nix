@@ -1,4 +1,8 @@
-{flake, ...}: let
+{
+  flake,
+  config,
+  ...
+}: let
   inherit
     (flake.config.people)
     user0
@@ -18,6 +22,11 @@ in {
       sshKeyPaths = [];
     };
     age.generateKey = false;
+    templates = {
+      "firefox-syncserver.env".content = ''
+        SYNC_MASTER_SECRET=${config.sops.placeholder."firefox_syncserver_secret/${user0}"};
+      '';
+    };
     secrets = {
       "atuin_key/${user0}" = {
         path = "/home/${user0}/.local/share/atuin/key";
