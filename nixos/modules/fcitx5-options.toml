@@ -4,6 +4,10 @@ EnumerateForwardKeys = ""
 EnumerateBackwardKeys = ""
 EnumerateSkipFirst = "False"
 
+["Hotkey/AltTriggerKeys"]
+#0 = "Shift_L"
+0 = ""
+
 ["Hotkey/TriggerKeys"]
 0 = "Control+space"
 1 = "Zenkaku_Hankaku"
