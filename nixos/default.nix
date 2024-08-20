@@ -26,6 +26,7 @@ let
   home-manager = import ./modules/home-manager.nix;
   hyprland = import ./modules/hyprland.nix;
   jellyfin = import ./modules/jellyfin.nix;
+  lutris = import ./modules/lutris.nix;
   minecraft-server-1 = import ./modules/minecraft-servers/better-minecraft-modpack.nix;
   #minecraft-server-1 = import ./modules/minecraft-servers/joaqim-s-minecraft-modpack.nix;
   laptop-extras = import ./modules/laptop.nix;
@@ -76,6 +77,7 @@ in {
         jellyfin
         laptop-extras
         locale
+        lutris
         minecraft-server-1
         network
         nix
@@ -106,6 +108,7 @@ in {
           gamemode
           home-manager
           locale
+          lutris
           nix
           oom
           sops
@@ -124,6 +127,7 @@ in {
           atuin
           firefox-syncserver
           gamemode
+          lutris
           minecraft-server-1
           syncthing
           zram
