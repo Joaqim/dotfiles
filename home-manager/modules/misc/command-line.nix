@@ -6,6 +6,7 @@
       brightnessctl
       cryptsetup
       ffmpeg
+      file
       flac
       gvfs
       hardinfo
@@ -13,6 +14,7 @@
       ncdu
       neofetch
       nyancat
+      p7zip
       pciutils
       pinentry
       playerctl
@@ -23,7 +25,6 @@
       unzip
       wezterm
       wget
-      wine
       wtwitch
       xdotool
       zip

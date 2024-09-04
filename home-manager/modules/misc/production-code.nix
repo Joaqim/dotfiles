@@ -7,8 +7,6 @@
       haskell-language-server
       rustup
       tokei
-      typst
-      typst-lsp
       typstfmt
       yamlfmt
       ;

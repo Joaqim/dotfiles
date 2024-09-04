@@ -13,7 +13,7 @@
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        ignoreUserConfig = true;
+        ignoreUserConfig = false;
         settings = {
           globalOptions = builtins.fromTOML (builtins.readFile ./fcitx5-options.toml);
           inputMethod = {

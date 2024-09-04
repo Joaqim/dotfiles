@@ -12,7 +12,7 @@
       }
       {
         name = "Github (dotfiles)";
-        url = "https://githubab.com/Joaqim/dotfiles";
+        url = "https://github.com/Joaqim/dotfiles";
         tags = ["dot" "dotfiles"];
         keyword = "Dotfiles";
       }

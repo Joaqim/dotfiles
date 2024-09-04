@@ -145,7 +145,6 @@
           mkhl.direnv
           ms-azuretools.vscode-docker
           myriad-dreamin.tinymist
-          nvarner.typst-lsp
           pkief.material-icon-theme
           pkief.material-product-icons
           signageos.signageos-vscode-sops

@@ -6,4 +6,8 @@
     capabilities = "cap_net_bind_service=+ep";
     source = "${pkgs.caddy}/bin/caddy";
   };
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 }

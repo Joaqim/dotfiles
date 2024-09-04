@@ -26,6 +26,9 @@
         "-${pkgs.liquidctl}/bin/liquidctl --match Fusion set sync color fixed 000000"
       ];
     };
-    wantedBy = ["default.target"];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+
+    wantedBy = ["multi-user.target"];
   };
 }
