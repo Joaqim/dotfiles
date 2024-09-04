@@ -8,7 +8,6 @@
       (pkgs)
       grapejuice
       heroic
-      lutris
       mangohud
       prismlauncher
       protonup-qt
