@@ -6,7 +6,6 @@
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
-      grapejuice
       heroic
       mangohud
       prismlauncher
