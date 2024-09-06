@@ -21,6 +21,7 @@ let
   gamemode = import ./modules/gamemode.nix;
   geoclue2 = import ./modules/geoclue2.nix;
   gnome = import ./modules/gnome.nix;
+  godot = import ./modules/godot.nix;
   greetd = import ./modules/greetd.nix;
   gvfs = import ./modules/gvfs.nix;
   home-manager = import ./modules/home-manager.nix;
@@ -70,6 +71,7 @@ in {
         gamemode
         geoclue2
         gnome
+        godot
         greetd
         gvfs
         home-manager
@@ -127,6 +129,7 @@ in {
           atuin
           firefox-syncserver
           gamemode
+          godot
           lutris
           minecraft-server-1
           syncthing
