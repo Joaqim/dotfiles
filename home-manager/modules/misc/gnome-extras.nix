@@ -8,9 +8,6 @@
       gnome-disk-utility
       gnome-system-monitor
       gnome-tweaks
-      ;
-    inherit
-      (pkgs.gnome)
       gnome-characters
       gnome-remote-desktop
       gnome-shell-extensions
