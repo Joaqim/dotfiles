@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  nur,
+  ...
+}: {
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
@@ -8,9 +12,12 @@
       jellycli
       jellyfin
       jellyfin-media-player
-      spotify
       stremio
       vlc
+      ;
+    inherit
+      (nur.repos.nltch)
+      spotify-adblock
       ;
   };
 }
