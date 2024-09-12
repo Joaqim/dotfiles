@@ -52,5 +52,13 @@
     };
   };
 
-  services.udisks2.enable = true;
+  services = {
+    udisks2.enable = true;
+
+    zfs = {
+      autoSnapshot.enable = true;
+      autoScrub.enable = true;
+      trim.enable = true;
+    };
+  };
 }
