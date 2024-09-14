@@ -27,6 +27,11 @@
         {
           inherit users;
           noPass = true;
+          cmd = "liquidctl";
+        }
+        {
+          inherit users;
+          noPass = true;
           cmd = "journalctl";
         }
         {

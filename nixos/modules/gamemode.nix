@@ -19,9 +19,11 @@
 
       custom = let
         notify = lib.getExe pkgs.libnotify;
+        liquidctl = lib.getExe pkgs.liquidctl;
+        corectrl = lib.getExe pkgs.corectrl;
       in {
-        start = "${notify} 'GameMode started'";
-        end = "${notify} 'GameMode ended'";
+        start = "${notify} 'GameMode started' ; ${corectrl} -m Gamemode ; ${liquidctl} --match Hydro set fan speed 100";
+        end = "${notify} 'GameMode ended' ; ${corectrl} -m Gamemode ; ${liquidctl} --match Hydro set fan speed 20 50 34 80 90 100";
       };
     };
   };
