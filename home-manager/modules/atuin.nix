@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   programs.atuin = {
     enable = true;
     enableBashIntegration = true;
@@ -11,10 +15,12 @@
   };
 
   systemd.user.services = {
-    "atuind" = {
+    "atuind" = let
+      atuin = lib.getExe pkgs.atuin;
+    in {
       Service = {
         Environment = "ATUIN_LOG=\"info\"";
-        ExecStart = "${pkgs.atuin}/bin/atuin daemon";
+        ExecStart = "${atuin} daemon";
       };
       Install = {
         WantedBy = ["default.target"];

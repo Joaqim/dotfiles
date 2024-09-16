@@ -21,7 +21,7 @@
 
   environment.systemPackages = [
     (pkgs.makeAutostartItem rec {
-      name = "corectl";
+      name = "corectrl";
       package = pkgs.makeDesktopItem {
         inherit name;
         desktopName = "CoreCtrl";
