@@ -174,8 +174,6 @@
             sha256 = "sha256-V/7Tu1Ze/CYRmtxwU2+cQLOxLwH7YRYYeHSUGbGTb5I=";
           }
         ];
-      userSettings = {
-      };
     };
   };
 }
