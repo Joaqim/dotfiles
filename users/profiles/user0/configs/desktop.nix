@@ -3,6 +3,7 @@
 in {
   imports = [
     self.homeModules.commandLine
+    self.homeModules.desktopGames
     self.homeModules.entertainment
     self.homeModules.extras
     self.homeModules.fileManagement

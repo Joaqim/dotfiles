@@ -33,6 +33,8 @@
     deadnix.url = "github:astro/deadnix";
 
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
+
+    nix-gaming.url = "github:fufexan/nix-gaming";
   };
 
   outputs = inputs:

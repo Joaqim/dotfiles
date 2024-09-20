@@ -55,6 +55,9 @@ let
   zathura = import ./modules/zathura.nix;
   zellij = import ./modules/zellij.nix;
   zoxide = import ./modules/zoxide.nix;
+
+  # Games
+  rocket-league = import ./modules/games/rocket-league.nix;
 in {
   flake.homeModules = {
     inherit
@@ -115,6 +118,9 @@ in {
       zathura
       zellij
       zoxide
+      # Games
+      
+      rocket-league
       ;
     commandLine = {
       imports = [
@@ -138,6 +144,11 @@ in {
         zathura
         zellij
         zoxide
+      ];
+    };
+    desktopGames = {
+      imports = [
+        rocket-league
       ];
     };
     entertainment = {
