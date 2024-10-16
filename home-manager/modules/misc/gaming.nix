@@ -1,8 +1,4 @@
-{
-  pkgs,
-  nur,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
@@ -12,16 +8,6 @@
       protonup-qt
       steam
       steamtinkerlaunch
-      # jc141
-      
-      dwarfs
-      wine-staging
-      winetricks
-      fuse-overlayfs
-      ;
-    inherit
-      (nur.repos.jpyke3)
-      suyu-dev
       ;
   };
 }
