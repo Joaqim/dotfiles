@@ -40,7 +40,7 @@
     };
   };
 
-  networking.hostId = "5b0659ea";
+  networking.hostId = "fce78f04";
   swapDevices = [
     {device = "/dev/disk/by-partuuid/b2778b43-82b1-42f0-8215-93e4c0c64166";}
   ];
@@ -56,7 +56,6 @@
     udisks2.enable = true;
 
     zfs = {
-      autoSnapshot.enable = true;
       autoScrub.enable = true;
       trim.enable = true;
     };
