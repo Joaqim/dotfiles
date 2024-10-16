@@ -20,12 +20,10 @@ in {
 
     kernelModules = ["kvm-amd" "vfio-pci" "v4l2loopback"];
 
-    kernelPackages = pkgs.zfs.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.linuxPackages_6_10;
 
     zfs = {
       extraPools = ["zpool"];
-      forceImportAll = true;
-      forceImportRoot = true;
     };
 
     loader = {
