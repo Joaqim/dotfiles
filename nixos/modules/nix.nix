@@ -8,6 +8,8 @@
     };
   };
 
+  programs.nix-ld.enable = true;
+
   nix = {
     extraOptions = ''
       experimental-features = nix-command flakes

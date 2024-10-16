@@ -9,6 +9,7 @@
         sshfs
         tomb
         virt-manager
+        bottles
         ;
     };
     variables = {
