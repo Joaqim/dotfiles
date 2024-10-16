@@ -11,7 +11,6 @@
         modernx
         quality-menu
         thumbfast
-        simple-mpv-webui
         memo
         mpv-playlistmanager
         blacklistExtensions
@@ -22,6 +21,12 @@
     };
     config = {
       profile = "gpu-hq";
+      display-fps-override = 100;
+      #ytdl-format = "bestvideo+bestaudio";
+      demuxer-cache-duration = "600";
+      resume-playback = "yes";
+      save-position-on-quit = "yes";
+      image-display-duration = "5";
     };
   };
 
