@@ -9,6 +9,9 @@
   in {
     enable = lib.mkDefault true;
     description = "AIO Startup Service";
+    path = [
+      pkgs.liquidctl
+    ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = [
