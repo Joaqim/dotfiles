@@ -9,7 +9,6 @@ in {
     self.homeModules.gpg
     self.homeModules.internet
     self.homeModules.mpv
-    self.homeModules.privacy
     self.homeModules.productionCode
     self.homeModules.productionWriting
     self.homeModules.syncthing

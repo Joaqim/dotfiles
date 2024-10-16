@@ -8,7 +8,6 @@ in {
     self.homeModules.fileManagement
     self.homeModules.internet
     self.homeModules.jellyfin
-    self.homeModules.privacy
     self.homeModules.productionCode
   ];
 }
