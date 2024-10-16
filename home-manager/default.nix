@@ -32,11 +32,8 @@ let
   misc-jellyfin = import ./modules/misc/jellyfin.nix;
   misc-kdeExtras = import ./modules/misc/kde-extras.nix;
   misc-media = import ./modules/misc/media.nix;
-  misc-privacy = import ./modules/misc/privacy.nix;
   misc-productionArt = import ./modules/misc/production-art.nix;
-  misc-productionAudio = import ./modules/misc/production-audio.nix;
   misc-productionCode = import ./modules/misc/production-code.nix;
-  misc-productionVideo = import ./modules/misc/production-video.nix;
   misc-productionWriting = import ./modules/misc/production-writing.nix;
   misc-themes = import ./modules/misc/themes.nix;
   misc-virtualisation = import ./modules/misc/virtualisation.nix;
@@ -95,11 +92,8 @@ in {
       misc-jellyfin
       misc-kdeExtras
       misc-media
-      misc-privacy
       misc-productionArt
-      misc-productionAudio
       misc-productionCode
-      misc-productionVideo
       misc-productionWriting
       misc-themes
       misc-virtualisation
@@ -201,19 +195,9 @@ in {
         misc-jellyfin
       ];
     };
-    privacy = {
-      imports = [
-        misc-privacy
-      ];
-    };
     productionArt = {
       imports = [
         misc-productionArt
-      ];
-    };
-    productionAudio = {
-      imports = [
-        misc-productionAudio
       ];
     };
     productionCode = {
@@ -226,7 +210,6 @@ in {
     };
     productionVideo = {
       imports = [
-        misc-productionVideo
         obs-studio
       ];
     };

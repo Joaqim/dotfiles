@@ -4,8 +4,6 @@
       (pkgs)
       bless
       dconf2nix
-      haskell-language-server
-      rustup
       tokei
       typstfmt
       yamlfmt
