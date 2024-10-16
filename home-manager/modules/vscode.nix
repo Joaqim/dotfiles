@@ -104,6 +104,15 @@
         "nix.serverPath" = lib.getExe pkgs.nil;
         "nix.formatterPath" = lib.getExe pkgs.alejandra;
 
+        ## Plugin: kamadorueda.alejandra
+        "[nix]" = {
+          "editor.defaultFormatter" = "alejandra";
+          "editor.formatOnPaste" = true;
+          "editor.formatOnSave" = true;
+          "editor.formatOnType" = false;
+        };
+        "alejandra.program" = lib.getExe pkgs.alejandra;
+
         ### GitLens
         "gitlens.telemetry.enabled" = false;
         "gitlens.ai.experimental.model" = "openai:gpt-3.5-turbo";
@@ -139,7 +148,6 @@
           github.vscode-github-actions
           james-yu.latex-workshop
           jnoortheen.nix-ide
-          kamadorueda.alejandra
           marp-team.marp-vscode
           mattn.lisp
           mkhl.direnv
