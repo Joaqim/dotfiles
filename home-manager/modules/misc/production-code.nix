@@ -2,7 +2,7 @@
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
-      bless
+      ghex
       dconf2nix
       tokei
       typstfmt
