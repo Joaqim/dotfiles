@@ -9,5 +9,8 @@
       steam
       steamtinkerlaunch
       ;
+    nexusmods-app = pkgs.nexusmods-app.override {
+      _7zz = pkgs._7zz-rar;
+    };
   };
 }
