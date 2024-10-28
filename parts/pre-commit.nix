@@ -17,6 +17,9 @@
         enable = true;
         inherit excludes;
       };
+      flake-checker = {
+        enable = true;
+      };
       statix = {
         enable = true;
       };
