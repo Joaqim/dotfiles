@@ -125,6 +125,12 @@
         tags = ["tineye" "tin" "eye"];
         keyword = "Tin";
       }
+      {
+        name = "Kaleidosync";
+        url = "https://www.kaleidosync.com/";
+        tags = ["kaleidosync" "kaleido" "sync" "visualizer"];
+        keyword = "Kaleido";
+      }
     ];
   }
 ]
