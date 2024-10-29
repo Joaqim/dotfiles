@@ -20,8 +20,6 @@ in {
 
     kernelModules = ["kvm-amd" "vfio-pci" "v4l2loopback"];
 
-    kernelPackages = pkgs.linuxPackages_6_10;
-
     zfs = {
       extraPools = ["zpool"];
     };
