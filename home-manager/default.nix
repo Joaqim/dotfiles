@@ -12,6 +12,7 @@ let
   # Files
   atuin = import ./modules/atuin.nix;
   bottom = import ./modules/bottom.nix;
+  calibre = import ./modules/calibre.nix;
   cursor = import ./modules/cursor.nix;
   direnv = import ./modules/direnv.nix;
   git = import ./modules/git.nix;
@@ -71,6 +72,7 @@ in {
       
       atuin
       bottom
+      calibre
       cursor
       direnv
       gammastep

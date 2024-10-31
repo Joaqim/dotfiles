@@ -2,6 +2,7 @@
   inherit (flake) self;
 in {
   imports = [
+    self.homeModules.calibre
     self.homeModules.commandLine
     self.homeModules.desktopGames
     self.homeModules.entertainment
