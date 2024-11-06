@@ -17,6 +17,7 @@
         autodeint
         mpv-cheatsheet
         webtorrent-mpv-hook
+        reload
         ;
     };
     config = {
