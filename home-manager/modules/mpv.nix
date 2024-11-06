@@ -24,10 +24,13 @@
       profile = "gpu-hq";
       display-fps-override = 100;
       demuxer-max-bytes = "512MiB";
-      demuxer-readahead-secs = "600";
+      demuxer-readahead-secs = 600;
       resume-playback = "yes";
       save-position-on-quit = "yes";
-      image-display-duration = "5";
+      image-display-duration = 5;
+    };
+    scriptOpts = {
+      reload.reload_eof_enabled = "yes";
     };
   };
 
