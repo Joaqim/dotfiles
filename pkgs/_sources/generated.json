@@ -55,11 +55,11 @@
             "name": null,
             "owner": "richardwilkes",
             "repo": "gcs",
-            "rev": "v5.28.1",
-            "sha256": "sha256-R243j0KUIE8ii7jWB96aD7BtQsIM4VVJqcwbL4fBMKE=",
+            "rev": "v5.28.2",
+            "sha256": "sha256-xJtpwu4ClH+j/9aEwgwTKTBcTDlvvbRex+SNCf/7lXc=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v5.28.1"
+        "version": "v5.28.2"
     }
 }
