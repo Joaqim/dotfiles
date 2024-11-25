@@ -99,6 +99,13 @@
             inputs.jovian.nixosModules.jovian
             inputs.nur.nixosModules.nur
           ];
+          thinkpad = inputs.self.lib.mkLinuxSystem [
+            ./systems/thinkpad
+            ./users/profiles/user0
+            config.nixosModules.thinkpad
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+          ];
           laptop = inputs.self.lib.mkLinuxSystem [
             ./systems/laptop
             ./users/profiles/user0

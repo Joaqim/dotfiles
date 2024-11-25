@@ -1,6 +1,7 @@
 {
   flake,
   config,
+  lib,
   ...
 }: let
   inherit
@@ -14,9 +15,9 @@ in {
     gnupg = {
       # Configured with root gnugpg dir, see: https://github.com/Mic92/sops-nix#use-with-gpg-instead-of-ssh-keys
 
-      # Sops needs acess to the keys before the persist dirs are even mounted; so
+      # Sops needs access to the keys before the persist dirs are even mounted; so
       # just persisting the keys won't work, we must point at /persist
-      home = "/persist/var/lib/sops";
+      home = lib.mkDefault "/persist/var/lib/sops";
 
       # disable importing host ssh keys
       sshKeyPaths = [];

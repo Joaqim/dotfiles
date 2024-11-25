@@ -4,6 +4,7 @@ keys:
   - &deck 62F580BEC408A2DAC14D4C0C1311C65498CF3427
   - &desktop 1D3443103716D82E840382FCCC5E009CE6212C60
   - &work 860FDFF5DCC9CF2315EE42DA2E376FD0794F56D3
+  - &thinkpad CBF6FE1AEF7B62E89D5DB72FAED2B42C5260193A
 creation_rules:
   - key_groups:
       - age:
@@ -13,6 +14,7 @@ creation_rules:
           - *desktop
           - *deck
           - *work
+          - *thinkpad
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
@@ -22,3 +24,4 @@ creation_rules:
           - *desktop
           - *deck
           - *work
+          - *thinkpad

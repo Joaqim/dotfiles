@@ -155,6 +155,23 @@ in {
           system
         ];
       };
+      thinkpad = {
+        imports = [
+          accounts
+          disks
+          distributed-builder
+          doas
+          docker
+          environment
+          gvfs
+          home-manager
+          laptop-extras
+          nix
+          oom
+          sops
+          zram
+        ];
+      };
       nas = {
         imports = [
           accounts
