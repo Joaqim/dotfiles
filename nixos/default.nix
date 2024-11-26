@@ -30,7 +30,7 @@ let
   lutris = import ./modules/lutris.nix;
   minecraft-server-1 = import ./modules/minecraft-servers/better-minecraft-modpack.nix;
   #minecraft-server-1 = import ./modules/minecraft-servers/joaqim-s-minecraft-modpack.nix;
-  minecraft-vanilla-server = import ./modules/minecraft-servers/vanilla-minecraft-server.nix;
+  minecraft-vanilla-server = import ./modules/minecraft-servers/minecraft-vanilla-server.nix;
   laptop-extras = import ./modules/laptop.nix;
   locale = import ./modules/locale.nix;
   network = import ./modules/network.nix;
