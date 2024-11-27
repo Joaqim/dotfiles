@@ -169,8 +169,8 @@ in {
           laptop-extras
           minecraft-vanilla-server
           nix
-          oom
           sops
+          tailscale
           zram
         ];
       };

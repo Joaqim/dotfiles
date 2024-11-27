@@ -62,6 +62,9 @@ in {
       "user_hashed_password/${user0}" = {
         neededForUsers = true;
       };
+      "tailscale_auth_keys/client_secret" = {
+        mode = "400";
+      };
       "firefox_syncserver_secret/${user0}" = {
         mode = "400";
       };
