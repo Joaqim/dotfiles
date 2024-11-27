@@ -69,7 +69,6 @@ in {
       qbittorrent
       tofi
       # Files
-      
       atuin
       bottom
       calibre
@@ -115,7 +114,6 @@ in {
       zellij
       zoxide
       # Games
-      
       rocket-league
       ;
     commandLine = {

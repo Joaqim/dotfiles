@@ -32,9 +32,7 @@
         "-${liquidctl} --match Fusion set sync color fixed 000000"
       ];
     };
-    after = ["network-online.target"];
-    wants = ["network-online.target"];
 
-    wantedBy = ["multi-user.target"];
+    wantedBy = ["multi-user.target" "sleep.target" "resume.target"];
   };
 }

@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   # Enable earlyoom to manage memory better and prevent freezes
   services.earlyoom = {
     enable = true;
@@ -11,7 +11,7 @@
     serviceConfig = {
       PrivateNetwork = true;
       MemoryDenyWriteExecute = true;
-      InaccessiblePaths = "/persist";
+      InaccessiblePaths = lib.mkDefault "/persist";
       ProtectHome = true;
     };
   };
