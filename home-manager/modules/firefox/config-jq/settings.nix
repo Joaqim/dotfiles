@@ -80,9 +80,9 @@ in {
   "privacy.trackingprotection.socialtracking.enabled" = true;
   "browser.contentblocking.category" = "custom";
 
-  # Password management. Disabled because we will use an extrenal Password Manager instead.
-  "signon.rememberSignons" = false;
-  "signon.autofillForms" = false;
+  # Password management
+  "signon.rememberSignons" = true;
+  "signon.autofillForms" = true;
   "signon.management.page.breach-alerts.enabled" = false;
 
   # Needed for Firefox to apply the userChrome.css and userContent.css
