@@ -15,6 +15,7 @@ let
   doas = import ./modules/doas.nix;
   docker = import ./modules/docker.nix;
   environment = import ./modules/environment.nix;
+  fcitx5 = import ./modules/fcitx5.nix;
   firefox-syncserver = import ./modules/firefox-syncserver.nix;
   firejail = import ./modules/firejail.nix;
   flatpak = import ./modules/flatpak.nix;
@@ -108,6 +109,7 @@ in {
           bluetooth
           doas
           distributed-builder
+          fcitx5
           gamemode
           home-manager
           locale
@@ -128,6 +130,7 @@ in {
       desktop = {
         imports = [
           atuin
+          fcitx5
           firefox-syncserver
           gamemode
           godot
