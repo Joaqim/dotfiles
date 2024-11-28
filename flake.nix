@@ -106,15 +106,6 @@
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
           ];
-          laptop = inputs.self.lib.mkLinuxSystem [
-            ./systems/laptop
-            ./users/profiles/user0
-            #./users/profiles/user1
-            config.nixosModules.shared
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            inputs.nur.nixosModules.nur
-          ];
           server = inputs.self.lib.mkLinuxSystem [
             ./systems/server
             ./users/profiles/user0
