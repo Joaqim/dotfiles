@@ -167,9 +167,11 @@ in {
           doas
           docker
           environment
+          fcitx5
           gvfs
           home-manager
           laptop-extras
+          locale
           minecraft-vanilla-server
           nix
           sops

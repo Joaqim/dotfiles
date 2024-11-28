@@ -13,6 +13,19 @@
   # Don't turn off laptop when lid is closed while connected to external power
   services.logind.lidSwitchExternalPower = "ignore";
 
+  # Not using valve index or steam controller
+  hardware.steam-hardware.enable = false;
+
+  services.power-profiles-daemon.enable = true;
+
+  # following configuration is added only when building VM with build-vm
+  virtualisation.vmVariant = {
+    virtualisation = {
+      memorySize = 4096;
+      cores = 4;
+    };
+  };
+
   sops.gnupg.home = lib.mkForce "/var/lib/sops";
 
   i18n.defaultLocale = lib.mkForce "sv_SE.UTF-8";
