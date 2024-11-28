@@ -68,6 +68,13 @@ in {
       "firefox_syncserver_secret/${user0}" = {
         mode = "400";
       };
+      "rcon_web_admin_env" = {
+        mode = "400";
+      };
+      "minecraft_server_whitelist" = {
+        mode = "600";
+        owner = user0;
+      };
     };
   };
 }
