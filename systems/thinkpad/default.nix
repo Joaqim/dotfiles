@@ -10,13 +10,24 @@
   boot.kernelParams = [
     "consoleblank=300"
   ];
-  # Don't turn off laptop when lid is closed while connected to external power
-  services.logind.lidSwitchExternalPower = "ignore";
+  services = {
+    # Don't turn off laptop when lid is closed while connected to external power
+    logind.lidSwitchExternalPower = "ignore";
+
+    power-profiles-daemon.enable = true;
+
+    sleep-at-night = {
+      enable = true;
+      shutdown = {
+        hour = 01;
+        minute = 00;
+      };
+      wakeup = "09:00:00";
+    };
+  };
 
   # Not using valve index or steam controller
   hardware.steam-hardware.enable = false;
-
-  services.power-profiles-daemon.enable = true;
 
   # following configuration is added only when building VM with build-vm
   virtualisation.vmVariant = {

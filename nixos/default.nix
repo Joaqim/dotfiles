@@ -40,6 +40,7 @@ let
   plasma = import ./modules/plasma.nix;
   printing = import ./modules/printing.nix;
   regreet = import ./modules/regreet.nix;
+  sleep-at-night = import ./modules/sleep-at-night.nix;
   sops = import ./modules/sops.nix;
   syncthing = import ./modules/syncthing.nix;
   sysstat = import ./modules/sysstat.nix;
@@ -174,6 +175,7 @@ in {
           locale
           minecraft-vanilla-server
           nix
+          sleep-at-night
           sops
           tailscale
           zram
