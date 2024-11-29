@@ -42,6 +42,7 @@ let
   regreet = import ./modules/regreet.nix;
   sleep-at-night = import ./modules/sleep-at-night.nix;
   sops = import ./modules/sops.nix;
+  sunshine = import ./modules/sunshine.nix;
   syncthing = import ./modules/syncthing.nix;
   sysstat = import ./modules/sysstat.nix;
   system = import ./modules/system.nix;
@@ -137,6 +138,7 @@ in {
           godot
           lutris
           minecraft-server-1
+          sunshine
           syncthing
           zram
         ];
