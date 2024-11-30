@@ -35,6 +35,8 @@
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
 
     nix-gaming.url = "github:fufexan/nix-gaming";
+
+    json2steamshortcut.url = "github:ChrisOboe/json2steamshortcut";
   };
 
   outputs = inputs:
