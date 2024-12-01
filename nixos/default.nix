@@ -183,6 +183,24 @@ in {
           zram
         ];
       };
+      node = {
+        imports = [
+          accounts
+          disks
+          distributed-builder
+          doas
+          environment
+          fcitx5
+          gvfs
+          home-manager
+          laptop-extras
+          locale
+          nix
+          sops
+          tailscale
+          zram
+        ];
+      };
       nas = {
         imports = [
           accounts

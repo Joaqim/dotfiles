@@ -5,6 +5,7 @@ keys:
   - &desktop 1D3443103716D82E840382FCCC5E009CE6212C60
   - &work 860FDFF5DCC9CF2315EE42DA2E376FD0794F56D3
   - &thinkpad CBF6FE1AEF7B62E89D5DB72FAED2B42C5260193A
+  - &node 9ED4E7B759196FEDC0F77F2C180900A07DF88F47
 creation_rules:
   - key_groups:
       - age:
@@ -25,3 +26,4 @@ creation_rules:
           - *deck
           - *work
           - *thinkpad
+          - *node
