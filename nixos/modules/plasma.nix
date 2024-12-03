@@ -1,10 +1,4 @@
-{
-  pkgs,
-  flake,
-  ...
-}: let
-  inherit (flake.config.people) user0;
-in {
+{pkgs, ...}: {
   services = {
     xserver = {
       enable = true;
@@ -15,8 +9,6 @@ in {
     # desktopManager.plasma6.enable = true;
     displayManager = {
       defaultSession = "plasmawayland";
-      autoLogin.enable = true;
-      autoLogin.user = user0;
       sddm = {
         enable = true;
         wayland.enable = true;
