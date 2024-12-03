@@ -103,6 +103,16 @@
             inputs.jovian.nixosModules.jovian
             inputs.nur.nixosModules.nur
           ];
+          node = inputs.self.lib.mkLinuxSystem [
+            ./systems/node
+            ./users/profiles/user0
+            config.nixosModules.shared
+            config.nixosModules.node
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+            inputs.impermanence.nixosModules.impermanence
+            inputs.nur.nixosModules.nur
+          ];
           thinkpad = inputs.self.lib.mkLinuxSystem [
             ./systems/thinkpad
             ./users/profiles/user0

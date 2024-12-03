@@ -183,6 +183,16 @@ in {
           zram
         ];
       };
+      node = {
+        imports = [
+          distributed-builder
+          fcitx5
+          gvfs
+          lutris
+          sunshine
+          zram
+        ];
+      };
       nas = {
         imports = [
           accounts
