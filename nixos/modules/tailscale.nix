@@ -13,27 +13,32 @@ in {
   # create a oneshot job to authenticate to Tailscale
   systemd.services.tailscale-autoconnect = let
     tailscale = lib.getExe pkgs.tailscale;
+    jq = lib.getExe pkgs.jq;
   in {
     enable = lib.mkDefault true;
     description = "Automatic connection to Tailscale";
-    path = [pkgs.tailscale];
+    path = [pkgs.tailscale pkgs.jq];
 
     # make sure tailscale is running before trying to connect to tailscale
     after = ["network-pre.target" "tailscale.service"];
     wants = ["network-pre.target" "tailscale.service"];
     wantedBy = ["multi-user.target"];
-
-    # set this service as a oneshot job
-    serviceConfig.Type = "oneshot";
+    serviceConfig = {
+      # set this service as a oneshot job
+      Type = "oneshot";
+    };
+    startLimitIntervalSec = 30;
+    startLimitBurst = 2;
 
     # have the job run this shell script
-    script = with pkgs; ''
+    script = ''
+      set -x
       # wait for tailscaled to settle
-      sleep 2
+      sleep 6
 
       # check if we are already authenticated to tailscale
-      status="$(${tailscale} status -json | ${jq}/bin/jq -r .BackendState)"
-      if [ $status = "Running" ]; then # if so, then do nothing
+      status="$(${tailscale} status -json | ${jq} -r .BackendState)"
+      if [ "$status" = "Running" ]; then # if so, then do nothing
         exit 0
       fi
 
@@ -50,5 +55,8 @@ in {
 
     # allow the Tailscale UDP port through the firewall
     allowedUDPPorts = [config.services.tailscale.port];
+
+    #  Do not filter DHCP packets.
+    checkReversePath = false;
   };
 }
