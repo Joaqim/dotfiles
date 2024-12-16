@@ -14,7 +14,7 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
-    nur.url = "github:nix-community/NUR";
+    nur.url = "github:nix-community/NUR/251d756a74e67bda25d89327b01a3da19dddabae";
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
