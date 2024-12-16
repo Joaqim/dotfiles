@@ -183,6 +183,39 @@ in {
           zram
         ];
       };
+      dell = {
+        imports = [
+          accounts
+          disks
+          distributed-builder
+          doas
+          docker
+          environment
+          fcitx5
+          gvfs
+          home-manager
+          laptop-extras
+          locale
+          minecraft-vanilla-server
+          nix
+          sleep-at-night
+          sops
+          tailscale
+          zram
+        ];
+      };
+      node = {
+        imports = [
+          distributed-builder
+          fcitx5
+          gvfs
+          lutris
+          sleep-at-night
+          sunshine
+          syncthing
+          zram
+        ];
+      };
       nas = {
         imports = [
           accounts
