@@ -102,6 +102,16 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.jovian.nixosModules.jovian
           ];
+          node = inputs.self.lib.mkLinuxSystem [
+            ./systems/node
+            ./users/profiles/user0
+            config.nixosModules.shared
+            config.nixosModules.node
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
+            inputs.impermanence.nixosModules.impermanence
+            inputs.nur.nixosModules.nur
+          ];
           dell = inputs.self.lib.mkLinuxSystem [
             ./systems/dell
             ./users/profiles/user0
