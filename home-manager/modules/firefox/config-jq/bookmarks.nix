@@ -93,6 +93,12 @@
         tags = ["steamdb" "steam" "db"];
         keyword = "SteamDB";
       }
+      {
+        name = "Sunshine";
+        url = "http://node:47990";
+        tags = ["sunshine"];
+        keyword = "SN";
+      }
       # Work
       {
         name = "Slack";
