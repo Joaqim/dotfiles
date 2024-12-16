@@ -101,7 +101,13 @@
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.jovian.nixosModules.jovian
-            inputs.nur.nixosModules.nur
+          ];
+          dell = inputs.self.lib.mkLinuxSystem [
+            ./systems/dell
+            ./users/profiles/user0
+            config.nixosModules.dell
+            inputs.sops-nix.nixosModules.sops
+            inputs.home-manager.nixosModules.home-manager
           ];
           thinkpad = inputs.self.lib.mkLinuxSystem [
             ./systems/thinkpad
