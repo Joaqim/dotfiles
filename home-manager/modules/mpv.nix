@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  flake,
+  ...
+}: {
   programs.mpv = {
     enable = true;
     scripts = builtins.attrValues {
@@ -19,6 +23,7 @@
         webtorrent-mpv-hook
         reload
         ;
+      inherit (flake.inputs.self.packages.${pkgs.system}) mpv-org-history;
     };
     config = {
       profile = "gpu-hq";

@@ -12,4 +12,6 @@ in {
   # Proper packages
   gauth = callPackage ./applications/gauth.nix {};
   gcs = callPackage ./applications/gcs.nix {};
+
+  mpv-org-history = callPackage ./applications/mpv-org-history/mpv-org-history.nix {};
 }
