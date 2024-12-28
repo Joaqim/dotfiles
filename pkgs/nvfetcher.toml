@@ -9,3 +9,7 @@ fetch.github = "pcarrier/gauth"
 [gcs]
 src.github = "richardwilkes/gcs"
 fetch.github = "richardwilkes/gcs"
+
+[mpv-skipsilence]
+src.git = "https://github.com/ferreum/mpv-skipsilence"
+fetch.github = "ferreum/mpv-skipsilence"

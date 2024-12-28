@@ -34,4 +34,16 @@
       sha256 = "sha256-wPnCJI8g06VI/t/zYbchToRhgdRY7QnXCNiG3UAnieA=";
     };
   };
+  mpv-skipsilence = {
+    pname = "mpv-skipsilence";
+    version = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+    src = fetchFromGitHub {
+      owner = "ferreum";
+      repo = "mpv-skipsilence";
+      rev = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+      fetchSubmodules = false;
+      sha256 = "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=";
+    };
+    date = "2024-05-06";
+  };
 }

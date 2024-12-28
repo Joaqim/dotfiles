@@ -13,5 +13,6 @@ in {
   gauth = callPackage ./applications/gauth.nix {};
   gcs = callPackage ./applications/gcs.nix {};
 
+  mpv-skipsilence = callPackage ./applications/mpv-skipsilence.nix {};
   mpv-org-history = callPackage ./applications/mpv-org-history/mpv-org-history.nix {};
 }
