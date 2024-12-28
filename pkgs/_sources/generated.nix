@@ -25,13 +25,13 @@
   };
   gcs = {
     pname = "gcs";
-    version = "v5.29.0";
+    version = "v5.30.0";
     src = fetchFromGitHub {
       owner = "richardwilkes";
       repo = "gcs";
-      rev = "v5.29.0";
+      rev = "v5.30.0";
       fetchSubmodules = false;
-      sha256 = "sha256-wPnCJI8g06VI/t/zYbchToRhgdRY7QnXCNiG3UAnieA=";
+      sha256 = "sha256-W0D+5qU6XdZugySHTP6VvwCve9YwyQIvX1T16Dk86rE=";
     };
   };
   mpv-skipsilence = {

@@ -55,11 +55,32 @@
             "name": null,
             "owner": "richardwilkes",
             "repo": "gcs",
-            "rev": "v5.29.0",
-            "sha256": "sha256-wPnCJI8g06VI/t/zYbchToRhgdRY7QnXCNiG3UAnieA=",
+            "rev": "v5.30.0",
+            "sha256": "sha256-W0D+5qU6XdZugySHTP6VvwCve9YwyQIvX1T16Dk86rE=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v5.29.0"
+        "version": "v5.30.0"
+    },
+    "mpv-skipsilence": {
+        "cargoLocks": null,
+        "date": "2024-05-06",
+        "extract": null,
+        "name": "mpv-skipsilence",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "ferreum",
+            "repo": "mpv-skipsilence",
+            "rev": "5ae7c3b6f927e728c22fc13007265682d1ecf98c",
+            "sha256": "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "5ae7c3b6f927e728c22fc13007265682d1ecf98c"
     }
 }
