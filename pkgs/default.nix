@@ -9,10 +9,7 @@ in {
   # "Packages" that just contain utility scripts
   commit-nvfetcher = callPackage ./scripts/commit-nvfetcher {};
 
-  # Proper packages
-  gauth = callPackage ./applications/gauth.nix {};
-  gcs = callPackage ./applications/gcs.nix {};
-
+  # Extensions to existing Applications
   mpv-skipsilence = callPackage ./applications/mpv-skipsilence.nix {};
   mpv-org-history = callPackage ./applications/mpv-org-history/mpv-org-history.nix {};
 }
