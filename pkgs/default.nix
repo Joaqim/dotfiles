@@ -12,4 +12,7 @@ in {
   # Extensions to existing Applications
   mpv-skipsilence = callPackage ./applications/mpv-skipsilence.nix {};
   mpv-org-history = callPackage ./applications/mpv-org-history/mpv-org-history.nix {};
+
+  # Proper packages
+  undertaker141 = callPackage ./applications/undertaker141/undertaker141.nix {};
 }
