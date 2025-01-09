@@ -13,6 +13,7 @@ let
   atuin = import ./modules/atuin.nix;
   bottom = import ./modules/bottom.nix;
   calibre = import ./modules/calibre.nix;
+  cataclysm-dda = import ./modules/games/cataclysm-dda.nix;
   cursor = import ./modules/cursor.nix;
   direnv = import ./modules/direnv.nix;
   git = import ./modules/git.nix;
@@ -74,6 +75,7 @@ in {
       atuin
       bottom
       calibre
+      cataclysm-dda
       cursor
       direnv
       gammastep

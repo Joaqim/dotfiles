@@ -4,6 +4,7 @@ in {
   imports = [
     self.inputs.sops-nix.homeManagerModules.sops
     self.homeModules.calibre
+    self.homeModules.cataclysm-dda
     self.homeModules.commandLine
     self.homeModules.desktopGames
     self.homeModules.entertainment
