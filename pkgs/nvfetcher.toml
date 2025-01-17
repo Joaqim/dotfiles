@@ -1,3 +1,7 @@
 [mpv-skipsilence]
 src.git = "https://github.com/ferreum/mpv-skipsilence"
 fetch.github = "ferreum/mpv-skipsilence"
+
+[yt-dlp]
+src.git = "https://github.com/yt-dlp/yt-dlp"
+fetch.github = "yt-dlp/yt-dlp"

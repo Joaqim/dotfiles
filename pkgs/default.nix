@@ -15,4 +15,7 @@ in {
 
   # Proper packages
   undertaker141 = callPackage ./applications/undertaker141/undertaker141.nix {};
+
+  # Packages that override existing packages in `nixpkgs`
+  yt-dlp = callPackage ./applications/yt-dlp.nix {inherit pkgs;};
 }
