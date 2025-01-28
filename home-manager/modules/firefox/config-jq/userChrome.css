@@ -1,124 +1,141 @@
-/*
- *    Hide Tabs on Topbar
- */
- #TabsToolbar {
-    visibility: collapse;
+:root {
+	--navbar-height: 48px;
+	--wc-height: 16px;
+	--wc-left-margin: 10px;
+	--wc-red: #f38ba8;
+	--wc-yellow: #f9e2af;
+	--wc-green: #a6e3a1;
+	--wc-inactive: #61616c;
+	--sidebar-collapsed-width: var(--navbar-height);
+	--sidebar-width: 250px;
+	--transition-duration: 0.2s;
+	--transition-ease: ease-out;
+}
+
+/* hide tabline */
+#navigator-toolbox {
+	-moz-window-dragging: drag;
+	padding: 8px 0;
 }
 
 #titlebar {
-    visibility: collapse;
+	appearance: none !important;
 }
 
-/*
-*   NOTE: If you hide the sidebar header it can get tricky to switch between diffrent addons sidebars.
-*/
-#sidebar-header {
-    visibility: collapse !important;
-} 
-
-
-
-
-/* 
-Firefox `userChrome.css` for Tree Style Tab
-  
-  * Auto-sliding draw for TST
-  * Leaves 'pinned' and 'active' tabs visible in standard browser chrome
-  * Leaves 'last-active' tabs visible for 3 minutes after becoming inactive
-  * Where an active tab is pinned, leaves 'last-active' tab (x1) visible for 1hr
-
-  Instructions:
-    1. Choose: (Hamburger menu) -> 'Customize'
-      - Switch 'Title bar': off
-      - also 'Drag space': off
-    2. Browse to URL "about:config"
-      - set `toolkit.legacyUserProfileCustomizations.stylesheets`: true
-    3. Browse to URL "about:profiles"
-      - Select 'Profile in use' -> 'Root Directory' -> 'Show in Finder' (Mac)
-      - Save this file under `chrome/userChrome.css`
-      - restart the browser
-    4. Install Tree Style Tab
-    5. Browse to URL: "about:addons"
-      - Select 'Tree Style Tab' -> 'Preferences' tab -> 'Extra style rules for sidebar contents'
-      - paste in content from `tree-style-tabs-theme.css`
- */
-
-
-
-/* where active tab is pinned, delays hiding of 'last-active' inactive tab for 1hr */
-.tabbrowser-tab[pinned][selected] ~ .tabbrowser-tab:not([pinned]) {
-  transition-duration: 0s !important;
-  transition-property: width, visibility, min-width, -moz-box-flex !important;
-  transition-delay: 3600s !important; /* = 1hr, adjust seconds to increase / decrease visibility */
+#TabsToolbar .toolbar-items {
+	display: none !important;
 }
 
-/* hides all non-active tabs */
-.tabbrowser-tab:not([pinned]):not([selected]) {
-  visibility: hidden;
-  overflow: hidden;
-  min-width: 0 !important;
-  -moz-box-flex: 0 !important;
+#TabsToolbar.browser-toolbar {
+	display: block !important;
+	position: absolute;
+	right: 0;
+	top: calc((var(--navbar-height) - var(--wc-height)) / 2);
 }
 
-/* waits 60 seconds before hiding inactive tabs */
-.tabbrowser-tab:not([pinned]) {
-  min-width: 0 !important;
-  transition-property: width, visibility !important;
-  transition-duration: 0.4s !important; /* slide shut */
-  transition-delay: 180s !important; /* wait X seconds before hiding inactive tabs | 0 = immediate */
+#nav-bar {
+	height: calc(var(--navbar-height) - 16px) !important;
+	margin-right: calc(var(--wc-height) * 6 + var(--wc-left-margin));
+	padding: calc((var(--navbar-height) - 40px) / 2) 0;
 }
 
-/* shows active tabs immediately */
-.tabbrowser-tab[selected]:not([pinned]) {
-  min-width: var(--tab-min-width) !important;
-  width: var(--tab-min-width) !important;
-  transition-duration: 0s !important; /* = immediate */
-  transition-delay: 0s !important; /* = immediate */
+#urlbar {
+	--urlbar-toolbar-height: calc(var(--navbar-height) - 16px) !important;
+	z-index: 200 !important;
 }
 
-/* Sidebar sliding auto-reveal */
-
-/* Sidebar min and max width removal */
-#sidebar {
-  max-width: none !important;
-  min-width: 0px !important;
+#urlbar[breakout][breakout-extend] {
+	top: -4px !important;
 }
 
-/* Hide splitter */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] + #sidebar-splitter {
-  display: none !important;
-}
-/* Hide sidebar header */
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar-header {
-  visibility: collapse;
+#urlbar[breakout][breakout-extend] > #urlbar-input-container {
+	height: calc(var(--navbar-height) - 8px) !important;
+	padding-block: 4px !important;
 }
 
-/* Shrink sidebar until hovered */
-:root {
-  --thin-tab-width: 30px;
-  --wide-tab-width: 300px;
+#private-browsing-indicator-with-label {
+	display: none !important;
 }
-#sidebar-box:not([sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]) {
-  min-width: var(--wide-tab-width) !important;
-  max-width: none !important;
+
+.titlebar-button > .toolbarbutton-icon {
+	visibility: hidden;
 }
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] {
-  overflow: hidden !important;
-  position: relative !important;
-  transition: all 300ms !important;
-  /*transition: all 0ms 0s !important;*/
-  min-width: var(--thin-tab-width) !important;
-  max-width: var(--thin-tab-width) !important;
-  z-index: 2;
+
+.titlebar-button {
+	padding: 0 !important;
+	height: var(--wc-height) !important;
+	min-height: var(--wc-height) !important;
+	width: var(--wc-height) !important;
+	min-width: var(--wc-height) !important;
+	border-radius: 50%;
+	opacity: 1 !important;
 }
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover,
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"] #sidebar {
-  /*transition-delay: 0s !important;*/
-  transition: all 300ms !important;
-  min-width: var(--wide-tab-width) !important;
-  max-width: var(--wide-tab-width) !important;
-  z-index: 1;
+
+.titlebar-button:hover {
+	/* transform: scale(1.1); */
+	opacity: 0.7 !important;
+	cursor: pointer;
 }
-#sidebar-box[sidebarcommand="treestyletab_piro_sakura_ne_jp-sidebar-action"]:hover {
-  margin-right: calc((var(--wide-tab-width) - var(--thin-tab-width)) * -1) !important;
+
+.titlebar-buttonbox {
+	display: flex;
+	margin-right: var(--wc-height);
+	gap: var(--wc-height);
+}
+
+.titlebar-close {
+	background: var(--wc-red) !important;
+}
+
+.titlebar-min {
+	background: var(--wc-yellow) !important;
+}
+
+.titlebar-max,
+.titlebar-restore {
+	background: var(--wc-green) !important;
+}
+
+.titlebar-close:-moz-window-inactive,
+.titlebar-min:-moz-window-inactive,
+.titlebar-max:-moz-window-inactive,
+.titlebar-restore:-moz-window-inactive {
+	background: var(--wc-inactive) !important;
+}
+
+/* hide sidebar header */
+#sidebar-box[sidebarcommand='treestyletab_piro_sakura_ne_jp-sidebar-action']
+	#sidebar-header {
+	display: none;
+}
+
+#sidebar-box {
+	z-index: 100 !important;
+	position: relative !important;
+	min-width: var(--sidebar-collapsed-width) !important;
+	max-width: var(--sidebar-collapsed-width) !important;
+}
+
+/* hide sidebar resize handle */
+.sidebar-splitter {
+	display: none !important;
+}
+
+/* inner width = expanded width & move inner to only show initial-width long section */
+#sidebar-box #sidebar {
+	min-width: var(--sidebar-width) !important;
+	max-width: var(--sidebar-width) !important;
+	width: var(--sidebar-width) !important;
+	transform: translateX(
+		calc(var(--sidebar-collapsed-width) - var(--sidebar-width))
+	);
+	transition: var(--transition-duration) var(--transition-ease);
+}
+
+#sidebar-box #sidebar:hover {
+	transform: translateX(0) !important;
+}
+
+#sidebar-box[sidebarcommand='viewBookmarksSidebar'] #sidebar {
+	transform: translateX(0) !important;
 }
