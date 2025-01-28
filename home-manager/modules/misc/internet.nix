@@ -8,6 +8,7 @@
       element-desktop
       vesktop
       xdg-utils
+      fluent-reader # RSS Reader
       ;
   };
 }
