@@ -2,6 +2,7 @@
   config,
   flake,
   pkgs,
+  lib,
   ...
 }: let
   hostname = config.networking.hostName;
@@ -34,7 +35,7 @@ in {
         username = user0;
         homeDirectory = "/home/${user0}";
         file = {
-          "./justfile".source = ./justfile;
+          "./justfile".source = lib.mkDefault ./justfile;
           "./.local/share/Steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
         };
 
@@ -42,7 +43,7 @@ in {
       };
       imports = [
         {home.stateVersion = config.system.stateVersion;}
-        (import ./configs/${hostname}.nix {inherit flake;})
+        (import ./configs/${hostname}.nix {inherit flake lib;})
       ];
     };
   };
