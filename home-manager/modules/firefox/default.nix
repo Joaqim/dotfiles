@@ -11,6 +11,10 @@ in {
     enable = true;
     # TODO: Couldn't get policies to work here:
     #policies = import ./config-${user}/policies.nix;
+    languagePacks = lib.mkDefault ["en-US" "sv-SE"];
+    nativeMessagingHosts = [
+      pkgs.ff2mpv # Native Messaging Host for ff2mpv firefox addon
+    ];
     profiles = {
       ${user} = {
         isDefault = true;

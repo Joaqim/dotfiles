@@ -24,6 +24,8 @@ in
       ublock-origin
       umatrix
       unpaywall
+      ff2mpv
+      vimium-c
       ;
     inherit (customAddons) chronotube;
   }

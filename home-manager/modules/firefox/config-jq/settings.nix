@@ -124,4 +124,17 @@ in {
   "extensions.treestyletab.show.context-item-reloadDescendantTabs" = true;
   "extensions.treestyletab.show.context-item-removeAllTabsButThisTree" = true;
   "extensions.treestyletab.show.context-item-removeDescendantTabs" = true;
+
+  # Vimium C - https://github.com/gdh1995/vimium-c/blob/master/settings-template.json
+  "extensions.vimium-c.keyMappings" = ''
+    map vvv LinkHints.activateOpenUrl sed="_ff2mpv"
+    map <v-ff2mpv> sendToExtension id="ff2mpv@yossarian.net" raw
+  '';
+  "extensions.vimium-c.clipSub" = ''
+    	p=^git@([^/:]+):=https://$1/=
+    s@^https://(?:www\\.)?google\\.com(?:\\.[^/]+)?/url\\?(?:[^&#]+&)*?url=([^&#]+)@$1@,matched,decodecomp
+    p@^https://item\\.m\\.jd\\.com/product/(\\d+)\\.html\\b@https://item.jd.com/$1.html@
+      _ff2mpv@^@@,encode
+      _ff2mpv@^.*@vimium://run1/<v-ff2mpv>#data={"type":"openVideo","url":"$0"}@
+  '';
 }
