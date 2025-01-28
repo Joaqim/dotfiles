@@ -6,6 +6,7 @@
   home.packages = with pkgs; [
     # Nix Language
     alejandra
+    nil
 
     material-icons
     material-design-icons
@@ -99,18 +100,31 @@
           "work" = "Desktop";
         };
 
+        ### Rust Language
+
+        ## Plugin: Rust Analyzer
+        "rust-analyzer.cargo.extraEnv" = {
+          "RUSTFLAGS" = "-Clinker=clang -Clink-arg=-fuse-ld=mold";
+        };
+        "rust-analyzer.diagnostics.disabled" = [
+          "macro-error"
+        ];
+
+        ## Plugin: lldb
+        "lldb.suppressUpdateNotifications" = true;
+
         ### Nix Language
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = lib.getExe pkgs.nil;
         "nix.formatterPath" = lib.getExe pkgs.alejandra;
-
-        ## Plugin: kamadorueda.alejandra
         "[nix]" = {
-          "editor.defaultFormatter" = "alejandra";
+          "editor.defaultFormatter" = "kamadorueda.alejandra";
           "editor.formatOnPaste" = true;
           "editor.formatOnSave" = true;
           "editor.formatOnType" = false;
         };
+
+        ## Plugin: kamadorueda.alejandra
         "alejandra.program" = lib.getExe pkgs.alejandra;
 
         ### GitLens
@@ -148,6 +162,7 @@
           github.vscode-github-actions
           james-yu.latex-workshop
           jnoortheen.nix-ide
+          kamadorueda.alejandra
           marp-team.marp-vscode
           mattn.lisp
           mkhl.direnv
@@ -155,10 +170,12 @@
           myriad-dreamin.tinymist
           pkief.material-icon-theme
           pkief.material-product-icons
+          rust-lang.rust-analyzer
           signageos.signageos-vscode-sops
           streetsidesoftware.code-spell-checker
           tamasfe.even-better-toml
           thenuprojectcontributors.vscode-nushell-lang
+          vadimcn.vscode-lldb
           wakatime.vscode-wakatime
           yzhang.markdown-all-in-one
         ]
