@@ -31,6 +31,12 @@
       fsType = "vfat";
       options = ["fmask=0022" "dmask=022"];
     };
+
+    "/mnt/holo" = {
+      device = "/dev/disk/by-label/holo-home";
+      fsType = "ext4";
+      options = ["relatime" "rw" "uid=1001" "gid=100" "nofail" "x-systemd.device-timeout=9"];
+    };
   };
   swapDevices = [
     #{device = "/dev/disk/by-uuid/7c2090d9-469f-4e7e-bd8b-382c40bc7048";}
@@ -48,7 +54,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking = {
     useDHCP = lib.mkDefault true;
-    interfaces.enp4s0f3u1u4.useDHCP = lib.mkDefault true;
+    #interfaces.enp4s0f3u1u4.useDHCP = lib.mkDefault true;
     interfaces.wlo1.useDHCP = lib.mkDefault true;
   };
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

@@ -6,10 +6,8 @@
     ./ssh.nix
   ];
 
-  services.xserver = {
-    enable = true;
-    desktopManager.plasma5.enable = true;
-  };
+  services.xserver.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   hardware.xpadneo.enable = true;
 
@@ -33,6 +31,5 @@
 
   i18n.defaultLocale = lib.mkForce "sv_SE.UTF-8";
 
-  nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
   system.stateVersion = lib.mkForce "24.05";
 }
