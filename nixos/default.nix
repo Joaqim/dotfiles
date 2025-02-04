@@ -32,6 +32,7 @@ let
   minecraft-server-1 = import ./modules/minecraft-servers/better-minecraft-modpack.nix;
   #minecraft-server-1 = import ./modules/minecraft-servers/joaqim-s-minecraft-modpack.nix;
   minecraft-vanilla-server = import ./modules/minecraft-servers/minecraft-vanilla-server.nix;
+  minecraft-vault-hunters-server = import ./modules/minecraft-servers/minecraft-vault-hunters-server.nix;
   laptop-extras = import ./modules/laptop.nix;
   locale = import ./modules/locale.nix;
   network = import ./modules/network.nix;
@@ -211,6 +212,7 @@ in {
           fcitx5
           gvfs
           lutris
+          minecraft-vault-hunters-server
           sleep-at-night
           sunshine
           syncthing

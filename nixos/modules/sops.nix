@@ -24,9 +24,19 @@ in {
     };
     age.generateKey = false;
     templates = {
-      "firefox-syncserver.env".content = ''
-        SYNC_MASTER_SECRET=${config.sops.placeholder."firefox_syncserver_secret/${user0}"};
-      '';
+      "firefox-syncserver.env" = {
+        content = ''
+          SYNC_MASTER_SECRET=${config.sops.placeholder."firefox_syncserver_secret/${user0}"};
+        '';
+        owner = user0;
+      };
+      "minecraft_CF_API_KEY.env" = {
+        content = ''
+          CF_API_KEY=${config.sops.placeholder."minecraft_CF_API_KEY"}
+        '';
+        owner = user0;
+        mode = "400";
+      };
     };
     secrets = {
       "atuin_key/${user0}" = {
@@ -70,9 +80,14 @@ in {
       };
       "rcon_web_admin_env" = {
         mode = "400";
+        owner = user0;
       };
       "minecraft_server_whitelist" = {
-        mode = "600";
+        mode = "400";
+        owner = user0;
+      };
+      "minecraft_CF_API_KEY" = {
+        mode = "400";
         owner = user0;
       };
     };
