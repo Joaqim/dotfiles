@@ -1,5 +1,29 @@
 {
   "nodes": {
+    "SSO-Auth": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-hCLwEvVgoiIhp/74DACizg3NgeT6zXfBVdytM4pkfxg=",
+        "type": "file",
+        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip"
+      }
+    },
+    "ani-sync": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-EwZzAGEr6NBuohOa7RloreLbKR5+YbVyx64DklYuggo=",
+        "type": "file",
+        "url": "https://github.com/vosmiic/jellyfin-ani-sync/releases/download/v3.7/10.10.3.-.ani-sync_3.7.0.0.zip"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/vosmiic/jellyfin-ani-sync/releases/download/v3.7/10.10.3.-.ani-sync_3.7.0.0.zip"
+      }
+    },
     "deadnix": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -181,10 +205,31 @@
         "type": "github"
       }
     },
+    "jellyfin-plugins": {
+      "inputs": {
+        "SSO-Auth": "SSO-Auth",
+        "ani-sync": "ani-sync",
+        "kodisyncqueue": "kodisyncqueue",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1738624439,
+        "narHash": "sha256-uJijvxHWXUmh9FF9CGO0B82Xr0cWI6ycKFG/VyKzZ+0=",
+        "owner": "Joaqim",
+        "repo": "jellyfin-plugins-nix",
+        "rev": "76cfd964c079cb9aff31b4bbde4d3f9538aa57f7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Joaqim",
+        "repo": "jellyfin-plugins-nix",
+        "type": "github"
+      }
+    },
     "jovian": {
       "inputs": {
         "nix-github-actions": "nix-github-actions",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1738656811,
@@ -203,7 +248,7 @@
     "json2steamshortcut": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1711218459,
@@ -219,10 +264,22 @@
         "type": "github"
       }
     },
+    "kodisyncqueue": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-jEIVmhcoe12h/IJunpT84r6tbuJo41t9SkX+66VXZhQ=",
+        "type": "file",
+        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v11/kodi-sync-queue_11.0.0.0.zip"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/jellyfin/jellyfin-plugin-kodisyncqueue/releases/download/v11/kodi-sync-queue_11.0.0.0.zip"
+      }
+    },
     "nix-gaming": {
       "inputs": {
         "flake-parts": "flake-parts_2",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "umu": "umu"
       },
       "locked": {
@@ -291,6 +348,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1729665710,
+        "narHash": "sha256-AlcmCXJZPIlO5dmFzV3V2XF6x/OpNWUV8Y/FMPGd8Z4=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2768c7d042a37de65bb1b5b3268fc987e534c49d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1738546358,
         "narHash": "sha256-nLivjIygCiqLp5QcL7l56Tca/elVqM9FG1hGd9ZSsrg=",
         "owner": "NixOS",
@@ -305,7 +378,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1711124224,
         "narHash": "sha256-l0zlN/3CiodvWDtfBOVxeTwYSRz93muVbXWSpaMjXxM=",
@@ -321,7 +394,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1738297584,
         "narHash": "sha256-AYvaFBzt8dU0fcSK2jKD0Vg23K2eIRxfsVXIPCW9a0E=",
@@ -337,7 +410,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_5": {
+    "nixpkgs_6": {
       "locked": {
         "lastModified": 1738546358,
         "narHash": "sha256-nLivjIygCiqLp5QcL7l56Tca/elVqM9FG1hGd9ZSsrg=",
@@ -419,10 +492,11 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "jellyfin-plugins": "jellyfin-plugins",
         "jovian": "jovian",
         "json2steamshortcut": "json2steamshortcut",
         "nix-gaming": "nix-gaming",
-        "nixpkgs": "nixpkgs_5",
+        "nixpkgs": "nixpkgs_6",
         "nur": "nur",
         "nvfetcher": "nvfetcher",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",

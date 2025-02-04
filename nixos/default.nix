@@ -136,6 +136,7 @@ in {
           firefox-syncserver
           gamemode
           godot
+          jellyfin
           lutris
           minecraft-server-1
           sunshine

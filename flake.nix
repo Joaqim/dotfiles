@@ -37,6 +37,7 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
 
     json2steamshortcut.url = "github:ChrisOboe/json2steamshortcut";
+    jellyfin-plugins.url = "github:Joaqim/jellyfin-plugins-nix";
   };
 
   outputs = inputs:
@@ -76,6 +77,7 @@
           desktop = inputs.self.lib.mkLinuxSystem [
             ./systems/desktop
             ./users/profiles/user0
+            inputs.jellyfin-plugins.nixosModules.jellyfin-plugins
             config.nixosModules.shared
             config.nixosModules.desktop
             inputs.sops-nix.nixosModules.sops

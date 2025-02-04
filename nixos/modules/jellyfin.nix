@@ -1,15 +1,16 @@
 {flake, ...}: let
   inherit (flake.config.people) user0;
+  inherit (flake.inputs) jellyfin-plugins;
 in {
   services = {
     jellyfin = {
       enable = true;
-      dataDir = "/run/media/jq/Jellyfin";
       openFirewall = true;
       user = user0;
+      enabledPlugins = {inherit (jellyfin-plugins.packages."x86_64-linux") ani-sync;};
     };
     caddy = {
-      enable = true;
+      enable = false;
       virtualHosts = {
         "jellybert.fun" = {
           extraConfig = ''
