@@ -219,24 +219,6 @@ in {
           zram
         ];
       };
-      nas = {
-        imports = [
-          accounts
-          disks
-          doas
-          environment
-          gvfs
-          home-manager
-          jellyfin
-          locale
-          network
-          nix
-          plasma
-          sops
-          system
-          xserver
-        ];
-      };
       shared = {
         imports = [
           accounts

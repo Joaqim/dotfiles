@@ -136,14 +136,6 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.nur.nixosModules.nur
           ];
-          nas = inputs.self.lib.mkLinuxSystem [
-            ./systems/nas
-            ./users/profiles/user0
-            config.nixosModules.nas
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            inputs.nur.nixosModules.nur
-          ];
         };
       };
 
