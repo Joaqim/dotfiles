@@ -23,6 +23,7 @@ let
   home-manager = import ./modules/home-manager.nix;
   kitty = import ./modules/kitty.nix;
   lazygit = import ./modules/lazygit.nix;
+  minecraft-server-toggle = import ./modules/plasmoids/minecraft-server-toggle.nix;
   misc-android = import ./modules/misc/android.nix;
   misc-commandLine = import ./modules/misc/command-line.nix;
   misc-fileManagement = import ./modules/misc/file-management.nix;
@@ -86,6 +87,7 @@ in {
       home-manager
       kitty
       lazygit
+      minecraft-server-toggle
       misc-android
       misc-commandLine
       misc-fileManagement

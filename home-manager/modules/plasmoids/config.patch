@@ -1,0 +1,41 @@
+diff --git a/contents/config/main.xml b/contents/config/main.xml
+index 009b5f0..b3ce726 100644
+--- a/contents/config/main.xml
++++ b/contents/config/main.xml
+@@ -12,7 +12,7 @@
+     </entry>
+     <entry name="onScript" type="String">
+       <label>Script to execute when toggled on</label>
+-      <default>sleep 2; exit 0</default>
++      <default>systemctl start docker-minecraft-vault-hunters ; sleep 5</default>
+     </entry>
+     <entry name="onScriptEnabled" type="Bool">
+       <label>Enable to run the onScript upon toggling on</label>
+@@ -20,7 +20,7 @@
+     </entry>
+     <entry name="offScript" type="String">
+       <label>Script to execute when toggled off</label>
+-      <default>sleep 1; exit 0</default>
++      <default>systemctl stop docker-minecraft-vault-hunters</default>
+     </entry>
+     <entry name="iconOff" type="String">
+       <label>Icon off</label>
+@@ -36,15 +36,15 @@
+     </entry>
+     <entry name="statusScriptEnabled" type="Bool">
+       <label>Check to enable script checking status</label>
+-      <default>false</default>
++      <default>true</default>
+     </entry>
+     <entry name="statusScript" type="String">
+       <label>Script to execute to check status</label>
+-      <default>/bin/status_script.sh</default>
++      <default>systemctl is-active --quiet docker-minecraft-vault-hunters</default>
+     </entry>
+     <entry name="runStatusOnStart" type="Bool">
+       <label>Run status script on start</label>
+-      <default>false</default>
++      <default>true</default>
+     </entry>
+     <entry name="updateInterval" type="Int">
+       <label>Interval to run status script</label>
