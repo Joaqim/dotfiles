@@ -11,6 +11,12 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.PR_CREATE_KEY }}
+          fetch-depth: 0
+      - name: Cache nvfetcher
+        uses: actions/cache@v4
+        with:
+          path: ~/.local/share/nvfetcher
+          key: ${{ runner.os }}-nvfetcher
       - uses: cachix/install-nix-action@v30
         with:
           github_access_token: ${{ secrets.CI_BOT_GH_REPO_TOKEN }}
@@ -27,6 +33,7 @@ jobs:
           git_committer_email: joaqim-ci-bot@joaqim.xyz 
       - run: nix flake update --commit-lock-file
       - run: |
+          export LANG=en_US.UTF-8
           echo -e '[keys]\ngithub = "${{ secrets.CI_BOT_GH_REPO_TOKEN }}"' > /tmp/github-key.toml
           nix run .#commit-nvfetcher -L
       - name: Create Pull Request
