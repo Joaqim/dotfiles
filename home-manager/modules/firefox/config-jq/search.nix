@@ -45,7 +45,7 @@
     "Knaben" = {
       definedAlias = ["@kn"];
       icon = ./icons/kn.png;
-      urls = [{template = "https://knaben.eu/search/{searchTerms}";}];
+      urls = [{template = "https://knaben.org/search/{searchTerms}";}];
     };
     "Reddit" = {
       definedAliases = ["@re"];
@@ -82,6 +82,11 @@
       icon = ./icons/at.png;
       urls = [{template = "https://mirror.animetosho.org/search?q={searchTerms}";}];
     };
+    "Library Genesis" = {
+      definedAliases = ["@lg" "@lib"];
+      icon = ./icons/lg.png;
+      urls = [{template = "https://libgen.is/fiction/?q={searchTerms}";}];
+    };
     "Amazon.com".metaData.hidden = true;
     "Bing".metaData.hidden = true;
     "eBay".metaData.hidden = true;
@@ -91,8 +96,11 @@
     "AlternativeTo"
     "Amazon"
     "Nix Packages"
+    "Nix Options"
+    "My Nix OS"
     "Knaben"
     "TorrentGalaxy"
+    "Library Genesis"
     "The Pirate Bay"
     "AnimeTosho"
     "Reddit"
@@ -100,10 +108,7 @@
     "Wikipedia"
     "YouTube"
     "1337x"
-    "Nix Packages"
-    "Nix Options"
     "Brave"
     "Google"
-    "Kagi"
   ];
 }

@@ -18,7 +18,6 @@ in
       plasma-integration
       reddit-enhancement-suite
       sponsorblock
-      swedish-dictionary
       tabliss
       tree-style-tab
       ublock-origin

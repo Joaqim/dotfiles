@@ -125,6 +125,9 @@ in {
   "extensions.treestyletab.show.context-item-removeAllTabsButThisTree" = true;
   "extensions.treestyletab.show.context-item-removeDescendantTabs" = true;
 
+  # Dictionary
+  "intl.accept_languages" = "en-US, en, sv-SE";
+
   # Vimium C - https://github.com/gdh1995/vimium-c/blob/master/settings-template.json
   "extensions.vimium-c.keyMappings" = ''
     map vvv LinkHints.activateOpenUrl sed="_ff2mpv"
