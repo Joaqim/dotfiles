@@ -40,6 +40,7 @@ let
   oom = import ./modules/oom.nix;
   plasma = import ./modules/plasma.nix;
   printing = import ./modules/printing.nix;
+  qbittorrent-nox = import ./modules/qbittorrent-nox.nix;
   regreet = import ./modules/regreet.nix;
   sleep-at-night = import ./modules/sleep-at-night.nix;
   sops = import ./modules/sops.nix;
@@ -122,7 +123,7 @@ in {
           sops
           #steam
           system
-
+          qbittorrent-nox
           # Mostly for xkb layout
           xserver
 
