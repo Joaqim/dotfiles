@@ -14,59 +14,23 @@
   pname = "undertaker141";
   version = "${undertaker141Version}";
 
-  gameDependencies = builtins.attrValues {
+  dependencies = builtins.attrValues {
     inherit
       (pkgs)
-      mangohud
-      # jc141 & wine
-      dwarfs
-      winetricks
-      psmisc # for `fuser`
-      fuse-overlayfs
-      vulkan-loader
-      vulkan-tools
-      bubblewrap
-      # optional deps
-      libva
-      openal
-      libpulseaudio
-      giflib
-      libgphoto2
-      libxcrypt
-      alsa-utils
-      SDL2_ttf
-      SDL2_image
-      libthai
-      harfbuzz
-      fontconfig
       freetype
+      libgcc
       libz
-      libdrm
-      fribidi
-      libgpg-error
       libGL
-      libGLU
+      python311
       ;
     inherit
       (pkgs.xorg)
-      libXext
+      libX11
       libXrender
-      libXfixes
-      libXrandr
-      libXcursor
-      libXcomposite
       ;
     inherit
-      (pkgs.gst_all_1)
-      gst-plugins-base
-      gst-plugins-good
-      gst-plugins-ugly
-      gst-vaapi
-      gst-libav
-      ;
-    inherit
-      (pkgs.wineWowPackages)
-      waylandFull
+      (pkgs.stdenv.cc.cc)
+      lib
       ;
   };
 
@@ -106,52 +70,39 @@ in
       makeWrapper
     ];
 
-    buildInputs = gameDependencies;
-    runtimeDependencies = gameDependencies;
+    buildInputs = dependencies;
+    runtimeDependencies = dependencies;
 
-    # TODO: https://github.com/fufexan/nix-gaming/blob/master/pkgs/rocket-league/default.nix
     installPhase = ''
-      mkdir "$out"
-      cp -ar . "$out/app"
+      cp -ar . "$out/"
       cd "$out"
 
       # Remove the AppImage runner, actual entry point will be the `undertaker141` script
-      rm app/AppRun
+      rm AppRun*
 
-      # Remove redundant symlink to app/usr/share/applications/python3.11.4.desktop
-      rm app/python3.11.4.desktop
+      # Remove redundant symlink to usr/share/applications/python3.11.4.desktop
+      rm python3.11.4.desktop
 
-      # Adjust directory structure, so that the `.desktop` etc. files are
-      # properly detected
-      mv app/usr/share .
-      mv app/usr/lib .
-      mv app/usr/bin .
-      mv app/opt .
-
-      mv bin/python3.11 "$out/app/${pname}"
+      mkdir -p $out/share/applications
 
       # Adjust the `.desktop` file
-      substitute share/applications/python3.11.4.desktop \
-        share/applications/undertaker141.desktop \
+      substitute usr/share/applications/python3.11.4.desktop \
+        $out/share/applications/undertaker141.desktop \
         --replace-fail 'Exec=python3.11' 'Exec=${pname}' \
         --replace-fail 'Icon=python' 'Icon=undertaker141'
+
+      rm usr/share/applications/python3.11.4.desktop
 
       # Ensure the icon is copied to the right place
       mkdir -p $out/share/icons/hicolor/512x512/apps
       cp ${icon}/share/icons/hicolor/512x512/apps/undertaker141.png $out/share/icons/hicolor/512x512/apps/
 
+      mkdir $out/bin
       # Build the main executable
       cat > bin/${pname} <<EOF
       #! $SHELL -e
 
-      export WINEARCH="win64"
       export APPDIR="$out"
-
-      # jc141 specific options
-      export DBG=1
-      export ISOLATE=0
-      export BLOCK_NET=0
-      SYSWINE="$(command -v wine)"
 
       # Export TCl/Tk
       export TCL_LIBRARY="$out/usr/share/tcltk/tcl8.6"
@@ -164,14 +115,15 @@ in
       export PYTHONHOME="$out/opt/python3.11"
 
       # Call Python
-      "$out/opt/python3.11/bin/python3.11" "$out/opt/src/app.py"
+      #"$out/opt/python3.11/bin/python3.11" "$out/opt/src/app.py"
+      python3.11 "$out/opt/src/app.py"
       EOF
 
       chmod +x bin/${pname}
 
       wrapProgram $out/bin/${pname} --prefix PATH : ${
         lib.makeBinPath
-        gameDependencies
+        dependencies
       }
     '';
 
