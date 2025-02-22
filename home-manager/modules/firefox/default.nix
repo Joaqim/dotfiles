@@ -1,6 +1,5 @@
 {
   config,
-  nur,
   pkgs,
   lib,
   ...
@@ -21,7 +20,7 @@ in {
         search = import ./config-${user}/search.nix;
         bookmarks = import ./config-${user}/bookmarks.nix;
         settings = import ./config-${user}/settings.nix;
-        extensions.packages = import ./config-${user}/extensions.nix {inherit nur pkgs;};
+        extensions.packages = import ./config-${user}/extensions.nix {inherit pkgs;};
         userChrome = builtins.readFile ./config-${user}/userChrome.css;
 
         # Darker background for new tabs (to not blast eyes with blinding white).

@@ -1,7 +1,7 @@
-{nur, ...}: {
+{pkgs, ...}: {
   home.packages = builtins.attrValues {
     inherit
-      (nur.repos.nltch)
+      (pkgs.nur.repos.nltch)
       spotify-adblock
       ;
   };

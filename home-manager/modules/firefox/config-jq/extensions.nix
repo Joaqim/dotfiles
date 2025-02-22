@@ -1,15 +1,11 @@
-{
-  nur,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   customAddons = pkgs.callPackage ./addons.nix {
-    inherit (nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
+    inherit (pkgs.nur.repos.rycee.firefox-addons) buildFirefoxXpiAddon;
   };
 in
   builtins.attrValues {
     inherit
-      (nur.repos.rycee.firefox-addons)
+      (pkgs.nur.repos.rycee.firefox-addons)
       bitwarden
       clearurls
       cookie-autodelete

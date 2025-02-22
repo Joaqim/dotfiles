@@ -14,7 +14,10 @@
     impermanence = {
       url = "github:nix-community/impermanence";
     };
-    nur.url = "github:nix-community/NUR/251d756a74e67bda25d89327b01a3da19dddabae";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     pre-commit-hooks-nix = {
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,7 +86,7 @@
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
-            inputs.nur.nixosModules.nur
+            inputs.nur.modules.nixos.default
           ];
           work = inputs.self.lib.mkLinuxSystem [
             ./systems/work
@@ -93,7 +96,7 @@
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
-            inputs.nur.nixosModules.nur
+            inputs.nur.modules.nixos.default
           ];
           deck = inputs.self.lib.mkLinuxSystem [
             ./systems/deck
@@ -112,7 +115,7 @@
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
             inputs.impermanence.nixosModules.impermanence
-            inputs.nur.nixosModules.nur
+            inputs.nur.modules.nixos.default
           ];
           dell = inputs.self.lib.mkLinuxSystem [
             ./systems/dell
@@ -134,7 +137,7 @@
             config.nixosModules.server
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
-            inputs.nur.nixosModules.nur
+            inputs.nur.modules.nixos.default
           ];
         };
       };
