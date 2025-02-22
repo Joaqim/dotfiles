@@ -31,8 +31,7 @@ let
   lutris = import ./modules/lutris.nix;
   minecraft-server-1 = import ./modules/minecraft-servers/better-minecraft-modpack.nix;
   #minecraft-server-1 = import ./modules/minecraft-servers/joaqim-s-minecraft-modpack.nix;
-  minecraft-vanilla-server = import ./modules/minecraft-servers/minecraft-vanilla-server.nix;
-  minecraft-vault-hunters-server = import ./modules/minecraft-servers/minecraft-vault-hunters-server.nix;
+  minecraft-server = import ./modules/minecraft-servers/minecraft-server.nix;
   laptop-extras = import ./modules/laptop.nix;
   locale = import ./modules/locale.nix;
   network = import ./modules/network.nix;
@@ -178,7 +177,7 @@ in {
           home-manager
           laptop-extras
           locale
-          minecraft-vanilla-server
+
           nix
           sleep-at-night
           sops
@@ -199,7 +198,6 @@ in {
           home-manager
           laptop-extras
           locale
-          minecraft-vanilla-server
           nix
           sleep-at-night
           sops
@@ -213,7 +211,7 @@ in {
           fcitx5
           gvfs
           lutris
-          minecraft-vault-hunters-server
+          minecraft-server
           sleep-at-night
           sunshine
           syncthing

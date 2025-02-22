@@ -5,9 +5,9 @@
   ...
 }: let
   MINECRAFT_VERSION = "1.21.3";
-  MODPACK_NAME = "Minecraft Server Modpack";
+  MODPACK_NAME = "Minecraft Modpack";
 
-  MODPACK_VERSION = "2024.11.28-rc4";
+  MODPACK_VERSION = "2025.02.22-rc2";
   MODS_FILE_PATH = builtins.toFile "mods.txt" ''
     # Dynamic Lights - Server-Side, doesn't work 2024-11-28:
     #https://cdn.modrinth.com/data/7YjclEGc/versions/Uuh7PGja/dynamiclights-v1.8.4-mc1.17x-1.21x-mod.jar
@@ -15,7 +15,7 @@
     https://cdn.modrinth.com/data/gWO6Zqey/versions/1olfoAAA/vanilla-refresh-1.4.26a_1.21.3.jar
   '';
   REMOTE_MODPACK_URL = "https://github.com/Joaqim/MinecraftModpack/raw/${MODPACK_VERSION}";
-  SERVER_NAME = "Minecraft Vanilla Server";
+  SERVER_NAME = "Minecraft Server";
   SERVER_NAME_SLUG = lib.strings.toLower (lib.strings.sanitizeDerivationName SERVER_NAME);
   WHITELIST_FILE_PATH = config.sops.secrets."minecraft_server_whitelist".path;
 in {
@@ -64,11 +64,11 @@ in {
             MAX_PLAYERS = "10";
             MAX_TICK_TIME = "-1";
             MEMORY = "4G";
-            MODS_FILE = "/extras/mods.txt";
+            #MODS_FILE = "/extras/mods.txt";
             MOTD = "Running `${MODPACK_NAME}` version ${MODPACK_VERSION}";
             ONLINE_MODE = "FALSE";
             OP_PERMISSION_LEVEL = "4"; # https://minecraft.fandom.com/wiki/Permission_level#Java_Edition
-            PACKWIZ_URL = "${REMOTE_MODPACK_URL}/pack.toml";
+            #PACKWIZ_URL = "${REMOTE_MODPACK_URL}/pack.toml";
             RCON_CMDS_STARTUP = ''
               gamerule keepInventory true
               gamerule mobGriefing false
@@ -81,7 +81,7 @@ in {
             SERVER_ICON = "${REMOTE_MODPACK_URL}/icon.jpeg";
             SNOOPER_ENABLED = "FALSE";
             SPAWN_PROTECTION = "0";
-            TYPE = "FORGE";
+            #TYPE = "FORGE";
             TZ = "Europe/Stockholm";
             USE_AIKAR_FLAGS = "TRUE";
             VERSION = MINECRAFT_VERSION;
@@ -96,6 +96,7 @@ in {
           ];
           ports = [
             "25565:25565/tcp"
+            "25575:25575/tcp"
           ];
           log-driver = "journald";
           extraOptions = [
