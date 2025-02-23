@@ -15,7 +15,7 @@ in {
       pkgs.ff2mpv # Native Messaging Host for ff2mpv firefox addon
     ];
     profiles = {
-      ${user} = {
+      ${user} = lib.mkIf (lib.pathExists ./config-${user}) {
         isDefault = true;
         search = import ./config-${user}/search.nix;
         bookmarks = import ./config-${user}/bookmarks.nix;

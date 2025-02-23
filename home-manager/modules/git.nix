@@ -7,7 +7,7 @@
   user = config.home.username;
   userConfig = flake.config.people.users.${user};
 in {
-  programs.git = {
+  programs.git = lib.mkIf (builtins.hasAttr "email" userConfig) {
     enable = true;
     userName = userConfig.name;
     userEmail = userConfig.email;

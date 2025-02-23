@@ -18,7 +18,8 @@
   userSubmodule = lib.types.submodule {
     options = {
       email = lib.mkOption {
-        type = lib.types.str;
+        type = lib.types.nullOr lib.types.str;
+        default = null;
       };
       name = lib.mkOption {
         type = lib.types.str;
