@@ -1,4 +1,4 @@
-{lib, ...}: {
+{
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
@@ -38,7 +38,10 @@
       ];
     };
   };
+  /*
+      TODO: Make sure we don't lose anything important in /home
   boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs rollback -r zpool/local/root@blank
+    zfs import zpool ; zfs rollback -r zpool/local/root@blank
   '';
+  */
 }

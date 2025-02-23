@@ -2,6 +2,7 @@
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     validateSopsFiles = false;
+    # NOTE: 2024-11-30, required explicit paths for now: https://discourse.nixos.org/t/access-nixos-sops-secret-via-home-manager/38909/12
     defaultSymlinkPath = "/run/user/1000/secrets";
     defaultSecretsMountPoint = "/run/user/1000/secrets.d";
     gnupg = {
