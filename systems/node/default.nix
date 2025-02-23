@@ -9,7 +9,7 @@
     ./ssh.nix
   ];
   nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
-  system.stateVersion = lib.mkForce "24.05";
+  system.stateVersion = lib.mkForce "24.11";
   networking.hostName = lib.mkForce "node";
   networking.hostId = lib.mkForce "deadbeef";
 

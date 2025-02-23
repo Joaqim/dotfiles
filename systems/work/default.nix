@@ -9,7 +9,7 @@
     ./impermanence.nix
   ];
   nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
-  system.stateVersion = lib.mkForce "24.05";
+  system.stateVersion = lib.mkForce "24.11";
 
   boot.zfs.extraPools = lib.mkForce ["zpool"];
 
