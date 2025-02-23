@@ -2,9 +2,15 @@
   inherit
     (flake.config.people)
     user0
+    user1
     ;
 in {
-  users.users.${user0} = {
-    openssh.authorizedKeys.keys = flake.config.people.users.${user0}.sshKeys;
+  users.users = {
+    ${user0} = {
+      openssh.authorizedKeys.keys = flake.config.people.users.${user0}.sshKeys;
+    };
+    ${user1} = {
+      openssh.authorizedKeys.keys = flake.config.people.users.${user1}.sshKeys;
+    };
   };
 }

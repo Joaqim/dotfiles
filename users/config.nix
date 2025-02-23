@@ -17,6 +17,9 @@ in {
     };
     "${user1}" = {
       name = "Steam Deck User";
+      sshKeys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIK58SYMpYN5W9x8tt7gBoGT8bSOFVagSWxJsD4wPU5Z1 mail@joaqim.xyz"
+      ];
     };
   };
 }

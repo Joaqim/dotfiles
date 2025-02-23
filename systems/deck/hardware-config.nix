@@ -35,7 +35,7 @@
     "/mnt/holo" = {
       device = "/dev/disk/by-label/holo-home";
       fsType = "ext4";
-      options = ["relatime" "rw" "uid=1001" "gid=100" "nofail" "x-systemd.device-timeout=9"];
+      options = ["relatime" "rw" "nofail" "x-systemd.device-timeout=9"];
     };
   };
   swapDevices = [

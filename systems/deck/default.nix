@@ -9,6 +9,7 @@
   services = {
     xserver.enable = true;
     desktopManager.plasma6.enable = true;
+    udisks2.enable = true;
     qbittorrent = {
       enable = true;
       user = "deck";
@@ -39,5 +40,5 @@
 
   i18n.defaultLocale = lib.mkForce "sv_SE.UTF-8";
 
-  system.stateVersion = lib.mkForce "24.05";
+  system.stateVersion = lib.mkForce "24.11";
 }
