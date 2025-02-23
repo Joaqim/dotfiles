@@ -4,6 +4,7 @@
       (pkgs)
       acpi
       brightnessctl
+      dtrx # Do The Right Extraction
       file
       flac
       gvfs
@@ -11,6 +12,7 @@
       just
       ncdu
       neofetch
+      neovim
       p7zip
       pciutils
       pinentry
@@ -19,6 +21,7 @@
       tomb
       unrar
       unzip
+      usbutils
       wget
       zip
       ;
