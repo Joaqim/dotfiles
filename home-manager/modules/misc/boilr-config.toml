@@ -53,7 +53,7 @@ create_symlinks = false
 
 [steamgrid_db]
 enabled = true
-#auth_key="" # This value is will be appended at the bottom by steam-shortcuts.nix.
+#auth_key="" # This value is will be appended at the bottom by boilr.nix.
 prefer_animated = false
 banned_images = []
 only_download_boilr_images = false
