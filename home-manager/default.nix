@@ -49,7 +49,6 @@ let
   pulse = import ./modules/pulse.nix;
   sops = import ./modules/sops.nix;
   starship = import ./modules/starship.nix;
-  steam-shortcuts = import ./modules/games/steam-shortcuts.nix;
   syncthing = import ./modules/syncthing.nix;
   vscode = import ./modules/vscode.nix;
   wezterm = import ./modules/wezterm.nix;
@@ -149,7 +148,6 @@ in {
     };
     desktopGames = {
       imports = [
-        steam-shortcuts
         rocket-league
       ];
     };
