@@ -18,7 +18,7 @@ in {
       kernelModules = [];
     };
 
-    kernelModules = ["kvm-amd" "vfio-pci" "v4l2loopback"];
+    kernelModules = ["kvm-amd" "v4l2loopback"];
 
     zfs = {
       extraPools = ["zpool"];
@@ -41,7 +41,7 @@ in {
 
         # Enable while transferring systems between different machines, also toggle `efi.canTouchEfiVariables` to false
         # https://mynixos.com/nixpkgs/option/boot.loader.grub.efiInstallAsRemovable
-        efiInstallAsRemovable = true;
+        efiInstallAsRemovable = false;
 
         theme = pkgs.sleek-grub-theme.override {
           withBanner = "Welcome, ${userName}!";
