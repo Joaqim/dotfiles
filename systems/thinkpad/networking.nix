@@ -13,7 +13,7 @@
         25565 # local minecraft server
       ];
     };
-    interfaces.enp0s25.wakeOnLan.enable = true;
+    #interfaces.enp0s25.wakeOnLan.enable = true;
   };
   services = {
     sshd.enable = true;
