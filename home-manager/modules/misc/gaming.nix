@@ -43,7 +43,7 @@ in {
     };
     #inherit (flake.inputs.self.packages.${pkgs.system}) undertaker141;
   };
-
+  # TODO: Move this to its own module, as a service
   sops.templates."boilr-config" = {
     content = ''
       ${builtins.readFile ./boilr-config.toml}

@@ -140,6 +140,7 @@ in {
           jellyfin
           lutris
           minecraft-server-1
+          sops
           sunshine
           syncthing
           zram
@@ -147,6 +148,7 @@ in {
       };
       work = {
         imports = [
+          sops
           zram
         ];
       };
@@ -213,6 +215,7 @@ in {
           lutris
           minecraft-server
           sleep-at-night
+          sops
           sunshine
           syncthing
           zram
@@ -238,7 +241,6 @@ in {
           oom
           plasma
           printing
-          sops
           steam
           sysstat
           system
