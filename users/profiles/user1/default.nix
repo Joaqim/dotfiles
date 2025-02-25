@@ -15,6 +15,7 @@ in {
       isNormalUser = true;
       extraGroups = [
         "input"
+        "keys"
         "networkmanager"
         "wheel"
       ];
