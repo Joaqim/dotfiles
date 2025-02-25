@@ -77,6 +77,11 @@
       icon = ./icons/tg.png;
       urls = [{template = "https://torrentgalaxy.to/torrents.php?search={searchTerms}";}];
     };
+    "Cloudtorrents" = {
+      definedAliases = ["@ct"];
+      icon = ./icons/ct.png;
+      urls = [{template = "https://cloudtorrents.com/search?query={searchTerms}";}];
+    };
     "AnimeTosho" = {
       definedAliases = ["@at"];
       icon = ./icons/at.png;
