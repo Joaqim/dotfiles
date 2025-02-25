@@ -121,6 +121,7 @@ in {
           oom
           sops
           #steam
+          syncthing
           system
           qbittorrent-nox
           # Mostly for xkb layout

@@ -10,6 +10,8 @@
     ./impermanence.nix
     ./kernel-optimization.nix
   ];
+  services.syncthing-dirs.enable = true;
+
   nixpkgs.hostPlatform = lib.mkForce "x86_64-linux";
   system.stateVersion = lib.mkForce "24.11";
 }

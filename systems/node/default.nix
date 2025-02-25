@@ -13,13 +13,16 @@
   networking.hostName = lib.mkForce "node";
   networking.hostId = lib.mkForce "deadbeef";
 
-  services.sleep-at-night = {
-    enable = true;
-    shutdown = {
-      hour = 01;
-      minute = 00;
+  services = {
+    sleep-at-night = {
+      enable = true;
+      shutdown = {
+        hour = 01;
+        minute = 00;
+      };
+      wakeup = "09:00:00";
     };
-    wakeup = "09:00:00";
+    syncthing-dirs.enable = true;
   };
 
   # When booting into emergency or rescue targets, do not require the password
