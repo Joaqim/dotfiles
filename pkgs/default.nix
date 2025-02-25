@@ -8,6 +8,7 @@
 in {
   # "Packages" that just contain utility scripts
   commit-nvfetcher = callPackage ./scripts/commit-nvfetcher {};
+  mpv-history-launcher = callPackage ./scripts/mpv-history-launcher {};
 
   # Extensions to existing Applications
   mpv-skipsilence = callPackage ./applications/mpv-skipsilence.nix {};
@@ -15,9 +16,6 @@ in {
 
   # Proper packages
   undertaker141 = callPackage ./applications/undertaker141/undertaker141.nix {};
-
-  # "Packages" that just contain utility scripts
-  mpv-history-launcher = callPackage ./applications/mpv-history-launcher.nix {};
 
   # Packages that override existing packages in `nixpkgs`
   yt-dlp = callPackage ./applications/yt-dlp.nix {inherit pkgs;};

@@ -15,7 +15,7 @@ in
     inherit name;
     pname = name;
     phases = ["installPhase"];
-    nativeBuildInputs = [pkgs.makeWrapper];
+    nativeBuildInputs = with pkgs; [shellcheck makeWrapper];
 
     desktopItem = pkgs.makeDesktopItem {
       name = "mpv History Launcher";
