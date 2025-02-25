@@ -37,6 +37,11 @@
       fsType = "ext4";
       options = ["relatime" "rw" "nofail" "x-systemd.device-timeout=9"];
     };
+    "/run/media/deck/Games" = {
+      device = "/dev/disk/by-label/Games";
+      fsType = "ntfs";
+      options = ["relatime" "rw" "nofail" "x-systemd.device-timeout=9" "uid=1001"]; # Mount as user 'deck'
+    };
   };
   swapDevices = [
     #{device = "/dev/disk/by-uuid/7c2090d9-469f-4e7e-bd8b-382c40bc7048";}
