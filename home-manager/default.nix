@@ -47,7 +47,6 @@ let
   nushell = import ./modules/nushell.nix;
   playerctl = import ./modules/playerctl.nix;
   pulse = import ./modules/pulse.nix;
-  sops = import ./modules/sops.nix;
   starship = import ./modules/starship.nix;
   syncthing = import ./modules/syncthing.nix;
   vscode = import ./modules/vscode.nix;
@@ -110,7 +109,6 @@ in {
       nushell
       playerctl
       pulse
-      sops
       starship
       syncthing
       vscode

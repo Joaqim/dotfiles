@@ -2,7 +2,6 @@
   inherit (flake) self;
 in {
   imports = [
-    self.inputs.sops-nix.homeManagerModules.sops
     self.homeModules.calibre
     self.homeModules.cataclysm-dda
     self.homeModules.commandLine
@@ -18,7 +17,6 @@ in {
     self.homeModules.productionCode
     self.homeModules.productionVideo
     self.homeModules.productionWriting
-    self.homeModules.sops
     self.homeModules.syncthing
     self.homeModules.themes
   ];

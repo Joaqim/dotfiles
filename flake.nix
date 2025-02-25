@@ -71,9 +71,7 @@
 
         # NixOS home configuration setup lives in
         # ./home-manager/modules` as individual `homeModules`
-        homeConfigurations = {
-          imports = [inputs.sops-nix.homeManagerModules.sops];
-        };
+        homeConfigurations = {};
 
         nixosConfigurations = {
           desktop = inputs.self.lib.mkLinuxSystem [

@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: let
   # For running `steamtinkerlaunch addnonsteamgame` in cli
@@ -42,16 +41,6 @@ in {
       _7zz = pkgs._7zz-rar;
     };
     #inherit (flake.inputs.self.packages.${pkgs.system}) undertaker141;
-  };
-  # TODO: Move this to its own module, as a service
-  sops.templates."boilr-config" = {
-    content = ''
-      ${builtins.readFile ./boilr-config.toml}
-      auth_key = "${config.sops.placeholder."steamgrid_db_auth_key"}"
-    '';
-    # See: https://github.com/Mic92/sops-nix/issues/681
-    path = "${config.xdg.configHome}/sops-nix/secrets/rendered/boilr-config.toml";
-    mode = "600";
   };
   # Run Boilr on startup to create Icons and Banners in Steam
   systemd.user.services.boilr = {
