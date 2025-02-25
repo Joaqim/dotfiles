@@ -10,7 +10,9 @@ in {
       openssh.authorizedKeys.keys = flake.config.people.users.${user0}.sshKeys;
     };
     ${user1} = {
-      openssh.authorizedKeys.keys = flake.config.people.users.${user1}.sshKeys;
+      openssh.authorizedKeys.keys =
+        flake.config.people.users.${user0}.sshKeys
+        ++ flake.config.people.users.${user1}.sshKeys;
     };
   };
 }

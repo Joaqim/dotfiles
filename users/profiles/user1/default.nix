@@ -1,6 +1,7 @@
 {
   config,
   flake,
+  lib,
   ...
 }: let
   hostname = config.networking.hostName;
@@ -19,6 +20,16 @@ in {
         "networkmanager"
         "wheel"
       ];
+    };
+  };
+  sops.secrets = {
+    "private_key/jq-${user1}" = lib.mkForce {
+      path = "/home/${user1}/.ssh/id_ed25519";
+      owner = user1;
+    };
+    "public_key/jq-${user1}" = lib.mkForce {
+      path = "/home/${user1}/.ssh/id_ed25519.pub";
+      owner = user1;
     };
   };
   home-manager.users = {

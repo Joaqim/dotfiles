@@ -7,6 +7,7 @@
   inherit
     (flake.config.people)
     user0
+    user1
     ;
 in {
   sops = {
@@ -49,6 +50,14 @@ in {
       };
       "public_key/${user0}" = {
         path = "/home/${user0}/.ssh/id_ed25519.pub";
+        owner = user0;
+      };
+      "private_key/jq-${user1}" = {
+        path = "/home/${user0}/.ssh/id_jq-${user1}";
+        owner = user0;
+      };
+      "public_key/jq-${user1}" = {
+        path = "/home/${user0}/.ssh/id_jq-${user1}.pub";
         owner = user0;
       };
       "private_key/jq-ci-bot" = {
