@@ -3,7 +3,7 @@ config_version = 1
 blacklisted_games = []
 
 [steam]
-create_collections = false
+create_collections = true
 optimize_for_big_picture = false
 stop_steam = false
 start_steam = false
@@ -16,7 +16,7 @@ enabled = true
 safe_launch = []
 
 [flatpak]
-enabled = true
+enabled = false
 
 [gog]
 enabled = false
@@ -37,12 +37,12 @@ enabled = true
 [lutris]
 enabled = true
 executable = "lutris"
-flatpak = true
+flatpak = false
 flatpak_image = "net.lutris.Lutris"
 installed = true
 
 [origin]
-enabled = true
+enabled = false
 
 [uplay]
 enabled = false
@@ -53,7 +53,7 @@ create_symlinks = false
 
 [steamgrid_db]
 enabled = true
-#auth_key="" # This value is will be appended at the bottom by boilr.nix.
+#auth_key="" # This value is will be appended at the bottom by gaming.nix.
 prefer_animated = false
 banned_images = []
 only_download_boilr_images = false
