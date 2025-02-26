@@ -23,7 +23,7 @@ jobs:
           # Used only for things like nix-prefetch-*, which do not yet
           # seem to universally support flakes
           nix_path: nixpkgs=channel:nixos-unstable
-      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/flakehub-cache-action@main
       - uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
