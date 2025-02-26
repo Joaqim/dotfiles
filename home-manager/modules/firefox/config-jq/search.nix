@@ -92,6 +92,11 @@
       icon = ./icons/lg.png;
       urls = [{template = "https://libgen.is/fiction/?q={searchTerms}";}];
     };
+    "Anna's Archive" = {
+      definedAlias = ["@aa" "@ar"];
+      icon = ./icons/aa.png;
+      urls = [{template = "https://annas-archive.org/search?q={searchTerms}";}];
+    };
     "Amazon.com".metaData.hidden = true;
     "Bing".metaData.hidden = true;
     "eBay".metaData.hidden = true;
