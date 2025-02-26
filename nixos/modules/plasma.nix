@@ -2,13 +2,10 @@
   services = {
     xserver = {
       enable = true;
-      desktopManager = {
-        plasma5.enable = true;
-      };
     };
-    # desktopManager.plasma6.enable = true;
+    desktopManager.plasma6.enable = true;
     displayManager = {
-      defaultSession = "plasmawayland";
+      defaultSession = "plasma";
       sddm = {
         enable = true;
         wayland.enable = true;
@@ -31,7 +28,7 @@
         "Indexing-Enabled" = false;
       };
     };
-    plasma5.excludePackages = with pkgs.libsForQt5;
+    plasma6.excludePackages = with pkgs.libsForQt5;
     # with pkgs.kdePackages;
       [
         #plasma-browser-integration
