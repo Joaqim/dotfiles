@@ -1,0 +1,13 @@
+diff --git a/steamtinkerlaunch b/steamtinkerlaunch
+index 42d061f..a6fb651 100755
+--- a/steamtinkerlaunch
++++ b/steamtinkerlaunch
+@@ -17,7 +17,7 @@ PROJECTPAGE="$GHURL/sonic2kk/${PROGNAME,,}"
+ PPW="$PROJECTPAGE/wiki"
+ CURWIKI="$PPW"
+ STARTDEBUG=1
+-ONSTEAMDECK=0
++ONSTEAMDECK=${ONSTEAMDECK:-0}
+ 
+ ### internal dependencies ###
+ #STARTINTDEPS

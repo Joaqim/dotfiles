@@ -3,20 +3,12 @@
   lib,
   ...
 }: let
-  # For running `steamtinkerlaunch addnonsteamgame` in cli
+  # For running `steamtinkerlaunch addnonsteamgame` in cli without desktop manager
   # https://github.com/v1cont/yad/issues/277
   # https://github.com/NixOS/nixpkgs/blob/64e75cd44acf21c7933d61d7721e812eac1b5a0a/pkgs/by-name/st/steamtinkerlaunch/package.nix#L91C66-L91C106
-  steamtinkerlaunch = pkgs.steamtinkerlaunch.overrideAttrs ({postInstall, ...}: {
-    postInstall =
-      postInstall
-      + ''
-        substituteInPlace \
-          $out/bin/steamtinkerlaunch \
-            --replace \
-              "ONSTEAMDECK=0" \
-              "ONSTEAMDECK=''${ONSTEAMDECK:-0}"
-      '';
-  });
+  steamtinkerlaunch = pkgs.steamtinkerlaunch.overrideAttrs {
+    patches = [./onsteamdeck-envvar.patch];
+  };
 in {
   home.packages = builtins.attrValues {
     inherit steamtinkerlaunch;
