@@ -13,6 +13,18 @@
     };
     date = "2024-05-06";
   };
+  twitchindicator = {
+    pname = "twitchindicator";
+    version = "3b685af607a7c67a3920cc9c9709a1056ba5c039";
+    src = fetchFromGitHub {
+      owner = "kuunha";
+      repo = "twitchindicator";
+      rev = "3b685af607a7c67a3920cc9c9709a1056ba5c039";
+      fetchSubmodules = false;
+      sha256 = "sha256-TuIuZ2AP14bA7ggj8543Cs1HM1Kk01ACTwjKdYv9dZA=";
+    };
+    date = "2025-02-19";
+  };
   yt-dlp = {
     pname = "yt-dlp";
     version = "0bb39788626002a8a67e925580227952c563c8b9";

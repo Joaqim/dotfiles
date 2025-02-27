@@ -20,6 +20,27 @@
         },
         "version": "5ae7c3b6f927e728c22fc13007265682d1ecf98c"
     },
+    "twitchindicator": {
+        "cargoLocks": null,
+        "date": "2025-02-19",
+        "extract": null,
+        "name": "twitchindicator",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "kuunha",
+            "repo": "twitchindicator",
+            "rev": "3b685af607a7c67a3920cc9c9709a1056ba5c039",
+            "sha256": "sha256-TuIuZ2AP14bA7ggj8543Cs1HM1Kk01ACTwjKdYv9dZA=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "3b685af607a7c67a3920cc9c9709a1056ba5c039"
+    },
     "yt-dlp": {
         "cargoLocks": null,
         "date": "2025-02-23",
