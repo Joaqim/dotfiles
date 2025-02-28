@@ -8,11 +8,11 @@
     ./liquidctl.nix
     ./networking.nix
     ./ssh.nix
-    ./impermanence.nix
+    #./impermanence.nix
     ./kernel-optimization.nix
   ];
   networking = {
-    hostId = "6b74e50e";
+    hostId = "fce78f04";
     hostName = "desktop";
   };
   services.syncthing-dirs.enable = true;

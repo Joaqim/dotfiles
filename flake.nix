@@ -88,7 +88,6 @@
             config.nixosModules.desktop
             inputs.sops-nix.nixosModules.sops
             inputs.home-manager.nixosModules.home-manager
-            inputs.impermanence.nixosModules.impermanence
             inputs.nur.modules.nixos.default
           ];
           work = inputs.self.lib.mkLinuxSystem [

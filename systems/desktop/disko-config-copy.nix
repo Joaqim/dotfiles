@@ -6,7 +6,7 @@ in {
     disk = {
       "nvme-2tb-${hostName}" = {
         type = "disk";
-        #device = "/dev/sda";
+        ##device = "/dev/nvme0n1";
         content = {
           type = "gpt";
           partitions = {
@@ -81,7 +81,7 @@ in {
           "local/root" = {
             type = "zfs_fs";
             mountpoint = "/";
-            #postCreateHook = "zfs snapshot zpool-${hostName}/local/root@blank";
+            postCreateHook = "zfs snapshot zpool-${hostName}/local/root@blank";
           };
           "local/tmp" = {
             type = "zfs_fs";

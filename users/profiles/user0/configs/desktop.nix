@@ -5,8 +5,8 @@ in {
     self.homeModules.calibre
     self.homeModules.cataclysm-dda
     self.homeModules.commandLine
-    #self.homeModules.desktopGames
-    #self.homeModules.entertainment
+    self.homeModules.desktopGames
+    self.homeModules.entertainment
     self.homeModules.extras
     self.homeModules.fileManagement
     self.homeModules.firefoxHM
