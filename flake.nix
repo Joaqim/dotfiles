@@ -90,16 +90,6 @@
             inputs.home-manager.nixosModules.home-manager
             inputs.nur.modules.nixos.default
           ];
-          work = inputs.self.lib.mkLinuxSystem [
-            ./systems/work
-            ./users/profiles/user0
-            config.nixosModules.shared
-            config.nixosModules.work
-            inputs.sops-nix.nixosModules.sops
-            inputs.home-manager.nixosModules.home-manager
-            inputs.impermanence.nixosModules.impermanence
-            inputs.nur.modules.nixos.default
-          ];
           deck = inputs.self.lib.mkLinuxSystem [
             ./systems/deck
             ./users/profiles/user0

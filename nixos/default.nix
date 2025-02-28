@@ -147,12 +147,6 @@ in {
           zram
         ];
       };
-      work = {
-        imports = [
-          sops
-          zram
-        ];
-      };
       server = {
         imports = [
           accounts
