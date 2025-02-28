@@ -32,6 +32,11 @@
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    disko = {
+      url = "github:nix-community/disko/latest";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     deadnix.url = "github:astro/deadnix";
 
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
@@ -77,6 +82,7 @@
           desktop = inputs.self.lib.mkLinuxSystem [
             ./systems/desktop
             ./users/profiles/user0
+            inputs.disko.nixosModules.disko
             inputs.jellyfin-plugins.nixosModules.jellyfin-plugins
             config.nixosModules.shared
             config.nixosModules.desktop

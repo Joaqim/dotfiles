@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (flake.config) people;
+  inherit (config.networking) hostName;
   userName = people.users.${people.user0}.name;
 in {
   boot = {
@@ -21,7 +22,9 @@ in {
     kernelModules = ["kvm-amd" "v4l2loopback"];
 
     zfs = {
-      extraPools = ["zpool"];
+      extraPools = ["zpool-${hostName}"];
+      # https://discourse.nixos.org/t/21-05-zfs-root-install-cant-import-pool-on-boot/13652/7
+      #devNodes = "/dev/disk/by-uuid";
     };
 
     loader = {
@@ -41,7 +44,7 @@ in {
 
         # Enable while transferring systems between different machines, also toggle `efi.canTouchEfiVariables` to false
         # https://mynixos.com/nixpkgs/option/boot.loader.grub.efiInstallAsRemovable
-        efiInstallAsRemovable = false;
+        efiInstallAsRemovable = true;
 
         theme = pkgs.sleek-grub-theme.override {
           withBanner = "Welcome, ${userName}!";

@@ -1,12 +1,39 @@
 {
+  config,
+  lib,
+  ...
+}: let
+  inherit (config.networking) hostName;
+in {
   environment.persistence."/persist" = {
     hideMounts = true;
     directories = [
+      "/etc/ssh"
       "/var/log"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/tailscale"
+      "/var/lib/libvirt"
+      "/var/lib/docker"
+      {
+        directory = "/var/lib/mysql";
+        user = "mysql";
+        group = "mysql";
+        mode = "u=rwx,g=xr,o=x";
+      }
+      {
+        directory = "/var/lib/postgresql";
+        user = "postgres";
+        group = "postgres";
+        mode = "u=rwx,g=xr,o=x";
+      }
+      {
+        directory = "/var/lib/sddm";
+        user = "sddm";
+        group = "sddm";
+        mode = "u=rwx,g=,o=";
+      }
       {
         directory = "/srv/minecraft";
         user = "root";
@@ -27,6 +54,9 @@
         mode = "u=rwx,g=rx,o=";
       }
     ];
+    files = [
+      "/etc/machine-id"
+    ];
   };
 
   systemd = {
@@ -37,10 +67,8 @@
       ];
     };
   };
-  /*
-      TODO: Make sure we don't lose anything important in /home
-  boot.initrd.postDeviceCommands = lib.mkAfter ''
-    zfs import zpool ; zfs rollback -r zpool/local/root@blank
+  # zfs import -f zpool-${hostName}
+  boot.initrd.postResumeCommands = lib.mkAfter ''
+    zfs rollback -r zpool-${hostName}/local/root@blank
   '';
-  */
 }

@@ -135,14 +135,14 @@ in {
         imports = [
           atuin
           fcitx5
-          firefox-syncserver
+          #firefox-syncserver
           gamemode
           godot
           jellyfin
           lutris
-          minecraft-server-1
+          #minecraft-server-1
           sops
-          sunshine
+          #sunshine
           syncthing
           zram
         ];

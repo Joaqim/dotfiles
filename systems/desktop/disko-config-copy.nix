@@ -1,6 +1,6 @@
 # https://github.com/Mic92/dotfiles/blob/main/nixos/turingmachine/modules/disko.nix
-{config, ...}: let
-  inherit (config.networking) hostName;
+let
+  hostName = "desktop";
 in {
   disko.devices = {
     disk = {
@@ -81,7 +81,7 @@ in {
           "local/root" = {
             type = "zfs_fs";
             mountpoint = "/";
-            postCreateHook = "zfs snapshot zpool-${hostName}/local/root@blank";
+            #postCreateHook = "zfs snapshot zpool-${hostName}/local/root@blank";
           };
           "local/tmp" = {
             type = "zfs_fs";

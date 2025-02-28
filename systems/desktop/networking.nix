@@ -1,6 +1,5 @@
 {lib, ...}: {
   networking = {
-    hostName = "desktop";
     networkmanager.enable = true;
     useDHCP = lib.mkDefault true;
     firewall = {
