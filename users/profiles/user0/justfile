@@ -10,6 +10,20 @@ hmSwitch:
 nixosSwitch:
     nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles
 
+nixosBoot:
+    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles
+
 nixosTest:
     nixos-rebuild test --use-remote-sudo --flake /home/jq/dotfiles
 
+deckSwitch:
+    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles#deck --target-host jq@deck
+
+deckBoot:
+    nixos-rebuild boot --use-remote-sudo --flake /home/jq/dotfiles#deck --target-host jq@deck
+
+nodeSwitch:
+    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles#node --target-host jq@node
+
+nodeBoot:
+    nixos-rebuild boot --use-remote-sudo --flake /home/jq/dotfiles#node --target-host jq@node
