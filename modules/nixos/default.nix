@@ -1,12 +1,27 @@
 # Common modules
-{
+{lib, ...}: {
   imports = [
-    ./hardware
+    #./hardware
     ./home
-    ./profiles
-    ./programs
+    #./profiles
+    #./programs
     ./secrets
-    ./services
+    #./services
     ./system
   ];
+
+  options.my = with lib; {
+    user = {
+      name = mkOption {
+        type = types.str;
+        default = "jq";
+        example = "alice";
+        description = "my username";
+      };
+
+      home = {
+        enable = my.mkDisableOption "home-manager configuration";
+      };
+    };
+  };
 }

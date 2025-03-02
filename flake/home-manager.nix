@@ -6,9 +6,7 @@
 }: let
   defaultModules = [
     # Include generic settings
-    #"${self}/modules/home"
-    "${self}/home-manager"
-    "${self}/users"
+    "${self}/modules/home"
     {
       # Basic user information defaults
       home.username = lib.mkDefault "jq";
@@ -22,7 +20,7 @@
     }
   ];
 
-  mkHome = _name: system:
+  mkHome = name: system:
     inputs.home-manager.lib.homeManagerConfiguration {
       # Work-around for home-manager
       # * not letting me set `lib` as an extraSpecialArgs
@@ -41,8 +39,7 @@
       modules =
         defaultModules
         ++ [
-          #"${self}/hosts/homes/${name}"
-          "${self}/users/profiles/user0"
+          "${self}/hosts/homes/${name}"
         ];
 
       extraSpecialArgs = {
@@ -52,23 +49,24 @@
     };
 
   homes = {
+    /*
     "jq@desktop" = "x86_64-linux";
+    "jq@deck" = "x86_64-linux";
     "deck@deck" = "x86_64-linux";
+    */
   };
 in {
   perSystem = {system, ...}: {
     # Work-around for https://github.com/nix-community/home-manager/issues/3075
-    legacyPackages = {
-      homeConfigurations = let
-        filteredHomes = lib.filterAttrs (_: v: v == system) homes;
-        allHomes =
-          filteredHomes
-          // {
-            # Default configuration
-            desktop = system;
-          };
-      in
-        lib.mapAttrs mkHome allHomes;
-    };
+    legacyPackages.homeConfigurations = let
+      filteredHomes = lib.filterAttrs (_: v: v == system) homes;
+      allHomes =
+        filteredHomes
+        // {
+          # Default configuration
+          jq = system;
+        };
+    in
+      lib.mapAttrs mkHome allHomes;
   };
 }

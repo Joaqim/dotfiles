@@ -1,5 +1,5 @@
 {
-  flake,
+  config,
   pkgs,
   ...
 }: {
@@ -11,7 +11,7 @@
       wheelNeedsPassword = false;
 
       extraRules = let
-        users = [flake.config.people.user0];
+        users = [config.my.user.name];
       in [
         {
           inherit users;

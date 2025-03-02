@@ -23,7 +23,6 @@ let
   geoclue2 = import ./modules/geoclue2.nix;
   gnome = import ./modules/gnome.nix;
   godot = import ./modules/godot.nix;
-  greetd = import ./modules/greetd.nix;
   gvfs = import ./modules/gvfs.nix;
   home-manager = import ./modules/home-manager.nix;
   hyprland = import ./modules/hyprland.nix;
@@ -77,7 +76,6 @@ in {
         geoclue2
         gnome
         godot
-        greetd
         gvfs
         home-manager
         hyprland

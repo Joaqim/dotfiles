@@ -10,12 +10,14 @@ in {
     useTheme = my.mkDisableOption "bat theme configuration";
   };
 
-  programs.bat = lib.mkIf cfg.enable {
-    enable = true;
-    config.theme = lib.optional cfg.useTheme "Catppuccin-Macchiato";
-  };
+  config = lib.mkIf cfg.enable {
+    programs.bat = lib.mkIf cfg.enable {
+      enable = true;
+      config.theme = lib.optional cfg.useTheme "Catppuccin-Macchiato";
+    };
 
-  xdg.configFile = lib.mkIf cfg.useTheme {
-    "bat/themes/catppuccin-macchiato.tmTheme".source = ./catppuccin-macchiato.tmTheme;
+    xdg.configFile = lib.mkIf cfg.useTheme {
+      "bat/themes/catppuccin-macchiato.tmTheme".source = ./catppuccin-macchiato.tmTheme;
+    };
   };
 }

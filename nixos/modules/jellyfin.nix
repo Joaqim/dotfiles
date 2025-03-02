@@ -1,12 +1,16 @@
-{flake, ...}: let
-  inherit (flake.config.people) user0;
+{
+  flake,
+  config,
+  ...
+}: let
+  user = config.my.user.name;
   inherit (flake.inputs) jellyfin-plugins;
 in {
   services = {
     jellyfin = {
       enable = true;
       openFirewall = true;
-      user = user0;
+      inherit user;
       enabledPlugins = {inherit (jellyfin-plugins.packages."x86_64-linux") ani-sync;};
     };
     caddy = {

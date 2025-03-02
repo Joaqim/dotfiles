@@ -18,5 +18,10 @@ in
       ./overlays.nix
       ./packages.nix
       #./templates.nix
+
+      # Old Configs
+      #../nixos
+      #../home-manager
+      #../users
     ];
   }

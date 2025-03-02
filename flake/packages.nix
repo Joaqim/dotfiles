@@ -9,8 +9,11 @@
     ...
   }: {
     packages = let
-      inherit (inputs.futils.lib) filterPackages flattenTree;
-      packages = import "${self}/pkgs" {inherit pkgs;};
+      inherit (inputs.flake-utils.lib) filterPackages flattenTree;
+      packages = import "${self}/pkgs" {
+        inherit pkgs self;
+        flake-inputs = inputs;
+      };
       flattenedPackages = flattenTree packages;
       finalPackages = filterPackages system flattenedPackages;
     in

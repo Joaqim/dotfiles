@@ -1,6 +1,6 @@
 {inputs, ...}: {
   imports = [
-    inputs.pre-commit-hooks.flakeModule
+    inputs.pre-commit-hooks-nix.flakeModule
   ];
 
   perSystem = _: {

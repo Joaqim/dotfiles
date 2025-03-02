@@ -1,6 +1,4 @@
-{flake, ...}: let
-  inherit (flake) self;
-in {
+{self, ...}: {
   imports = [
     self.homeModules.calibre
     self.homeModules.cataclysm-dda
@@ -20,9 +18,4 @@ in {
     self.homeModules.syncthing
     self.homeModules.themes
   ];
-
-  # Misc Packages
-  home.packages = builtins.attrValues {
-    inherit (flake.inputs.self.packages."x86_64-linux") undertaker141 mpv-history-launcher;
-  };
 }

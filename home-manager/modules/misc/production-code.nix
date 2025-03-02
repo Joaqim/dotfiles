@@ -7,10 +7,10 @@
       tokei
       typstfmt
       yamlfmt
+      dotenv-cli
       ;
     inherit
       (pkgs.nodePackages_latest)
-      dotenv-cli
       forever
       nodejs
       ;

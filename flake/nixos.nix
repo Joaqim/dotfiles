@@ -1,4 +1,5 @@
 {
+  config,
   self,
   inputs,
   lib,
@@ -17,8 +18,7 @@
         ];
     }
     # Include generic settings
-    #"${self}/modules/nixos"
-    "${self}/nixos"
+    "${self}/modules/nixos"
   ];
 
   buildHost = name: system:
@@ -27,13 +27,22 @@
       modules =
         defaultModules
         ++ [
-          "${self}/hosts/${name}"
+          ( # Old Configuration
+            import "${self}/hosts/nixos/${name}"
+            {
+              inherit self inputs;
+            }
+          )
+          "${self}/systems/${name}"
         ];
       specialArgs = {
         # Use my extended lib in NixOS configuration
         inherit (self) lib;
         # Inject inputs to use them in global registry
         inherit inputs;
+        flake = {
+          inherit config inputs self;
+        };
       };
     };
 in {

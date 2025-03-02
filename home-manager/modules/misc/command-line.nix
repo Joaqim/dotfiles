@@ -15,7 +15,7 @@
       neovim
       p7zip
       pciutils
-      pinentry
+      pinentry-all
       playerctl
       systemctl-tui
       tomb

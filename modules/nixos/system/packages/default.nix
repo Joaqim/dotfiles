@@ -16,15 +16,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs = {
-      vim = {
+      neovim = {
         enable = true;
-        defaultEditor = true; # Modal editing is life
-      };
-
-      zsh = {
-        enable = true; # Use integrations
-        # Disable global compinit when a user config exists
-        enableGlobalCompInit = !config.my.home.zsh.enable;
+        defaultEditor = true;
       };
     };
 

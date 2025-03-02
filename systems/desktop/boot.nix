@@ -1,12 +1,10 @@
 {
   pkgs,
   config,
-  flake,
   ...
 }: let
-  inherit (flake.config) people;
   inherit (config.networking) hostName;
-  userName = people.users.${people.user0}.name;
+  userName = config.my.user.name;
 in {
   boot = {
     extraModulePackages = [

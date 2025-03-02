@@ -1,5 +1,12 @@
-{lib, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
+    inputs.sops-nix.nixosModules.sops
+    inputs.disko.nixosModules.disko
+    inputs.jellyfin-plugins.nixosModules.jellyfin-plugins
     ./boot.nix
     ./disko-config.nix
     ./filesystem.nix
@@ -7,7 +14,6 @@
     ./hardware.nix
     ./liquidctl.nix
     ./networking.nix
-    ./ssh.nix
     #./impermanence.nix
     ./kernel-optimization.nix
   ];

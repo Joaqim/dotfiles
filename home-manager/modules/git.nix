@@ -1,16 +1,14 @@
 {
   config,
-  flake,
   lib,
   ...
 }: let
   user = config.home.username;
-  userConfig = flake.config.people.users.${user};
 in {
-  programs.git = lib.mkIf (builtins.hasAttr "email" userConfig) {
+  programs.git = lib.mkIf (user == "jq") {
     enable = true;
-    userName = userConfig.name;
-    userEmail = userConfig.email;
+    userName = "Joaqim Planstedt";
+    userEmail = "mail@joaqim.xyz";
     signing = {
       key = lib.mkDefault null;
       signByDefault = true;

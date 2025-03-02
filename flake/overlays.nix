@@ -1,4 +1,8 @@
-{self, ...}: let
+{
+  inputs,
+  self,
+  ...
+}: let
   default-overlays = import "${self}/overlays";
 
   additional-overlays = {
@@ -7,7 +11,11 @@
 
     # Expose my custom packages
     pkgs = _final: prev: {
-      ambroisie = prev.recurseIntoAttrs (import "${self}/pkgs" {pkgs = prev;});
+      jqp = prev.recurseIntoAttrs (import "${self}/pkgs" {
+        inherit self;
+        pkgs = prev;
+        flake-inputs = inputs;
+      });
     };
   };
 in {

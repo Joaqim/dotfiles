@@ -1,4 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      "soulseekqt"
+    ];
   home.packages = builtins.attrValues {
     inherit
       (pkgs)
@@ -8,6 +16,7 @@
       nicotine-plus
       puddletag
       soulseekqt
+      jellyfin-mpv-shim
       ;
   };
 }

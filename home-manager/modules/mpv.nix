@@ -1,35 +1,35 @@
 {
   pkgs,
-  flake,
   lib,
   ...
 }: let
-  inherit (flake.inputs.self.packages.${pkgs.system}) yt-dlp mpv-org-history mpv-skipsilence;
+  inherit (pkgs.jqp) yt-dlp;
 in {
   programs.mpv = {
     enable = true;
-    scripts =
-      (builtins.attrValues {
-        inherit
-          (pkgs.mpvScripts)
-          mpris
-          sponsorblock
-          autocrop
-          modernx
-          quality-menu
-          thumbfast
-          memo
-          mpv-playlistmanager
-          blacklistExtensions
-          autodeint
-          mpv-cheatsheet
-          webtorrent-mpv-hook
-          reload
-          # https://github.com/Eisa01/mpv-scripts#smartskip
-          smartskip
-          ;
-      })
-      ++ [mpv-org-history mpv-skipsilence];
+    scripts = builtins.attrValues {
+      inherit
+        (pkgs.mpvScripts)
+        mpris
+        sponsorblock
+        #autocrop
+        modernx
+        quality-menu
+        thumbfast
+        memo
+        mpv-playlistmanager
+        #blacklistExtensions
+        #autodeint
+        mpv-cheatsheet
+        webtorrent-mpv-hook
+        reload
+        # https://github.com/Eisa01/mpv-scripts#smartskip
+        smartskip
+        ;
+      inherit (pkgs.mpvScripts.builtins) autocrop autodeint;
+      inherit (pkgs.mpvScripts.occivink) blacklistExtensions;
+      inherit (pkgs.jqp) mpv-org-history mpv-skipsilence;
+    };
     config = {
       profile = "gpu-hq";
       display-fps-override = 100;

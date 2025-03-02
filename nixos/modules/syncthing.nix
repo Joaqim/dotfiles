@@ -1,22 +1,17 @@
 {
   config,
-  flake,
   lib,
   ...
 }:
 with lib; let
   cfg = config.services.syncthing-dirs;
-  inherit
-    (flake.config.people)
-    user0
-    ;
 in {
   options.services.syncthing-dirs = {
     enable = mkEnableOption (lib.mdDoc "Syncthing");
 
     user = mkOption {
       type = types.str;
-      default = user0;
+      default = "jq";
       description = lib.mdDoc ''
         User account permissions to sync with.
       '';
