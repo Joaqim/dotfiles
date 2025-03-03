@@ -33,7 +33,6 @@
     ./nm-applet
     ./packages
     ./pager
-    ./plasma
     ./power-alert
     #./secrets
     #./ssh

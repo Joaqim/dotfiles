@@ -7,7 +7,7 @@
   cfg = config.my.system.documentation;
 in {
   options.my.system.documentation = with lib; {
-    enable = my.mkEnableOption "Documentation integration";
+    enable = mkEnableOption "Documentation integration";
 
     dev.enable = my.mkDisableOption "Documentation aimed at developers";
 

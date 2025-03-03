@@ -10,6 +10,8 @@
     ./system
   ];
 
+  # TODO: Move this when we have fixed declarative use of `user0` and `user1` for
+  # nixos modules which will use `user0` as the primary user
   options.my = with lib; {
     user = {
       name = mkOption {

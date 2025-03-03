@@ -7,5 +7,9 @@
         selfHosted = false;
       };
     };
+    zram = {
+      enable = true;
+      kernelSysctl = true;
+    };
   };
 }

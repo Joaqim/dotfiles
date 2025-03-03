@@ -10,14 +10,14 @@
     #inputs.home-manager.nixosModules.home-manager
     #"${self}/users/profiles/user0"
     ## Desktop:
-    "${self}/nixos/modules/atuin.nix"
-    "${self}/nixos/modules/fcitx5.nix"
+    #"${self}/nixos/modules/atuin.nix"
+    #"${self}/nixos/modules/fcitx5.nix"
     "${self}/nixos/modules/gamemode.nix"
     "${self}/nixos/modules/jellyfin.nix"
     "${self}/nixos/modules/lutris.nix"
     #"${self}/nixos/modules/sops.nix"
     "${self}/nixos/modules/syncthing.nix"
-    "${self}/nixos/modules/zram.nix"
+    #"${self}/nixos/modules/zram.nix"
     ## Shared:
     "${self}/nixos/modules/accounts.nix"
     "${self}/nixos/modules/android.nix"
@@ -50,12 +50,22 @@
     ./boot.nix
     ./disko-config.nix
     ./hardware.nix
+    ./home.nix
     ./networking.nix
     ./profiles.nix
     ./programs.nix
     ./services.nix
     ./system.nix
   ];
+
+  # For now, nixos modules that expects name, full name or email will always use this user
+  # This is different from home-manager modules which can be different users
+  # TODO: Have hard-code `user0` and optional`user1` which we can assign username, full name and optionally email ( for git )
+  my.user = {
+    name = "jq";
+    fullName = "Joaqim Planstedt";
+    email = "mail@joaqim.xyz";
+  };
 
   time.timeZone = "Europe/Stockholm";
 

@@ -2,6 +2,7 @@
 {...}: {
   imports = [
     #./boot
+    ./doas
     ./docker
     ./documentation
     ./locale
@@ -10,5 +11,6 @@
     ./podman
     ./polkit
     ./users
+    ./zram
   ];
 }

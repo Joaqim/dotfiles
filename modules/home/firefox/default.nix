@@ -11,7 +11,7 @@ in {
     enable = mkEnableOption "firefox configuration";
   };
 
-  config.programs.firefox = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
       languagePacks = lib.mkDefault ["en-US" "sv-SE"];

@@ -3,6 +3,8 @@
   imports = [
     ./bluetooth
     ./devices
+    ./fcitx5
     #./laptop
+    ./plasma
   ];
 }

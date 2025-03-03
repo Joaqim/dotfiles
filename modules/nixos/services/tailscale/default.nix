@@ -9,7 +9,7 @@
 in {
   options.my.services.tailscale = with lib; {
     enable = mkEnableOption "Tailscale";
-    autoAuthenticate = my.mkEnableOption "Automatically authenticate new devices to Tailscale";
+    autoAuthenticate = mkEnableOption "Automatically authenticate new devices to Tailscale";
   };
 
   config = lib.mkIf cfg.enable {
@@ -18,9 +18,9 @@ in {
     services.tailscale.enable = true;
 
     # create a oneshot job to authenticate to Tailscale
-    systemd.services."tailscale-autoconnect" = lib.mkIf cfg.autoConnect {
+    systemd.services."tailscale-authenticate" = lib.mkIf cfg.autoAuthenticate {
       enable = true;
-      description = "Automatic connection to Tailscale";
+      description = "Automatically authenticate new devices to Tailscale";
       path = [pkgs.tailscale pkgs.jq];
 
       # make sure tailscale is running before trying to connect to tailscale

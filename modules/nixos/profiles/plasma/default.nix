@@ -4,10 +4,10 @@
   pkgs,
   ...
 }: let
-  cfg = config.my.home.plasma;
+  cfg = config.my.profiles.plasma;
 in {
-  options.my.home.plasma = with lib; {
-    enable = mkEnableOption "Plasma settings";
+  options.my.profiles.plasma = with lib; {
+    enable = mkEnableOption "Plasma Window Manager with SDDM login manager and some opinionated configurations";
   };
 
   config = lib.mkIf cfg.enable {
