@@ -1,12 +1,12 @@
 # Common modules
 {lib, ...}: {
   imports = [
-    #./hardware
+    ./hardware
     ./home
     #./profiles
     #./programs
     ./secrets
-    #./services
+    ./services
     ./system
   ];
   time.timeZone = lib.mkDefault "Europe/Stockholm";
