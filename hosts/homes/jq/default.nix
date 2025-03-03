@@ -16,6 +16,7 @@
       };
       mpv.enable = true;
       nm-applet.enable = true;
+      plasma.enable = true;
       zathura.enable = true;
     };
   };

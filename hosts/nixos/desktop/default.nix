@@ -35,7 +35,7 @@
     #"${self}/nixos/modules/locale.nix"
     #"${self}/nixos/modules/nix.nix"
     "${self}/nixos/modules/oom.nix"
-    "${self}/nixos/modules/plasma.nix"
+    #"${self}/nixos/modules/plasma.nix"
     "${self}/nixos/modules/printing.nix"
     #"${self}/nixos/modules/steam"
     "${self}/nixos/modules/sysstat.nix"
