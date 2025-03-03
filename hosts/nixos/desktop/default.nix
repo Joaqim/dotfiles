@@ -27,7 +27,7 @@
     "${self}/nixos/modules/firejail.nix"
     "${self}/nixos/modules/gvfs.nix"
     #"${self}/nixos/modules/home-manager.nix"
-    "${self}/nixos/modules/locale.nix"
+    #"${self}/nixos/modules/locale.nix"
     #"${self}/nixos/modules/nix.nix"
     "${self}/nixos/modules/oom.nix"
     "${self}/nixos/modules/plasma.nix"

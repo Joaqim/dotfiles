@@ -9,6 +9,7 @@
     #./services
     ./system
   ];
+  time.timeZone = lib.mkDefault "Europe/Stockholm";
 
   options.my = with lib; {
     user = {

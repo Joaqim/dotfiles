@@ -4,7 +4,7 @@
     #./boot
     #./docker
     #./documentation
-    #./locale
+    ./locale
     ./nix
     ./packages
     #./podman

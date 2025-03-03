@@ -12,21 +12,25 @@ in {
     locale = mkOption {
       type = types.str;
       default = "en_US.UTF-8";
-      example = "fr_FR.UTF-8";
+      example = "se_SV.UTF-8";
       description = "Which locale to use for the system";
     };
 
     supportedLocales = mkOption {
       type = types.listOf types.str;
-      default = ["C.UTF-8/UTF-8" "en_US.UTF-8"];
-      example = ["C.UTF-8/UTF-8" "en_US.UTF-8" "fr_FR.UTF-8"];
+      default = [
+        "C.UTF-8/UTF-8"
+        "en_US.UTF-8/UTF-8"
+        "sv_SE.UTF-8/UTF-8"
+      ];
+      example = ["C.UTF-8/UTF-8" "en_US.UTF-8" "se_SV.UTF-8"];
       description = "List of locales supported by the system";
     };
 
-    useMetric = mkEnableOption "Use metric units in the system";
-    useEuropeanCurrency = mkEnableOption "Use European currency in the system";
-    useA4Paper = mkEnableOption "Use A4 paper in the system";
-    useISODate = mkEnableOption "Use ISO date format in the system";
+    useMetric = my.mkDisableOption "Use metric units in the system";
+    useEuropeanCurrency = my.mkDisableOption "Use European currency in the system";
+    useA4Paper = my.mkDisableOption "Use A4 paper in the system";
+    useISODate = my.mkDisableOption "Use ISO date format in the system";
   };
 
   config = lib.mkIf cfg.enable {
