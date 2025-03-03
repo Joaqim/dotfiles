@@ -62,7 +62,7 @@
         ../home-manager/modules/misc/file-management.nix
 
         # Firefox
-        ../home-manager/modules/firefox
+        #../home-manager/modules/firefox
 
         # Internet
         ../home-manager/modules/misc/internet.nix

@@ -16,7 +16,7 @@
     ./discord
     ./documentation
     #./feh
-    #./firefox
+    ./firefox
     ./flameshot
     ./fzf
     #./gammastep
