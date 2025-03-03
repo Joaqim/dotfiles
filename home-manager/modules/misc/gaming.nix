@@ -4,7 +4,7 @@
   ...
 }: {
   home = {
-    file."./.local/share/Steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
+    file."./.local/share/Steam/steam_dev.cfg".source = ./steam_dev.cfg;
     packages = builtins.attrValues {
       inherit
         (pkgs)
