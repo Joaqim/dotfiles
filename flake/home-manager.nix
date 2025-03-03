@@ -29,8 +29,8 @@
         #../home-manager/modules/calibre.nix
 
         ../home-manager/modules/games/cataclysm-dda.nix
-        ../home-manager/modules/gpg.nix
-        ../home-manager/modules/git.nix
+        #../home-manager/modules/gpg.nix
+        #../home-manager/modules/git.nix
         #../home-manager/modules/home-manager.nix
         ../home-manager/modules/kitty.nix
         ../home-manager/modules/lazygit.nix

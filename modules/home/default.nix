@@ -21,8 +21,8 @@
     ./fzf
     #./gammastep
     #./gdb
-    #./git
-    #./gpg
+    ./git
+    ./gpg
     #./gtk
     ./htop
     ./jq
@@ -43,7 +43,7 @@
     #./wget
     #./wm
     #./x
-    #./xdg
+    ./xdg
     ./zathura
     #./zsh
   ];

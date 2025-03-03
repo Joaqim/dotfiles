@@ -17,7 +17,20 @@
         type = types.str;
         default = "jq";
         example = "alice";
-        description = "my username";
+        description = "account username";
+      };
+
+      fullName = mkOption {
+        type = types.str;
+        example = "Alice Cooper";
+        description = "descriptive name used by account";
+      };
+
+      email = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        example = "mail@example.org";
+        description = "email used for git module";
       };
 
       home = {
