@@ -36,6 +36,7 @@
     #./sabnzbd
     #./servarr
     ./ssh-server
+    ./tailscale
     #./tandoor-recipes
     #./tlp
     #./transmission

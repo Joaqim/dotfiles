@@ -7,6 +7,7 @@
     home = {
       calibre.enable = true;
       discord.enable = true;
+      firefox.enable = true;
       flameshot.enable = true;
       git = {
         enable = true;

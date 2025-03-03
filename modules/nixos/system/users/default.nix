@@ -6,6 +6,7 @@
   ...
 }: let
   inherit (config.sops) secrets;
+  inherit (config.my.user) fullName name;
   cfg = config.my.system.users;
   groupExists = grp: builtins.hasAttr grp config.users.groups;
   groupsIfExist = builtins.filter groupExists;
@@ -23,9 +24,9 @@ in {
           hashedPasswordFile = secrets."user_hashed_password/jq".path;
         };
 
-        ${config.my.user.name} = {
-          hashedPasswordFile = secrets."user_hashed_password/${config.my.user.name}".path;
-          description = config.my.user.name;
+        "${name}" = {
+          hashedPasswordFile = secrets."user_hashed_password/${name}".path;
+          description = fullName;
           isNormalUser = true;
           shell = pkgs.nushell;
           extraGroups = groupsIfExist [

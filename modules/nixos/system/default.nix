@@ -2,13 +2,13 @@
 {...}: {
   imports = [
     #./boot
-    #./docker
-    #./documentation
+    ./docker
+    ./documentation
     ./locale
     ./nix
     ./packages
-    #./podman
-    #./polkit
+    ./podman
+    ./polkit
     ./users
   ];
 }

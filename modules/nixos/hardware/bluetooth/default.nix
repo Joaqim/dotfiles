@@ -17,7 +17,12 @@ in {
   config = lib.mkIf cfg.enable (lib.mkMerge [
     # Enable bluetooth devices and GUI to connect to them
     {
-      hardware.bluetooth.enable = true;
+      hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+        settings = {General = {Experimental = true;};};
+        disabledPlugins = ["sap"];
+      };
       services.blueman.enable = true;
     }
 

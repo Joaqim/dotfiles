@@ -5,13 +5,24 @@
   ...
 }: let
   cfg = config.my.home.git;
-  inherit (config.my.user) email fullName;
 in {
   options.my.home.git = with lib; {
-    enable = my.mkDisableOption "git configuration";
+    enable = mkEnableOption "git configuration";
 
     # I want the full experience by default
     package = mkPackageOption pkgs "git" {default = ["gitFull"];};
+
+    userEmail = mkOption {
+      type = types.str;
+      example = "mail@example.org";
+      description = "email used by git";
+    };
+
+    userName = mkOption {
+      type = types.str;
+      example = "Alice Cooper";
+      description = "descriptive name used by git";
+    };
   };
 
   config.home.packages = with pkgs;
@@ -24,17 +35,13 @@ in {
   config.programs.git = lib.mkIf cfg.enable {
     enable = true;
 
-    # Who am I?
-    userEmail = email;
-    userName = fullName;
+    inherit (cfg) package userEmail userName;
 
     signing = {
       key = lib.mkDefault null;
       signByDefault = true;
       format = "ssh";
     };
-
-    inherit (cfg) package;
 
     aliases = {
       git = "!git";
