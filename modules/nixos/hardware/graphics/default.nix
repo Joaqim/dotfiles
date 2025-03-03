@@ -53,7 +53,7 @@ in {
           rocmPackages.clr
           rocmPackages.clr.icd
         ];
-        extraPackages32 = lib.optional cfg.amd.amdvlk [
+        extraPackages32 = lib.mkIf cfg.amd.amdvlk [
           pkgs.driversi686Linux.amdvlk
         ];
       };

@@ -1,4 +1,9 @@
-{self, ...}: {
+{
+  inputs,
+  lib,
+  self,
+  ...
+}: {
   imports = [
     # Old Configurations
     ## User
@@ -40,5 +45,24 @@
     "${self}/nixos/modules/tumbler.nix"
     "${self}/nixos/modules/virtualisation.nix"
     "${self}/nixos/modules/xserver.nix"
+
+    inputs.disko.nixosModules.disko
+    ./boot.nix
+    ./disko-config.nix
+    ./hardware.nix
+    ./networking.nix
+    ./profiles.nix
+    ./programs.nix
+    ./services.nix
+    ./system.nix
   ];
+
+  time.timeZone = "Europe/Stockholm";
+
+  networking = {
+    hostId = "fce78f04";
+    hostName = "desktop";
+  };
+
+  system.stateVersion = lib.mkForce "24.11";
 }

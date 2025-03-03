@@ -6,6 +6,7 @@
   user = config.my.user.name;
   inherit (flake.inputs) jellyfin-plugins;
 in {
+  imports = [jellyfin-plugins.nixosModules.jellyfin-plugins];
   services = {
     jellyfin = {
       enable = true;

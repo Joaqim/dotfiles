@@ -10,11 +10,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    my.hardware.ckb-next.enable = true;
+    my = {
+      hardware = {
+        ckb-next.enable = true;
 
-    my.hardware.liquidctl.enable = true;
-
-    #  Automatically mount external drives configured in fstab
-    services.udiskie2.enable = true;
+        liquidctl.enable = true;
+      };
+      #  Automatically mount external drives configured in fstab
+      home.udiskie.enable = true;
+    };
   };
 }

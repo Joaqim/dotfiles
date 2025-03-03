@@ -3,6 +3,6 @@
   imports = [
     ./bluetooth
     ./devices
-    ./laptop
+    #./laptop
   ];
 }

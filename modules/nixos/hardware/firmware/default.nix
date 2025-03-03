@@ -17,8 +17,9 @@ in {
 
     kernelOptimization = mkEnableOption "Enable kernel optimization";
   };
-
-  imports = lib.optional cfg.kernelOptimization [./kernel-optimization];
+  # TODO: Infinite recursion
+  #imports = lib.optional cfg.kernelOptimization [./kernel-optimization.nix];
+  imports = [./kernel-optimization.nix];
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {

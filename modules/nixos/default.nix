@@ -3,13 +3,12 @@
   imports = [
     ./hardware
     ./home
-    #./profiles
-    #./programs
+    ./profiles
+    ./programs
     ./secrets
     ./services
     ./system
   ];
-  time.timeZone = lib.mkDefault "Europe/Stockholm";
 
   options.my = with lib; {
     user = {
