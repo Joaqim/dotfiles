@@ -30,7 +30,7 @@
     #./jq
     #./keyboard
     #./mail
-    #./mpv
+    ./mpv
     #./nix
     #./nix-index
     #./nixpkgs

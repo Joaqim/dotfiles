@@ -32,7 +32,7 @@
     # Entertainment
     ../../../home-manager/modules/misc/gaming.nix
     ../../../home-manager/modules/misc/media.nix
-    ../../../home-manager/modules/mpv.nix
+    #../../../home-manager/modules/mpv.nix
 
     # Extras
     ../../../home-manager/modules/misc/gnome-extras.nix
@@ -63,4 +63,8 @@
     ../../../home-manager/modules/gtk.nix
     ../../../home-manager/modules/misc/themes.nix
   ];
+
+  my.home = {
+    mpv.enable = true;
+  };
 }
