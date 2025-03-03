@@ -1,0 +1,29 @@
+ewwEdit:
+    eww --config /home/jq/dotfiles/home-manager/modules/eww/config/ open centerPanel
+
+ewwLaunch:
+    ./home/jq/dotfiles/home-manager/modules/eww/config/scripts/master.sh
+
+hmSwitch:
+    nh home switch --ask ~/dotfiles
+
+nixosSwitch:
+    nh os switch --ask ~/dotfiles
+
+nixosBoot:
+    nh os boot --ask ~/dotfiles
+
+nixosTest:
+    nixos-rebuild test --flake ~/dotfiles
+
+deckSwitch:
+    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles#deck --target-host jq@deck
+
+deckBoot:
+    nixos-rebuild boot --use-remote-sudo --flake /home/jq/dotfiles#deck --target-host jq@deck
+
+nodeSwitch:
+    nixos-rebuild switch --use-remote-sudo --flake /home/jq/dotfiles#node --target-host jq@node
+
+nodeBoot:
+    nixos-rebuild boot --use-remote-sudo --flake /home/jq/dotfiles#node --target-host jq@node

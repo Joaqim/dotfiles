@@ -35,7 +35,7 @@ in {
     };
 
     cache = {
-      selfHosted = my.mkDisableOption "self-hosted cache";
+      selfHosted = mkEnableOption "self-hosted cache";
       nixGaming = my.mkDisableOption "nix-gaming cache";
     };
 
@@ -114,23 +114,21 @@ in {
       };
     })
 
-    /*
-       (lib.mkIf cfg.cache.selfHosted {
+    (lib.mkIf cfg.cache.selfHosted {
       nix = {
         settings = {
           # The NixOS module adds the official Hydra cache by default
           # No need to use `extra-*` options.
           substituters = [
-            "https://cache.belanyi.fr/"
+            # TODO:
           ];
 
           trusted-public-keys = [
-            "cache.belanyi.fr:LPhrTqufwfxTceg1nRWueDWf7/2zSVY9K00pq2UI7tw="
+            # TODO:
           ];
         };
       };
     })
-    */
 
     (lib.mkIf cfg.cache.nixGaming {
       nix.settings = {
