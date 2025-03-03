@@ -44,9 +44,10 @@ mp.register_event("file-loaded", function()
   if not file then return false end
 
   local title = mp.get_property("media-title");  
+  uploader = mp.get_property("uploader") or mp.get_property("channel_url") or "";
   title = (title == mp.get_property("filename") and ":" or (":%s"):format(title));
-
+   
   file:seek("end");
-  file:write(("\n*** %s %s:<%s>:"):format(filename, title, os.date("%Y-%d-%m %a %H:%M")));    
+  file:write(("\n*** %s %s %s:<%s>:"):format(filename, title, uploader, os.date("%Y-%d-%m %a %H:%M")));    
   file:close();
 end)

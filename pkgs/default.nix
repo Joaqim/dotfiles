@@ -8,17 +8,19 @@
 in
   pkgs.lib.makeScope pkgs.newScope (_: {
     # "Packages" that just contain utility scripts
-    commit-nvfetcher = callPackage ./scripts/commit-nvfetcher {};
-    mpv-history-launcher = callPackage ./scripts/mpv-history-launcher {};
+    commit-nvfetcher = callPackage ./commit-nvfetcher {};
+    mpv-history-launcher = callPackage ./mpv-history-launcher {};
 
     # Extensions to existing Applications
-    mpv-skipsilence = callPackage ./applications/mpv-skipsilence.nix {};
-    mpv-org-history = callPackage ./applications/mpv-org-history/mpv-org-history.nix {};
-    twitchindicator = callPackage ./plugins/plasmoids/twitchindicator/default.nix {};
+    mpv-skipsilence = callPackage ./mpv-skipsilence {};
+    mpv-org-history = callPackage ./mpv-org-history {};
+
+    # Plasmoids
+    twitchindicator = callPackage ./twitchindicator {};
 
     # Proper packages
-    undertaker141 = callPackage ./applications/undertaker141/undertaker141.nix {};
+    undertaker141 = callPackage ./undertaker141 {};
 
     # Packages that override existing packages in `nixpkgs`
-    yt-dlp = callPackage ./applications/yt-dlp.nix {};
+    yt-dlp = callPackage ./yt-dlp {};
   })
