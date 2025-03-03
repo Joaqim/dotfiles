@@ -59,10 +59,5 @@
 
   time.timeZone = "Europe/Stockholm";
 
-  networking = {
-    hostId = "fce78f04";
-    hostName = "desktop";
-  };
-
   system.stateVersion = lib.mkForce "24.11";
 }

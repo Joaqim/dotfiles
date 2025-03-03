@@ -20,7 +20,7 @@
       };
 
       fullName = mkOption {
-        type = types.str;
+        type = types.nullOr types.str;
         example = "Alice Cooper";
         description = "descriptive name used by account";
       };

@@ -9,8 +9,6 @@ in {
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
-  fileSystems."/persist".neededForBoot = true;
-
   my.hardware = {
     firmware = {
       cpuFlavor = "amd";
@@ -21,6 +19,9 @@ in {
       enable = true;
       gpuFlavor = "amd";
       amd.amdvlk = true;
+    };
+    sound = {
+      pipewire.enable = true;
     };
     # Use zfs specific settings for docker virtualization and zfs trim and scrub
     zfs = {

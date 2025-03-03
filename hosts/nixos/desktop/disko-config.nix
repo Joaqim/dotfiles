@@ -2,6 +2,7 @@
 {config, ...}: let
   inherit (config.networking) hostName;
 in {
+  fileSystems."/persist".neededForBoot = true;
   disko.devices = {
     disk = {
       "nvme-2tb-${hostName}" = {
