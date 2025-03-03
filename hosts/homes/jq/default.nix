@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     # Old Configurations
-    ../../../home-manager/modules/calibre.nix
+    #../../../home-manager/modules/calibre.nix
     ## Commandline
     #../../../home-manager/modules/atuin.nix
     #../../../home-manager/modules/bat
