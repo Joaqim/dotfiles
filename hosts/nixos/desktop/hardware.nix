@@ -11,18 +11,6 @@ in {
 
   fileSystems."/persist".neededForBoot = true;
 
-  virtualisation = {
-    docker = {
-      extraOptions = "--storage-opt=zfs.fsname=zpool-${hostName}/local";
-      storageDriver = "zfs";
-    };
-  };
-
-  services.zfs = {
-    autoScrub.enable = true;
-    trim.enable = true;
-  };
-
   my.hardware = {
     firmware = {
       cpuFlavor = "amd";
@@ -33,6 +21,11 @@ in {
       enable = true;
       gpuFlavor = "amd";
       amd.amdvlk = true;
+    };
+    # Use zfs specific settings for docker virtualization and zfs trim and scrub
+    zfs = {
+      enable = true;
+      zfsDataset = "zpool-${hostName}/local";
     };
   };
 }
