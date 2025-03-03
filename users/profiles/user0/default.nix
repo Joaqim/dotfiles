@@ -36,7 +36,6 @@ in {
         homeDirectory = "/home/${user0}";
         file = {
           "./justfile".source = lib.mkDefault ./justfile;
-          "./.local/share/Steam/steam_dev.cfg".source = ../../../nixos/modules/steam/steam_dev.cfg;
         };
 
         sessionVariables = {};
