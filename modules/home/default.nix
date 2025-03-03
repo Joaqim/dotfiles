@@ -8,53 +8,52 @@
     #./aliases
     ./atuin
     ./bat
-    #./bitwarden
-    #./bluetooth
+    ./bluetooth
     ./bottom
     ./calibre
-    #./comma
-    #./dircolors
+    ./dircolors
     ./direnv
-    #./discord
-    #./documentation
+    ./discord
+    ./documentation
     #./feh
     #./firefox
-    #./flameshot
-    #./fzf
+    ./flameshot
+    ./fzf
     #./gammastep
     #./gdb
     #./git
     #./gpg
     #./gtk
-    #./htop
-    #./jq
-    #./keyboard
-    #./mail
+    ./htop
+    ./jq
     ./mpv
-    #./nix
-    #./nix-index
-    #./nixpkgs
-    #./nm-applet
+    ./nix
+    ./nix-index
+    ./nixpkgs
+    ./nm-applet
     ./packages
-    #./pager
-    #./power-alert
+    ./pager
+    ./power-alert
     #./secrets
     #./ssh
     #./terminal
     #./tmux
-    #./udiskie
+    ./udiskie
     #./vim
     #./wget
     #./wm
     #./x
     #./xdg
-    #./zathura
+    ./zathura
     #./zsh
   ];
 
   home.packages = with pkgs; [
     jqp.undertaker141
     jqp.mpv-history-launcher
+
+    calibre
+    nh
   ];
 
   home.stateVersion = lib.mkForce "24.11";
