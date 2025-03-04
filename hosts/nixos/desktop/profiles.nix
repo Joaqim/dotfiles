@@ -1,6 +1,6 @@
 {
   my.profiles = {
-    # Bluetooth configuration and GUI
+    # Bluetooth configuration and mpris service
     bluetooth.enable = true;
     # Mouse and keyboard configuration
     devices.enable = true;
