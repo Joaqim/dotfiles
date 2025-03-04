@@ -9,6 +9,7 @@
     terminal.program = "kitty";
     mpv.enable = true;
     nm-applet.enable = true;
+    nushell.enable = true;
     packages.additionalPackages = builtins.attrValues {
       inherit
         (pkgs)
@@ -28,6 +29,7 @@
         ;
     };
     qbittorrent.enable = true;
+    starship.enable = true;
     vscode.enable = true;
     zathura.enable = true;
   };

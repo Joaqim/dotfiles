@@ -29,12 +29,14 @@
     ./nix-index
     ./nixpkgs
     ./nm-applet
+    ./nushell
     ./packages
     ./pager
     ./power-alert
     ./qbittorrent
     #./secrets
     #./ssh
+    ./starship
     ./terminal
     #./tmux
     ./udiskie
