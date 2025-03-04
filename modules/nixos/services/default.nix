@@ -32,6 +32,7 @@
     #./postgresql
     #./postgresql-backup
     #./pyload
+    ./qbittorrent-nox
     #./quassel
     #./rss-bridge
     #./sabnzbd
