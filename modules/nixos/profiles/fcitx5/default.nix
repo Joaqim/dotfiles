@@ -37,5 +37,12 @@ in {
         };
       };
     };
+    environment = {
+      variables = {
+        GTK_IM_MODULE = "fcitx";
+        XMODIFIERS = "@im=fcitx";
+        QT_IM_MODULES = "wayland;fcitx;ibus";
+      };
+    };
   };
 }
