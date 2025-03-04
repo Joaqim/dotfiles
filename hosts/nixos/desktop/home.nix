@@ -6,6 +6,7 @@
     firefox.enable = true;
     flameshot.enable = false;
     gaming.enable = true;
+    kde.enable = true;
     terminal.program = "kitty";
     mpv.enable = true;
     nm-applet.enable = true;

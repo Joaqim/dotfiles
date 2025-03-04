@@ -24,6 +24,7 @@
     #./gtk
     ./htop
     ./jq
+    ./kde
     ./mpv
     ./nix
     ./nix-index
