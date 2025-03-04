@@ -6,7 +6,7 @@
 }: let
   cfg = config.my.home.kde;
 in {
-  options.my.home.gtk = with lib; {
+  options.my.home.kde = with lib; {
     enable = mkEnableOption "KDE configuration";
   };
 
