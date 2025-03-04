@@ -6,13 +6,14 @@
     firefox.enable = true;
     flameshot.enable = false;
     gaming.enable = true;
+    terminal.program = "kitty";
     mpv.enable = true;
     nm-applet.enable = true;
-    zathura.enable = true;
     packages.additionalPackages = builtins.attrValues {
       inherit
         (pkgs)
         calibre
+        fluent-reader
         nexusmods-app
         nh
         ;
@@ -26,5 +27,8 @@
         spotify-adblock
         ;
     };
+    qbittorrent.enable = true;
+    vscode.enable = true;
+    zathura.enable = true;
   };
 }

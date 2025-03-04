@@ -32,12 +32,14 @@
     ./packages
     ./pager
     ./power-alert
+    ./qbittorrent
     #./secrets
     #./ssh
-    #./terminal
+    ./terminal
     #./tmux
     ./udiskie
     #./vim
+    ./vscode
     #./wget
     #./wm
     #./x

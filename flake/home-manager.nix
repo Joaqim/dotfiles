@@ -32,7 +32,7 @@
         #../home-manager/modules/gpg.nix
         #../home-manager/modules/git.nix
         #../home-manager/modules/home-manager.nix
-        ../home-manager/modules/kitty.nix
+        #../home-manager/modules/kitty.nix
         ../home-manager/modules/lazygit.nix
         ../home-manager/modules/misc/android.nix
         ../home-manager/modules/misc/command-line.nix
@@ -68,12 +68,12 @@
         ../home-manager/modules/misc/internet.nix
         ../home-manager/modules/network.nix
         ../home-manager/modules/misc/jellyfin.nix
-        ../home-manager/modules/qbittorrent
+        #../home-manager/modules/qbittorrent
 
         # Code
         #../home-manager/modules/direnv.nix
         ../home-manager/modules/misc/production-code.nix
-        ../home-manager/modules/vscode.nix
+        #../home-manager/modules/vscode.nix
 
         # Art
         ../home-manager/modules/misc/production-art.nix
