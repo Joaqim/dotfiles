@@ -40,7 +40,7 @@
         ../home-manager/modules/misc/yazi.nix
         ../home-manager/modules/nushell.nix
         ../home-manager/modules/playerctl.nix
-        ../home-manager/modules/pulse.nix
+        #../home-manager/modules/pulse.nix
         ../home-manager/modules/starship.nix
         ../home-manager/modules/syncthing.nix
         ../home-manager/modules/wezterm.nix
@@ -50,8 +50,8 @@
         ../home-manager/modules/zoxide.nix
 
         # Entertainment
-        ../home-manager/modules/misc/gaming.nix
-        ../home-manager/modules/misc/media.nix
+        #../home-manager/modules/misc/gaming.nix
+        #../home-manager/modules/misc/media.nix
         #../home-manager/modules/mpv.nix
 
         # Extras

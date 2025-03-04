@@ -1,5 +1,8 @@
 {
   my.programs = {
-    steam.enable = true;
+    steam = {
+      enable = true;
+      #dataDir = "$XDG_DATA_HOME/steamlib";
+    };
   };
 }

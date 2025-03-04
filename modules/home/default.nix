@@ -1,14 +1,11 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   # Many of these are enabled by default, use modules/nixos/profiles to selectively disable per `user` and/or `system`
   imports = [
     #./aliases
     ./atuin
     ./bat
     ./bluetooth
+    ./boilr
     ./bottom
     ./calibre
     ./dircolors
@@ -19,6 +16,7 @@
     ./firefox
     ./flameshot
     ./fzf
+    ./gaming
     #./gammastep
     #./gdb
     ./git
@@ -46,14 +44,6 @@
     ./xdg
     ./zathura
     #./zsh
-  ];
-
-  home.packages = with pkgs; [
-    jqp.undertaker141
-    jqp.mpv-history-launcher
-
-    calibre
-    nh
   ];
 
   home.stateVersion = lib.mkForce "24.11";

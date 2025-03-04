@@ -26,7 +26,7 @@
     "${self}/nixos/modules/corectrl.nix"
     "${self}/nixos/modules/dconf.nix"
     "${self}/nixos/modules/disks.nix"
-    "${self}/nixos/modules/doas.nix"
+    #"${self}/nixos/modules/doas.nix"
     #"${self}/nixos/modules/docker.nix"
     "${self}/nixos/modules/environment.nix"
     "${self}/nixos/modules/firejail.nix"
@@ -68,6 +68,5 @@
   };
 
   time.timeZone = "Europe/Stockholm";
-
   system.stateVersion = lib.mkForce "24.11";
 }
