@@ -7,6 +7,7 @@ keys:
   - &thinkpad CBF6FE1AEF7B62E89D5DB72FAED2B42C5260193A
   - &node 9ED4E7B759196FEDC0F77F2C180900A07DF88F47
   - &dell D61E0F6145F2A283CE2431EA0A296D7564CA165C
+  - &raket 4C001C0E7936A7C64CA6C8A51A6738B8C197291C
 creation_rules:
   - key_groups:
       - age:
@@ -19,6 +20,7 @@ creation_rules:
           - *thinkpad
           - *node
           - *dell
+          - *raket
   - path_regex: secrets/secrets.yaml$
     key_groups:
       - age:
@@ -31,3 +33,4 @@ creation_rules:
           - *thinkpad
           - *node
           - *dell
+          - *raket
