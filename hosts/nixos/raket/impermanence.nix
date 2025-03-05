@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  ...
 }: let
   inherit (config.networking) hostName;
 in {
@@ -12,7 +13,12 @@ in {
       "/var/lib/nixos"
       "/var/lib/systemd/coredump"
       "/var/lib/tailscale"
-      "/etc/ssh"
+      {
+        directory = "/etc/ssh";
+        user = "root";
+        group = "root";
+        mode = "u=rwx,g=rx,o=";
+      }
       {
         directory = "/srv/minecraft";
         user = "root";

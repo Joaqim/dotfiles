@@ -51,5 +51,6 @@
 in {
   flake.nixosConfigurations = lib.mapAttrs buildHost {
     desktop = "x86_64-linux";
+    raket = "x86_64-linux";
   };
 }
