@@ -47,6 +47,7 @@
     "${self}/nixos/modules/xserver.nix"
 
     inputs.disko.nixosModules.disko
+    inputs.impermanence.nixosModules.impermanence
     ./boot.nix
     ./disko-config.nix
     ./hardware.nix
@@ -61,7 +62,7 @@
 
   # For now, nixos modules that expects name, full name or email will always use this user
   # This is different from home-manager modules which can be different users
-  # TODO: Have hard-code `user0` and optional`user1` which we can assign username, full name and optionally email ( for git )
+  # TODO: Have hardcoded `user0` and optional`user1` which we can assign username, full name and, optionally, email
   my.user = {
     name = "jq";
     fullName = "Joaqim Planstedt";
