@@ -5,7 +5,7 @@
     pname = "chronotube";
     version = "1.3.0";
     src = fetchurl {
-      url = "https://addons.mozilla.org/firefox/downloads/file/3606813/chronotube-1.3.0.xpi";
+      url = "https://github.com/necauqua/chronotube/releases/download/v1.3.0/chronotube-1.3.0-fx.xpi";
       sha256 = "sha256-H90V5IZ+ZjLddwiWzMvk5pTY6oL4kCCMZGQXGqRdR/4=";
     };
   };
