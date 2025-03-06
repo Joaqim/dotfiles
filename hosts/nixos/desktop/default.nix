@@ -51,7 +51,6 @@
     ./disko-config.nix
     ./hardware.nix
     ./home.nix
-    ./impermanence.nix
     ./networking.nix
     ./profiles.nix
     ./programs.nix
