@@ -5,6 +5,7 @@
     ./doas
     ./docker
     ./documentation
+    ./impermanence
     ./locale
     ./nix
     ./packages
