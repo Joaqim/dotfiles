@@ -115,11 +115,8 @@
     };
 
   homes = {
-    /*
+    "jq@desktop" = "x86_64-linux";
     "wilton@raket" = "x86_64-linux";
-    "jq@deck" = "x86_64-linux";
-    "deck@deck" = "x86_64-linux";
-    */
   };
 in {
   perSystem = {system, ...}: {
