@@ -12,8 +12,11 @@ in
     mpv-history-launcher = callPackage ./mpv-history-launcher {};
 
     # Extensions to existing Applications
+    ## MPV
     mpv-skipsilence = callPackage ./mpv-skipsilence {};
     mpv-org-history = callPackage ./mpv-org-history {};
+    ## Firefox Addons
+    chronotube = callPackage ./chronotube {};
 
     # Plasmoids
     twitchindicator = callPackage ./twitchindicator {};

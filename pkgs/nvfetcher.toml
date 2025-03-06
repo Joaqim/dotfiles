@@ -9,3 +9,7 @@ fetch.github = "yt-dlp/yt-dlp"
 [twitchindicator]
 src.git = "https://github.com/kuunha/twitchindicator"
 fetch.github = "kuunha/twitchindicator"
+
+[chronotube]
+src.manual = "1.3.0"
+fetch.url ="https://addons.mozilla.org/firefox/downloads/file/3606813/chronotube-$ver.xpi"
