@@ -19,7 +19,7 @@ in {
         doas = {
           enable = true;
           wheelNeedsPassword = false;
-          # TODO: This should maybe be defined in `nixos.profiles`
+          # TODO: This should maybe be defined in `nixos.profiles`, or in a new module in: ${self}/modules/home/doas
           extraRules = let
             users = [config.my.user.name];
           in [

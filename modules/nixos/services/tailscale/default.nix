@@ -23,7 +23,7 @@ in {
       description = "Automatically authenticate new devices to Tailscale";
       path = [pkgs.tailscale pkgs.jq];
 
-      # make sure tailscale is running before trying to connect to tailscale
+      # make sure tailscale is running before trying to authenticate our device
       after = ["network-pre.target" "tailscale.service"];
       wants = ["network-pre.target" "tailscale.service"];
       wantedBy = ["multi-user.target"];
