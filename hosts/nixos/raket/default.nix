@@ -37,7 +37,6 @@ in {
     "${self}/nixos/modules/xserver.nix"
 
     inputs.disko.nixosModules.disko
-    inputs.impermanence.nixosModules.impermanence
     ./boot.nix
     ./disko-config.nix
     ./hardware.nix
