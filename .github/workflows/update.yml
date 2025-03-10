@@ -19,7 +19,7 @@ jobs:
         with:
           path: ~/.local/share/nvfetcher
           key: ${{ runner.os }}-nvfetcher
-      - uses: cachix/install-nix-action@v30
+      - uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ secrets.CI_BOT_GH_REPO_TOKEN }}
           # Used only for things like nix-prefetch-*, which do not yet
