@@ -25,7 +25,10 @@ in {
         };
 
         "${name}" = {
-          hashedPasswordFile = secrets."user_hashed_password/${name}".path;
+          hashedPasswordFile =
+            if builtins.hasAttr "user_hashed_password/${name}" secrets
+            then secrets."user_hashed_password/${name}".path
+            else null;
           description = fullName;
           isNormalUser = true;
           shell = pkgs.nushell;
