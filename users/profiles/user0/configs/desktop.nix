@@ -1,7 +1,6 @@
 {self, ...}: {
   imports = [
     self.homeModules.calibre
-    self.homeModules.cataclysm-dda
     self.homeModules.commandLine
     self.homeModules.desktopGames
     self.homeModules.entertainment

@@ -16,6 +16,7 @@
     packages.additionalPackages = builtins.attrValues {
       inherit
         (pkgs)
+        cataclysm-dda-git
         fluent-reader
         headsetcontrol
         nexusmods-app
