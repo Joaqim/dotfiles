@@ -27,15 +27,7 @@
       modules =
         defaultModules
         ++ [
-          #"${self}/hosts/nixos/${name}"
-
-          ( # TODO: Remove self, inputs
-            import "${self}/hosts/nixos/${name}"
-            {
-              inherit lib self inputs;
-            }
-          )
-          #"${self}/systems/${name}"
+          "${self}/hosts/nixos/${name}"
         ];
       specialArgs = {
         # Use my extended lib in NixOS configuration
@@ -43,6 +35,7 @@
         # Inject inputs to use them in global registry
         inherit inputs;
 
+        # Might not be needed, is a neat bundle though
         flake = {
           inherit config inputs self;
         };
