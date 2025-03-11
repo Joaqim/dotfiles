@@ -123,6 +123,7 @@ in {
           #steam
           syncthing
           system
+          tailscale
           qbittorrent-nox
           # Mostly for xkb layout
           xserver
