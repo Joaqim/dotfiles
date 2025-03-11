@@ -116,10 +116,8 @@ in {
           locale
           lutris
           nix
-          oom
           sops
           #steam
-          syncthing
           system
           tailscale
           qbittorrent-nox
