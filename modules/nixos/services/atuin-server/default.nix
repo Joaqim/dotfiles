@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.my.services.atuin;
+  cfg = config.my.services.atuin-server;
 in {
-  options.my.services.atuin = with lib; {
+  options.my.services.atuin-server = with lib; {
     enable = mkEnableOption "atuin server";
     openRegistration = mkEnableOption "Allow registrations";
   };

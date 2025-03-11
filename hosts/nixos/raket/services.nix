@@ -1,6 +1,6 @@
 {
   my.services = {
-    atuin.enable = false;
+    atuin-server.enable = false;
     fail2ban.enable = true;
     ssh-server.enable = true;
     tailscale = {
