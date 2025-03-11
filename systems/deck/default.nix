@@ -16,10 +16,6 @@
       group = "users";
       port = 8080;
     };
-    syncthing-dirs = {
-      enable = true;
-      user = "deck";
-    };
   };
 
   hardware.xpadneo.enable = true;
