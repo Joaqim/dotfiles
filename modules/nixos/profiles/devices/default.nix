@@ -19,5 +19,9 @@ in {
       #  Automatically mount external drives configured in fstab
       home.udiskie.enable = true;
     };
+    environment.systemPackages = with pkgs; [
+      # Support for external ntfs drives
+      ntfsprogs
+    ];
   };
 }
