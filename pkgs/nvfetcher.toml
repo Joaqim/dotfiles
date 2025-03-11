@@ -19,3 +19,17 @@ src.manual = "v1.3.0"
 src.from_pattern = 'v([\d.]+)'
 src.to_pattern = '\1'
 fetch.url = "https://github.com/necauqua/chronotube/releases/download/v$ver/chronotube-$ver-fx.xpi"
+
+[godot]
+ # When updating, change `commitHash` in `./godotjs/default.nix`
+src.manual = "4.3-stable"
+fetch.github = "godotengine/godot"
+
+[GodotJS]
+# See versioning with dependencies: https://github.com/godotjs/GodotJS/wiki/Dependencies
+src.github = "godotjs/GodotJS"
+fetch.github = "godotjs/GodotJS"
+
+[v8zip]
+src.github = "ialex32x/GodotJS-Dependencies"
+fetch.url = "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/$ver/$ver.zip"

@@ -24,6 +24,7 @@
         ;
       inherit
         (pkgs.jqp)
+        godotjs
         undertaker141
         mpv-history-launcher
         ;
