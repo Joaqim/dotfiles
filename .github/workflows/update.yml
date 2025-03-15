@@ -5,6 +5,9 @@ on:
   workflow_dispatch:
 env: 
   LANG: en_US.UTF-8
+permissions:
+  contents: write
+  pull-requests: write
 jobs:
   update:
     name: Update flake inputs
