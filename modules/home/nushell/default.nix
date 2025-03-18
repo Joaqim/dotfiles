@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.my.home.nushell;
@@ -33,6 +34,7 @@ in {
           }
         }
       '';
+      plugins = [pkgs.nushellPlugins.query];
     };
     programs.carapace = {
       enable = true;
