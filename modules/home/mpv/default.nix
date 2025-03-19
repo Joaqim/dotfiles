@@ -52,10 +52,13 @@ in {
           screenshot-template = "%F - [%P] (%#01n)";
           ytdl-raw-options = "sub-lang=\"en\",write-sub=,write-auto-sub=";
           sub-font = "Noto Color Emoji";
+          vo = "gpu-next";
           # NOTE: Needed to make sure that mpv uses the correct yt-dlp
           script-opts = "ytdl_hook-ytdl_path=${lib.getExe yt-dlp}";
+          watch-later-options = "start,volume,mute,fullscreen,sub-file,playlist,user-data/skipsilence/enabled,user-data/skipsilence/enabled,user-data/skipsilence/base_speed,speed";
         };
         scriptOpts = {
+          # For restarting playback when a Live Twitch VOD reaches current end
           reload.reload_eof_enabled = "yes";
         };
       };
