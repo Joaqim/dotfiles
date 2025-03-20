@@ -130,7 +130,7 @@
     },
     "yt-dlp": {
         "cargoLocks": null,
-        "date": "2025-03-13",
+        "date": "2025-03-16",
         "extract": null,
         "name": "yt-dlp",
         "passthru": null,
@@ -142,11 +142,11 @@
             "name": null,
             "owner": "yt-dlp",
             "repo": "yt-dlp",
-            "rev": "4432a9390c79253ac830702b226d2e558b636725",
-            "sha256": "sha256-GwHLYQ5r7eVsXls1ifO6B0j+HeYgfcJ9tx0dyshSqBM=",
+            "rev": "2ee3a0aff9be2be3bea60640d3d8a0febaf0acb6",
+            "sha256": "sha256-uI3NVByeEdFDQUzjnC8Qh2qajAVg4ujOvyq5yqf0TLo=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "4432a9390c79253ac830702b226d2e558b636725"
+        "version": "2ee3a0aff9be2be3bea60640d3d8a0febaf0acb6"
     }
 }
