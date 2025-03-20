@@ -89,12 +89,16 @@ in {
             "material-icon-theme.folders.associations" = {
               ".direnv" = "Generator";
               "applications" = "App";
+              "flake" = "Project";
               "home-manager" = "Home";
+              "homes" = "Home";
+              "hosts" = "Decorators";
               "hyprland" = "Theme";
               "laptop" = "Desktop";
               "MinecraftModpack" = "Minecraft";
               "nas" = "Context";
               "nixos" = "Project";
+              "overlays" = "Content";
               "parts" = "Components";
               "profiles" = "Content";
               "steam" = "Console";
