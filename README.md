@@ -1,4 +1,4 @@
-
+# NixOS Config
 ## Resources
 
 [Derick Eddington's NixOS dotfiles](https://github.com/DerickEddington/nixos-config)
