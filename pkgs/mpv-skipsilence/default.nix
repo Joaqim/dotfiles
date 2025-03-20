@@ -15,7 +15,7 @@ stdenvNoCC.mkDerivation rec {
   meta = {
     description = "Increase playback speed during silence.";
     longDescription = "Increase playback speed during silence - a revolution in attention-deficit induction technology.";
-    homepage = "https://codeberg.org/ferreum/mpv-skipsilence";
+    homepage = "https://codeberg.org/ferreum/mpv-skipsilence#mpv-skipsilence";
     license = lib.licenses.gpl2;
   };
 }

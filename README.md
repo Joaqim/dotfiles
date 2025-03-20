@@ -1,38 +1,4 @@
 
-## Steam Deck
-
-Using [disko-install](https://github.com/nix-community/disko/blob/master/docs/disko-install.md):
-
-Experimentally, install to USB-stick (/dev/sda):
-
-```shell
-sudo nix run 'github:nix-community/disko#disko-install' -- --flake ./#deck --disk main /dev/sda
-```
-Afterwards, we can test the result:
-```shell
-sudo qemu-kvm -enable-kvm -hda /dev/sda
-```
-
-## Thinkpad
-
-Configure [./systems/thinkpad/disko-config.nix](./systems/thinkpad/disko-config.nix) for appropriate memory device /dev/sd*
-
-```shell
-sudo nix run github:nix-community/disko -- --mode disko ./systems/thinkpad/disko-config.nix
-```
-
-Get UUID for `boot` `root` and `swap`:
-```shell
-lsblk -a -f
-```
-Edit [./systems/thinkpad/hardware-config.nix](./systems/thinkpad/hardware-config.nix) to fit the new partitions.
-
-Make sure `/dev/sd*1` and `/dev/sd*2` is mounted at `/mnt/boot` and `/mnt`, respectively.
-
-Install `thinkpad` system configuration to mounted partitions:
-```shell
-sudo nixos-install --root /mnt --flake ./#thinkpad
-```
 ## Resources
 
 [Derick Eddington's NixOS dotfiles](https://github.com/DerickEddington/nixos-config)
@@ -47,3 +13,4 @@ sudo nixos-install --root /mnt --flake ./#thinkpad
 [BRBWaffles/dotfiles](https://gitlab.com/BRBWaffles/dotfiles)
 
 [Faupi/nixos-configs](https://github.com/Faupi/nixos-configs/tree/master)
+[Wimpy's NixOS Configuration](https://github.com/wimpysworld/nix-config)

@@ -11,12 +11,13 @@
 
         nativeBuildInputs = with pkgs; [
           age
+          gitAndTools.pre-commit
+          inputs'.nvfetcher.packages.default
+          inputs'.sops-nix.packages.sops-import-keys-hook
           just
+          nixpkgs-fmt
           sops
           ssh-to-age
-          gitAndTools.pre-commit
-          nixpkgs-fmt
-          inputs'.sops-nix.packages.sops-import-keys-hook
         ];
 
         sopsPGPKeyDirs = ["./secrets/hosts/" "./secrets/users/"];

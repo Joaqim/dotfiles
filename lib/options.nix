@@ -1,3 +1,5 @@
+# Taken from [1]:
+# [1]: https://github.com/ambroisie/nix-config/blob/main/lib/options.nix
 {lib, ...}: let
   inherit (lib) mkEnableOption;
 in {

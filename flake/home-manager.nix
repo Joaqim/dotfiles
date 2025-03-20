@@ -122,7 +122,12 @@ in {
   perSystem = {system, ...}: {
     # Work-around for https://github.com/nix-community/home-manager/issues/3075
     legacyPackages.homeConfigurations = let
-      filteredHomes = lib.filterAttrs (_: v: v == system) homes;
+      # TODO: Divide "user@host" and compare against target "hostname"
+      # so `jq@desktop` would _also_ become `jq` = `x86_64-linux` only if target is `desktop`
+      filteredHomes = lib.filterAttrs (_: hostSystem:
+        hostSystem == system)
+      homes;
+
       allHomes =
         filteredHomes
         // {
