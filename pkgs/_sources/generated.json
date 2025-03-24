@@ -98,6 +98,21 @@
         },
         "version": "3b685af607a7c67a3920cc9c9709a1056ba5c039"
     },
+    "undertaker141": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "undertaker141",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-LBt0or2sH/wyluPbRlhYVP/TqUlJYK34MKfFo8Y8pZU=",
+            "type": "url",
+            "url": "https://github.com/AbdelrhmanNile/UnderTaker141/releases/download/latest/UnderTaker141.AppImage"
+        },
+        "version": "v2.10.0"
+    },
     "v8zip": {
         "cargoLocks": null,
         "date": null,

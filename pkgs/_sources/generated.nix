@@ -55,6 +55,14 @@
     };
     date = "2025-02-19";
   };
+  undertaker141 = {
+    pname = "undertaker141";
+    version = "v2.10.0";
+    src = fetchurl {
+      url = "https://github.com/AbdelrhmanNile/UnderTaker141/releases/download/latest/UnderTaker141.AppImage";
+      sha256 = "sha256-LBt0or2sH/wyluPbRlhYVP/TqUlJYK34MKfFo8Y8pZU=";
+    };
+  };
   v8zip = {
     pname = "v8zip";
     version = "v8_12.4.254.21_r13";

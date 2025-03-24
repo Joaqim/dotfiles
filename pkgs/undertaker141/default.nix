@@ -3,16 +3,10 @@
 {
   pkgs,
   lib,
+  sources,
   ...
 }: let
-  # Set Version and SHA
-  undertaker141Version = "2.7.0";
-  undertaker141SHA = "1gb3a9nw3svbg3ypf557h5ygvfapw3nznchvr91yjrg3wwl6v3n4";
-
   inherit (pkgs) appimageTools autoPatchelfHook stdenvNoCC makeWrapper runCommand;
-
-  pname = "undertaker141";
-  version = "${undertaker141Version}";
 
   dependencies = builtins.attrValues {
     inherit
@@ -22,6 +16,8 @@
       libz
       libGL
       python311
+      fontconfig
+      libuuid
       ;
     inherit
       (pkgs.xorg)
@@ -47,17 +43,12 @@
       magick $src -resize 512x512 $out/share/icons/hicolor/512x512/apps/undertaker141.png
     '';
 
-  src = pkgs.fetchurl {
-    url = "https://github.com/Joaqim/UnderTaker141/releases/download/latest/UnderTaker141.AppImage";
-    sha256 = "${undertaker141SHA}";
-  };
-
   appimageContents = appimageTools.extractType2 {
-    inherit pname version src;
+    inherit (sources.undertaker141) pname version src;
   };
 in
-  stdenvNoCC.mkDerivation {
-    inherit pname version;
+  stdenvNoCC.mkDerivation rec {
+    inherit (sources.undertaker141) pname version;
 
     src = appimageContents;
 
@@ -80,18 +71,22 @@ in
       # Remove the AppImage runner, actual entry point will be the `undertaker141` script
       rm AppRun*
 
-      # Remove redundant symlink to usr/share/applications/python3.11.4.desktop
-      rm python3.11.4.desktop
-
       mkdir -p $out/share/applications
 
+
+      # Remove symlink to usr/share/applications/python3.11*.desktop
+      rm python3.11*.desktop
+
+
       # Adjust the `.desktop` file
-      substitute usr/share/applications/python3.11.4.desktop \
+      substitute python.desktop \
         $out/share/applications/undertaker141.desktop \
         --replace-fail 'Exec=python3.11' 'Exec=${pname}' \
         --replace-fail 'Icon=python' 'Icon=undertaker141'
 
-      rm usr/share/applications/python3.11.4.desktop
+      # Remove old desktop file
+      #rm usr/share/applications/python3.11*.desktop
+
 
       # Ensure the icon is copied to the right place
       mkdir -p $out/share/icons/hicolor/512x512/apps
@@ -127,7 +122,7 @@ in
       }
     '';
 
-    meta = with lib; {
+    meta = {
       homepage = "https://github.com/AbdelrhmanNile/UnderTaker141";
     };
   }

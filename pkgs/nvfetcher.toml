@@ -33,3 +33,7 @@ fetch.github = "godotjs/GodotJS"
 [v8zip]
 src.github = "ialex32x/GodotJS-Dependencies"
 fetch.url = "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/$ver/$ver.zip"
+
+[undertaker141]
+src.github_tag = "AbdelrhmanNile/UnderTaker141"
+fetch.url = "https://github.com/AbdelrhmanNile/UnderTaker141/releases/download/latest/UnderTaker141.AppImage"
