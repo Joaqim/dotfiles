@@ -49,12 +49,12 @@
             "name": null,
             "owner": "godotengine",
             "repo": "godot",
-            "rev": "4.3",
-            "sha256": "sha256-vG6u44/UFihteR09gQ1rhXTAKbddbaXxiHsPwWfQ0R4=",
+            "rev": "4.3-stable",
+            "sha256": "sha256-v2lBD3GEL8CoIwBl3UoLam0dJxkLGX0oneH6DiWkEsM=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "4.3"
+        "version": "4.3-stable"
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
@@ -122,15 +122,15 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-v+0iW9kveu3tD/QFEX+wKhZ3vbmSTVVCErY1LYfW904=",
+            "sha256": "sha256-aOymA+4fx0nSgHXHbxLDqjka0qRSADjY4BR3so936+Y=",
             "type": "url",
-            "url": "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/v8_12.4.254.21_r13/v8_12.4.254.21_r13.zip"
+            "url": "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/v8_12.9.202.28_r14_vs2022/v8_12.9.202.28_r14_vs2022.zip"
         },
-        "version": "v8_12.4.254.21_r13"
+        "version": "v8_12.9.202.28_r14_vs2022"
     },
     "yt-dlp": {
         "cargoLocks": null,
-        "date": "2025-03-07",
+        "date": null,
         "extract": null,
         "name": "yt-dlp",
         "passthru": null,
@@ -142,11 +142,11 @@
             "name": null,
             "owner": "yt-dlp",
             "repo": "yt-dlp",
-            "rev": "05c8023a27dd37c49163c0498bf98e3e3c1cb4b9",
-            "sha256": "sha256-U5C4FxnVRjCqZACnOXirqVaypPba/lIFVsrIiqF8Ieg=",
+            "rev": "2025.03.21",
+            "sha256": "sha256-76XGI/0UFweaQV6bWejhaIiPGCV7cl0BQMrotSIBkkU=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "05c8023a27dd37c49163c0498bf98e3e3c1cb4b9"
+        "version": "2025.03.21"
     }
 }

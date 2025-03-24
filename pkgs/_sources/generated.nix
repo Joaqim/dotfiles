@@ -22,13 +22,13 @@
   };
   godot = {
     pname = "godot";
-    version = "4.3";
+    version = "4.3-stable";
     src = fetchFromGitHub {
       owner = "godotengine";
       repo = "godot";
-      rev = "4.3";
+      rev = "4.3-stable";
       fetchSubmodules = false;
-      sha256 = "sha256-vG6u44/UFihteR09gQ1rhXTAKbddbaXxiHsPwWfQ0R4=";
+      sha256 = "sha256-v2lBD3GEL8CoIwBl3UoLam0dJxkLGX0oneH6DiWkEsM=";
     };
   };
   mpv-skipsilence = {
@@ -65,22 +65,21 @@
   };
   v8zip = {
     pname = "v8zip";
-    version = "v8_12.4.254.21_r13";
+    version = "v8_12.9.202.28_r14_vs2022";
     src = fetchurl {
-      url = "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/v8_12.4.254.21_r13/v8_12.4.254.21_r13.zip";
-      sha256 = "sha256-v+0iW9kveu3tD/QFEX+wKhZ3vbmSTVVCErY1LYfW904=";
+      url = "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/v8_12.9.202.28_r14_vs2022/v8_12.9.202.28_r14_vs2022.zip";
+      sha256 = "sha256-aOymA+4fx0nSgHXHbxLDqjka0qRSADjY4BR3so936+Y=";
     };
   };
   yt-dlp = {
     pname = "yt-dlp";
-    version = "05c8023a27dd37c49163c0498bf98e3e3c1cb4b9";
+    version = "2025.03.21";
     src = fetchFromGitHub {
       owner = "yt-dlp";
       repo = "yt-dlp";
-      rev = "05c8023a27dd37c49163c0498bf98e3e3c1cb4b9";
+      rev = "2025.03.21";
       fetchSubmodules = false;
-      sha256 = "sha256-U5C4FxnVRjCqZACnOXirqVaypPba/lIFVsrIiqF8Ieg=";
+      sha256 = "sha256-76XGI/0UFweaQV6bWejhaIiPGCV7cl0BQMrotSIBkkU=";
     };
-    date = "2025-03-07";
   };
 }
