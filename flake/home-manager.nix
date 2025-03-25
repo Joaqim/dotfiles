@@ -79,6 +79,9 @@
       };
     };
 
+  # Specify your Home Manager profiles by compatible system.
+  # Home Manager will by default match first `$USER@$(hostname)`.
+  # If not found, it will then default to `$USER`.
   homes = {
     "jq@desktop" = "x86_64-linux";
     "wilton@raket" = "x86_64-linux";
@@ -87,8 +90,6 @@ in {
   perSystem = {system, ...}: {
     # Work-around for https://github.com/nix-community/home-manager/issues/3075
     legacyPackages.homeConfigurations = let
-      # TODO: Divide "user@host" and compare against target "hostname"
-      # so `jq@desktop` would _also_ become `jq` = `x86_64-linux` only if target is `desktop`
       filteredHomes = lib.filterAttrs (_: hostSystem:
         hostSystem == system)
       homes;
@@ -97,7 +98,7 @@ in {
         filteredHomes
         // {
           # Default configuration
-          jq = system;
+          "jq" = system;
         };
     in
       lib.mapAttrs mkHome allHomes;

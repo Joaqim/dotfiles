@@ -9,6 +9,7 @@ in
     systems = mySystems;
 
     imports = [
+      inputs.home-manager.flakeModules.home-manager
       ./apps.nix
       ./checks.nix
       ./dev-shells.nix
