@@ -11,6 +11,7 @@ in {
 
     useCkbNext = mkEnableOption "use ckb-next";
     useLiquidCtl = mkEnableOption "use liquidctl";
+    useExternalDrives = my.mkDisableOption "use udiskie to mount external drives";
   };
 
   config = lib.mkIf cfg.enable {
@@ -21,7 +22,7 @@ in {
         liquidctl.enable = cfg.useLiquidCtl;
       };
       #  Automatically mount external drives configured in fstab
-      home.udiskie.enable = true;
+      home.udiskie.enable = cfg.useExternalDrives;
     };
     environment.systemPackages = with pkgs; [
       # Support for external ntfs drives
