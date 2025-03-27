@@ -20,21 +20,16 @@ in {
             (pkgs.mpvScripts)
             mpris
             sponsorblock
-            #autocrop
             modernx
             quality-menu
             thumbfast
-            memo
             mpv-playlistmanager
-            #blacklistExtensions
-            #autodeint
             mpv-cheatsheet
             webtorrent-mpv-hook
             reload
-            # https://github.com/Eisa01/mpv-scripts#smartskip
-            smartskip
             ;
           inherit (pkgs.mpvScripts.builtins) autocrop autodeint;
+          inherit (pkgs.mpvScripts.eisa01) smartskip; # https://github.com/Eisa01/mpv-scripts#smartskip
           inherit (pkgs.mpvScripts.occivink) blacklistExtensions;
           inherit (pkgs.jqp) mpv-org-history mpv-skipsilence;
         };
