@@ -37,7 +37,13 @@ in {
     # Select internationalization properties.
     i18n = {
       defaultLocale = cfg.locale;
-      inherit (cfg) supportedLocales;
+      supportedLocales =
+        cfg.supportedLocales
+        ++ [
+          # TODO: Conditional on useMetric, etc...
+          "en_IE.UTF-8/UTF-8"
+          "en_DK.UTF-8/UTF-8"
+        ];
       extraLocaleSettings = lib.mkDefault rec {
         LANGUAGE = cfg.locale;
         LC_ADDRESS = LANGUAGE;
@@ -64,7 +70,7 @@ in {
         LC_TELEPHONE = LANGUAGE;
         LC_TIME =
           if cfg.useISODate
-          then "en_DK.utf8"
+          then "en_DK.UTF-8"
           else LANGUAGE;
       };
     };
