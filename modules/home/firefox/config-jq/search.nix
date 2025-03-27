@@ -1,6 +1,6 @@
 {
   force = true;
-  default = "DuckDuckGo";
+  default = "ddg"; # DuckDuckGo
   engines = {
     "AlternativeTo" = {
       definedAliases = ["@al"];
@@ -97,10 +97,10 @@
       icon = ./icons/aa.png;
       urls = [{template = "https://annas-archive.org/search?q={searchTerms}";}];
     };
-    "Amazon.com".metaData.hidden = true;
-    "Bing".metaData.hidden = true;
-    "eBay".metaData.hidden = true;
-    "Wikipedia (en)".metaData.hidden = true;
+    "amazondotcom-en".metaData.hidden = true;
+    "bing".metaData.hidden = true;
+    "ebay".metaData.hidden = true;
+    "wikipedia".metaData.hidden = true;
   };
   order = [
     "AlternativeTo"
@@ -119,6 +119,6 @@
     "YouTube"
     "1337x"
     "Brave"
-    "Google"
+    "google"
   ];
 }
