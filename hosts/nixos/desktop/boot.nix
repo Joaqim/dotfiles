@@ -21,8 +21,6 @@ in {
 
     zfs = {
       extraPools = ["zpool-${hostName}"];
-      # https://discourse.nixos.org/t/21-05-zfs-root-install-cant-import-pool-on-boot/13652/7
-      #devNodes = "/dev/disk/by-uuid";
     };
 
     loader = {
