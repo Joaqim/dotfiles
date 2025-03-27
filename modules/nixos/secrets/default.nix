@@ -16,6 +16,16 @@ in {
 
   options.my.secrets = with lib; {
     enable = my.mkDisableOption "secrets configuration";
+    sopsDirectory = mkOption {
+      type = types.str;
+      # Sops needs access to the keys before the persist dirs are even mounted; so
+      # just persisting the keys won't work, we must point at /persist
+      # TODO: Depend on setting of `my.system.impermanence.enable`
+      # TODO: Use assertion
+      default = "/persist/var/lib/sops";
+      example = "/var/lib/sops";
+      description = "Directory of gnupg directory used by sops";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -28,10 +38,7 @@ in {
       gnupg = {
         # Configured with root gnugpg dir, see: https://github.com/Mic92/sops-nix#use-with-gpg-instead-of-ssh-keys
 
-        # Sops needs access to the keys before the persist dirs are even mounted; so
-        # just persisting the keys won't work, we must point at /persist
-        # TODO: Depend on setting of `my.system.impermanence.enable`
-        home = lib.mkDefault "/persist/var/lib/sops";
+        home = cfg.sopsDirectory;
 
         # disable importing host ssh keys
         sshKeyPaths = [];
