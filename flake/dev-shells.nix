@@ -12,6 +12,7 @@
         nativeBuildInputs = with pkgs; [
           age
           deadnix
+          go-task # See ../Taskfile.yml
           inputs'.nvfetcher.packages.default
           inputs'.sops-nix.packages.sops-import-keys-hook
           just

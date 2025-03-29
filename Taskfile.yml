@@ -1,0 +1,55 @@
+# https://taskfile.dev
+
+version: '3'
+
+silent: false
+
+tasks:
+  default:
+    deps:
+      - help
+
+  nixos:
+    desc: Enable NixOS config for current device
+    sources:
+      - '.env'
+      - 'flake.nix'
+      - 'flake.lock'
+      - 'flake/*'
+      - 'hosts/**/*'
+      - 'lib/*'
+      - 'modules/**/*'
+      - 'overlays/**/*'
+      - 'pkgs/**/*'
+      - 'secrets/**/*'
+    cmds:
+      - if [ -f '/etc/NIXOS' ]; then sudo nixos-rebuild switch --flake ".#$(hostname)" --show-trace; fi
+
+  home-manager:
+    aliases:
+      - hm
+      - apply
+    desc: Enable home-manager config for current user and device
+    deps:
+      - 'nixos'
+    cmds:
+      # Using hostname simplify flake option, see https://discourse.nixos.org/t/get-hostname-in-home-manager-flake-for-host-dependent-user-configs/18859/2
+      # However prefer to use special ENV here for my current use. It is useful if sharing same config for similar env but on different devices
+      - nix run '.#home-manager' -- --dry-run switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
+
+  test:
+    aliases:
+      - dry-activate
+    desc: Make sure NixOS and/or home-manager will work for current user and device
+    cmds:
+      - nix run '.#dry-activate'
+
+  update:
+    desc: Bump dependencies
+    cmds:
+      - nix flake update --commit-lock-file
+
+  help:
+    desc: List available tasks
+    cmds:
+      - task --list-all
