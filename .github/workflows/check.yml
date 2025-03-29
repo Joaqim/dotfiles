@@ -1,3 +1,4 @@
+name: Check Nix Flake
 name: check
 on: push
 permissions:
