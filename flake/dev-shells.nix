@@ -11,7 +11,6 @@
 
         nativeBuildInputs = with pkgs; [
           age
-          gitAndTools.pre-commit
           inputs'.nvfetcher.packages.default
           inputs'.sops-nix.packages.sops-import-keys-hook
           just
