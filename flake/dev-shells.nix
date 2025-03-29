@@ -11,6 +11,7 @@
 
         nativeBuildInputs = with pkgs; [
           age
+          deadnix
           inputs'.nvfetcher.packages.default
           inputs'.sops-nix.packages.sops-import-keys-hook
           just
