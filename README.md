@@ -35,6 +35,8 @@ sudo nixos-install --root /mnt --flake ./#thinkpad
 ```
 ## Resources
 
+[Kachick/dotfiles](https://github.com/kachick/dotfiles)
+
 [Derick Eddington's NixOS dotfiles](https://github.com/DerickEddington/nixos-config)
 
 [TLATER/dotfiles - Sops secrets](https://github.com/TLATER/dotfiles/tree/e2432f2928ed2462852416dd54068f8c0c45dc6d#dotfiles)
