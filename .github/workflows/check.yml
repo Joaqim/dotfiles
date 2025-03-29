@@ -1,5 +1,16 @@
 name: Check Nix Flake
-on: push
+on: 
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check.yml'
+      - '**.nix'
+      - 'flake.lock'
+  pull_request:
+    paths:
+      - '.github/workflows/check.yml'
+      - '**.nix'
+      - 'flake.lock'
 permissions:
   contents: write
   id-token: write
