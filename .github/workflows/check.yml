@@ -1,4 +1,4 @@
-name: check
+name: Check Nix Flake
 on: push
 permissions:
   contents: write

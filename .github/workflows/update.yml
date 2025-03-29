@@ -1,10 +1,8 @@
-name: update
+name: Update Nix Flake Inputs and nvfetcher sources
 on:
   schedule:
     - cron: '0 2 * * 6'
   workflow_dispatch:
-env: 
-  LANG: en_US.UTF-8
 permissions:
   contents: write
   pull-requests: write
