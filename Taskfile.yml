@@ -12,7 +12,6 @@ tasks:
   nixos:
     desc: Enable NixOS config for current device
     sources:
-      - '.env'
       - 'flake.nix'
       - 'flake.lock'
       - 'flake/*'
@@ -35,7 +34,14 @@ tasks:
     cmds:
       # Using hostname simplify flake option, see https://discourse.nixos.org/t/get-hostname-in-home-manager-flake-for-host-dependent-user-configs/18859/2
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
-      - nix run '.#home-manager' -- --dry-run switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
+      - nix run '.#home-manager' -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
+
+  home-manager-news:
+    aliases:
+      - news
+    desc: Show home manager news
+    cmds:
+      - home-manager news --flake ".#${USER}@${HM_HOST_SLUG}"
 
   test:
     aliases:
