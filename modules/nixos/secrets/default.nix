@@ -88,6 +88,8 @@ in {
           path = "/home/${user0}/.ssh/id_joaqim-ci-bot.pub";
           inherit owner;
         };
+        "private_key/cache-desktop-org" = {};
+        "public_key/cache-desktop-org" = {};
         "wakatime_api_key/${user0}" = {
           path = "/home/${user0}/.wakatime/api_key.txt";
           inherit owner;

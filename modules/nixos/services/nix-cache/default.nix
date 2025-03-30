@@ -9,6 +9,13 @@ in {
   options.my.services.nix-cache = with lib; {
     enable = mkEnableOption "nix binary cache";
 
+    ipAddress = mkOption {
+      type = types.str;
+      default = "127.0.0.1";
+      example = "127.0.0.1";
+      description = "IP address for serving cache";
+    };
+
     port = mkOption {
       type = types.port;
       default = 5000;
@@ -38,7 +45,7 @@ in {
       enable = true;
 
       settings = {
-        bind = "127.0.0.1:${toString cfg.port}";
+        bind = "${cfg.ipAddress}:${toString cfg.port}";
         inherit (cfg) priority;
       };
 

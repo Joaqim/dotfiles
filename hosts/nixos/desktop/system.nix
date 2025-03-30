@@ -2,12 +2,8 @@
   my.system = {
     docker.enable = true;
     impermanence.enable = true;
-    nix = {
-      cache = {
-        # This host is the one serving the cache, don't try to query it
-        selfHosted = false;
-      };
-    };
+    # This host is the one serving the cache, don't try to query it
+    nix.cache.selfHosted = false;
     zram = {
       enable = true;
       kernelSysctl = true;

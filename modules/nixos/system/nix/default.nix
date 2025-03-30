@@ -26,6 +26,8 @@
       inherit (inputs) nixpkgs;
     })
   ];
+  selfHostedAddress = "desktop:5000";
+  selfHostedPublicKey = "$(${pkgs.coreutils}/bin/cat ${config.sops.secrets."public_key/cache-desktop-org".path} | ${pkgs.findutils}/bin/xargs)";
 in {
   options.my.system.nix = with lib; {
     enable = my.mkDisableOption "nix configuration";
@@ -120,11 +122,11 @@ in {
           # The NixOS module adds the official Hydra cache by default
           # No need to use `extra-*` options.
           substituters = [
-            # TODO:
+            selfHostedAddress
           ];
 
           trusted-public-keys = [
-            # TODO:
+            selfHostedPublicKey
           ];
         };
       };
