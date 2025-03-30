@@ -6,48 +6,35 @@
 
 -- 2022-03-14 Joaqim Planstedt <mail@joaqim.xyz>
 -- Personal additions and changes, mainly output mpv history as org mode compatible list with timestamps
--- Additionally, checks for existing entry of filename/url before appending entry to mpv history
 
 local HISTFILE = os.getenv("HOME").."/Documents/org/mpv-history.org";
 
-local function read_last_line(filename)
-  local file = io.open(filename, "rb") 
-  if not file then return nil end
-
-  local eof  = file:seek("end")
-  
-  for i = 1, eof do
-      file:seek("set", eof - i)
-      if i == eof then break end
-      if file:read(1) == '\n' then break end
-  end
-  
-  return file:read("*a")
-end
-
-
-local function has_entry(filename)
-  local last_line = read_last_line(HISTFILE)
-  if not last_line then return false end
-  local entry_filename = last_line:match("%*%*%* (.*)%s:.*:<.*>:") or ""
-
-  return last_line_filename == filename;
-end
-
 mp.register_event("file-loaded", function()  
-  local filename = mp.get_property("path")
-
-  if has_entry(filename) then
-    return nil;
-  end
   local file = io.open(HISTFILE, "a+") 
   if not file then return false end
+  
+  local filename = mp.get_property("path")
 
-  local title = mp.get_property("media-title");  
-  uploader = mp.get_property("uploader") or mp.get_property("channel_url") or "";
+
+  local title = mp.get_property("media-title");
   title = (title == mp.get_property("filename") and ":" or (":%s"):format(title));
-   
+  local uploader = mp.get_property("metadata/by-key/uploader") or mp.get_property("metadata/by-key/channel_url") or "";
+  
+  local duration = mp.get_property("duration") or "0";
+  local playtime = mp.get_property("playback-time") or "0";
+  local speed = mp.get_property("speed") or "1.0";
+
+  if filename:sub(1, string.len("http://desktop:8096")) == "http://desktop:8096" then
+    filename = "Jellyfin"
+  end
+
+  -- Format seconds to %H:%M:%S
+  local function formatTime(seconds)
+    return os.date("%H:%M:%S", seconds - 3600)
+  end
+
+
   file:seek("end");
-  file:write(("\n*** %s %s %s:<%s>:"):format(filename, title, uploader, os.date("%Y-%d-%m %a %H:%M")));    
+  file:write(("*** %s %s:<%s>:<%s>:<%s>:%s:%s:\n"):format(filename, title, os.date("%Y-%d-%m %a %H:%M"), formatTime(playtime), formatTime(duration), speed, uploader));    
   file:close();
 end)
