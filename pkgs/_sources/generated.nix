@@ -73,13 +73,13 @@
   };
   yt-dlp = {
     pname = "yt-dlp";
-    version = "2025.03.21";
+    version = "2025.03.27";
     src = fetchFromGitHub {
       owner = "yt-dlp";
       repo = "yt-dlp";
-      rev = "2025.03.21";
+      rev = "2025.03.27";
       fetchSubmodules = false;
-      sha256 = "sha256-76XGI/0UFweaQV6bWejhaIiPGCV7cl0BQMrotSIBkkU=";
+      sha256 = "sha256-zTbPS2AzU8DHECSKm9LcgS0GECzQAhU02DkhSFzxbuY=";
     };
   };
 }
