@@ -31,18 +31,17 @@ jobs:
           git_commit_gpgsign: true
           git_committer_name:  Joaqim's GitHub Bot
           git_committer_email: joaqim-ci-bot@joaqim.xyz 
-      - run: nix flake update --commit-lock-file
       - run: |
           export LANG=en_US.UTF-8
           echo -e '[keys]\ngithub = "${{ secrets.CI_BOT_GH_REPO_TOKEN }}"' > /tmp/github-key.toml
-          nix run .#commit-nvfetcher -L
+          task update
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         id: cpr
         with:
           branch: bot/update
           delete-branch: true
-          title: "chore(deps): Update flake inputs"
+          title: "chore(deps): Update flake inputs and sources in ./pkgs "
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v3

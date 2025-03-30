@@ -23,7 +23,7 @@ tasks:
       - 'pkgs/**/*'
       - 'secrets/**/*'
     cmds:
-      - if [ -f '/etc/NIXOS' ]; then sudo nixos-rebuild switch --flake ".#$(hostname)" --show-trace; fi
+      - if [ -f '/etc/NIXOS' ]; then nixos-rebuild switch --use-remote-sudo --flake ".#$(hostname)" --show-trace; fi
 
   home-manager:
     aliases:
@@ -34,7 +34,7 @@ tasks:
       - 'nixos'
     cmds:
       # Using hostname simplify flake option, see https://discourse.nixos.org/t/get-hostname-in-home-manager-flake-for-host-dependent-user-configs/18859/2
-      # However prefer to use special ENV here for my current use. It is useful if sharing same config for similar env but on different devices
+      # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
       - nix run '.#home-manager' -- --dry-run switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
 
   test:
@@ -47,7 +47,9 @@ tasks:
   update:
     desc: Bump dependencies
     cmds:
-      - nix flake update --commit-lock-file
+      - |- # https://stackoverflow.com/a/33149072
+        nix flake update --commit-lock-file --option commit-lockfile-summary "chore(deps): Update flake inputs"
+      - nix run .#commit-nvfetcher -L
 
   help:
     desc: List available tasks
