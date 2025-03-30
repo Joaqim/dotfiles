@@ -6,3 +6,4 @@
 *.qcow2
 result
 .decrypted~secrets.yaml
+.task
