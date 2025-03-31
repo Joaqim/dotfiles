@@ -5,3 +5,14 @@ Will become:
     type = "app";
     program = "/nix/store/<path-to-executable>"
 };
+
+# TODO:
+```
+Improve importing shell scripts by automating import of <application-name>/<script>.sh with `writeShellScript`
+```
+
+```nix
+toString (
+    writeShellScript "<application-name>" builtins.readFile <script>.sh
+)
+```
