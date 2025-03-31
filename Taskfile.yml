@@ -54,8 +54,7 @@ tasks:
   update:
     desc: Bump dependencies
     cmds:
-      - |- # https://stackoverflow.com/a/33149072
-        nix flake update --commit-lock-file --option commit-lockfile-summary "chore(deps): Update flake inputs"
+      - nix run .#update-flake-inputs   
       - nix run .#commit-nvfetcher -L
 
   help:
