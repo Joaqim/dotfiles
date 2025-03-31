@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '0 2 * * 6'
   workflow_dispatch:
+env: 
+  LANG: en_US.UTF-8
 jobs:
   update:
     name: Update flake inputs
@@ -32,7 +34,6 @@ jobs:
           git_committer_name:  Joaqim's GitHub Bot
           git_committer_email: joaqim-ci-bot@joaqim.xyz 
       - run: |
-          export LANG=en_US.UTF-8
           echo -e '[keys]\ngithub = "${{ secrets.CI_BOT_GH_REPO_TOKEN }}"' > /tmp/github-key.toml
           task update
       - name: Create Pull Request
