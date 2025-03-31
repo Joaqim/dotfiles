@@ -14,6 +14,7 @@ tasks:
     sources:
       - 'flake.nix'
       - 'flake.lock'
+      - '.env'
       - 'apps/**/*'
       - 'flake/*'
       - 'hosts/**/*'
@@ -26,10 +27,19 @@ tasks:
       - if [ -f '/etc/NIXOS' ]; then nixos-rebuild switch --use-remote-sudo --flake ".#$(hostname)" --show-trace; fi
 
   home-manager:
-    aliases:
-      - hm
-      - apply
+    aliases: [hm apply]
     desc: Enable home-manager config for current user and device
+    sources:
+      - 'flake.nix'
+      - 'flake.lock'
+      - '.env'
+      - 'flake/*'
+      - 'hosts/home/**/*'
+      - 'modules/home/**/*'
+      - 'modules/nixos/home/default.nix'
+      - 'overlays/**/*'
+      - 'pkgs/**/*'
+      - 'secrets/**/*'
     deps:
       - 'nixos'
     cmds:
@@ -38,15 +48,13 @@ tasks:
       - nix run '.#home-manager' -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
 
   home-manager-news:
-    aliases:
-      - news
+    aliases: [news]
     desc: Show home manager news
     cmds:
-      - home-manager news --flake ".#${USER}@${HM_HOST_SLUG}"
+      - nix run '.#home-manager' -- news --flake ".#${USER}@${HM_HOST_SLUG}"
 
   test:
-    aliases:
-      - dry-activate
+    aliases: [dry-activate]
     desc: Make sure NixOS and/or home-manager will work for current user and device
     cmds:
       - nix run '.#dry-activate'
