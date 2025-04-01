@@ -10,7 +10,7 @@
     ...
   }: {
     apps = import "${self}/apps" {
-      inherit lib pkgs inputs';
+      inherit lib pkgs inputs' self;
       flake-inputs = inputs;
     };
   };

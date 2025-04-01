@@ -3,19 +3,15 @@
   inputs',
   lib,
   pkgs,
+  self,
 }: let
   inherit (flake-inputs.flake-utils.lib) mkApp;
-  # Automatically import all apps in the directory
-  files = builtins.readDir ./.;
-  # Exclude this file and docs
-  apps = builtins.removeAttrs files ["default.nix" "apps.md"];
+  inherit (self.lib.my) mapModules;
 in
-  builtins.mapAttrs (
-    name: _: (mkApp {
+  mapModules ./. (app:
+    mkApp {
       drv =
-        import "${./.}/${name}"
+        import "${app}"
         (pkgs
           // {inherit inputs' lib;});
     })
-  )
-  apps
