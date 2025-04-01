@@ -8,11 +8,12 @@ Will become:
 
 # TODO:
 ```
-Improve importing shell scripts by automating import of <application-name>/<script>.sh with `writeShellScript`
+Improve importing shell scripts by automating import of <application-name>/<script>.sh with `writeShellApplication`
 ```
 
 ```nix
-toString (
-    writeShellScript "<application-name>" builtins.readFile <script>.sh
-)
+writeShellApplication {
+    name = "<application-name>";
+    text = builtins.readFile <script>.sh;
+}
 ```
