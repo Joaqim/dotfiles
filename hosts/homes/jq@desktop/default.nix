@@ -16,7 +16,6 @@
     packages.additionalPackages = builtins.attrValues {
       inherit
         (pkgs)
-        cataclysm-dda-git
         fluent-reader
         headsetcontrol
         jellyfin-mpv-shim
@@ -24,8 +23,6 @@
         ;
       inherit
         (pkgs.jqp)
-        godotjs
-        undertaker141
         mpv-history-launcher
         yt-dlp
         ;
