@@ -1,6 +1,7 @@
 {
   lib,
   self,
+  inputs,
   ...
 }: {
   perSystem = {
@@ -10,6 +11,7 @@
   }: {
     apps = import "${self}/apps" {
       inherit lib pkgs inputs';
+      flake-inputs = inputs;
     };
   };
 }
