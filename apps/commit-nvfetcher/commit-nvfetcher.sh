@@ -5,7 +5,7 @@ set -eu
 TMPDIR="$(mktemp -d -t nvfetcher-XXXXXX)"
 
 cd "$(git rev-parse --show-toplevel)/pkgs" || exit 1
-nvfetcher -l "${TMPDIR}/changelog"
+nvfetcher -l "${TMPDIR}/changelog" "$@"
 cat <<EOF > "${TMPDIR}/commit-summary"
 chore(nvfetcher): Update sources.nix
 

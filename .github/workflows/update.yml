@@ -36,7 +36,8 @@ jobs:
           git_committer_email: joaqim-ci-bot@joaqim.xyz 
       - run: |
           echo -e '[keys]\ngithub = "${{ secrets.CI_BOT_GH_REPO_TOKEN }}"' > /tmp/github-key.toml
-          task update
+          nix run .#update-flake-inputs
+          nix run .#commit-nvfetcher -L -- -k /tmp/github-key.toml
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         id: cpr

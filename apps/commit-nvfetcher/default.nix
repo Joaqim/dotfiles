@@ -1,14 +1,18 @@
 {
   inputs',
-  lib,
-  self',
+  pkgs,
   ...
 }: let
-  inherit (inputs'.nixpkgs.legacyPackages) writeShellScript;
-  commit-nvfetcher = lib.getExe self'.packages.commit-nvfetcher;
+  inherit (pkgs) writeShellApplication git mktemp;
 in
-  toString (
-    writeShellScript "commit-nvfetcher" ''
-      ${commit-nvfetcher} -k /tmp/github-key.toml
-    ''
-  )
+  writeShellApplication {
+    name = "commit-nvfetcher";
+
+    runtimeInputs = [
+      inputs'.nvfetcher.packages.default
+      git
+      mktemp
+    ];
+
+    text = builtins.readFile ./commit-nvfetcher.sh;
+  }
