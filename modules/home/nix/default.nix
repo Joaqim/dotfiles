@@ -25,6 +25,8 @@
       inherit (inputs) nixpkgs;
     })
   ];
+  selfHostedAddress = "http://desktop:5000";
+  selfHostedPublicKey = "cache.desktop.org-1:q7OuFth/hRz1k/+PK3Uh3SByMWB3Xh8zDAUXF1pRv4Q=";
 in {
   options.my.home.nix = with lib; {
     enable = my.mkDisableOption "nix configuration";
@@ -87,19 +89,19 @@ in {
       };
     })
 
-    /*
-       (lib.mkIf cfg.cache.selfHosted {
+    (lib.mkIf cfg.cache.selfHosted {
       nix = {
         settings = {
           extra-substituters = [
+            selfHostedAddress
           ];
 
           extra-trusted-public-keys = [
+            selfHostedPublicKey
           ];
         };
       };
     })
-    */
 
     (lib.mkIf cfg.inputs.addToRegistry {
       nix.registry = let
