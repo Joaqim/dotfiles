@@ -51,6 +51,25 @@ tasks:
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
       - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
 
+  home-manager-only:
+    aliases: 
+      - hm-only
+    desc: Enable home-manager config for current user and device
+    sources:
+      - 'flake.nix'
+      - 'flake.lock'
+      - '.env'
+      - 'flake/*'
+      - 'hosts/home/**/*'
+      - 'modules/home/**/*'
+      - 'modules/nixos/home/**/*'
+      - 'overlays/**/*'
+      - 'pkgs/**/*'
+      - 'secrets/**/*'
+    cmds:
+      # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
+      - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
+
   test:
     aliases: 
       - dry-activate
