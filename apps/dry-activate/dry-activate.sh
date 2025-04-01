@@ -8,8 +8,8 @@ if [ -f '/etc/NIXOS' ]; then
 fi
 
 _HOME_CONF=".#$USER"
-if [ ! -z "$HM_HOST_SLUG" ]; then
+if [ -n "$HM_HOST_SLUG" ]; then
     _HOME_CONF+="@$HOSTNAME"
 fi
 
-nix run '.#home-manager' -- switch --dry-run -b backup --show-trace --flake $_HOME_CONF
+nix run '.#home-manager' -- switch --dry-run -b backup --show-trace --flake "$_HOME_CONF"
