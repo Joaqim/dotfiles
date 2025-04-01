@@ -6,7 +6,7 @@
     calibre.enable = true;
     discord.enable = true;
     firefox.enable = true;
-    flameshot.enable = true;
+    flameshot.enable = false;
     gaming.enable = true;
     kde.enable = true;
     terminal.program = "kitty";
@@ -19,7 +19,7 @@
         cataclysm-dda-git
         fluent-reader
         headsetcontrol
-        nexusmods-app
+        jellyfin-mpv-shim
         nh
         ;
       inherit
@@ -27,6 +27,7 @@
         godotjs
         undertaker141
         mpv-history-launcher
+        yt-dlp
         ;
       inherit
         (pkgs.nur.repos.nltch)
