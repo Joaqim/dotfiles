@@ -1,0 +1,60 @@
+debug = false
+config_version = 1
+blacklisted_games = []
+
+[steam]
+create_collections = true
+optimize_for_big_picture = false
+stop_steam = false
+start_steam = false
+
+[bottles]
+enabled = true
+
+[epic_games]
+enabled = true
+safe_launch = []
+
+[flatpak]
+enabled = false
+
+[gog]
+enabled = false
+create_symlinks = true
+
+[heroic]
+enabled = true
+launch_games_through_heroic = []
+default_launch_through_heroic = true
+
+[itch]
+enabled = true
+create_symlinks = true
+
+[legendary]
+enabled = true
+
+[lutris]
+enabled = true
+executable = "lutris"
+flatpak = false
+flatpak_image = "net.lutris.Lutris"
+installed = true
+
+[origin]
+enabled = false
+
+[uplay]
+enabled = false
+
+[minigalaxy]
+enabled = true
+create_symlinks = false
+
+[steamgrid_db]
+enabled = true
+#auth_key="" # This value is will be appended at the bottom
+prefer_animated = false
+banned_images = []
+only_download_boilr_images = false
+allow_nsfw = false
