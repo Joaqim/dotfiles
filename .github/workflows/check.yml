@@ -18,6 +18,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@v5
+        with:
+          send-statistics: false
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v4
       - name: Check Nix flake
