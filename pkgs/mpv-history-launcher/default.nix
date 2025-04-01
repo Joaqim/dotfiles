@@ -1,23 +1,28 @@
 {
-  pkgs,
+  makeDesktopItem,
+  stdenvNoCC,
+  writeScriptBin,
+  kdePackages,
+  shellcheck,
+  makeWrapper,
   lib,
   ...
 }: let
   # https://ertt.ca/nix/shell-scripts/
   # https://github.com/schlichtanders/nixos-personal/blob/7ec6fe5e9151b3d0cc5be7861842311b5e9ec7cc/overlays/overlay-tiddlydesktop.nix
   name = "mpv-history-launcher";
-  script = (pkgs.writeScriptBin name (builtins.readFile ./mpv-history-launcher.sh)).overrideAttrs (old: {
+  script = (writeScriptBin name (builtins.readFile ./mpv-history-launcher.sh)).overrideAttrs (old: {
     buildCommand = "${old.buildCommand}\n patchShebangs $out";
   });
-  dependencies = with pkgs; [kdePackages.kdialog];
+  dependencies = [kdePackages.kdialog];
 in
-  pkgs.stdenvNoCC.mkDerivation rec {
+  stdenvNoCC.mkDerivation rec {
     inherit name;
     pname = name;
     phases = ["installPhase"];
-    nativeBuildInputs = with pkgs; [shellcheck makeWrapper];
+    nativeBuildInputs = [shellcheck makeWrapper];
 
-    desktopItem = pkgs.makeDesktopItem {
+    desktopItem = makeDesktopItem {
       name = "mpv History Launcher";
       desktopName = "mpv History Launcher";
       exec = "${pname}";
@@ -39,4 +44,9 @@ in
       mkdir -p "$out/share/applications"
       ln -s "${desktopItem}"/share/applications/* "$out/share/applications/"
     '';
+
+    meta = {
+      mainProgram = "${pname}";
+      description = "Simple KDialog to select from recent mpv history.";
+    };
   }
