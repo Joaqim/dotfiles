@@ -1,10 +1,10 @@
 {
-  flake,
+  inputs,
   config,
   ...
 }: let
   user = config.my.user.name;
-  inherit (flake.inputs) jellyfin-plugins;
+  inherit (inputs) jellyfin-plugins;
 in {
   imports = [jellyfin-plugins.nixosModules.jellyfin-plugins];
   services = {

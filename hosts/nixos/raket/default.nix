@@ -1,10 +1,9 @@
 {
   inputs,
   lib,
-  flake,
   ...
 }: let
-  inherit (flake) self;
+  inherit (inputs) self;
 in {
   imports = [
     # Old Configurations

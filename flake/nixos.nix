@@ -1,5 +1,4 @@
 {
-  config,
   self,
   inputs,
   lib,
@@ -34,11 +33,6 @@
         inherit (self) lib;
         # Inject inputs to use them in global registry
         inherit inputs;
-
-        # Might not be needed, is a neat bundle though
-        flake = {
-          inherit config inputs self;
-        };
       };
     };
 in {
