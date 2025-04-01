@@ -26,8 +26,8 @@
       inherit (inputs) nixpkgs;
     })
   ];
-  selfHostedAddress = "desktop:5000";
-  selfHostedPublicKey = "$(${pkgs.coreutils}/bin/cat ${config.sops.secrets."public_key/cache-desktop-org".path} | ${pkgs.findutils}/bin/xargs)";
+  selfHostedAddress = "http://desktop:5000";
+  selfHostedPublicKey = "cache.desktop.org-1:q7OuFth/hRz1k/+PK3Uh3SByMWB3Xh8zDAUXF1pRv4Q=";
 in {
   options.my.system.nix = with lib; {
     enable = my.mkDisableOption "nix configuration";
