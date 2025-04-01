@@ -1,5 +1,4 @@
 {
-  self',
   inputs',
   lib,
   pkgs,
@@ -15,8 +14,10 @@
 in
   builtins.mapAttrs (
     name: _:
-      mkApp (import "${./.}/${name}" {
-        inherit self' inputs' lib pkgs;
-      })
+      mkApp (
+        import "${./.}/${name}"
+        (pkgs
+          // {inherit inputs' lib;})
+      )
   )
   apps
