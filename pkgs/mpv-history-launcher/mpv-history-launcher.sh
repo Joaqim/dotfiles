@@ -11,9 +11,9 @@ while IFS= read -r line; do
         runtime="${BASH_REMATCH[6]}"
         current_time_in_sec=$(date -d "$current_time" +%s)
         runtime_in_sec=$(date -d "$runtime" +%s)
-        _EPSILON_IN_SEC=300 # 5 minutes
+        _THRESHOLD_IN_SEC=300 # 5 minutes
 
-        if [ $((runtime_in_sec - current_time_in_sec)) -lt $_EPSILON_IN_SEC ]; then
+        if [ $((runtime_in_sec - current_time_in_sec)) -lt $_THRESHOLD_IN_SEC ]; then
             continue
         fi
         options+=("${BASH_REMATCH[1]}")
