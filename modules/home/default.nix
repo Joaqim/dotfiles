@@ -35,7 +35,7 @@
     ./pager
     ./power-alert
     ./qbittorrent
-    #./secrets
+    ./secrets
     #./ssh
     ./starship
     ./terminal
