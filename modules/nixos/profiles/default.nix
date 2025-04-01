@@ -6,5 +6,6 @@
     ./fcitx5
     #./laptop
     ./plasma
+    ./steam-deck
   ];
 }
