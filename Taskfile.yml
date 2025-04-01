@@ -10,6 +10,8 @@ tasks:
       - help
 
   nixos:
+    aliases:
+      - switch
     desc: Enable NixOS config for current device
     sources:
       - 'flake.nix'
@@ -24,10 +26,13 @@ tasks:
       - 'pkgs/**/*'
       - 'secrets/**/*'
     cmds:
-      - if [ -f '/etc/NIXOS' ]; then nixos-rebuild switch --use-remote-sudo --flake ".#$(hostname)" --show-trace; fi
+      - |-
+        [ -f "/etc/NIXOS" ] && nixos-rebuild switch --use-remote-sudo --flake ".#$(hostname)" --show-trace
 
   home-manager:
-    aliases: [hm apply]
+    aliases: 
+      - apply
+      - hm
     desc: Enable home-manager config for current user and device
     sources:
       - 'flake.nix'
@@ -41,23 +46,36 @@ tasks:
       - 'pkgs/**/*'
       - 'secrets/**/*'
     deps:
-      - 'nixos'
+      - nixos
     cmds:
-      # Using hostname simplify flake option, see https://discourse.nixos.org/t/get-hostname-in-home-manager-flake-for-host-dependent-user-configs/18859/2
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
-      - nix run '.#home-manager' -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
-
-  home-manager-news:
-    aliases: [news]
-    desc: Show home manager news
-    cmds:
-      - nix run '.#home-manager' -- news --flake ".#${USER}@${HM_HOST_SLUG}"
+      - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
 
   test:
-    aliases: [dry-activate]
+    aliases: 
+      - dry-activate
     desc: Make sure NixOS and/or home-manager will work for current user and device
+    sources:
+      - 'flake.nix'
+      - 'flake.lock'
+      - '.env'
+      - 'apps/**/*'
+      - 'flake/*'
+      - 'hosts/**/*'
+      - 'lib/*'
+      - 'modules/**/*'
+      - 'overlays/**/*'
+      - 'pkgs/**/*'
+      - 'secrets/**/*'
     cmds:
-      - nix run '.#dry-activate'
+      - nix run .#dry-activate
+
+  home-manager-news:
+    aliases: 
+      - news
+    desc: Show home-manager news
+    cmds:
+      - nix run .#home-manager -- news --flake ".#${USER}@${HM_HOST_SLUG}"
 
   check:
     desc: Check flake for errors
