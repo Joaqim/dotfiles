@@ -69,10 +69,10 @@
   };
   v8zip = {
     pname = "v8zip";
-    version = "v8_12.9.202.28_r14_vs2022";
+    version = "v8_12.4.254.21_r13";
     src = fetchurl {
-      url = "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/v8_12.9.202.28_r14_vs2022/v8_12.9.202.28_r14_vs2022.zip";
-      sha256 = "sha256-aOymA+4fx0nSgHXHbxLDqjka0qRSADjY4BR3so936+Y=";
+      url = "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/v8_12.4.254.21_r13/v8_12.4.254.21_r13.zip";
+      sha256 = "sha256-v+0iW9kveu3tD/QFEX+wKhZ3vbmSTVVCErY1LYfW904=";
     };
   };
   yt-dlp = {

@@ -25,6 +25,9 @@
       cp -r ${GodotJS_src}/* ./modules/GodotJS/
       unzip ${v8zip} -d ./modules/GodotJS
       cp -r ${godot_src}/* .
+
+      mkdir .git
+      echo "${commitHash}" > .git/HEAD
     '';
     installPhase = ''
       mkdir -p "$out"
@@ -32,10 +35,10 @@
     '';
   };
 in
-  pkgs.godot_4.overrideAttrs (old: {
-    inherit (sources.godot) pname version;
-    inherit commitHash;
-
+  pkgs.godot_4_3.overrideAttrs
+  (old: {
+    inherit (sources.godot) version;
+    pname = "godot4-js";
     src = godot_src_with_godotjs;
     nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.mold];
   })

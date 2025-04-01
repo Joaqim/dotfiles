@@ -31,7 +31,7 @@ src.github = "godotjs/GodotJS"
 fetch.github = "godotjs/GodotJS"
 
 [v8zip]
-src.github = "ialex32x/GodotJS-Dependencies"
+src.manual = " v8_12.4.254.21_r13"
 fetch.url = "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/$ver/$ver.zip"
 
 [undertaker141]
