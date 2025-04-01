@@ -59,6 +59,11 @@ tasks:
     cmds:
       - nix run '.#dry-activate'
 
+  check:
+    desc: Check flake for errors
+    cmds:
+      - nix flake check -L
+
   update:
     desc: Bump dependencies
     cmds:
