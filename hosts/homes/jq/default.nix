@@ -1,7 +1,7 @@
 {lib, ...}: {
   home = rec {
     file."./justfile".source = lib.mkDefault ./justfile;
-    username = "deck";
+    username = "jq";
     homeDirectory = "/home/${username}";
   };
 
