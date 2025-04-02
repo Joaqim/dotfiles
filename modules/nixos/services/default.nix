@@ -20,6 +20,7 @@
     #./lohr
     #./matrix
     #./mealie
+    ./minecraft-vault-hunters-server
     #./miniflux
     #./monitoring
     #./navidrome

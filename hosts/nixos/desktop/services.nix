@@ -6,6 +6,7 @@
   my.services = {
     atuin-server.enable = true;
     fail2ban.enable = true;
+    minecraft-vault-hunters-server.enable = true;
     nix-cache = {
       enable = true;
       secretKeyFile = config.sops.secrets."private_key/cache-desktop-org".path;
