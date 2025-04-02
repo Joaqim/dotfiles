@@ -84,6 +84,7 @@
   homes = {
     "jq@desktop" = "x86_64-linux";
     "wilton@raket" = "x86_64-linux";
+    "github-actions@generic" = "x86_64-linux";
   };
 in {
   perSystem = {system, ...}: {
