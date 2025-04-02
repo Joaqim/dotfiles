@@ -45,7 +45,6 @@
 
         # Themes
         ../home-manager/modules/cursor.nix
-        ../home-manager/modules/gtk.nix
         ../home-manager/modules/misc/themes.nix
       ];
     }

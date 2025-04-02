@@ -8,6 +8,7 @@
     firefox.enable = true;
     flameshot.enable = false;
     gaming.enable = true;
+    gtk.enable = true;
     kde.enable = true;
     terminal.program = "kitty";
     mpv.enable = true;

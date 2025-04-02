@@ -21,7 +21,7 @@
     #./gdb
     ./git
     ./gpg
-    #./gtk
+    ./gtk
     ./htop
     ./jq
     ./kde
