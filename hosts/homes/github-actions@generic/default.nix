@@ -4,7 +4,9 @@
     homeDirectory = "/home/${username}";
   };
 
+  targets.genericLinux.enable = true;
+
   my.home = {
-    git.disable = true;
+    git.enable = false;
   };
 }
