@@ -17,12 +17,13 @@ in {
     ./alacritty
     ./kitty
     ./termite
+    ./wezterm
   ];
 
   options.my.home = with lib; {
     terminal = {
       program = mkOption {
-        type = with types; nullOr (enum ["alacritty" "kitty" "termite"]);
+        type = with types; nullOr (enum ["alacritty" "kitty" "termite" "wezterm"]);
         default = null;
         example = "termite";
         description = "Which terminal to use for home session";

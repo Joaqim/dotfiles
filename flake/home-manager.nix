@@ -18,36 +18,6 @@
       # Enable home-manager
       programs.home-manager.enable = true;
     }
-    {
-      imports = [
-        # Old Configurations
-
-        ## Commandline
-        ../home-manager/modules/misc/android.nix
-        ../home-manager/modules/misc/command-line.nix
-        ../home-manager/modules/misc/virtualisation.nix
-        ../home-manager/modules/misc/yazi.nix
-
-        ../home-manager/modules/playerctl.nix
-
-        ../home-manager/modules/syncthing.nix
-        ../home-manager/modules/wezterm.nix
-        ../home-manager/modules/yazi.nix
-
-        ../home-manager/modules/zellij.nix
-        ../home-manager/modules/zoxide.nix
-
-        # Extras
-        ../home-manager/modules/misc/gnome-extras.nix
-
-        # File Management
-        ../home-manager/modules/misc/file-management.nix
-
-        # Themes
-        ../home-manager/modules/cursor.nix
-        ../home-manager/modules/misc/themes.nix
-      ];
-    }
   ];
 
   mkHome = name: system:
