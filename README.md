@@ -1,7 +1,7 @@
 # NixOS Config
 
 [![Nix Status](https://github.com/Joaqim/dotfiles/actions/workflows/check.yml/badge.svg?branch=main)](https://github.com/Joaqim/dotfiles/actions/workflows/check.yml?query=branch%3Amain+)
-
+[![Home Manager Status](https://github.com/Joaqim/dotfiles/actions/workflows/ci-home.yml/badge.svg?branch=main)](https://github.com/Joaqim/dotfiles/actions/workflows/ci-home.yml?query=branch%3Amain+)
 
 ## Resources
 

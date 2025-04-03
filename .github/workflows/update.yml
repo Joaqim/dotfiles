@@ -1,4 +1,4 @@
-name: Update Nix Flake Inputs and nvfetcher sources
+name: 🤖🆙❄️
 on:
   schedule:
     - cron: '0 2 * * 6'

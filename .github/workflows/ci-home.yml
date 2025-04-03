@@ -1,4 +1,6 @@
-name: Check home manager configuration
+# Adapted from [1]:
+# [1]: https://github.com/kachick/dotfiles/blob/main/.github/workflows/ci-home.yml
+name: 🏠
 on:
   push:
     branches: [main]
