@@ -41,4 +41,5 @@ in
     pname = "godot4-js";
     src = godot_src_with_godotjs;
     nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.mold];
+    meta.description = "Free and Open Source 2D and 3D game engine - bundled with GodotJS";
   })
