@@ -148,32 +148,16 @@ jobs:
           podman exec --user=user "$container_id" cat /etc/nix/nix.conf
           podman exec --user=user --workdir='/home/user' -it "$container_id" '/home/user/.nix-profile/bin/nu' -c 'ls -a ~/ | get name | to text; ls -a ~/.config | get name | to text'
 
-      - name: Log in to the Container registry
-        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
-        if: ${{ github.actor == github.repository_owner }}
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ github.token }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
-        with:
-          images: ghcr.io/${{ github.repository_owner }}/home
-          tags: |
-            ${{ needs.get-meta.outputs.special_tag }}
-            ${{ needs.get-meta.outputs.ref_tag }}
-            ${{ needs.get-meta.outputs.timestamp_tag }}
-
       - name: Push To ghcr.io
         id: push-to-ghcr
         if: ${{ github.actor == github.repository_owner }}
-        uses: docker/build-push-action@v6
+        uses: redhat-actions/push-to-registry@5ed88d269cf581ea9ef6dd6806d01562096bee9c # v2.8
         with:
-          push: true
-          labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ steps.meta.outputs.tags }}
+          image: home
+          tags: ${{ needs.get-meta.outputs.special_tag }} ${{ needs.get-meta.outputs.ref_tag }} ${{ needs.get-meta.outputs.timestamp_tag }}
+          registry: ghcr.io/joaqim
+          username: ${{ github.repository_owner }}
+          password: ${{ github.token }}
 
       - name: Inspect the package
         id: inspect-package
