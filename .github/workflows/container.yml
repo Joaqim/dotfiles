@@ -147,7 +147,9 @@ jobs:
           sleep 2 # Wait for the systemd to be ready
           podman exec --user=user "$container_id" cat /etc/nix/nix.conf
           podman exec --user=user --workdir='/home/user' -it "$container_id" '/home/user/.nix-profile/bin/nu' -c 'ls -a ~/ | get name | to text; ls -a ~/.config | get name | to text'
-
+      - name: lowercase github.repository_owner # Podman fails to push to ghcr.io/${{ github.repository_owner }} if repository_owner is not lowercase: "Error: Invalid image name"
+        run: |
+          echo "REGISTRY_OWNER=${GITHUB_REPOSITORY_OWNER@L}" >> ${GITHUB_ENV}
       - name: Push To ghcr.io
         id: push-to-ghcr
         if: ${{ github.actor == github.repository_owner }}
@@ -155,7 +157,7 @@ jobs:
         with:
           image: home
           tags: ${{ needs.get-meta.outputs.special_tag }} ${{ needs.get-meta.outputs.ref_tag }} ${{ needs.get-meta.outputs.timestamp_tag }}
-          registry: ghcr.io/joaqim
+          registry: ghcr.io/${{ env.REGISTRY_OWNER }}
           username: ${{ github.repository_owner }}
           password: ${{ github.token }}
 
