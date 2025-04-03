@@ -26,7 +26,7 @@
       inherit
         (pkgs.jqp)
         mpv-history-launcher
-        yt-dlp
+        yt-dlp-git
         ;
       inherit
         (pkgs.nur.repos.nltch)

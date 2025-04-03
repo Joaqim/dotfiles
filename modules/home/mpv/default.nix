@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.my.home.mpv;
-  inherit (pkgs.jqp) yt-dlp;
+  inherit (pkgs.jqp) yt-dlp-git;
 in {
   options.my.home.mpv = with lib; {
     enable = mkEnableOption "mpv configuration";
@@ -49,7 +49,7 @@ in {
           sub-font = "Noto Color Emoji";
           vo = "gpu-next";
           # NOTE: Needed to make sure that mpv uses the correct yt-dlp
-          script-opts = "ytdl_hook-ytdl_path=${lib.getExe yt-dlp}";
+          script-opts = "ytdl_hook-ytdl_path=${lib.getExe yt-dlp-git}";
           watch-later-options = "start,volume,mute,fullscreen,sub-file,playlist,user-data/skipsilence/enabled,user-data/skipsilence/enabled,user-data/skipsilence/base_speed,speed";
         };
         scriptOpts = {
@@ -60,7 +60,7 @@ in {
 
       yt-dlp = {
         enable = true;
-        package = yt-dlp;
+        package = yt-dlp-git;
 
         # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#sponsorblock-options
         extraConfig = "--cookies-from-browser=firefox";
