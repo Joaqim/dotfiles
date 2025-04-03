@@ -25,12 +25,10 @@ jobs:
           send-statistics: false
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@v4
-      - name: Print some dotfiles overviews
-        run: |
-          </etc/nix/nix.conf
-          ls -alh ~
-      - run: nix develop --command echo 'This step should be done before any other "nix develop" steps because of measuring Nix build time'
       - name: Inspect flake outputs
         run: |
+          echo "Available packages:"
           nix flake show . --json 2>/dev/null | jq '.packages | ."x86_64-linux" | to_entries | map("\(.key) # \(.value.description)")'
+          echo "Available overlays:"
+          nix flake show . --json 2>/dev/null | jq '.overlays | to_entries | map(.key)'
       - run: nix flake check
