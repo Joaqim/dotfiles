@@ -1,7 +1,10 @@
 {lib, ...}: {
-  my.user = {
-    name = "runner";
-    fullName = "Github Action Runner";
+  my = {
+    user = {
+      name = "runner";
+      fullName = "Github Action Runner";
+    };
+    secrets.enable = false;
   };
 
   networking.hostName = lib.mkDefault "generic";
