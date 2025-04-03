@@ -7,9 +7,6 @@ if [ -f '/etc/NIXOS' ]; then
     nixos-rebuild build --flake ".#$(hostname)" --show-trace
 fi
 
-_HOME_CONF=".#$USER"
-if [ -n "$HM_HOST_SLUG" ]; then
-    _HOME_CONF+="@$HOSTNAME"
-fi
+_HOME_CONF=".#$USER@${HM_HOST_SLUG:-HOSTNAME}"
 
 nix run '.#home-manager' -- switch --dry-run -b backup --show-trace --flake "$_HOME_CONF"
