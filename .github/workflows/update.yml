@@ -53,9 +53,6 @@ jobs:
 
               [1]: https://github.com/berberman/nvfetcher
               [2]: https://github.com/peter-evans/create-pull-request
-          labels: |
-            automated pr
-            dependencies
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v3
