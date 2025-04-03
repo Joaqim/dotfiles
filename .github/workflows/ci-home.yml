@@ -4,19 +4,19 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/ci-home.yml'
-      - '**.nix'
-      - 'apps/**'
       - 'flake.*'
-      - 'pkgs/**'
-      - 'Taskfile.yml'
+      - 'flake/home-manager.nix'
+      - 'hosts/home/github-actions@generic/**/*'
+      - 'modules/home/**/*'
+      - 'modules/nixos/home/**/*'
   pull_request:
     paths:
       - '.github/workflows/ci-home.yml'
-      - '**.nix'
-      - 'apps/**'
       - 'flake.*'
-      - 'pkgs/**'
-      - 'Taskfile.yml'
+      - 'flake/home-manager.nix'
+      - 'hosts/home/github-actions@generic/**/*'
+      - 'modules/home/**/*'
+      - 'modules/nixos/home/**/*'
   workflow_dispatch:
 
 jobs:
