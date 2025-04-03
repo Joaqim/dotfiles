@@ -1,0 +1,48 @@
+name: Check home manager configuration
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ci-home.yml'
+      - '**.nix'
+      - 'apps/**'
+      - 'flake.*'
+      - 'pkgs/**'
+      - 'Taskfile.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/ci-home.yml'
+      - '**.nix'
+      - 'apps/**'
+      - 'flake.*'
+      - 'pkgs/**'
+      - 'Taskfile.yml'
+  workflow_dispatch:
+
+jobs:
+  home-manager:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: DeterminateSystems/nix-installer-action@v16
+      - name: Print some dotfiles overviews
+        run: |
+          </etc/nix/nix.conf
+          ls -alh ~
+      - uses: actions/checkout@v4
+      - run: nix develop --command echo 'This step should be done before any other "nix develop" steps because of measuring Nix build time'
+      # https://www.reddit.com/r/Nix/comments/1443k3o/comment/jr9ht5g
+      - run: mkdir -p ~/.local/state/nix/profiles
+      - run: |
+            nix develop --command task ci-home
+      - name: Backup generated config
+        run: |
+            nix run .#archive-home-files home-manager-generation-home-files
+      - name: Upload artifact
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
+        with:
+            name: 'home-files-${{ github.sha }}-${{ runner.os }}'
+            path: home-manager-generation-home-files.tar.gz
+            if-no-files-found: 'error'

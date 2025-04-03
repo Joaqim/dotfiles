@@ -89,6 +89,11 @@ tasks:
     cmds:
       - nix run .#dry-activate
 
+  ci-home:
+    desc: Make sure home-manager will work for generic user and devices
+    cmds:
+      - nix run .#home-manager -- switch -b backup --flake '.#github-actions@generic'
+
   home-manager-news:
     aliases: 
       - news
