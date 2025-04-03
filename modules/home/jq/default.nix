@@ -19,6 +19,7 @@ in {
       strings = "0;32";
       arrays = "1;39";
       objects = "1;39";
+      objectKeys = "1;34";
     };
   };
 }
