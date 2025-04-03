@@ -56,6 +56,7 @@
     "github-actions@generic" = "x86_64-linux";
     "jq@desktop" = "x86_64-linux";
     "jq@generic" = "x86_64-linux";
+    "user@container" = "x86_64-linux";
     "wilton@raket" = "x86_64-linux";
   };
 in {

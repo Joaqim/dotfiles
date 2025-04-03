@@ -1,0 +1,21 @@
+# https://github.com/kachick/containers
+FROM ghcr.io/kachick/ubuntu-24.04-nix-systemd:latest@sha256:c922107600adf749ebd176b68b4710e50d40019a00b9eb5f4e5a40f6422cba5a
+
+LABEL org.opencontainers.image.source=https://github.com/Joaqim/dotfiles
+LABEL org.opencontainers.image.description="Example of Joaqim/dotfiles"
+LABEL org.opencontainers.image.licenses=MIT
+
+USER user
+# Docker/Podman doesn't set $USER in USER instruction, and it makes failure in home-manager activation
+# https://stackoverflow.com/questions/54411218/docker-why-isnt-user-environment-variable-set
+ENV USER=user
+
+RUN mkdir -p ~/.local/state/nix/profiles
+
+# Don't use /tmp, it removes in first run
+COPY ./ /provisioner/dotfiles/
+COPY ./containers/needs_systemd.bash /provisioner/needs_systemd.bash
+
+# Should back to original of Joaqim/ubuntu-nix-systemd, we need to run systemd first
+USER root
+CMD [ "/bin/systemd", "--system" ]

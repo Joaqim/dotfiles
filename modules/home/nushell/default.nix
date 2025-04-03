@@ -7,7 +7,7 @@
   cfg = config.my.home.nushell;
 in {
   options.my.home.nushell = with lib; {
-    enable = mkEnableOption "nushell configuration";
+    enable = my.mkDisableOption "nushell configuration";
   };
 
   config = lib.mkIf cfg.enable {
