@@ -9,6 +9,7 @@
   my.home = {
     git.enable = false;
     gpg.enable = false;
+    nix.enable = false;
     secrets.enable = false;
   };
 }
