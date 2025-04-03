@@ -47,7 +47,7 @@
       icon = ./icons/kn.png;
       urls = [{template = "https://knaben.org/search/{searchTerms}";}];
     };
-    "Reddit" = {
+    "reddit" = {
       definedAliases = ["@re"];
       icon = ./icons/re.png;
       urls = [{template = "https://www.old.reddit.com/search/?q={searchTerms}";}];
@@ -62,7 +62,7 @@
       icon = ./icons/wi.png;
       urls = [{template = "https://en.wikipedia.org/wiki/{searchTerms}";}];
     };
-    "YouTube" = {
+    "youtube" = {
       definedAliases = ["@yo"];
       icon = ./icons/yo.png;
       urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
@@ -113,10 +113,10 @@
     "Library Genesis"
     "The Pirate Bay"
     "AnimeTosho"
-    "Reddit"
+    "reddit"
     "VSTorrent"
     "Wikipedia"
-    "YouTube"
+    "youtube"
     "1337x"
     "Brave"
     "google"
