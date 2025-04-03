@@ -47,11 +47,19 @@ in {
         enable = true;
         useExternalDrives = true;
       };
-      services.qbittorrent-nox = {
-        enable = true;
-        user = "deck";
-        group = "users";
-        port = 8080;
+      services = {
+        ssh-server.enable = true;
+        tailscale = {
+          enable = true;
+          # We shouldn't ever need to reauthenticate on persistent systems
+          autoAuthenticate = lib.mkForce false;
+        };
+        qbittorrent-nox = {
+          enable = true;
+          user = "deck";
+          group = "users";
+          port = 8080;
+        };
       };
 
       system = {

@@ -37,8 +37,9 @@
     };
 in {
   flake.nixosConfigurations = lib.mapAttrs buildHost {
+    deck = "x86_64-linux";
     desktop = "x86_64-linux";
-    raket = "x86_64-linux";
     generic = "x86_64-linux";
+    raket = "x86_64-linux";
   };
 }

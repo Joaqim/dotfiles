@@ -52,10 +52,11 @@
   # Home Manager will by default match first `$USER@$(hostname)`.
   # If not found, it will then default to `$USER`.
   homes = {
+    "deck@deck" = "x86_64-linux";
+    "github-actions@generic" = "x86_64-linux";
     "jq@desktop" = "x86_64-linux";
     "jq@generic" = "x86_64-linux";
     "wilton@raket" = "x86_64-linux";
-    "github-actions@generic" = "x86_64-linux";
   };
 in {
   perSystem = {system, ...}: {

@@ -4,6 +4,14 @@
     homeDirectory = "/home/${username}";
   };
   my.home = {
-    git.disable = true;
+    atuin.enable = false;
+    bat.enable = false;
+    boilr.enable = true;
+    command-line.enable = false;
+    gaming.enable = true;
+    secrets = {
+      enable = true;
+      sopsDirectory = "/var/lib/sops";
+    };
   };
 }
