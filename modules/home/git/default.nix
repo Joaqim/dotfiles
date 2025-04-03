@@ -13,13 +13,15 @@ in {
     package = mkPackageOption pkgs "git" {default = ["gitFull"];};
 
     userEmail = mkOption {
-      type = types.str;
+      type = with types; nullOr str;
+      default = null;
       example = "mail@example.org";
       description = "email used by git";
     };
 
     userName = mkOption {
-      type = types.str;
+      type = with types; nullOr str;
+      default = null;
       example = "Alice Cooper";
       description = "descriptive name used by git";
     };
