@@ -83,6 +83,7 @@
   # If not found, it will then default to `$USER`.
   homes = {
     "jq@desktop" = "x86_64-linux";
+    "jq@generic" = "x86_64-linux";
     "wilton@raket" = "x86_64-linux";
     "github-actions@generic" = "x86_64-linux";
   };
