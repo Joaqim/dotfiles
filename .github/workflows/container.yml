@@ -146,7 +146,7 @@ jobs:
           trap "podman kill '$container_id'" EXIT ERR
           sleep 2 # Wait for the systemd to be ready
           podman exec --user=user "$container_id" cat /etc/nix/nix.conf
-          podman exec --user=user --workdir='/home/user' -it "$container_id" '/home/user/.nix-profile/bin/zsh' -c 'la; lat ~/.config'
+          podman exec --user=user --workdir='/home/user' -it "$container_id" '/home/user/.nix-profile/bin/nu' -c 'ls -a | get name | to text; ls -a ~/.config | get name | to text'
       - name: Push To ghcr.io
         id: push-to-ghcr
         if: ${{ github.actor == github.repository_owner }}
@@ -216,4 +216,4 @@ jobs:
     if: always() && (needs.build_and_push.result == 'success')
     uses: ./.github/workflows/cleanup-packages.yml
     with:
-      keep-latest-items: 50 # 50 is adjusted for https://ghcr.io/v2/kachick/home/tags/list behavior
+      keep-latest-items: 50 # 50 is adjusted for https://ghcr.io/v2/Joaqim/home/tags/list behavior
