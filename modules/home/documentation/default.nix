@@ -6,7 +6,7 @@
   cfg = config.my.home.documentation;
 in {
   options.my.home.documentation = with lib; {
-    enable = my.mkDisableOption "documentation integration";
+    enable = mkEnableOption "documentation integration";
   };
 
   # Add documentation for user packages

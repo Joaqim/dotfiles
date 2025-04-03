@@ -5,6 +5,7 @@
     boilr.enable = true;
     calibre.enable = true;
     discord.enable = true;
+    documentation.enable = true;
     firefox.enable = true;
     flameshot.enable = false;
     gaming.enable = true;
