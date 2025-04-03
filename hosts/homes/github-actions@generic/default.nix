@@ -8,5 +8,6 @@
 
   my.home = {
     git.enable = false;
+    gpg.enable = false;
   };
 }
