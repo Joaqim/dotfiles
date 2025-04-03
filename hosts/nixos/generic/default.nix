@@ -5,7 +5,7 @@
       fullName = "Github Action Runner";
     };
     secrets.enable = false;
-    nix.cache.selfHosted = false;
+    system.nix.cache.selfHosted = false;
   };
 
   networking.hostName = lib.mkDefault "generic";

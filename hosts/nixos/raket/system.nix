@@ -4,6 +4,7 @@ in {
   my.system = {
     docker.enable = false;
     impermanence.enable = true;
+    nix.cache.selfHosted = true;
     users = rec {
       enable = true;
       defaultPasswordFile =
