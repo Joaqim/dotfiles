@@ -5,12 +5,10 @@ on:
   push:
     tags:
       - 'v*'
-    # Don't add branch trigger, this workflow is heavy and required to consider concurrency
-    # branches:
-    #   - main
   pull_request:
     types:
       - labeled
+      - synchronize
   schedule:
     # Every 11:42 and 23:42 JST
     # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
