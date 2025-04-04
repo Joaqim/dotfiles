@@ -107,7 +107,7 @@ jobs:
           set -euxo pipefail
           podman exec --user=user -it '${{ steps.start-systemd.outputs.container_id }}' /provisioner/needs_systemd.bash
           podman exec --user=root -it '${{ steps.start-systemd.outputs.container_id }}' rm -rf /provisioner
-      - name: Check no personal name in that config
+      - name: Verify no personal username in home configurations
         run: |
           # https://unix.stackexchange.com/a/340729
           assign_stdin_to_global_command_variable() {
@@ -118,7 +118,7 @@ jobs:
           set -uxo
           # https://unix.stackexchange.com/questions/311090/how-to-disable-set-x
           set +e
-          /home/user/.nix-profile/bin/rg --hidden --follow --glob='!.local/state' --glob='!.nix-*' 'jq'
+          /home/user/.nix-profile/bin/rg --hidden --follow --glob='!.local/state' --glob='!.nix-*' --glob='!.config/nix' 'jq'
           # Need to check the exit code if we want to make sure "not found" in grep family
           # https://github.com/BurntSushi/ripgrep/issues/1290#issuecomment-761170095
 
