@@ -8,19 +8,7 @@
   };
 
   networking.hostName = lib.mkDefault "container";
-
-  boot.loader.systemd-boot = {
-    enable = true;
-    # https://discourse.nixos.org/t/no-space-left-on-boot/24019/20
-    configurationLimit = 10;
-  };
-
-  # Pseudo values to pass flake check validations
-  # You should override in your hardware-configuration.nix
-  fileSystems."/" = lib.mkDefault {
-    device = "/dev/sda1";
-    fsType = "ext4";
-  };
+  boot.isContainer = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 

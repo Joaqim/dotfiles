@@ -1,6 +1,8 @@
 # Containers
 
-Base images are maintained in [another repository](https://github.com/Joaqim/containers)
+Copied from: [Kachick's dotfiles](https://github.com/kachick/dotfiles)
+
+Base images are maintained in [another repository](https://github.com/kachick/containers)
 
 ## How to build and test in local
 
