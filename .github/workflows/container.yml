@@ -145,9 +145,11 @@ jobs:
           sleep 2 # Wait for the systemd to be ready
           podman exec --user=user "$container_id" cat /etc/nix/nix.conf
           podman exec --user=user --workdir='/home/user' -it "$container_id" '/home/user/.nix-profile/bin/nu' -c 'ls -a ~/ | get name | to text; ls -a ~/.config | get name | to text'
-      - name: lowercase github.repository_owner # Podman fails to push to ghcr.io/${{ github.repository_owner }} if repository_owner is not lowercase: "Error: Invalid image name"
+      - name: Get lowercase github.repository_owner 
+        id: get-registry-owner
         run: |
-          echo "REGISTRY_OWNER=${GITHUB_REPOSITORY_OWNER@L}" >> ${GITHUB_ENV}
+          echo 'Podman fails to push to ghcr.io/${{ github.repository_owner }} if repository owner is not lowercase: "Error: Invalid image name"'
+          echo registry_owner="${GITHUB_REPOSITORY_OWNER@L}" | tee -a $GITHUB_OUTPUT
       - name: Push To ghcr.io
         id: push-to-ghcr
         if: ${{ github.actor == github.repository_owner }}
@@ -155,7 +157,7 @@ jobs:
         with:
           image: home
           tags: ${{ needs.get-meta.outputs.special_tag }} ${{ needs.get-meta.outputs.ref_tag }} ${{ needs.get-meta.outputs.timestamp_tag }}
-          registry: ghcr.io/${{ env.REGISTRY_OWNER }}
+          registry: ghcr.io/${{ steps.get-registry-owner.outputs.registry_owner }}
           username: ${{ github.repository_owner }}
           password: ${{ github.token }}
 
@@ -176,7 +178,7 @@ jobs:
             gh api --paginate \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /users/${{ github.repository_owner }}/packages/container/home/versions \
+            /users/${{ steps.get-registry-owner.outputs.registry_owner }}/packages/container/home/versions \
             --jq '.[] | select(.name == "${{ steps.push-to-ghcr.outputs.digest }}")' | \
               jq
 
