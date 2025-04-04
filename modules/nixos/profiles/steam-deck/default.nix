@@ -80,7 +80,6 @@ in {
         nix.cache = {
           # Enable use of my self-hosted cache at `desktop:5000`
           selfHosted = true;
-          nixGaming = true;
         };
       };
     };

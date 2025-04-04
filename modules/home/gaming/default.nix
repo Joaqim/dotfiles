@@ -31,6 +31,9 @@ in {
         };
       };
     }
+    {
+      my.home.nix.cache.nixGaming = lib.mkDefault true;
+    }
     # Steam executable is provided by module my.programs.steam
     # TODO: Make this work:
     #(lib.mkIf config.my.programs.steam.enable {
