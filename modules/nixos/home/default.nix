@@ -22,6 +22,8 @@ in {
       useGlobalPkgs = true;
       useUserPackages = true;
 
+      backupFileExtension = "backup";
+
       # Forward inputs to home-manager configuration
       extraSpecialArgs = {
         inherit inputs;
