@@ -17,6 +17,7 @@ jobs:
       app_id: ${{ vars.APP_ID }}
       dry-run: ${{ github.event_name == 'pull_request' }}
       pr-title: 'Bump flake.lock and related dependencies'
+      selfup-commit-message: 'deps: Update workflow dependencies using `selfup`'
       optional-run: |
         nix run .#commit-nvfetcher
     secrets:
