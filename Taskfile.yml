@@ -12,6 +12,7 @@ tasks:
   nixos:
     aliases:
       - switch
+      - apply-nixos
     desc: Enable NixOS config for current device
     sources:
       - 'flake.nix'
@@ -27,7 +28,7 @@ tasks:
       - 'secrets/**/*'
     cmds:
       - |-
-        [ -f "/etc/NIXOS" ] && nixos-rebuild switch --use-remote-sudo --flake ".#$(hostname)" --show-trace
+        [ -f "/etc/NIXOS" ] && nixos-rebuild switch --use-remote-sudo --flake . --show-trace
 
   home-manager:
     aliases: 
@@ -49,11 +50,12 @@ tasks:
       - nixos
     cmds:
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
-      - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
+      - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
 
   home-manager-only:
     aliases: 
       - hm-only
+      - apply-hm
     desc: Enable home-manager config for current user and device
     sources:
       - 'flake.nix'
@@ -68,7 +70,7 @@ tasks:
       - 'secrets/**/*'
     cmds:
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
-      - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG}"
+      - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
 
   test:
     aliases: 
@@ -99,7 +101,7 @@ tasks:
       - news
     desc: Show home-manager news
     cmds:
-      - nix run .#home-manager -- news --flake ".#${USER}@${HM_HOST_SLUG}"
+      - nix run .#home-manager -- news --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
 
   check:
     desc: Check flake for errors
