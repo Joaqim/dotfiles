@@ -21,6 +21,10 @@
           ssh-to-age
         ];
 
+        buildInputs = with pkgs; [
+          gitleaks
+        ];
+
         sopsPGPKeyDirs = ["./secrets/hosts/" "./secrets/users/"];
 
         shellHook = ''
