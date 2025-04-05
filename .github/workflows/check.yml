@@ -8,11 +8,7 @@ on:
       - '.github/workflows/check.yml'
       - '**.nix'
       - 'flake.lock'
-  pull_request:
-    paths:
-      - '.github/workflows/check.yml'
-      - '**.nix'
-      - 'flake.lock'
+
 jobs:
   check:
     name: Run flake checks
