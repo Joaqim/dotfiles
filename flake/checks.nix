@@ -1,9 +1,13 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.pre-commit-hooks-nix.flakeModule
   ];
 
-  perSystem = _: {
+  perSystem = {pkgs, ...}: {
     pre-commit = {
       check.enable = true;
       settings.hooks = let
@@ -23,6 +27,13 @@
         };
         flake-checker = {
           enable = true;
+        };
+        gitleaks = {
+          enable = true;
+          entry = "''${lib.getExe pkgs.gitleaks} git . --redact=100";
+          name = "GitLeaks";
+          package = pkgs.gitleaks;
+          pass_filenames = false;
         };
         statix = {
           enable = true;
