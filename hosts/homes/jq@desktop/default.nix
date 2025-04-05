@@ -24,7 +24,7 @@
         nh
         ;
       inherit
-        (pkgs.jqp)
+        (pkgs.jqpkgs)
         mpv-history-launcher
         yt-dlp-git
         ;

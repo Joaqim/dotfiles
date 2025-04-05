@@ -22,7 +22,7 @@ builtins.attrValues {
     unpaywall
     vimium-c
     ;
-  inherit (pkgs.jqp) chronotube;
+  inherit (pkgs.jqpkgs) chronotube;
 }
 # https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
 

@@ -5,7 +5,7 @@
   ...
 }: let
   cfg = config.my.home.mpv;
-  inherit (pkgs.jqp) yt-dlp-git;
+  inherit (pkgs.jqpkgs) yt-dlp-git;
 in {
   options.my.home.mpv = with lib; {
     enable = mkEnableOption "mpv configuration";
@@ -31,7 +31,7 @@ in {
           inherit (pkgs.mpvScripts.builtins) autocrop autodeint;
           inherit (pkgs.mpvScripts.eisa01) smartskip; # https://github.com/Eisa01/mpv-scripts#smartskip
           inherit (pkgs.mpvScripts.occivink) blacklistExtensions;
-          inherit (pkgs.jqp) mpv-org-history mpv-skipsilence;
+          inherit (pkgs.jqpkgs) mpv-org-history mpv-skipsilence;
         };
         config = {
           profile = "gpu-hq";

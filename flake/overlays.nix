@@ -11,7 +11,7 @@
 
     # Expose my custom packages
     pkgs = _final: prev: {
-      jqp = prev.recurseIntoAttrs (import "${self}/pkgs" {
+      jqpkgs = prev.recurseIntoAttrs (import "${self}/pkgs" {
         inherit self;
         pkgs = prev;
         flake-inputs = inputs;
