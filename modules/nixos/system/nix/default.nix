@@ -72,6 +72,7 @@ in {
           experimental-features = ["nix-command" "flakes"];
           # Trusted users are equivalent to root, and might as well allow wheel
           trusted-users = ["root" "@wheel"];
+          always-allow-substitutes = true;
         };
       };
     }
