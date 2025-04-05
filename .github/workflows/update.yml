@@ -17,6 +17,22 @@ jobs:
       app_id: ${{ vars.APP_ID }}
       dry-run: ${{ github.event_name == 'pull_request' }}
       pr-title: 'Bump flake.lock and related dependencies'
+      pr-body: |
+        #### This PR has been created by using @kachick's workflow: [reusable-bump-flake-lock-and-selfup.yml][1]
+
+        #### This PR has successfully bumped dependencies using one or more these utilities:
+        |Utility|Description|
+        |---|---|
+        |**nix flake update --commit-lock-file**|Updates **./flake.lock**|
+        |[selfup][2]|Updates CI dependencies in **/.github/workflows**|
+        |[nvfetcher][3]|Update sources in **./pkgs/nvfetcher.toml**|
+
+        [1]: https://github.com/kachick/selfup/blob/main/.github/workflows/reusable-bump-flake-lock-and-selfup.yml
+        [2]: https://github.com/kachick/selfup
+        [3]: https://github.com/berberman/nvfetcher
+
+
+        #### Do **NOT** work in the branch of this PR; it may be updated by the bot using force push.
       selfup-commit-message: 'deps: Update workflow dependencies using `selfup`'
       optional-run: |
         nix run .#commit-nvfetcher
