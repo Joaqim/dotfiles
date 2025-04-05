@@ -31,7 +31,6 @@ in {
           systemctl-tui
           tomb
           trash-cli
-          unrar
           unzip
           usbutils
           zip

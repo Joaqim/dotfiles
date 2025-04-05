@@ -1,29 +1,23 @@
 {lib, ...}: {
   my = {
     user = {
-      name = "user";
-      fullName = "Default User";
+      name = lib.mkDefault "user";
+      fullName = lib.mkDefault "Default User";
     };
     secrets.enable = false;
+    system = {
+      impermanence.enable = false;
+      # Since we are using an ubuntu based container we use:
+      # /etc/nix/nix.conf created by `DeterminateSystems/nix-installer`
+      nix.enable = false;
+    };
   };
 
   networking.hostName = lib.mkDefault "container";
-
-  boot.loader.systemd-boot = {
-    enable = true;
-    # https://discourse.nixos.org/t/no-space-left-on-boot/24019/20
-    configurationLimit = 10;
-  };
-
-  # Pseudo values to pass flake check validations
-  # You should override in your hardware-configuration.nix
-  fileSystems."/" = lib.mkDefault {
-    device = "/dev/sda1";
-    fsType = "ext4";
-  };
+  boot.isContainer = true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  time.timeZone = "Europe/Stockholm";
+  time.timeZone = lib.mkDefault "Europe/Stockholm";
   system.stateVersion = lib.mkForce "24.11";
 }
