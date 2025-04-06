@@ -45,9 +45,10 @@ in {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
       # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
       extraConfig = ''
-
         gtk-im-module="fcitx";
       '';
     };
+    gtk3.extraConfig.gtk-im-module = "fcitx";
+    gtk4.extraConfig.gtk-im-module = "fcitx";
   };
 }
