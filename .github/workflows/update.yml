@@ -23,8 +23,8 @@ jobs:
         #### This PR has successfully bumped dependencies using one or more these utilities:
         |Utility|Description|
         |---|---|
-        |**nix flake update --commit-lock-file**|Updates **./flake.lock**|
-        |[selfup][2]|Updates CI dependencies in **/.github/workflows**|
+        |**nix flake update --commit-lock-file**|Update flake inputs in **./flake.lock**|
+        |[selfup][2]|Update CI dependencies in **/.github/workflows**|
         |[nvfetcher][3]|Update sources in **./pkgs/nvfetcher.toml**|
 
         [1]: https://github.com/kachick/selfup/blob/main/.github/workflows/reusable-bump-flake-lock-and-selfup.yml
