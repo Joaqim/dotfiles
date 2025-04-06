@@ -37,6 +37,7 @@ in {
         };
       };
     };
+    my.home.gtk.useFcitx5 = true;
     environment = {
       variables = {
         GTK_IM_MODULE = "fcitx";
