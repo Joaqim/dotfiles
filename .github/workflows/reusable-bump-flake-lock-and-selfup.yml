@@ -92,7 +92,7 @@ jobs:
           # Needed to specify token for checkout phase, only in pushing phase is too late
           # https://github.com/orgs/community/discussions/27072#discussioncomment-3254515
           token: ${{ steps.publish-token.outputs.token }}
-      - uses: DeterminateSystems/nix-installer-action@e50d5f73bfe71c2dd0aa4218de8f4afa59f8f81d # v16
+      - uses: DeterminateSystems/nix-installer-action@741b61d2a082169f625a5bf56e831b74b4f7fbe0 # v16
       - name: Fetch active PRs by me
         id: fetch-active-prs
         env:
