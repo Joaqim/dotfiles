@@ -7,6 +7,7 @@
   targets.genericLinux.enable = true;
 
   my.home = {
+    atuin.enable = false;
     git.enable = true;
     # TODO: gpg-agent doesn't work in github environment
     gpg.enable = false;
