@@ -61,27 +61,8 @@ in {
           port = 8080;
         };
       };
-
-      system = {
-        language = {
-          locale = "se_SV.UTF-8";
-          supportedLocales = [
-            "C.UTF-8/UTF-8"
-            "en_US.UTF-8/UTF-8"
-            "sv_SE.UTF-8/UTF-8"
-          ];
-
-          # Don't use english alternatives with metric support, etc...
-          useMetric = false;
-          useEuropeanCurrency = false;
-          useA4Paper = false;
-          useISODate = false;
-        };
-        nix.cache = {
-          # Enable use of my self-hosted cache at `desktop:5000`
-          selfHosted = true;
-        };
-      };
+      # Enable use of my self-hosted cache at `desktop:5000`
+      system.nix.cache.selfHosted = true;
     };
 
     services = {

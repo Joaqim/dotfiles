@@ -7,7 +7,7 @@
   cfg = config.my.system.language;
 in {
   options.my.system.language = with lib; {
-    enable = my.mkDisableOption "language configuration";
+    enable = mkEnableOption "language configuration";
 
     locale = mkOption {
       type = types.str;
@@ -27,10 +27,10 @@ in {
       description = "List of locales supported by the system";
     };
 
-    useMetric = my.mkDisableOption "Use metric units in the system";
-    useEuropeanCurrency = my.mkDisableOption "Use European currency in the system";
-    useA4Paper = my.mkDisableOption "Use A4 paper in the system";
-    useISODate = my.mkDisableOption "Use ISO date format in the system";
+    useMetric = mkEnableOption "Use metric units in the system";
+    useEuropeanCurrency = mkEnableOption "Use European currency in the system";
+    useA4Paper = mkEnableOption "Use A4 paper in the system";
+    useISODate = mkEnableOption "Use ISO date format in the system";
   };
 
   config = lib.mkIf cfg.enable {
@@ -65,7 +65,7 @@ in {
         LC_NUMERIC = LANGUAGE;
         LC_PAPER =
           if cfg.useA4Paper
-          then "en_US.UTF-8"
+          then "en_DK.UTF-8"
           else LANGUAGE;
         LC_TELEPHONE = LANGUAGE;
         LC_TIME =

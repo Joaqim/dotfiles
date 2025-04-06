@@ -4,6 +4,7 @@
     ./bluetooth
     ./devices
     ./fcitx5
+    ./language
     #./laptop
     ./plasma
     ./steam-deck

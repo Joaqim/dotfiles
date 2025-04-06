@@ -10,6 +10,14 @@
     };
     # My custom fcitx5 configuration
     fcitx5.enable = true;
+    language = {
+      supportedLocales = [
+        "C.UTF-8/UTF-8"
+        "en_US.UTF-8/UTF-8"
+        "sv_SE.UTF-8/UTF-8"
+      ];
+      useEuropeanEnglish = true;
+    };
     # Plasma Window Manager
     plasma.enable = true;
   };
