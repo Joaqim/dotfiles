@@ -40,5 +40,5 @@ jobs:
       git-user: "Joaqim's CI Bot"
       git-email: "joaqim-ci-bot@joaqim.xyz"
     secrets:
-      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
-      GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+      app-private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      gpg-signing-key: ${{ secrets.GPG_SIGNING_KEY }}
