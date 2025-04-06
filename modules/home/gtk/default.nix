@@ -8,47 +8,49 @@
 in {
   options.my.home.gtk = with lib; {
     enable = mkEnableOption "GTK configuration";
+    useFcitx5 = mkEnableOption "use fcitx5 module";
   };
 
-  config.gtk = lib.mkIf cfg.enable {
-    enable = true;
+  config.gtk = lib.mkIf cfg.enable (lib.mkMerge [
+    {
+      enable = true;
 
-    cursorTheme = {
-      name = "catppuccin-macchiato-dark-cursors";
-      package = pkgs.catppuccin-cursors.macchiatoDark;
-    };
-
-    iconTheme = {
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "macchiato";
-        accent = "mauve";
+      cursorTheme = {
+        name = "catppuccin-macchiato-dark-cursors";
+        package = pkgs.catppuccin-cursors.macchiatoDark;
       };
-      name = "Papirus-Dark";
-    };
 
-    theme = {
-      package = pkgs.catppuccin-gtk.override {
-        accents = ["mauve"];
-        size = "standard";
-        variant = "macchiato";
+      iconTheme = {
+        package = pkgs.catppuccin-papirus-folders.override {
+          flavor = "macchiato";
+          accent = "mauve";
+        };
+        name = "Papirus-Dark";
       };
-      name = "catppuccin-macchiato-mauve-standard";
-    };
 
-    font = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans";
-    };
+      theme = {
+        package = pkgs.catppuccin-gtk.override {
+          accents = ["mauve"];
+          size = "standard";
+          variant = "macchiato";
+        };
+        name = "catppuccin-macchiato-mauve-standard";
+      };
 
-    gtk2 = {
+      font = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
       # Cleanup HOME
-      configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    }
+    (lib.mkIf cfg.useFcitx5 {
       # https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
-      extraConfig = ''
+      gtk2.extraConfig = ''
         gtk-im-module="fcitx";
       '';
-    };
-    gtk3.extraConfig.gtk-im-module = "fcitx";
-    gtk4.extraConfig.gtk-im-module = "fcitx";
-  };
+      gtk3.extraConfig.gtk-im-module = "fcitx";
+      gtk4.extraConfig.gtk-im-module = "fcitx";
+    })
+  ]);
 }
