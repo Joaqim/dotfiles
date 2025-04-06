@@ -4,9 +4,9 @@ set -exo pipefail
 
 if [ -f '/etc/NIXOS' ]; then
     # Prefer `build` rather than `test` and `dry-reactivate` for the speed and not requiring root permissions
-    nixos-rebuild build --flake ".#$(hostname)" --show-trace
+    nixos-rebuild build --flake . --show-trace
 fi
 
-_HOME_CONF=".#$USER@${HM_HOST_SLUG:-HOSTNAME}"
+_HOME_CONF=".#$USER@${HM_HOST_SLUG:-$(hostname)}"
 
 nix run '.#home-manager' -- switch --dry-run -b backup --show-trace --flake "$_HOME_CONF"
