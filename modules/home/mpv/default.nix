@@ -9,30 +9,54 @@
 in {
   options.my.home.mpv = with lib; {
     enable = mkEnableOption "mpv configuration";
+
+    screenshotDirectory = mkOption {
+      type = with types; nullOr str;
+      description = "mpv screenshot directory relative to home";
+      default = "Pictures/mpv-screenshots";
+    };
+    screenshotTemplate = mkOption {
+      type = with types; nullOr str;
+      description = "mpv screenshot template";
+      default = "%F - [%P] (%#01n)";
+    };
   };
 
   config = lib.mkIf cfg.enable {
+    home.file."${cfg.screenshotDirectory}" = {
+      enable = cfg.screenshotDirectory != null;
+      text = "";
+    };
     programs = {
       mpv = {
         enable = true;
-        scripts = builtins.attrValues {
-          inherit
-            (pkgs.mpvScripts)
-            mpris
-            sponsorblock
-            modernx
-            quality-menu
-            thumbfast
-            mpv-playlistmanager
-            mpv-cheatsheet
-            webtorrent-mpv-hook
-            reload
-            ;
-          inherit (pkgs.mpvScripts.builtins) autocrop autodeint;
-          inherit (pkgs.mpvScripts.eisa01) smartskip; # https://github.com/Eisa01/mpv-scripts#smartskip
-          inherit (pkgs.mpvScripts.occivink) blacklistExtensions;
-          inherit (pkgs.jqpkgs) mpv-org-history mpv-skipsilence;
-        };
+        scripts = with pkgs;
+          builtins.attrValues {
+            inherit
+              (mpvScripts)
+              mpris
+              sponsorblock
+              modernx
+              quality-menu
+              thumbfast
+              mpv-playlistmanager
+              mpv-cheatsheet
+              webtorrent-mpv-hook
+              reload
+              ;
+            inherit
+              (mpvScripts.builtins)
+              autocrop
+              autodeint
+              ;
+            inherit (mpvScripts.eisa01) smartskip; # https://github.com/Eisa01/mpv-scripts#smartskip
+            inherit (mpvScripts.occivink) blacklistExtensions;
+            inherit
+              (jqpkgs)
+              mpv-org-history
+              mpv-skipsilence
+              ;
+          };
         config = {
           profile = "gpu-hq";
           display-fps-override = 100;
@@ -43,14 +67,29 @@ in {
           image-display-duration = 5;
           # https://github.com/ferreum/mpv-skipsilence/tree/master?tab=readme-ov-file#fix-clicking-soundsgaps-when-switching-to-and-from-1x-speed
           af-add = "scaletempo2";
-          screenshot-dir = "~/Pictures/mpv-screenshots"; # TODO: Make sure directory exists
-          screenshot-template = "%F - [%P] (%#01n)";
-          ytdl-raw-options = "sub-lang=\"en\",write-sub=,write-auto-sub=";
+          screenshot-dir = "~/${cfg.screenshotDirectory}";
+          screenshot-template = cfg.screenshotTemplate;
+          ytdl-raw-options = lib.concatStringsSep "," [
+            "sub-lang=\"en\""
+            "write-sub="
+            "write-auto-sub="
+          ];
           sub-font = "Noto Color Emoji";
           vo = "gpu-next";
           # NOTE: Needed to make sure that mpv uses the correct yt-dlp
           script-opts = "ytdl_hook-ytdl_path=${lib.getExe yt-dlp-git}";
-          watch-later-options = "start,volume,mute,fullscreen,sub-file,playlist,user-data/skipsilence/enabled,user-data/skipsilence/enabled,user-data/skipsilence/base_speed,speed";
+          watch-later-options =
+            lib.concatStringsSep ","
+            [
+              "start"
+              "volume"
+              "mute"
+              "sub-file"
+              "playlist"
+              "skipsilence/enabled"
+              "skipsilence/base_speed"
+              "speed"
+            ];
         };
         scriptOpts = {
           # For restarting playback when a Live Twitch VOD reaches current end
