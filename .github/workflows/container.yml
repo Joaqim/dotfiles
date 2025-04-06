@@ -10,9 +10,7 @@ on:
       - labeled
       - synchronize
   schedule:
-    # Every 11:42 and 23:42 JST
-    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
-    - cron: '42 2,14 * * *'
+    - cron: '5 5 * * *' # Every day at 05:05 UTC
   workflow_dispatch:
 
 jobs:
