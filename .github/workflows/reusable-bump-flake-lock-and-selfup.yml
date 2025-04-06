@@ -1,0 +1,140 @@
+# Taken from [1]:
+# [1]: https://github.com/kachick/selfup/blob/main/.github/workflows/reusable-bump-flake-lock-and-selfup.yml
+name: '[Reusable] Bump flake.lock and related dependencies'
+on:
+  workflow_call:
+    # https://docs.github.com/actions/using-workflows/sharing-workflows-secrets-and-runners-with-your-organization
+    # https://docs.github.com/actions/using-workflows/workflow-syntax-for-github-actions#onworkflow_callinputs
+    inputs:
+      dry-run:
+        default: ${{ github.event_name == 'pull_request' }}
+        required: false
+        type: boolean
+      default-branch:
+        default: '${{ github.event.repository.default_branch }}'
+        required: false
+        type: string
+      pr-title:
+        default: 'Bump flake.lock and related dependencies'
+        required: false
+        type: string
+      version:
+        default: 'v1.1.9'
+        required: false
+        type: string
+      pr-body:
+        default: |
+          This PR has been created by reusable workflow in https://github.com/kachick/selfup/tree/main/.github/workflows
+
+          Do NOT work in the branch of this PR, it may be updated by the bot with force push.
+        required: false
+        type: string
+      selfup-commit-message:
+        default: 'Sync CI dependencies with nixpkgs'
+        required: false
+        type: string
+      optional-run:
+        required: false
+        type: string
+      app-id:
+        required: true
+        type: string
+      git-user:
+        default: "github-actions[bot]"
+        required: false
+        type: string
+      git-email:
+        default: "41898282+github-actions[bot]@users.noreply.github.com"
+        required: false
+        type: string
+    secrets:
+      APP_PRIVATE_KEY:
+        required: true
+      GPG_SIGNING_KEY:
+        required: false
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PR_BRANCH: bot-update-flake-lock
+    steps:
+      - name: Inspect tool versions
+        run: |
+          gh --version
+          git --version
+      - name: Install selfup
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          install_path="$(mktemp -d)"
+          cd "$install_path"
+          gh release download '${{ inputs.version }}' --pattern 'selfup_Linux_x86_64.tar.gz' --repo kachick/selfup
+          tar -xvzf 'selfup_Linux_x86_64.tar.gz'
+          echo "$install_path" | tee -a "$GITHUB_PATH"
+      - name: Make sure the installed selfup version
+        run: selfup --version
+      # To push workflow changes and trigger CIs
+      - name: Generate GitHub Apps token
+        id: publish-token
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1.12.0
+        with:
+          # Required to set workflow permission for the APP
+          # Why replaced from secrets?: https://github.com/github/docs/commit/eaac671cdd9189afd410366e9eb5edd4ee815194#diff-19d2b329775bf781d0cf19fabafa7f231bd85f133cbf9e23594036ea68f7021dL53-R54
+          app-id: ${{ inputs.app-id }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          # Needed to get commit counts
+          # https://stackoverflow.com/a/65056108
+          fetch-depth: 0
+          # Needed to specify token for checkout phase, only in pushing phase is too late
+          # https://github.com/orgs/community/discussions/27072#discussioncomment-3254515
+          token: ${{ steps.publish-token.outputs.token }}
+      - uses: DeterminateSystems/nix-installer-action@e50d5f73bfe71c2dd0aa4218de8f4afa59f8f81d # v16
+      - name: Fetch active PRs by me
+        id: fetch-active-prs
+        env:
+          GITHUB_TOKEN: ${{ steps.publish-token.outputs.token }}
+        run: |
+          count="$(gh pr list --author "@me" --state open --head bot-update-flake-lock --json number --jq 'length')"
+          echo "count=${count}" | tee -a "$GITHUB_OUTPUT"
+      - name: Prepare Git user
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.GPG_SIGNING_KEY }}
+          git_user_signingkey: ${{ secrets.GPG_SIGNING_KEY != null }}
+          git_commit_gpgsign: ${{ secrets.GPG_SIGNING_KEY != null }}
+          git_committer_name:  "${{ inputs.git-user }}"
+          git_committer_email: "${{ inputs.git-email }}"
+      - name: Prepare Git branch
+        run: |
+          git switch "${PR_BRANCH}" || git switch -c "${PR_BRANCH}"
+      - name: Update flake.lock and commit them
+        run: nix flake update --commit-lock-file
+      - name: Update related CI dependencies
+        run: |
+          git ls-files .github | xargs nix develop --command selfup run
+          git diff-index --quiet HEAD || git commit -m '${{ inputs.selfup-commit-message }}' .github
+      - name: Run optional step if given
+        if: inputs.optional-run != ''
+        run: ${{ inputs.optional-run }}
+      - name: Count added commits
+        id: count-commits
+        run: |
+          count="$(git rev-list --count origin/${{ inputs.default-branch }}..)"
+          echo "count=${count}" | tee -a "$GITHUB_OUTPUT"
+      - run: git push origin "${PR_BRANCH}" --force
+        if: (! inputs.dry-run) && (steps.count-commits.outputs.count > 0)
+      - name: Create PR
+        if: (! inputs.dry-run) && (steps.count-commits.outputs.count > 0) && (steps.fetch-active-prs.outputs.count == 0)
+        env:
+          GITHUB_TOKEN: ${{ steps.publish-token.outputs.token }}
+        # Specifying the $PR_BRANCH in --head is an workaround for gh cli 2.64.0 bug which is introduced in 20250105.1.0 runner-image. It should be fixed in 20250113.1.1. See GH-313
+        run: |
+          gh pr create \
+            --base '${{ inputs.default-branch }}' \
+            --head "${PR_BRANCH}" \
+            --title '${{ inputs.pr-title }}' \
+            --body '${{ inputs.pr-body }}'
