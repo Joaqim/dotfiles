@@ -113,9 +113,13 @@ jobs:
       - name: Update flake.lock and commit them
         run: nix flake update --commit-lock-file
       - name: Update related CI dependencies
+        id: update-workflows
         run: |
           git ls-files .github | xargs nix develop --command selfup run
-          git diff-index --quiet HEAD || git commit -m '${{ inputs.selfup-commit-message }}' .github
+          if [ $(git status --porcelain | wc -l) -gt 0 ]; then
+            echo "changed=true" | tee -a "$GITHUB_OUTPUT"
+            git commit -m '${{ inputs.selfup-commit-message }}' .github
+          fi
       - name: Run optional step if given
         if: inputs.optional-run != ''
         run: ${{ inputs.optional-run }}
@@ -139,4 +143,6 @@ jobs:
             --base '${{ inputs.default-branch }}' \
             --head "${PR_BRANCH}" \
             --title '${{ inputs.pr-title }}' \
-            --body "${{ inputs.pr-body }}"
+            --body "${{ inputs.pr-body }}" \
+            --label dependencies \
+            ${{ steps.update-workflows.outputs.changed == true && '--label github_actions' || '' }}
