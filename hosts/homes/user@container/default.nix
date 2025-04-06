@@ -11,9 +11,7 @@
     git.enable = true;
     # TODO: gpg-agent doesn't work in github environment
     gpg.enable = false;
-    # Since we are using an ubuntu based container we use:
-    # /etc/nix/nix.conf created by `DeterminateSystems/nix-installer`
-    nix.enable = false;
+    nix.enable = true;
     packages = {
       allowUnfree = false;
     };
