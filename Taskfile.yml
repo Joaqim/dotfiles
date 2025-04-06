@@ -72,10 +72,10 @@ tasks:
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
       - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
 
-  test:
-    aliases: 
-      - dry-activate
-    desc: Make sure NixOS and/or home-manager will work for current user and device
+  test-nixos:
+    desc: Try to build NixOS config for current user and device
+    aliases:
+      - nixos-dry-run
     sources:
       - 'flake.nix'
       - 'flake.lock'
@@ -84,12 +84,42 @@ tasks:
       - 'flake/*'
       - 'hosts/**/*'
       - 'lib/*'
-      - 'modules/**/*'
+      - 'modules/nixos/**/*'
       - 'overlays/**/*'
       - 'pkgs/**/*'
       - 'secrets/**/*'
     cmds:
-      - nix run .#dry-activate
+      # Prefer `build` rather than `test` and `dry-reactivate` for the speed and not requiring root permissions
+      - nixos-rebuild build --flake . --show-trace
+
+  test-home-manager:
+    aliases:
+      - home-manager-dry-run
+      - hm-dry-run
+      - test-hm
+    desc: Dry activate home-manager config for current user and device
+    sources:
+      - 'flake.nix'
+      - 'flake.lock'
+      - '.env'
+      - 'flake/*'
+      - 'hosts/homes/**/*'
+      - 'modules/home/**/*'
+      - 'modules/nixos/home/**/*'
+      - 'overlays/**/*'
+      - 'pkgs/**/*'
+      - 'secrets/**/*'
+    cmds:
+      # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
+      - nix run .#home-manager -- switch --dry-run -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
+  
+  test:
+    aliases: 
+      - dry-activate
+    desc: Make sure NixOS and/or home-manager will work for current user and device
+    deps:
+      - test-nixos
+      - test-home-manager
 
   ci-home:
     desc: Make sure home-manager will work for generic user and devices
