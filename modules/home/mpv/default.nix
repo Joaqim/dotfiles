@@ -23,7 +23,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.file."${cfg.screenshotDirectory}" = {
+    home.file."${cfg.screenshotDirectory}/.keep" = {
       enable = cfg.screenshotDirectory != null;
       text = "";
     };
