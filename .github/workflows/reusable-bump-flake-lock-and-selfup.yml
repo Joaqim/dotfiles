@@ -125,7 +125,10 @@ jobs:
         run: |
           count="$(git rev-list --count origin/${{ inputs.default-branch }}..)"
           echo "count=${count}" | tee -a "$GITHUB_OUTPUT"
-      - run: git push origin "${PR_BRANCH}" --force
+      - run: |
+          # Similar problem: https://github.com/semantic-release/git/issues/525
+          git config --global push.gpgSign false
+          git push origin "${PR_BRANCH}" --force
         if: (! inputs.dry-run) && (steps.count-commits.outputs.count > 0)
       - name: Create PR
         if: (! inputs.dry-run) && (steps.count-commits.outputs.count > 0) && (steps.fetch-active-prs.outputs.count == 0)
@@ -137,4 +140,4 @@ jobs:
             --base '${{ inputs.default-branch }}' \
             --head "${PR_BRANCH}" \
             --title '${{ inputs.pr-title }}' \
-            --body '${{ inputs.pr-body }}'
+            --body "${{ inputs.pr-body }}"
