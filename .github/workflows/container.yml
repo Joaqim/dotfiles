@@ -145,8 +145,7 @@ jobs:
           podman exec --user=user --workdir='/home/user' -it "$container_id" '/home/user/.nix-profile/bin/nu' -c 'ls -a ~/ | get name | to text; ls -a ~/.config | get name | to text'
       - name: Get lowercase github.repository_owner 
         id: get-registry-owner
-        run: |
-          echo 'Podman fails to push to ghcr.io/${{ github.repository_owner }} if repository owner is not lowercase: "Error: Invalid image name"'
+        run: | # Podman fails to push to ghcr.io/<owner> if repository owner is not lowercase: "Error: Invalid image name"
           echo registry_owner="${GITHUB_REPOSITORY_OWNER@L}" | tee -a $GITHUB_OUTPUT
       - name: Push To ghcr.io
         id: push-to-ghcr
