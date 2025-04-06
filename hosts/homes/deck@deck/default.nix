@@ -9,6 +9,7 @@
     boilr.enable = true;
     command-line.enable = false;
     gaming.enable = true;
+    nix.cache.selfHosted = true;
     secrets = {
       enable = true;
       sopsDirectory = "/var/lib/sops";

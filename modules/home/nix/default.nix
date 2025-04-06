@@ -36,7 +36,7 @@ in {
     };
 
     cache = {
-      selfHosted = my.mkDisableOption "self-hosted cache";
+      selfHosted = mkEnableOption "self-hosted cache";
       nixGaming = mkEnableOption "nix-gaming cache";
     };
 
