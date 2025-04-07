@@ -46,9 +46,8 @@ tasks:
       - 'overlays/**/*'
       - 'pkgs/**/*'
       - 'secrets/**/*'
-    deps:
-      - nixos
     cmds:
+      - task: nixos
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
       - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
 
@@ -117,9 +116,9 @@ tasks:
     aliases: 
       - dry-activate
     desc: Make sure NixOS and/or home-manager will work for current user and device
-    deps:
-      - test-nixos
-      - test-home-manager
+    cmds:
+      - task: test-nixos
+      - task: test-home-manager
 
   ci-home:
     desc: Make sure home-manager will work for generic user and devices
