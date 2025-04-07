@@ -21,7 +21,7 @@ src.to_pattern = '\1'
 fetch.url = "https://github.com/necauqua/chronotube/releases/download/v$ver/chronotube-$ver-fx.xpi"
 
 [godot]
- # When updating, change `commitHash` in `./godotjs/default.nix`
+ # When updating, change `commitHash` in `./godot4-godotjs/default.nix`
 src.manual = "4.3-stable"
 fetch.github = "godotengine/godot"
 

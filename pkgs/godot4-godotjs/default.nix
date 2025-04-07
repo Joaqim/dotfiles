@@ -38,7 +38,7 @@ in
   pkgs.godot_4_3.overrideAttrs
   (old: {
     inherit (sources.godot) version;
-    pname = "godot4-js";
+    pname = "godot4-godotjs";
     src = godot_src_with_godotjs;
     nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.mold];
     meta.description = "Free and Open Source 2D and 3D game engine - bundled with GodotJS";
