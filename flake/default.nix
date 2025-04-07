@@ -11,18 +11,12 @@ in
     imports = [
       inputs.home-manager.flakeModules.home-manager
       ./apps.nix
-      ./checks.nix
       ./dev-shells.nix
       ./home-manager.nix
       ./lib.nix
       ./nixos.nix
       ./overlays.nix
       ./packages.nix
-      #./templates.nix
-
-      # Old Configs
-      #../nixos
-      #../home-manager
-      #../users
+      ./pre-commit.nix
     ];
   }

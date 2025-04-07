@@ -6,10 +6,8 @@
   imports = [
     inputs.pre-commit-hooks-nix.flakeModule
   ];
-
   perSystem = {pkgs, ...}: {
     pre-commit = {
-      check.enable = true;
       settings.hooks = let
         # Exclude generated _sources by nvfetcher
         excludes = ["_sources"];
@@ -31,7 +29,7 @@
         gitleaks = {
           enable = true;
           entry = "''${lib.getExe pkgs.gitleaks} git . --redact=100";
-          name = "GitLeaks";
+          name = "gitleaks";
           package = pkgs.gitleaks;
           pass_filenames = false;
         };
