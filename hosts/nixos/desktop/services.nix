@@ -17,6 +17,8 @@
       enable = true;
       # We shouldn't ever need to reauthenticate on persistent systems
       autoAuthenticate = lib.mkForce false;
+      enableExitNode = true;
+      useRoutingFeatures = "server";
     };
   };
 }
