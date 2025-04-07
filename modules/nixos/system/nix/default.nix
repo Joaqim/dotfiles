@@ -74,6 +74,7 @@ in {
           trusted-users = ["root" "@wheel"];
           auto-optimise-store = true;
           always-allow-substitutes = true;
+          download-buffer-size = 524288000; # 500MB
         };
       };
     }
