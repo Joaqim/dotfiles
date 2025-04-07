@@ -6,6 +6,12 @@
 
 ## Resources
 
+[Nixcademy - Debugging Overlays using nix repl](https://nixcademy.com/posts/mastering-nixpkgs-overlays-techniques-and-best-practice/)
+
+[NixOS/nixpkgs - How to override a Python Package?](https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/python.section.md#how-to-override-a-python-package-how-to-override-a-python-package)
+
+## Inspirations
+
 [Kachick/dotfiles](https://github.com/kachick/dotfiles)
 
 [Derick Eddington's NixOS dotfiles](https://github.com/DerickEddington/nixos-config)
