@@ -7,7 +7,7 @@
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;
-    flameshot.enable = false;
+    flameshot.enable = true;
     gaming.enable = true;
     gtk.enable = true;
     kde.enable = true;
@@ -37,5 +37,6 @@
     starship.enable = true;
     vscode.enable = true;
     zathura.enable = true;
+    zoxide.enable = true;
   };
 }
