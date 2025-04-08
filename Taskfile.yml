@@ -26,13 +26,12 @@ tasks:
       - 'overlays/**/*'
       - 'pkgs/**/*'
       - 'secrets/**/*'
-    cmds:
+    cmds: 
       - |-
         [ -f "/etc/NIXOS" ] && nixos-rebuild switch --use-remote-sudo --flake . --show-trace
 
   home-manager:
     aliases: 
-      - apply
       - hm
     desc: Enable home-manager config for current user and device
     sources:
@@ -47,29 +46,15 @@ tasks:
       - 'pkgs/**/*'
       - 'secrets/**/*'
     cmds:
-      - task: nixos
       # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
       - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
 
-  home-manager-only:
-    aliases: 
-      - hm-only
-      - apply-hm
-    desc: Enable home-manager config for current user and device
-    sources:
-      - 'flake.nix'
-      - 'flake.lock'
-      - '.env'
-      - 'flake/*'
-      - 'hosts/homes/**/*'
-      - 'modules/home/**/*'
-      - 'modules/nixos/home/**/*'
-      - 'overlays/**/*'
-      - 'pkgs/**/*'
-      - 'secrets/**/*'
-    cmds:
-      # Using 'HM_HOST_SLUG=' in '.env' allows for building for specific host on any machine
-      - nix run .#home-manager -- switch -b backup --show-trace --flake ".#${USER}@${HM_HOST_SLUG:-$(hostname)}"
+  apply:
+    desc: Enable NixOS and home-manager configuration for current user and device
+    cmds: 
+      - task: nixos
+      # Force home-manager switch, since previous task might remove current home-manager configuration
+      - task -f home-manager
 
   test-nixos:
     desc: Try to build NixOS config for current user and device
@@ -116,9 +101,9 @@ tasks:
     aliases: 
       - dry-activate
     desc: Make sure NixOS and/or home-manager will work for current user and device
-    cmds:
-      - task: test-nixos
-      - task: test-home-manager
+    deps:
+      - test-nixos
+      - test-home-manager
 
   ci-home:
     desc: Make sure home-manager will work for generic user and devices
@@ -140,7 +125,7 @@ tasks:
   update:
     desc: Bump dependencies
     cmds:
-      - nix run .#update-flake-inputs   
+      - nix run .#update-flake-inputs
       - nix run .#commit-nvfetcher -L
 
   help:
