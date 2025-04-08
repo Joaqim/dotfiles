@@ -15,7 +15,6 @@
           go-task # See ../Taskfile.yml
           inputs'.nvfetcher.packages.default
           inputs'.sops-nix.packages.sops-import-keys-hook
-          just
           nixpkgs-fmt
           sops
           ssh-to-age
