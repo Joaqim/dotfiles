@@ -25,5 +25,6 @@ in {
     nixpkgs.config = {
       inherit (cfg) allowAliases allowUnfree;
     };
+    environment.pathsToLink = lib.mkIf config.my.home.xdg.enable ["/share/xdg-desktop-portal" "/share/applications"];
   };
 }
