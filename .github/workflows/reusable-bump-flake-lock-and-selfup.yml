@@ -97,7 +97,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ steps.publish-token.outputs.token }}
         run: |
-          count="$(gh pr list --author "@me" --state open --head bot-update-flake-lock --json number --jq 'length')"
+          count="$(gh pr list --author "@me" --author "app/update-dependencies-runner" --state open --head bot-update-flake-lock --json number --jq 'length')"
           echo "count=${count}" | tee -a "$GITHUB_OUTPUT"
       - name: Prepare Git user
         uses: crazy-max/ghaction-import-gpg@v6
@@ -131,7 +131,7 @@ jobs:
       - run: |
           # Similar problem: https://github.com/semantic-release/git/issues/525
           git config --global push.gpgSign false
-          git push origin "${PR_BRANCH}" --force
+          git push origin "${PR_BRANCH}" --force &2>/dev/null
         if: (! inputs.dry-run) && (steps.count-commits.outputs.count > 0)
       - name: Create PR
         if: (! inputs.dry-run) && (steps.count-commits.outputs.count > 0) && (steps.fetch-active-prs.outputs.count == 0)
