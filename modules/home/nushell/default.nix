@@ -13,7 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.nushell = {
       enable = true;
-      environmentVariables = {
+      environmentVariables = lib.mkIf config.my.home.packages.enable {
         PATH = lib.hm.nushell.mkNushellInline ''
           ($env.PATH |
             split row (char esep) |
