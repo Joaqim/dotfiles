@@ -101,7 +101,10 @@ jobs:
       - name: Run Nix commands and cleanup provisioners
         run: |
           set -euxo pipefail
+          # Switch to home configuration `user@container`
           podman exec --user=user -it '${{ steps.start-systemd.outputs.container_id }}' /provisioner/needs_systemd.bash
+          # Verify no secrets in /home/user
+          podman exec --user=root -it '${{ steps.start-systemd.outputs.container_id }}' "nix-shell --packages gitleaks --command 'gitleaks -v /home/user'"
           podman exec --user=root -it '${{ steps.start-systemd.outputs.container_id }}' rm -rf /provisioner
       - name: Verify no personal username in home configurations
         run: |
@@ -122,7 +125,7 @@ jobs:
           [[ "$ripgrep_exit_code" -eq 1 ]]
           EOF
 
-          podman exec --user=user --workdir=/home/user -it '${{ steps.start-systemd.outputs.container_id }}' bash -c "$command"
+          podman exec --user=user --workdir=/home/user -it '${{ steps.start-systemd.outputs.container_id }}' bash -c "$command"  
       - name: Persist the container to image
         run: |
           podman commit \
