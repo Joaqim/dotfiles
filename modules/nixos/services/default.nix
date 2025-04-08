@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     #./adblock
+    ./atticd
     ./atuin-server
     #./aria
     #./audiobookshelf

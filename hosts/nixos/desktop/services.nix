@@ -2,8 +2,16 @@
   config,
   lib,
   ...
-}: {
+}: let
+  inherit (config.sops) templates;
+in {
   my.services = {
+    atticd = {
+      enable = true;
+      environmentFile = templates."atticd.env".path;
+      ipAddress = "0.0.0.0";
+      listenPort = 8080;
+    };
     atuin-server.enable = true;
     fail2ban.enable = true;
     minecraft-vault-hunters-server.enable = true;

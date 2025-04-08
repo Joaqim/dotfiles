@@ -58,8 +58,16 @@ in {
           inherit owner;
           mode = "400";
         };
+        "atticd.env" = {
+          content = ''
+            ATTIC_SERVER_TOKEN_RS256_SECRET_BASE64=${config.sops.placeholder."atticd_server_token"}
+          '';
+          group = lib.mkIf (builtins.hasAttr "atticd" config.users.groups) "atticd";
+          mode = "440";
+        };
       };
       secrets = {
+        "atticd_server_token" = {};
         "atuin_key/${user0}" = {
           path = "/home/${user0}/.local/share/atuin/key";
           inherit owner;
