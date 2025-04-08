@@ -9,3 +9,4 @@ containers/Containerfile
 .vscode
 result
 secrets
+.env*
