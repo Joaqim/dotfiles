@@ -101,9 +101,9 @@ tasks:
     aliases: 
       - dry-activate
     desc: Make sure NixOS and/or home-manager will work for current user and device
-    deps:
-      - test-nixos
-      - test-home-manager
+    cmds:
+      - task: test-nixos
+      - task: test-home-manager
 
   ci-home:
     desc: Make sure home-manager will work for generic user and devices
