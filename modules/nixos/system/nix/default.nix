@@ -122,13 +122,11 @@ in {
     (lib.mkIf cfg.cache.selfHosted {
       nix = {
         settings = {
-          # The NixOS module adds the official Hydra cache by default
-          # No need to use `extra-*` options.
-          substituters = [
+          extra-substituters = [
             selfHostedAddress
           ];
 
-          trusted-public-keys = [
+          extra-trusted-public-keys = [
             selfHostedPublicKey
           ];
         };
@@ -138,11 +136,11 @@ in {
     (lib.mkIf cfg.cache.nixCommunity {
       nix = {
         settings = {
-          substituters = [
+          extra-substituters = [
             "https://nix-community.cachix.org"
           ];
 
-          trusted-public-keys = [
+          extra-trusted-public-keys = [
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
         };
