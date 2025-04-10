@@ -69,17 +69,6 @@ jobs:
         run: |
           gh --version
           git --version
-      - name: Install selfup
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          install_path="$(mktemp -d)"
-          cd "$install_path"
-          gh release download '${{ inputs.version }}' --pattern 'selfup_Linux_x86_64.tar.gz' --repo kachick/selfup
-          tar -xvzf 'selfup_Linux_x86_64.tar.gz'
-          echo "$install_path" | tee -a "$GITHUB_PATH"
-      - name: Make sure the installed selfup version
-        run: selfup --version
       # To push workflow changes and trigger CIs
       - name: Generate GitHub Apps token
         id: publish-token
