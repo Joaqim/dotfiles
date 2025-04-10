@@ -27,4 +27,6 @@ jobs:
           nix flake show . --json 2>/dev/null | jq '.packages | ."x86_64-linux" | to_entries | map("\(.key) # \(.value.description)")'
           echo "Available overlays:"
           nix flake show . --json 2>/dev/null | jq '.overlays | to_entries | map(.key)'
+          echo "Available apps:"
+          nix flake show . --json 2>/dev/null | jq '.apps | ."x86_64-linux" | to_entries | map("\(.key)")'
       - run: nix flake check
