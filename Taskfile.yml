@@ -125,7 +125,7 @@ tasks:
   update:
     desc: Bump dependencies
     cmds:
-      - nix run .#update-flake-inputs
+      - nix run .#commit-flake-lock
       - nix run .#commit-selfup
       - nix run .#commit-nvfetcher -L
 
