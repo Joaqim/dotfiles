@@ -29,6 +29,10 @@ on:
           Do NOT work in the branch of this PR, it may be updated by the bot with force push.
         required: false
         type: string
+      commit-lockfile-summary:
+        default: 'flake.lock: Update flake.lock'
+        required: false
+        type: string
       selfup-commit-message:
         default: 'Sync CI dependencies with nixpkgs'
         required: false
@@ -111,7 +115,8 @@ jobs:
         run: |
           git switch "${PR_BRANCH}" || git switch -c "${PR_BRANCH}"
       - name: Update flake.lock and commit them
-        run: nix flake update --commit-lock-file
+        run: |-
+          nix flake update --commit-lock-file --option commit-lockfile-summary "${{ inputs.commit-lockfile-summary }}"
       - name: Update related CI dependencies
         id: update-workflows
         run: |
