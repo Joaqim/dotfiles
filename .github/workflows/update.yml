@@ -34,7 +34,9 @@ jobs:
 
 
         #### Do **NOT** work in the branch of this PR; it may be updated by the bot using force push.
-      selfup-commit-message: 'deps: Update workflow dependencies using `selfup`'
+      commit-lockfile-summary: |-
+        bump(flake): flake.lock: Update flake inputs
+      selfup-commit-message: 'bump(ci): Update workflow dependencies using `selfup`'
       optional-run: |
         nix run .#commit-nvfetcher
       git-user: "Joaqim's CI Bot"
