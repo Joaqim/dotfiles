@@ -1,18 +1,19 @@
 {
   inputs',
   writeShellApplication,
-  git,
+  gitMinimal,
   mktemp,
   ...
 }:
-writeShellApplication {
+writeShellApplication rec {
   name = "commit-nvfetcher";
+  text = builtins.readFile ./${name}.sh;
 
   runtimeInputs = [
     inputs'.nvfetcher.packages.default
-    git
+    gitMinimal
     mktemp
   ];
 
-  text = builtins.readFile ./commit-nvfetcher.sh;
+  meta.description = "Use `nvfetcher` to update sources in `./pkgs/sources.nix` with commitizen formatted commit";
 }

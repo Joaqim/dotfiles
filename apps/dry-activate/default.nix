@@ -1,5 +1,6 @@
 {writeShellApplication, ...}:
-writeShellApplication {
+writeShellApplication rec {
   name = "dry-activate";
-  text = builtins.readFile ./dry-activate.sh;
+  text = builtins.readFile ./${name}.sh;
+  meta.description = "Dry-activate NixOS and home-manager configuration";
 }

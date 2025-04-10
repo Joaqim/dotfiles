@@ -1,13 +1,17 @@
-{pkgs, ...}:
-pkgs.writeShellApplication rec {
+{
+  coreutils,
+  gnutar,
+  ripgrep,
+  writeShellApplication,
+  ...
+}:
+writeShellApplication rec {
   name = "archive-home-files";
   text = builtins.readFile ./${name}.bash;
-  runtimeInputs = with pkgs; [
+  runtimeInputs = [
     gnutar
     ripgrep
     coreutils
   ];
-  meta = {
-    description = "Take a snapshot of current home-manager files in home";
-  };
+  meta.description = "Take a snapshot of current home-manager files in home";
 }
