@@ -21,6 +21,7 @@
     #./lohr
     #./matrix
     #./mealie
+    ./minecraft-server
     ./minecraft-vault-hunters-server
     #./miniflux
     #./monitoring
