@@ -56,6 +56,21 @@
         },
         "version": "4.3-stable"
     },
+    "minecraft-modpack": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "minecraft-modpack",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-MIMFiSDw5QkFi2WJxDM5JpcOP7xcrvKJq5IM+LdlskA=",
+            "type": "url",
+            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.04.15/Minecraft-Modpack-v2025.04.15.mrpack"
+        },
+        "version": "v2025.04.15"
+    },
     "mpv-skipsilence": {
         "cargoLocks": null,
         "date": "2024-05-06",
