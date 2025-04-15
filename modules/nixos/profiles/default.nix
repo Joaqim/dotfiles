@@ -6,6 +6,7 @@
     ./fcitx5
     ./language
     #./laptop
+    ./minecraft-server
     ./plasma
     ./steam-deck
   ];

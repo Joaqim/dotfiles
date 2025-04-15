@@ -18,6 +18,7 @@
       ];
       useEuropeanEnglish = true;
     };
+    minecraft-server.enable = true;
     # Plasma Window Manager
     plasma.enable = true;
   };
