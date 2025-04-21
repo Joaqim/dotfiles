@@ -35,11 +35,16 @@ in {
       enable = true;
 
       minecraftVersion = MINECRAFT_VERSION;
-      #modrinthModpackRemote = REMOTE_MODPACK_URL;
       modrinthModpack = "/run/current-system/sw/share/minecraft-modpacks/${MODPACK_PKG.modpack}";
       modpackName = MODPACK_NAME;
 
       motd = "Running `${MODPACK_NAME}` version: ${MODPACK_VERSION}";
+
+      resourcePack = {
+        url = "https://cdn.modrinth.com/data/50dA9Sha/versions/hPLOoHUN/FreshAnimations_v1.9.3.zip";
+        sha1 = "a7a9f528a5f6e7c7b14ad70b514ecba89b982cde";
+        force = true;
+      };
 
       serverIcon = SERVER_ICON;
       serverName = SERVER_NAME;
