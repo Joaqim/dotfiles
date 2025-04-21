@@ -65,11 +65,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-MIMFiSDw5QkFi2WJxDM5JpcOP7xcrvKJq5IM+LdlskA=",
+            "sha256": "sha256-Vf51ohCNFqFu/xqEhBPImisrOAviaheqCxz3LnbezK4=",
             "type": "url",
-            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.04.15/Minecraft-Modpack-v2025.04.15.mrpack"
+            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.04.21/Minecraft-Modpack-v2025.04.21.mrpack"
         },
-        "version": "v2025.04.15"
+        "version": "v2025.04.21"
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
@@ -94,7 +94,7 @@
     },
     "twitchindicator": {
         "cargoLocks": null,
-        "date": "2025-02-19",
+        "date": "2025-04-20",
         "extract": null,
         "name": "twitchindicator",
         "passthru": null,
@@ -106,12 +106,12 @@
             "name": null,
             "owner": "kuunha",
             "repo": "twitchindicator",
-            "rev": "3b685af607a7c67a3920cc9c9709a1056ba5c039",
-            "sha256": "sha256-TuIuZ2AP14bA7ggj8543Cs1HM1Kk01ACTwjKdYv9dZA=",
+            "rev": "cf60289d5da93c77af42d99c7a5746e2d2adebe3",
+            "sha256": "sha256-ixf0VTV2rfZpKIkiufKNP39TeH4/hU7FlbenSLBV0m4=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "3b685af607a7c67a3920cc9c9709a1056ba5c039"
+        "version": "cf60289d5da93c77af42d99c7a5746e2d2adebe3"
     },
     "undertaker141": {
         "cargoLocks": null,
