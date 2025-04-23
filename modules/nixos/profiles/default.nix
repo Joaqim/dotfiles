@@ -4,6 +4,7 @@
     ./bluetooth
     ./devices
     ./fcitx5
+    ./gamemode
     ./language
     #./laptop
     ./minecraft-server

@@ -10,6 +10,7 @@
     };
     # My custom fcitx5 configuration
     fcitx5.enable = true;
+    gamemode.enable = true;
     language = {
       supportedLocales = [
         "C.UTF-8/UTF-8"
