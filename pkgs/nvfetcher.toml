@@ -39,6 +39,6 @@ src.github_tag = "AbdelrhmanNile/UnderTaker141"
 fetch.url = "https://github.com/AbdelrhmanNile/UnderTaker141/releases/download/latest/UnderTaker141.AppImage"
 
 [minecraft-modpack]
-src.github_tag = "Joaqim/MinecraftModpack"
+src.github = "Joaqim/MinecraftModpack"
 src.branch = "custom"
 fetch.url = "https://github.com/Joaqim/MinecraftModpack/releases/download/$ver/Minecraft-Modpack-$ver.mrpack"

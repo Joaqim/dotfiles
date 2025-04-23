@@ -9,6 +9,10 @@
   DEFAULT_MINECRAFT_VERSION = "1.21.3";
   DEFAULT_SERVER_NAME = "Minecraft Server";
   DEFAULT_SERVER_DATA_DIR = "/srv/minecraft/";
+  toStringBool = b:
+    if b
+    then "TRUE"
+    else "FALSE";
 in {
   options.my.services.minecraft-server = with lib; {
     enable = mkEnableOption "Minecraft Server";
@@ -53,14 +57,16 @@ in {
 
     resourcePack = {
       url = mkOption {
-        type = types.str;
+        type = with types; nullOr str;
+        default = null;
         example = "https://cdn.modrinth.com/data/50dA9Sha/versions/hPLOoHUN/FreshAnimations_v1.9.3.zip";
       };
       sha1 = mkOption {
-        type = types.str;
+        type = with types; nullOr str;
+        default = null;
         example = "a7a9f528a5f6e7c7b14ad70b514ecba89b982cde";
       };
-      force = my.mkDisableOption "force resource pack download for clients";
+      force = mkEnableOption "force resource pack download for clients";
     };
 
     # TODO: Assert directory exists and is write permissible
@@ -118,12 +124,9 @@ in {
       then "/extras/modpack.mrpack"
       else toString cfg.modrinthModpackRemote;
 
-    RESOURCE_PACK = lib.optionalString (cfg.resourcePack.url != null && cfg.resourcePack.url != "") cfg.resourcePack.url;
-    RESOURCE_PACK_ENFORCE =
-      if cfg.resourcePack.force
-      then "TRUE"
-      else "FALSE";
-    RESOURCE_PACK_SHA1 = lib.optionalString (cfg.resourcePack.sha1 != null && cfg.resourcePack.sha1 != "") cfg.resourcePack.sha1;
+    RESOURCE_PACK = toString cfg.resourcePack.url;
+    RESOURCE_PACK_ENFORCE = toStringBool cfg.resourcePack.force;
+    RESOURCE_PACK_SHA1 = toString cfg.resourcePack.sha1;
 
     # TODO: Expects access inside docker container to "/data/whitelist.json"
     # Even if empty string
@@ -134,9 +137,7 @@ in {
       else "";
 
     ENABLE_WHITELIST =
-      if (cfg.whiteList != null || cfg.whiteListFilePath != null)
-      then "TRUE"
-      else "FALSE";
+      toStringBool (cfg.whiteList != null || cfg.whiteListFilePath != null);
 
     MODS_FILE_PATH =
       builtins.toFile "mods.txt" ''
