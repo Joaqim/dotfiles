@@ -65,11 +65,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-Vf51ohCNFqFu/xqEhBPImisrOAviaheqCxz3LnbezK4=",
+            "sha256": "sha256-HWTTBMjf5ZAub+ShPUU7tq9tEPIf+sCa2zCIxVYQjrk=",
             "type": "url",
-            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.04.21/Minecraft-Modpack-v2025.04.21.mrpack"
+            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.04.22-rc1/Minecraft-Modpack-v2025.04.22-rc1.mrpack"
         },
-        "version": "v2025.04.21"
+        "version": "v2025.04.22-rc1"
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
