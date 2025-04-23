@@ -41,6 +41,7 @@
     #./sabnzbd
     #./servarr
     ./ssh-server
+    ./syncthing-dirs
     ./tailscale
     #./tandoor-recipes
     #./tlp
