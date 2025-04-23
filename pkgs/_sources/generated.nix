@@ -33,10 +33,10 @@
   };
   minecraft-modpack = {
     pname = "minecraft-modpack";
-    version = "v2025.04.15";
+    version = "v2025.04.22-rc1";
     src = fetchurl {
-      url = "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.04.15/Minecraft-Modpack-v2025.04.15.mrpack";
-      sha256 = "sha256-MIMFiSDw5QkFi2WJxDM5JpcOP7xcrvKJq5IM+LdlskA=";
+      url = "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.04.22-rc1/Minecraft-Modpack-v2025.04.22-rc1.mrpack";
+      sha256 = "sha256-HWTTBMjf5ZAub+ShPUU7tq9tEPIf+sCa2zCIxVYQjrk=";
     };
   };
   mpv-skipsilence = {
@@ -53,15 +53,15 @@
   };
   twitchindicator = {
     pname = "twitchindicator";
-    version = "3b685af607a7c67a3920cc9c9709a1056ba5c039";
+    version = "cf60289d5da93c77af42d99c7a5746e2d2adebe3";
     src = fetchFromGitHub {
       owner = "kuunha";
       repo = "twitchindicator";
-      rev = "3b685af607a7c67a3920cc9c9709a1056ba5c039";
+      rev = "cf60289d5da93c77af42d99c7a5746e2d2adebe3";
       fetchSubmodules = false;
-      sha256 = "sha256-TuIuZ2AP14bA7ggj8543Cs1HM1Kk01ACTwjKdYv9dZA=";
+      sha256 = "sha256-ixf0VTV2rfZpKIkiufKNP39TeH4/hU7FlbenSLBV0m4=";
     };
-    date = "2025-02-19";
+    date = "2025-04-20";
   };
   undertaker141 = {
     pname = "undertaker141";
