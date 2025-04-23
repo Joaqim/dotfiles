@@ -20,7 +20,7 @@ in {
           file
           flac
           gvfs
-          hardinfo
+          hardinfo2
           ncdu
           neofetch
           neovim
