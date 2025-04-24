@@ -78,6 +78,7 @@ in {
           vo = "gpu-next";
           # NOTE: Needed to make sure that mpv uses the correct yt-dlp
           script-opts = "ytdl_hook-ytdl_path=${lib.getExe yt-dlp-git}";
+          ytdl-raw-options-append = "cookies-from-browser=firefox";
           watch-later-options =
             lib.concatStringsSep ","
             [
@@ -100,9 +101,6 @@ in {
       yt-dlp = {
         enable = true;
         package = yt-dlp-git;
-
-        # https://github.com/yt-dlp/yt-dlp?tab=readme-ov-file#sponsorblock-options
-        extraConfig = "--cookies-from-browser=firefox";
       };
     };
 
