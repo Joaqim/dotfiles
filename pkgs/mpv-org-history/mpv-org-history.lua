@@ -35,6 +35,6 @@ mp.register_event("file-loaded", function()
 
 
   file:seek("end");
-  file:write(("*** %s %s:<%s>:<%s>:<%s>:%s:%s:\n"):format(filename, title, os.date("%Y-%d-%m %a %H:%M"), formatTime(playtime), formatTime(duration), speed, uploader));    
+  file:write(("*** %s %s:<%s>:<%s>:<%s>:%s:%s:\n"):format(filename, title, os.date("%Y-%m-%d %a %H:%M"), formatTime(playtime), formatTime(duration), speed, uploader));    
   file:close();
 end)
