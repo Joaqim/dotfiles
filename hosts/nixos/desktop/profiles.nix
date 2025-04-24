@@ -22,5 +22,10 @@
     minecraft-server.enable = true;
     # Plasma Window Manager
     plasma.enable = true;
+    xkb = {
+      enable = true;
+      layout = "dvp";
+      secondaryLayout = "se";
+    };
   };
 }

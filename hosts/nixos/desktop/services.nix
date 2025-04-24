@@ -18,6 +18,7 @@ in {
       listenPort = 8080;
     };
     atuin-server.enable = true;
+    earlyoom.enable = true;
     fail2ban.enable = true;
     nix-cache = {
       enable = true;
@@ -32,6 +33,7 @@ in {
       enableExitNode = true;
       useRoutingFeatures = "server";
     };
+    xserver.enable = true;
   };
 
   # TODO: move to my.services.jellyfin
