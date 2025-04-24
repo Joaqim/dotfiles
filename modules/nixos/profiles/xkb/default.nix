@@ -9,29 +9,35 @@ in {
     enable = mkEnableOption "Xkb configuration";
 
     layout = mkOption {
-      type = with types; enum ["dvp" "se" "us"];
-      default = "dvp";
+      type = types.str;
+      default = "us";
     };
     secondaryLayout = mkOption {
       type = with types; nullOr str;
       default = null;
     };
-    switchEscapeCapsLoc = my.mkDisableOption "switch escape and caps lock";
+    useDvp = mkEnableOption "use dvp keymap";
+    switchEscapeCapsLock = my.mkDisableOption "switch escape and caps lock";
   };
 
-  config.my.services.xserver = lib.mkIf cfg.enable (lib.mkMerge [
+  config = lib.mkIf cfg.enable (lib.mkMerge [
     {
-      xkbLayout = "${cfg.layout},${toString cfg.secondaryLayout}";
+      assertions = [
+        {
+          assertion = cfg.useDvp -> (cfg.layout == "us" || cfg.secondaryLayout == "us");
+          message = ''
+            The option `useDvp` is only supported with "us" layout for `layout` or `secondaryLayout`
+          '';
+        }
+      ];
     }
+    {
+      my.services.xserver = rec {
+        xkbLayout = builtins.concatStringsSep "," [cfg.layout cfg.secondaryLayout];
+        xkbOptions = lib.optionalString cfg.switchEscapeCapsLock "caps:escape";
 
-    (lib.mkIf cfg.switchEscapeCapsLoc {
-      xkbOptions = "caps:escape";
-    })
-
-    (lib.mkIf
-      (cfg.keymap == "dvp")
-      {
-        xkbVariant = "dvp,";
-      })
+        xkbVariant = lib.optionalString cfg.useDvp (lib.replaceStrings ["us"] ["dvp"] xkbLayout);
+      };
+    }
   ]);
 }

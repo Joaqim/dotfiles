@@ -23,8 +23,9 @@
     plasma.enable = true;
     xkb = {
       enable = true;
-      layout = "dvp";
+      layout = "us";
       secondaryLayout = "se";
+      useDvp = true;
     };
   };
 }
