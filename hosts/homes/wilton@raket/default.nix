@@ -1,7 +1,6 @@
 {
   my.home = {
     atuin.enable = false;
-    bat.enable = false;
     boilr.enable = false;
     bottom.enable = false;
     direnv.enable = false;
