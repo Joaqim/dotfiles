@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.my.profiles.gamemode;
+  cfg = config.my.programs.gamemode;
 in {
-  options.my.profiles.gamemode = with lib; {
+  options.my.programs.gamemode = with lib; {
     enable = mkEnableOption "gamemode profile";
 
     enableRenice = mkEnableOption "enable renice";
