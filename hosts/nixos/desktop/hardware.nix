@@ -19,6 +19,10 @@ in {
       enable = true;
       gpuFlavor = "amd";
       amd.amdvlk = true;
+      coreCtrl = {
+        enable = true;
+        gpuOverclock = true;
+      };
     };
     sound = {
       pipewire.enable = true;
