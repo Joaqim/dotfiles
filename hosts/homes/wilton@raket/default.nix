@@ -8,7 +8,6 @@
     documentation.enable = false;
     fzf.enable = false;
     git.enable = false;
-    htop.enable = false;
     jq.enable = false;
     nix.cache.selfHosted = true;
     nushell.enable = false;
