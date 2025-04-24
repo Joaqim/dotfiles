@@ -1,1 +1,0 @@
-https://github.com/itzg/docker-minecraft-server/blob/master/docs/misc/autopause-autostop/autopause.md
