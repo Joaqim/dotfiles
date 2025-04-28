@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: DeterminateSystems/nix-installer-action@v16
+      - uses: DeterminateSystems/nix-installer-action@v17
       - name: Print some dotfiles overviews
         run: |
           </etc/nix/nix.conf
