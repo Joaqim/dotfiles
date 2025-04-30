@@ -70,7 +70,7 @@ in {
         package = lib.mkDefault pkgs.nix; # NixOS module sets it unconditionally
 
         settings = {
-          experimental-features = ["nix-command" "flakes"];
+          experimental-features = ["nix-command" "flakes" "blake3-hashes"];
         };
       };
     }

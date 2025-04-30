@@ -70,7 +70,7 @@ in {
         package = pkgs.nix;
 
         settings = {
-          experimental-features = ["nix-command" "flakes"];
+          experimental-features = ["nix-command" "flakes" "blake3-hashes"];
           # Trusted users are equivalent to root, and might as well allow wheel
           trusted-users = ["root" "@wheel"];
           auto-optimise-store = true;
