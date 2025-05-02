@@ -54,12 +54,9 @@
   nbt-studio = {
     pname = "nbt-studio";
     version = "v1.15.3";
-    src = fetchFromGitHub {
-      owner = "tryashtar";
-      repo = "nbt-studio";
-      rev = "v1.15.3";
-      fetchSubmodules = false;
-      sha256 = "sha256-aDUHLF5kTuGHg41zUOi/xBOTPEh/UVSglH4Xb9TEeqI=";
+    src = fetchurl {
+      url = "https://github.com/tryashtar/nbt-studio/releases/download/v1.15.3/NbtStudio.exe";
+      sha256 = "sha256-8yBKrXJlWvQQjNFh8ykim2Nhe0+vgbF4YLSZ5bkEfrk=";
     };
   };
   twitchindicator = {

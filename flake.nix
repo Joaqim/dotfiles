@@ -7,6 +7,10 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    erosanix = {
+      url = "github:emmanuelrosa/erosanix";
+      inputs.nixpkgs.follows = "nixpkgs-master";
+    };
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
@@ -27,6 +31,8 @@
     json2steamshortcut.url = "github:ChrisOboe/json2steamshortcut";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # Needed by erosanix ( which provides mkWindowsApp etc.)
+    nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nur = {
       url = "github:nix-community/NUR";
 
