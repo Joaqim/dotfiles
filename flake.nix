@@ -20,7 +20,7 @@
       inputs.systems.follows = "systems";
     };
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/50bb714a8259b0c29b6c3429099a3b837771dab4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence = {
