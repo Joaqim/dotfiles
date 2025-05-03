@@ -4,7 +4,7 @@
 }: let
   inherit (flake-inputs.erosanix.lib.x86_64-linux) mkWindowsAppNoCC;
   inherit (sources) nbt-studio;
-  # For some reason, I couldn't get _any_ mkWindowApp package to work with `nixos-unstable`
+  # For some reason, I couldn't get any mkWindowApp packages to work with `nixos-unstable`
   pkgs = import flake-inputs.nixpkgs-master {system = "x86_64-linux";};
   inherit (pkgs) wineWowPackages;
 in
