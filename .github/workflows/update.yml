@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 jobs:
   update:
-    if: (github.event_name != 'pull_request') || (!github.event.pull_request.draft)
+    if: (github.event_name != 'pull_request') || (!github.event.pull_request.draft) || (github.triggering_actor != 'dependabot[bot]')
     uses: ./.github/workflows/reusable-bump-flake-lock-and-selfup.yml
     with:
       app-id: ${{ vars.APP_ID }}
