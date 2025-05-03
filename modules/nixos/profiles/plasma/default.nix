@@ -31,8 +31,6 @@ in {
       };
     };
 
-    programs.kdeconnect.enable = true;
-
     security.pam.services.kwallet = {
       name = "kwallet";
       enableKwallet = true;
