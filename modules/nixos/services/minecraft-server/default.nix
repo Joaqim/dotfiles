@@ -18,9 +18,8 @@ in {
     enable = mkEnableOption "Minecraft Server";
 
     levelName = mkOption {
-      type = with types; nullOr str;
-      default = null;
-      example = "${DEFAULT_SERVER_NAME} World 1";
+      type = types.str;
+      default = "${DEFAULT_SERVER_NAME} World 1";
     };
 
     minecraftVersion = mkOption {
@@ -50,6 +49,7 @@ in {
       default = null;
     };
 
+    enableRconWebAdmin = mkEnableOption "enable rcon-web-admin";
     rconWebAdminEnvironmentFilePath = mkOption {
       type = with types; nullOr str;
       default = null;
@@ -162,11 +162,14 @@ in {
           backend = "docker";
 
           containers = {
-            "rcon-web-admin" = {
+            "rcon-web-admin" = lib.mkIf cfg.enableRconWebAdmin {
               image = "itzg/rcon";
               # https://github.com/rcon-web-admin/rcon-web-admin#environment-variables
               environment = {
-                RWA_RCON_HOST = "${SERVER_NAME_SLUG}"; # See docker container `itzg/minecraft-server`: --network-alias=${SERVER_NAME_SLUG}
+                RWA_ADMIN = "TRUE"; # Set the initial user as admin
+                RWA_RCON_HOST = SERVER_NAME_SLUG; # See docker container `itzg/minecraft-server`: --network-alias=${SERVER_NAME_SLUG}
+                RWA_SERVER_NAME = cfg.serverName;
+                RWA_WEB_RCON = "TRUE";
               };
               environmentFiles = lib.lists.optional (cfg.rconWebAdminEnvironmentFilePath != null) cfg.rconWebAdminEnvironmentFilePath;
               ports = [
@@ -192,6 +195,7 @@ in {
                   RESOURCE_PACK_SHA1
                   WHITELIST_FILE
                   ;
+                RCON_PASSWORD = "hunter2";
                 ALLOW_FLIGHT = "TRUE";
                 AUTOPAUSE_TIMEOUT_EST = "3600"; # 1 Hour
                 AUTOPAUSE_TIMEOUT_INIT = "600"; # 10 Minutes
@@ -210,8 +214,8 @@ in {
                 MODS_FILE = "/extras/mods.txt";
                 ONLINE_MODE = "FALSE";
                 OP_PERMISSION_LEVEL = "4"; # https://minecraft.fandom.com/wiki/Permission_level#Java_Edition
-
-                RCON_CMDS_STARTUP = ''
+                # NOTE: This should only be needed on first world creation
+                RCON_CMDS_STARTUP = lib.strings.optionalString (!(builtins.pathExists "${cfg.serverDataDirectory}/${cfg.levelName}/level.dat")) ''
                   gamerule keepInventory true
                   gamerule mobGriefing false
                   gamerule playersSleepingPercentage 0
@@ -230,6 +234,7 @@ in {
                 VERSION = cfg.minecraftVersion;
                 VIEW_DISTANCE = "20";
               };
+              environmentFiles = lib.lists.optional (cfg.rconWebAdminEnvironmentFilePath != null) cfg.rconWebAdminEnvironmentFilePath;
               volumes =
                 [
                   "${cfg.serverDataDirectory}/${SERVER_NAME_SLUG}-data:/data:rw"

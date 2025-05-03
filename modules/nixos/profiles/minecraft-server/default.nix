@@ -48,6 +48,11 @@ in {
 
       serverIcon = SERVER_ICON;
       serverName = SERVER_NAME;
+      # Used by minecraft-server:    https://docker-minecraft-server.readthedocs.io/en/latest/variables/#rcon
+      # Also used by rcon-web-admin: https://github.com/rcon-web-admin/rcon-web-admin#environment-variables
+      # See: https://hub.docker.com/r/itzg/rcon/
+      # Expects same value set for RWA_RCON_PASSWORD (rcon-web-admin container) and RCON_PASSWORD (minecraft-server container)
+      # RWA_PASSWORD for rcon-web-admin web ui login, with default username RWA_USERNAME="admin"
       rconWebAdminEnvironmentFilePath = secrets."rcon_web_admin_env".path;
       whiteListFilePath = secrets."minecraft_server_whitelist".path;
     };
