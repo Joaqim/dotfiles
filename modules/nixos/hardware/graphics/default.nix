@@ -33,6 +33,11 @@ in {
         default = "stable";
       };
     };
+
+    coreCtrl = {
+      enable = mkEnableOption "Enable corectrl";
+      gpuOverclock = mkEnableOption "Enable GPU overclocking";
+    };
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -65,6 +70,43 @@ in {
           pkgs.driversi686Linux.amdvlk
         ];
       };
+    })
+
+    # Core Ctrl can be used for both CPU & GPU
+    # TODO: Move to my.programs.corectrl
+    (lib.mkIf cfg.coreCtrl.enable {
+      programs.corectrl = {
+        enable = true;
+        gpuOverclock = lib.mkIf cfg.coreCtrl.gpuOverclock {
+          enable = true;
+          # TODO: Is this only for amd?
+          ppfeaturemask = lib.optionalString (cfg.gpuFlavor == "amd") "0xffffffff";
+        };
+      };
+      # Allows running corectrl as group @wheel
+      security.polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+            if ((action.id == "org.corectrl.helper.init" ||
+                action.id == "org.corectrl.helperkiller.init") &&
+                subject.local == true &&
+                subject.active == true &&
+                subject.isInGroup("wheel")) {
+                    return polkit.Result.YES;
+            }
+        });
+      '';
+      # Start corectrl at startup
+      environment.systemPackages = [
+        (pkgs.makeAutostartItem rec {
+          name = "corectrl";
+          package = pkgs.makeDesktopItem {
+            inherit name;
+            desktopName = "CoreCtrl";
+            exec = "corectrl --minimize-systray";
+            icon = "corectrl";
+          };
+        })
+      ];
     })
 
     # Intel GPU

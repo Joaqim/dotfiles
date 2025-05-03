@@ -5,7 +5,6 @@
   };
   my.home = {
     atuin.enable = false;
-    bat.enable = false;
     boilr.enable = true;
     command-line.enable = false;
     gaming.enable = true;

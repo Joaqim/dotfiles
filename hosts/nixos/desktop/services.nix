@@ -1,10 +1,15 @@
 {
   config,
+  inputs,
   lib,
   ...
 }: let
   inherit (config.sops) templates;
+  inherit (inputs) jellyfin-plugins;
 in {
+  imports = [
+    jellyfin-plugins.nixosModules.jellyfin-plugins
+  ];
   my.services = {
     atticd = {
       enable = true;
@@ -13,6 +18,7 @@ in {
       listenPort = 8080;
     };
     atuin-server.enable = true;
+    earlyoom.enable = true;
     fail2ban.enable = true;
     nix-cache = {
       enable = true;
@@ -27,5 +33,11 @@ in {
       enableExitNode = true;
       useRoutingFeatures = "server";
     };
+    xserver.enable = true;
+  };
+
+  # TODO: move to my.services.jellyfin
+  services.jellyfin.enabledPlugins = {
+    inherit (jellyfin-plugins.packages."x86_64-linux") ani-sync;
   };
 }

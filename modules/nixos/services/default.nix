@@ -1,52 +1,17 @@
 {...}: {
   imports = [
-    #./adblock
     ./atticd
     ./atuin-server
-    #./aria
-    #./audiobookshelf
-    #./backup
-    #./blog
-    #./calibre-web
-    #./drone
+    ./earlyoom
     ./fail2ban
-    #./flood
-    #./forgejo
-    #./gitea
-    #./grocy
-    #./homebox
-    #./indexers
-    #./jellyfin
-    #./komga
-    #./lohr
-    #./matrix
-    #./mealie
     ./minecraft-server
     ./minecraft-vault-hunters-server
-    #./miniflux
-    #./monitoring
-    #./navidrome
-    #./nextcloud
     ./nginx
     ./nix-cache
-    #./paperless
-    #./pdf-edit
-    #./podgrab
-    #./postgresql
-    #./postgresql-backup
-    #./pyload
     ./qbittorrent-nox
-    #./quassel
-    #./rss-bridge
-    #./sabnzbd
-    #./servarr
     ./ssh-server
+    ./syncthing-dirs
     ./tailscale
-    #./tandoor-recipes
-    #./tlp
-    #./transmission
-    #./vikunja
-    #./wireguard
-    #./woodpecker
+    ./xserver
   ];
 }

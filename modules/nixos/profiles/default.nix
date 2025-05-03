@@ -9,5 +9,6 @@
     ./minecraft-server
     ./plasma
     ./steam-deck
+    ./xkb
   ];
 }

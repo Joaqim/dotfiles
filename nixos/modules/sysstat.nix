@@ -1,5 +1,0 @@
-{
-  services.sysstat = {
-    enable = true;
-  };
-}

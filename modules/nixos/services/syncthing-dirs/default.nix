@@ -2,24 +2,32 @@
   config,
   lib,
   ...
-}:
-with lib; let
-  cfg = config.services.syncthing-dirs;
+}: let
+  user = config.my.user.name;
+  cfg = config.my.services.syncthing-dirs;
 in {
-  options.services.syncthing-dirs = {
-    enable = mkEnableOption (lib.mdDoc "Syncthing");
+  options.my.services.syncthing-dirs = with lib; {
+    enable = mkEnableOption (mdDoc "Syncthing");
+
+    dataDir = mkOption {
+      type = types.path;
+      default = "/home/${user}/Syncthing";
+      description = mdDoc ''
+        The directory where Syncthing stores its data files.
+      '';
+    };
 
     user = mkOption {
       type = types.str;
-      default = "jq";
-      description = lib.mdDoc ''
+      default = user;
+      description = mdDoc ''
         User account permissions to sync with.
       '';
     };
     group = mkOption {
       type = types.str;
       default = "users";
-      description = lib.mdDoc ''
+      description = mdDoc ''
         Group permissions to sync with.
       '';
     };
@@ -27,7 +35,7 @@ in {
     guiPort = mkOption {
       type = types.port;
       default = 8384;
-      description = lib.mdDoc ''
+      description = mdDoc ''
         Syncthing web UI port.
       '';
     };
@@ -35,30 +43,29 @@ in {
     openFirewall = mkOption {
       type = types.bool;
       default = false;
-      description = lib.mdDoc ''
-        Open services.syncthing-dirs.guiPort to the outside network.
+      description = mdDoc ''
+        Open my.services.syncthing-dirs.guiPort to the outside network.
       '';
     };
 
     guiHost = mkOption {
       type = types.str;
       default = "0.0.0.0";
-      description = lib.mdDoc ''
+      description = mdDoc ''
         Syncthing web UI address.
       '';
     };
   };
 
-  config = mkIf cfg.enable {
-    networking.firewall = mkIf cfg.openFirewall {
+  config = lib.mkIf cfg.enable {
+    networking.firewall = lib.mkIf cfg.openFirewall {
       allowedTCPPorts = [cfg.guiPort 22000];
     };
 
     services = {
-      syncthing = rec {
+      syncthing = {
+        inherit (cfg) dataDir user group;
         enable = true;
-        inherit (cfg) user group;
-        dataDir = "/home/${user}/Syncthing";
         guiAddress = "${cfg.guiHost}:${toString cfg.guiPort}";
         # overrides any devices or folders added or deleted through the WebUI
         overrideDevices = true;
@@ -75,10 +82,6 @@ in {
             "~/.local/share/PrismLauncher" = {
               id = "default-PrismLauncher";
               devices = ["node" "deck"];
-            };
-            "~/.config/undertaker141" = {
-              id = "default-UnderTaker141";
-              devices = ["node" "desktop"];
             };
           };
           devices = {
