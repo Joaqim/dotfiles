@@ -14,7 +14,9 @@ in {
     {
       services.kdeconnect = {
         enable = true;
-        indicator = true;
+        # Indicator is already available when using Plasma KDE
+        # TODO: Depend on setting of `my.profile.plasma.enable` in `modules/nixos/profiles/plasma/default.nix`
+        indicator = false;
       };
       # TODO: Should these be included here?
       home.packages = builtins.attrValues {
