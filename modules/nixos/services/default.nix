@@ -4,6 +4,7 @@
     ./atuin-server
     ./earlyoom
     ./fail2ban
+    ./jellyfin
     ./minecraft-server
     ./minecraft-vault-hunters-server
     ./nginx

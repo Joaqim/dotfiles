@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  ...
 }: let
   cfg = config.my.services.jellyfin;
 in {
