@@ -10,6 +10,10 @@
 
 [NixOS/nixpkgs - How to override a Python Package?](https://github.com/NixOS/nixpkgs/blob/master/doc/languages-frameworks/python.section.md#how-to-override-a-python-package-how-to-override-a-python-package)
 
+[Self hosted private github repository](https://ayats.org/blog/gitea-drone)
+
+[Deyloying Gitea on NixOS](https://mcwhirter.com.au/craige/blog/2019/Deploying_Gitea_on_NixOS/)
+
 ## Inspirations
 
 [Kachick/dotfiles](https://github.com/kachick/dotfiles)
@@ -29,3 +33,5 @@
 [Wimpy's NixOS Configuration](https://github.com/wimpysworld/nix-config)
 
 [Ambroisie's NixOS Configuration](https://github.com/ambroisie/nix-config)
+
+
