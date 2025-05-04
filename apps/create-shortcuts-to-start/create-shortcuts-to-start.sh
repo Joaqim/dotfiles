@@ -3,10 +3,6 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 GAME_DIR="${1:-$SCRIPT_DIR}"
 
-# Only works with my own patched 'steamtinkerlaunch'
-# Allows running 'steamtinkerlaunch addnonsteamgames' from cli without desktop
-export ONSTEAMDECK=1
-
 for GAME_SCRIPT in $(find "$GAME_DIR" -maxdepth 2 -path '*-jc141/start*.sh'); do
     GAME_PATH="$(dirname '$GAME_SCRIPT')"
     GAME_NAME="$(echo ${GAME_PATH##*/} | sed 's;-jc141;;' | tr '.' ' ' )"
@@ -52,11 +48,8 @@ Terminal=false
 Type=Application
 Categories=Game;jc141
 EOF
-    #chmod +x "$GAME_PATH"/*.sh "$GAME_SHORTCUT"
 
     cp -a "$GAME_SHORTCUT" $HOME/Desktop/
     echo Add game \"$GAME_NAME\"
     steamtinkerlaunch addnonsteamgame --exepath="$GAME_EXECUTABLE_PATH" --appname="$GAME_NAME" --launchoptions="gamemoderun %command%" --tags=jc141 --compatibilitytool="GE-Proton9-23"
 done
-
-#boilr-gui --no-ui

@@ -13,5 +13,5 @@ in
       drv =
         import "${app}"
         (pkgs
-          // {inherit inputs' lib;});
+          // {inherit inputs' lib self;});
     })
