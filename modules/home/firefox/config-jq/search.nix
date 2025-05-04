@@ -2,21 +2,7 @@
   force = true;
   default = "ddg"; # DuckDuckGo
   engines = {
-    "AlternativeTo" = {
-      definedAliases = ["@al"];
-      icon = ./icons/al.png;
-      urls = [{template = "https://alternativeto.net/browse/search/?q={searchTerms}";}];
-    };
-    "Amazon" = {
-      definedAliases = ["@am"];
-      icon = ./icons/am.png;
-      urls = [{template = "https://www.amazon.com/s?k={searchTerms}&ref=nav_bb_sb";}];
-    };
-    "Brave" = {
-      definedAliases = ["@br"];
-      icon = ./icons/br.png;
-      urls = [{template = "https://search.brave.com/search?q={searchTerms}&source=web";}];
-    };
+    ## Nix
     "Nix Packages" = {
       definedAliases = ["@np"];
       icon = ./icons/nx.png;
@@ -37,6 +23,12 @@
       icon = ./icons/mo.png;
       urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
     };
+    "Noogle" = {
+      definedAliases = ["@ng"];
+      icon = ./icons/ng.png;
+      urls = [{template = "https://noogle.dev/q?term={searchTerms}";}];
+    };
+    ## Torrents
     "The Pirate Bay" = {
       definedAliases = ["@pi"];
       icon = ./icons/pi.png;
@@ -47,25 +39,10 @@
       icon = ./icons/kn.png;
       urls = [{template = "https://knaben.org/search/{searchTerms}";}];
     };
-    "reddit" = {
-      definedAliases = ["@re"];
-      icon = ./icons/re.png;
-      urls = [{template = "https://www.old.reddit.com/search/?q={searchTerms}";}];
-    };
     "VSTorrent" = {
       definedAliases = ["@vs"];
       icon = ./icons/vs.png;
       urls = [{template = "https://vstorrent.org/?s={searchTerms}";}];
-    };
-    "Wikipedia" = {
-      definedAliases = ["@wi"];
-      icon = ./icons/wi.png;
-      urls = [{template = "https://en.wikipedia.org/wiki/{searchTerms}";}];
-    };
-    "youtube" = {
-      definedAliases = ["@yo"];
-      icon = ./icons/yo.png;
-      urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
     };
     "1337x" = {
       definedAliases = ["@13"];
@@ -87,6 +64,29 @@
       icon = ./icons/at.png;
       urls = [{template = "https://mirror.animetosho.org/search?q={searchTerms}";}];
     };
+    ## Misc
+    "Wikipedia" = {
+      definedAliases = ["@wi"];
+      icon = ./icons/wi.png;
+      urls = [{template = "https://en.wikipedia.org/wiki/{searchTerms}";}];
+    };
+    "AlternativeTo" = {
+      definedAliases = ["@al"];
+      icon = ./icons/al.png;
+      urls = [{template = "https://alternativeto.net/browse/search/?q={searchTerms}";}];
+    };
+    ## Social
+    "reddit" = {
+      definedAliases = ["@re"];
+      icon = ./icons/re.png;
+      urls = [{template = "https://www.old.reddit.com/search/?q={searchTerms}";}];
+    };
+    "youtube" = {
+      definedAliases = ["@yo"];
+      icon = ./icons/yo.png;
+      urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
+    };
+    ## Books
     "Library Genesis" = {
       definedAliases = ["@lg" "@lib"];
       icon = ./icons/lg.png;
@@ -97,6 +97,7 @@
       icon = ./icons/aa.png;
       urls = [{template = "https://annas-archive.org/search?q={searchTerms}";}];
     };
+    # Unused
     "amazondotcom-en".metaData.hidden = true;
     "bing".metaData.hidden = true;
     "ebay".metaData.hidden = true;
@@ -104,7 +105,6 @@
   };
   order = [
     "AlternativeTo"
-    "Amazon"
     "Nix Packages"
     "Nix Options"
     "My Nix OS"
@@ -118,7 +118,6 @@
     "Wikipedia"
     "youtube"
     "1337x"
-    "Brave"
     "google"
   ];
 }
