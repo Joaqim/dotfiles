@@ -1,17 +1,18 @@
 {
-  flake-inputs,
   inputs',
   lib,
   pkgs,
   self,
+  ...
 }: let
-  inherit (flake-inputs.flake-utils.lib) mkApp;
   inherit (self.lib.my) mapModules;
+  callPackage =
+    pkgs.lib.callPackageWith (pkgs
+      // {inherit inputs' lib self;});
 in
-  mapModules ./. (app:
-    mkApp {
-      drv =
-        import "${app}"
-        (pkgs
-          // {inherit inputs' lib self;});
-    })
+  mapModules ./. (
+    app: {
+      type = "app";
+      program = lib.getExe (callPackage app {});
+    }
+  )

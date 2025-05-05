@@ -1,5 +1,4 @@
 {
-  self,
   steamtinkerlaunch,
   writeShellApplication,
   ...
@@ -8,9 +7,7 @@ writeShellApplication rec {
   name = "create-shortcuts-to-start";
   text = builtins.readFile ./${name}.sh;
 
-  runtimeInputs =
-    builtins.attrValues
-    (import "${self}/overlays/steamtinkerlaunch" {} {inherit steamtinkerlaunch;});
+  runtimeInputs = [steamtinkerlaunch];
 
   runtimeEnv = {
     # Allows running 'steamtinkerlaunch' from cli without desktop
