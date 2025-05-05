@@ -59,7 +59,12 @@ in {
           fi
 
           # otherwise authenticate with tailscale
-          ${tailscale} up --auth-key="${authKey}?ephemeral=false&preauthorized=true" --advertise-tags="tag:nixos" --accept-risk="lose-ssh" --ssh=true
+          ${tailscale} up \
+            --auth-key="${authKey}?ephemeral=false&preauthorized=true" \
+            --advertise-tags="tag:nixos" \
+            --accept-risk="lose-ssh" \
+            --ssh=true \
+            ${lib.strings.optionalString cfg.enableExitNode "--advertise-exit-node"}
         '';
       };
     })
