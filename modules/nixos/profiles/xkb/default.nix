@@ -32,11 +32,15 @@ in {
       ];
     }
     {
-      my.services.xserver = rec {
+      my.services.xserver = {
         xkbLayout = builtins.concatStringsSep "," [cfg.layout cfg.secondaryLayout];
         xkbOptions = lib.optionalString cfg.switchEscapeCapsLock "caps:escape";
 
-        xkbVariant = lib.optionalString cfg.useDvp (lib.replaceStrings ["us"] ["dvp"] xkbLayout);
+        xkbVariant = lib.optionalString cfg.useDvp (
+          if cfg.layout == "us"
+          then "dvp,"
+          else ",dvp"
+        );
       };
     }
   ]);
