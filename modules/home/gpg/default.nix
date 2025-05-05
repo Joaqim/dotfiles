@@ -18,7 +18,7 @@ in {
       enableSshSupport = true;
       defaultCacheTtl = 86400;
       maxCacheTtl = 2592000;
-      pinentryPackage = cfg.pinentry;
+      pinentry.package = cfg.pinentry;
       extraConfig = ''
         allow-loopback-pinentry
       '';
