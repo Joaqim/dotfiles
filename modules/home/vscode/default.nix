@@ -137,6 +137,21 @@ in {
               "editor.formatOnType" = false;
             };
 
+            ## Typescript Formatter
+            "[typescript]" = {
+              "editor.defaultFormatter" = "esbenp.prettier-vscode";
+              "editor.formatOnPaste" = true;
+              "editor.formatOnSave" = true;
+              "editor.formatOnType" = true;
+            };
+
+            ## JSON Formatter
+            "[json]" = {
+              "editor.defaultFormatter" = "esbenp.prettier-vscode";
+              "editor.formatOnPaste" = true;
+              "editor.formatOnSave" = true;
+              "editor.formatOnType" = false;
+            };
             ## Plugin: kamadorueda.alejandra
             "alejandra.program" = lib.getExe pkgs.alejandra;
 
