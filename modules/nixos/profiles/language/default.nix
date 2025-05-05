@@ -13,7 +13,7 @@ in {
       example = "sv_SE.UTF-8";
       description = "Which locale to use for the system";
     };
-    supportedLocales = mkOption {
+    extraLocales = mkOption {
       type = types.listOf types.str;
       default = [
         "C.UTF-8/UTF-8"
@@ -42,7 +42,7 @@ in {
     {
       my.system.language = {
         enable = true;
-        inherit (cfg) locale supportedLocales;
+        inherit (cfg) locale extraLocales;
         useA4Paper = cfg.useEuropeanEnglish;
         useEuropeanCurrency = cfg.useEuropeanEnglish;
         useISODate = cfg.useEuropeanEnglish;

@@ -11,7 +11,7 @@
     # My custom fcitx5 configuration
     fcitx5.enable = true;
     language = {
-      supportedLocales = [
+      extraLocales = [
         "C.UTF-8/UTF-8"
         "en_US.UTF-8/UTF-8"
         "sv_SE.UTF-8/UTF-8"

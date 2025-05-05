@@ -16,7 +16,7 @@ in {
       description = "Which locale to use for the system";
     };
 
-    supportedLocales = mkOption {
+    extraLocales = mkOption {
       type = types.listOf types.str;
       default = [
         "C.UTF-8/UTF-8"
@@ -37,8 +37,8 @@ in {
     # Select internationalization properties.
     i18n = {
       defaultLocale = cfg.locale;
-      supportedLocales =
-        cfg.supportedLocales
+      extraLocales =
+        cfg.extraLocales
         ++ [
           # TODO: Conditional on useMetric, etc...
           "en_IE.UTF-8/UTF-8"
