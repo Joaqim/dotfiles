@@ -6,7 +6,7 @@
     ./docker
     ./documentation
     ./impermanence
-    ./locale
+    ./language
     ./nix
     ./packages
     ./podman
