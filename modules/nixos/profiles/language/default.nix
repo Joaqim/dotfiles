@@ -16,10 +16,10 @@ in {
     extraLocales = mkOption {
       type = types.listOf types.str;
       default = [
-        "C.UTF-8/UTF-8"
-        "en_US.UTF-8/UTF-8"
+        "C.UTF-8"
+        "en_US.UTF-8"
       ];
-      example = ["C.UTF-8/UTF-8" "en_US.UTF-8" "se_SV.UTF-8"];
+      example = ["C.UTF-8" "en_US.UTF-8" "se_SV.UTF-8"];
       description = "List of locales supported by the system";
     };
     useEuropeanEnglish = mkEnableOption "Override english locale to use metric units, dates and european currency and paper formats in the system";

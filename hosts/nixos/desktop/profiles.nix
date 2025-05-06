@@ -12,9 +12,9 @@
     fcitx5.enable = true;
     language = {
       extraLocales = [
-        "C.UTF-8/UTF-8"
-        "en_US.UTF-8/UTF-8"
-        "sv_SE.UTF-8/UTF-8"
+        "C.UTF-8"
+        "en_US.UTF-8"
+        "sv_SE.UTF-8"
       ];
       useEuropeanEnglish = true;
     };
