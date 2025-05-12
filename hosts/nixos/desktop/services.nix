@@ -6,12 +6,8 @@
   ...
 }: let
   inherit (config.sops) templates;
-  inherit (inputs) jellyfin-plugins;
   inherit (inputs.ccc.packages."x86_64-linux") ccc;
 in {
-  imports = [
-    jellyfin-plugins.nixosModules.jellyfin-plugins
-  ];
   my.services = {
     atticd = {
       enable = true;
@@ -37,10 +33,6 @@ in {
       useRoutingFeatures = "server";
     };
     xserver.enable = true;
-  };
-  # TODO: move to my.services.jellyfin
-  services.jellyfin.enabledPlugins = {
-    inherit (jellyfin-plugins.packages."x86_64-linux") ani-sync;
   };
 
   systemd.services."ccc" = {
