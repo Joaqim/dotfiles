@@ -39,6 +39,7 @@ in {
     cache = {
       selfHosted = mkEnableOption "self-hosted cache";
       nixCommunity = my.mkDisableOption "nix-community cache";
+      nixGaming = mkEnableOption "nix-gaming cache";
     };
 
     inputs = {
@@ -144,6 +145,13 @@ in {
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
         };
+      };
+    })
+
+    (lib.mkIf cfg.cache.nixGaming {
+      nix.settings = {
+        extra-substituters = ["https://nix-gaming.cachix.org"];
+        extra-trusted-public-keys = ["nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="];
       };
     })
 

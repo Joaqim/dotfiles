@@ -5,8 +5,11 @@ in {
   my.system = {
     docker.enable = true;
     impermanence.enable = true;
-    # This host is the one serving the cache, don't try to query it
-    nix.cache.selfHosted = false;
+    nix.cache = {
+      # This host is the one serving the cache, don't try to query it
+      selfHosted = false;
+      nixGaming = true;
+    };
     users = rec {
       enable = true;
       defaultPasswordFile =
