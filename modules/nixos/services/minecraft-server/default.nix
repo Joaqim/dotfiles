@@ -93,13 +93,14 @@ in {
 
     whiteList = mkOption {
       type = with types; nullOr (listOf str);
+      default = null;
       example = ["Steve" "Alice" "b2d2d2d2-1111-1111-1111-111111111111"];
       description = "A list of usernames and/or UUIDs";
-      default = [];
     };
 
     whiteListFilePath = mkOption {
       type = with types; nullOr str;
+      default = null;
       example = literalExample ''
         builtins.toFile "whitelist.json" builtins.toJSON [
           {
@@ -113,6 +114,7 @@ in {
 
   config = let
     SERVER_NAME_SLUG = lib.strings.toLower (lib.strings.sanitizeDerivationName cfg.serverName);
+    SERVER_DATA_DIR = "${cfg.serverDataDirectory}/${SERVER_NAME_SLUG}-data";
 
     LEVEL =
       if cfg.levelName != null
@@ -128,13 +130,11 @@ in {
     RESOURCE_PACK_ENFORCE = toStringBool cfg.resourcePack.force;
     RESOURCE_PACK_SHA1 = toString cfg.resourcePack.sha1;
 
-    # TODO: Expects access inside docker container to "/data/whitelist.json"
-    # Even if empty string
-    #WHITELIST = if cfg.whiteList != null then lib.concatStringsSep "," cfg.whiteList;
+    WHITELIST = lib.strings.optionalString (cfg.whiteList != null) (lib.concatStringsSep "," cfg.whiteList);
     WHITELIST_FILE =
-      if (cfg.whiteList != null)
+      if (cfg.whiteListFilePath != null)
       then "/extras/whitelist.json"
-      else "";
+      else "/data/whitelist.json";
 
     ENABLE_WHITELIST =
       toStringBool (cfg.whiteList != null || cfg.whiteListFilePath != null);
@@ -153,6 +153,34 @@ in {
             message = ''
               enabling `my.services.minecraft-server.enable` needs to have
               `virtualisation.docker.enable` enabled.
+            '';
+          }
+          {
+            assertion =
+              cfg.whiteList != null -> cfg.whiteListFilePath == null;
+
+            message = ''
+              `config.my.services.minecraft-server.whiteList` requires
+              `config.my.services.minecraft-server.whiteListFilePath` to be unset.
+            '';
+          }
+          {
+            assertion =
+              cfg.whiteListFilePath != null -> cfg.whiteList == null;
+
+            message = ''
+              `config.my.services.minecraft-server.whiteListFilePath` requires
+              `config.my.services.minecraft-server.whiteList` to be unset.
+            '';
+          }
+          {
+            # TODO: The file needs to be valid json, minimally: `[]`
+            assertion =
+              cfg.whiteList != null -> builtins.pathExists "${SERVER_DATA_DIR}/whitelist.json";
+
+            message = ''
+              `config.my.services.minecraft-server.whiteList` requires
+              read-and-writable `${SERVER_DATA_DIR}/whitelist.json` to exist.
             '';
           }
         ];
@@ -193,6 +221,7 @@ in {
                   RESOURCE_PACK
                   RESOURCE_PACK_ENFORCE
                   RESOURCE_PACK_SHA1
+                  WHITELIST
                   WHITELIST_FILE
                   ;
                 RCON_PASSWORD = "hunter2";
@@ -237,7 +266,7 @@ in {
               environmentFiles = lib.lists.optional (cfg.rconWebAdminEnvironmentFilePath != null) cfg.rconWebAdminEnvironmentFilePath;
               volumes =
                 [
-                  "${cfg.serverDataDirectory}/${SERVER_NAME_SLUG}-data:/data:rw"
+                  "${SERVER_DATA_DIR}:/data:rw"
                   "/etc/localtime:/etc/localtime:ro"
                   "/etc/timezone:/etc/timezone:ro"
                   "${MODS_FILE_PATH}:/extras/mods.txt:ro"

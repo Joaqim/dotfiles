@@ -54,7 +54,9 @@ in {
       # Expects same value set for RWA_RCON_PASSWORD (rcon-web-admin container) and RCON_PASSWORD (minecraft-server container)
       # RWA_PASSWORD for rcon-web-admin web ui login, with default username RWA_USERNAME="admin"
       rconWebAdminEnvironmentFilePath = secrets."rcon_web_admin_env".path;
-      whiteListFilePath = secrets."minecraft_server_whitelist".path;
+
+      # For now, disable whitelist since users are connected via private network
+      #whiteListFilePath = secrets."minecraft_server_whitelist".path;
     };
   };
 }
