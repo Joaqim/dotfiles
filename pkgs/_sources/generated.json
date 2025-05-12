@@ -65,11 +65,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-eIMAzmb/iy8bqZfgQ5sxXY5EMNQHEzy9vuOY0dI1cco=",
+            "sha256": "sha256-SZodPwzdb8szt+eI4vuhw0uJYumMBLzGRfCdgrDzhB4=",
             "type": "url",
-            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.05.03-rc3/Minecraft-Modpack-v2025.05.03-rc3.mrpack"
+            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.05.11-rc1/Minecraft-Modpack-v2025.05.11-rc1.mrpack"
         },
-        "version": "v2025.05.03-rc3"
+        "version": "v2025.05.11-rc1"
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
