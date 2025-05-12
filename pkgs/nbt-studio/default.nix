@@ -10,8 +10,6 @@
 in
   mkWindowsAppNoCC rec {
     inherit (nbt-studio) pname src version;
-    preferLocalBuild = true;
-    allowSubstitutes = true;
     dontUnpack = true;
 
     wine = wineWowPackages.base;
