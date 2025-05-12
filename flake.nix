@@ -2,6 +2,14 @@
   description = "My NixOS Configurations";
 
   inputs = {
+    ccc = {
+      url = "github:Joaqim/ccc-nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+        systems.follows = "systems";
+      };
+    };
     deadnix.url = "github:astro/deadnix";
     disko = {
       url = "github:nix-community/disko/latest";
