@@ -51,14 +51,6 @@
     };
     date = "2024-05-06";
   };
-  nbt-studio = {
-    pname = "nbt-studio";
-    version = "v1.15.3";
-    src = fetchurl {
-      url = "https://github.com/tryashtar/nbt-studio/releases/download/v1.15.3/NbtStudio.exe";
-      sha256 = "sha256-8yBKrXJlWvQQjNFh8ykim2Nhe0+vgbF4YLSZ5bkEfrk=";
-    };
-  };
   twitchindicator = {
     pname = "twitchindicator";
     version = "cf60289d5da93c77af42d99c7a5746e2d2adebe3";
