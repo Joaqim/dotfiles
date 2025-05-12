@@ -14,6 +14,8 @@
 
 [Deyloying Gitea on NixOS](https://mcwhirter.com.au/craige/blog/2019/Deploying_Gitea_on_NixOS/)
 
+[Useful Nix Hacks](http://www.chriswarbo.net/projects/nixos/useful_hacks.html)
+
 ## Inspirations
 
 [Kachick/dotfiles](https://github.com/kachick/dotfiles)

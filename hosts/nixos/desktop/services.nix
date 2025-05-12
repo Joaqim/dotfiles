@@ -2,14 +2,12 @@
   config,
   inputs,
   lib,
+  pkgs,
   ...
 }: let
   inherit (config.sops) templates;
-  inherit (inputs) jellyfin-plugins;
+  inherit (inputs.ccc.packages."x86_64-linux") ccc;
 in {
-  imports = [
-    jellyfin-plugins.nixosModules.jellyfin-plugins
-  ];
   my.services = {
     atticd = {
       enable = true;
@@ -37,8 +35,17 @@ in {
     xserver.enable = true;
   };
 
-  # TODO: move to my.services.jellyfin
-  services.jellyfin.enabledPlugins = {
-    inherit (jellyfin-plugins.packages."x86_64-linux") ani-sync;
+  systemd.services."ccc" = {
+    enable = true;
+    restartIfChanged = true;
+    after = ["docker-minecraft-server.service"];
+    wants = ["docker-minecraft-server.service"];
+    path = [pkgs.tailscale pkgs.docker ccc];
+    script = ''
+      set -ex
+      export PORT=8081
+      tailscale serve --yes $PORT &>/dev/null &
+      ccc
+    '';
   };
 }

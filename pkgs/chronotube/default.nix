@@ -10,14 +10,16 @@
     license = licenses.mit;
     platforms = platforms.all;
   };
+  ver = "v${sources.chronotube.version}";
 in
   # https://discourse.nixos.org/t/add-custom-addons-to-firefox-directly-from-https-addons-mozilla-org/48730/3
   # https://gitlab.com/rycee/nur-expressions/-/blob/master/pkgs/firefox-addons/default.nix#L5
   stdenvNoCC.mkDerivation rec {
-    inherit (sources.chronotube) pname src version;
+    inherit (sources.chronotube) pname src;
     inherit meta;
 
-    name = "${pname}-${version}";
+    name = "${pname}-${ver}";
+    version = "${ver}";
 
     preferLocalBuild = true;
     allowSubstitutes = true;
