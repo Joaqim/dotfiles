@@ -1,0 +1,160 @@
+diff --git a/crates/librqbit/src/session.rs b/crates/librqbit/src/session.rs
+index a22b53f..2f1882c 100644
+--- a/crates/librqbit/src/session.rs
++++ b/crates/librqbit/src/session.rs
+@@ -702,7 +702,7 @@ impl Session {
+                                     opts.preferred_id = Some(id);
+                                     let fut = session.add_torrent(add_torrent, Some(opts));
+                                     let fut = fut.instrument(span);
+-                                    futs.push(fut);
++                                    futs.push(fut).instrument(error_span!(parent: None, "torrent", id));
+                                 },
+                                 None => added_all = true
+                             };
+diff --git a/crates/librqbit/src/storage/filesystem/fs.rs b/crates/librqbit/src/storage/filesystem/fs.rs
+index d4051a7..400df4a 100644
+--- a/crates/librqbit/src/storage/filesystem/fs.rs
++++ b/crates/librqbit/src/storage/filesystem/fs.rs
+@@ -88,6 +88,7 @@ impl TorrentStorage for FilesystemStorage {
+ 
+     fn pwrite_all(&self, file_id: usize, offset: u64, buf: &[u8]) -> anyhow::Result<()> {
+         let of = self.opened_files.get(file_id).context("no such file")?;
++        of.ensure_writeable()?;
+         #[cfg(target_family = "unix")]
+         {
+             use std::os::unix::fs::FileExt;
+@@ -148,7 +149,7 @@ impl TorrentStorage for FilesystemStorage {
+         if !path.is_dir() {
+             anyhow::bail!("cannot remove dir: {path:?} is not a directory")
+         }
+-        if std::fs::read_dir(&path)?.count() == 0 {
++        if std::fs::read_dir(&path)?.next().is_none() {
+             std::fs::remove_dir(&path).with_context(|| format!("error removing {path:?}"))
+         } else {
+             warn!("did not remove {path:?} as it was not empty");
+@@ -172,17 +173,34 @@ impl TorrentStorage for FilesystemStorage {
+                 continue;
+             };
+             std::fs::create_dir_all(full_path.parent().context("bug: no parent")?)?;
+-            let f = if shared.options.allow_overwrite {
+-                OpenOptions::new()
++            if shared.options.allow_overwrite {
++                // ensure file exists
++                let (file, writeable) = match OpenOptions::new()
+                     .create(true)
+-                    .truncate(false)
+                     .read(true)
+                     .write(true)
++                    .append(false)
++                    .truncate(false)
+                     .open(&full_path)
+-                    .with_context(|| format!("error opening {full_path:?} in read/write mode"))?
++                {
++                    Ok(file) => (file, true),
++                    Err(e) => {
++                        warn!(?full_path, "error opening file in create+write mode: {e:?}");
++                        // open the file in read-only mode, will reopen in write mode later.
++                        (
++                            OpenOptions::new()
++                                .create(false)
++                                .read(true)
++                                .open(&full_path)
++                                .with_context(|| format!("error opening {full_path:?}"))?,
++                            false,
++                        )
++                    }
++                };
++                files.push(OpenedFile::new(full_path.clone(), file, writeable));
+             } else {
+                 // create_new does not seem to work with read(true), so calling this twice.
+-                OpenOptions::new()
++                let file = OpenOptions::new()
+                     .create_new(true)
+                     .write(true)
+                     .open(&full_path)
+@@ -192,9 +210,9 @@ impl TorrentStorage for FilesystemStorage {
+                             &full_path
+                         )
+                     })?;
+-                OpenOptions::new().read(true).write(true).open(&full_path)?
++                OpenOptions::new().read(true).write(true).open(&full_path)?;
++                files.push(OpenedFile::new(full_path.clone(), file, true));
+             };
+-            files.push(OpenedFile::new(f));
+         }
+ 
+         self.opened_files = files;
+diff --git a/crates/librqbit/src/storage/filesystem/opened_file.rs b/crates/librqbit/src/storage/filesystem/opened_file.rs
+index 051c652..3c8fcc8 100644
+--- a/crates/librqbit/src/storage/filesystem/opened_file.rs
++++ b/crates/librqbit/src/storage/filesystem/opened_file.rs
+@@ -1,22 +1,34 @@
+-use std::fs::File;
++use std::{
++    fs::File,
++    path::PathBuf,
++    sync::atomic::{AtomicBool, Ordering},
++};
++
++use anyhow::Context;
+ 
+ use parking_lot::RwLock;
+ 
+ #[derive(Debug)]
+ pub(crate) struct OpenedFile {
++    pub filename: PathBuf,
+     pub file: RwLock<Option<File>>,
++    pub is_writeable: AtomicBool,
+ }
+ 
+ impl OpenedFile {
+-    pub fn new(f: File) -> Self {
++    pub fn new(filename: PathBuf, f: File, is_writeable: bool) -> Self {
+         Self {
++            filename,
+             file: RwLock::new(Some(f)),
++            is_writeable: AtomicBool::new(is_writeable),
+         }
+     }
+ 
+     pub fn new_dummy() -> Self {
+         Self {
++            filename: PathBuf::new(),
+             file: RwLock::new(None),
++            is_writeable: AtomicBool::new(false),
+         }
+     }
+ 
+@@ -28,7 +40,32 @@ impl OpenedFile {
+     pub fn take_clone(&self) -> anyhow::Result<Self> {
+         let f = self.take()?;
+         Ok(Self {
++            filename: self.filename.clone(),
+             file: RwLock::new(f),
++            is_writeable: AtomicBool::new(self.is_writeable.load(Ordering::SeqCst)),
+         })
+     }
++
++    pub fn ensure_writeable(&self) -> anyhow::Result<()> {
++        match self
++            .is_writeable
++            .compare_exchange(false, true, Ordering::SeqCst, Ordering::Relaxed)
++        {
++            Ok(_) => {
++                // Updated, need to reopen writeable
++                let mut g = self.file.write();
++                let new_file = std::fs::OpenOptions::new()
++                    .write(true)
++                    .create(false)
++                    .open(&self.filename)
++                    .with_context(|| format!("error opening {:?} in write mode", self.filename))?;
++                *g = Some(new_file);
++            }
++            Err(_) => {
++                // Didn't update, no need to reopen
++            }
++        }
++
++        Ok(())
++    }
+ }
