@@ -1,0 +1,14 @@
+diff --git a/src/components/article.tsx b/src/components/article.tsx
+index 18a640a..9769fe5 100644
+--- a/src/components/article.tsx
++++ b/src/components/article.tsx
+@@ -309,7 +309,8 @@ class Article extends React.Component<ArticleProps, ArticleState> {
+             this.setState({ loadWebpage: false })
+         } else if (
+             this.props.item.link.startsWith("https://") ||
+-            this.props.item.link.startsWith("http://")
++            this.props.item.link.startsWith("http://") ||
++            this.props.item.link.startsWith("magnet:") 
+         ) {
+             this.setState({ loadWebpage: true, loadFull: false })
+         }

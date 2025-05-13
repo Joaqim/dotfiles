@@ -20,6 +20,17 @@
       sha256 = "sha256-H90V5IZ+ZjLddwiWzMvk5pTY6oL4kCCMZGQXGqRdR/4=";
     };
   };
+  fluent-reader = {
+    pname = "fluent-reader";
+    version = "v1.1.4";
+    src = fetchFromGitHub {
+      owner = "yang991178";
+      repo = "fluent-reader";
+      rev = "v1.1.4";
+      fetchSubmodules = false;
+      sha256 = "sha256-/VBXm6KiwJC/JTKp8m/dkmGmPZ2x2fHYiX9ylw8eDvY=";
+    };
+  };
   godot = {
     pname = "godot";
     version = "4.3-stable";
