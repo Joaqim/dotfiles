@@ -2,6 +2,7 @@
   imports = [
     ./atticd
     ./atuin-server
+    ./caddy
     ./earlyoom
     ./fail2ban
     ./jellyfin
