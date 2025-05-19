@@ -4,6 +4,7 @@
   buildNpmPackage,
   copyDesktopItems,
   electron,
+  xdg-utils,
   makeBinaryWrapper,
   makeDesktopItem,
   nix-update-script,
@@ -21,6 +22,10 @@ in
     nativeBuildInputs = [
       copyDesktopItems
       makeBinaryWrapper
+    ];
+
+    runtimeInputs = [
+      xdg-utils # xdg-open needed to open URLs
     ];
 
     ELECTRON_SKIP_BINARY_DOWNLOAD = true;
