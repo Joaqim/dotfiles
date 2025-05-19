@@ -37,10 +37,7 @@ in {
               mpris
               sponsorblock
               modernx
-              quality-menu
-              thumbfast
               mpv-playlistmanager
-              mpv-cheatsheet
               webtorrent-mpv-hook
               reload
               ;
@@ -76,7 +73,6 @@ in {
           ];
           sub-font = "Noto Color Emoji";
           vo = "gpu-next";
-          # NOTE: Needed to make sure that mpv uses the correct yt-dlp
           script-opts = "ytdl_hook-ytdl_path=${lib.getExe yt-dlp-git}";
           ytdl-raw-options-append = "cookies-from-browser=firefox";
           watch-later-options =
@@ -96,11 +92,6 @@ in {
           # For restarting playback when a Live Twitch VOD reaches current end
           reload.reload_eof_enabled = "yes";
         };
-      };
-
-      yt-dlp = {
-        enable = true;
-        package = yt-dlp-git;
       };
     };
 
