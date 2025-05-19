@@ -44,10 +44,10 @@
   };
   minecraft-modpack = {
     pname = "minecraft-modpack";
-    version = "v2025.05.11-rc1";
+    version = "v2025.05.15-rc1";
     src = fetchurl {
-      url = "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.05.11-rc1/Minecraft-Modpack-v2025.05.11-rc1.mrpack";
-      sha256 = "sha256-SZodPwzdb8szt+eI4vuhw0uJYumMBLzGRfCdgrDzhB4=";
+      url = "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.05.15-rc1/Minecraft-Modpack-v2025.05.15-rc1.mrpack";
+      sha256 = "sha256-B1391mc+PhmopK8LmJ8vTDAY4eGTmSwCyln/W/UFQOA=";
     };
   };
   mpv-skipsilence = {
