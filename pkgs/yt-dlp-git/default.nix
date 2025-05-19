@@ -3,6 +3,7 @@
   sources,
 }:
 pkgs.yt-dlp.overrideAttrs {
+  inherit (sources.yt-dlp) src;
   pname = "yt-dlp-git";
-  inherit (sources.yt-dlp) version src;
+  version = "${sources.yt-dlp.date}";
 }
