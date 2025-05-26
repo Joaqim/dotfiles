@@ -118,7 +118,7 @@
       "inputs": {
         "flake-compat": "flake-compat_2",
         "nixpkgs": [
-          "nixpkgs-master"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -492,22 +492,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-master": {
-      "locked": {
-        "lastModified": 1748245824,
-        "narHash": "sha256-NyJ1D8x9enYFmjF2W0yuelKxiTQMbLjaIRpNNrjybQk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "10cc543e89b281ecbb983eff458e1ffdba2f9d71",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1729665710,
@@ -712,7 +696,6 @@
         "json2steamshortcut": "json2steamshortcut",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_6",
-        "nixpkgs-master": "nixpkgs-master",
         "nur": "nur",
         "nvfetcher": "nvfetcher",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
