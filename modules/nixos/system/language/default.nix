@@ -19,11 +19,11 @@ in {
     extraLocales = mkOption {
       type = types.listOf types.str;
       default = [
-        "C.UTF-8"
-        "en_US.UTF-8"
-        "sv_SE.UTF-8"
+        "C.UTF-8/UTF-8"
+        "en_US.UTF-8/UTF-8"
+        "sv_SE.UTF-8/UTF-8"
       ];
-      example = ["C.UTF-8" "en_US.UTF-8" "se_SV.UTF-8"];
+      example = ["C.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "se_SV.UTF-8/UTF-8"];
       description = "List of locales supported by the system";
     };
 
@@ -40,9 +40,9 @@ in {
       extraLocales =
         cfg.extraLocales
         ++ lib.lists.optional (cfg.useMetric || cfg.useEuropeanCurrency)
-        "en_IE.UTF-8"
+        "en_IE.UTF-8/UTF-8"
         ++ lib.lists.optional (cfg.useA4Paper || cfg.useISODate)
-        "en_DK.UTF-8";
+        "en_DK.UTF-8/UTF-8";
       extraLocaleSettings = lib.mkDefault rec {
         LANGUAGE = cfg.locale;
         LC_ADDRESS = LANGUAGE;
