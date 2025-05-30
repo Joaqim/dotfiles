@@ -26,7 +26,6 @@
       inherit
         (pkgs.jqpkgs)
         mpv-history-launcher
-        yt-dlp-git
         ;
       inherit
         (pkgs.nur.repos.nltch)
@@ -36,6 +35,7 @@
     qbittorrent.enable = true;
     starship.enable = true;
     vscode.enable = true;
+    yt-dlp.enable = true;
     zathura.enable = true;
     zoxide.enable = true;
   };
