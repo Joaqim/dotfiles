@@ -34,9 +34,13 @@ in {
       };
     };
 
-    coreCtrl = {
-      enable = mkEnableOption "Enable corectrl";
-      gpuOverclock = mkEnableOption "Enable GPU overclocking";
+    overdrive = {
+      enable = mkEnableOption "Overdrive";
+      ppfeaturemask = mkOption {
+        type = types.str;
+        default = "0xffffffff";
+        description = "Overdrive ppfeaturemask";
+      };
     };
   };
 
@@ -51,6 +55,7 @@ in {
     (lib.mkIf (cfg.gpuFlavor == "amd") {
       hardware.amdgpu = {
         initrd.enable = cfg.amd.enableKernelModule;
+        inherit (cfg) overdrive;
         # Vulkan
         amdvlk = lib.mkIf cfg.amd.amdvlk {
           enable = true;
@@ -74,15 +79,8 @@ in {
 
     # Core Ctrl can be used for both CPU & GPU
     # TODO: Move to my.programs.corectrl
-    (lib.mkIf cfg.coreCtrl.enable {
-      programs.corectrl = {
-        enable = true;
-        gpuOverclock = lib.mkIf cfg.coreCtrl.gpuOverclock {
-          enable = true;
-          # TODO: Is this only for amd?
-          ppfeaturemask = lib.optionalString (cfg.gpuFlavor == "amd") "0xffffffff";
-        };
-      };
+    (lib.mkIf cfg.overdrive.enable {
+      programs.corectrl.enable = true;
       # Allows running corectrl as group @wheel
       security.polkit.extraConfig = ''
         polkit.addRule(function(action, subject) {
