@@ -86,11 +86,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-B1391mc+PhmopK8LmJ8vTDAY4eGTmSwCyln/W/UFQOA=",
+            "sha256": "sha256-9ddXzIN8KtJXuzU4rUQ35CxomwIkU6QRDDUDEn6xM4g=",
             "type": "url",
-            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.05.15-rc1/Minecraft-Modpack-v2025.05.15-rc1.mrpack"
+            "url": "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.05.28-rc2/Minecraft-Modpack-v2025.05.28-rc2.mrpack"
         },
-        "version": "v2025.05.15-rc1"
+        "version": "v2025.05.28-rc2"
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
@@ -166,7 +166,7 @@
     },
     "yt-dlp": {
         "cargoLocks": null,
-        "date": "2025-05-23",
+        "date": "2025-06-01",
         "extract": null,
         "name": "yt-dlp",
         "passthru": null,
@@ -178,11 +178,11 @@
             "name": null,
             "owner": "yt-dlp",
             "repo": "yt-dlp",
-            "rev": "7794374de8afb20499b023107e2abfd4e6b93ee4",
-            "sha256": "sha256-pJ6HKEGF5cE5+Hf72V+wycmThXoMVDXJ8dwr/081qsY=",
+            "rev": "c723c4e5e78263df178dbe69844a3d05f3ef9e35",
+            "sha256": "sha256-6p3Wc+HeZjVVTyIbB7vGMQvfP4YlOA/IvdiXmBhLhr4=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "7794374de8afb20499b023107e2abfd4e6b93ee4"
+        "version": "c723c4e5e78263df178dbe69844a3d05f3ef9e35"
     }
 }
