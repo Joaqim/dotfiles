@@ -7,7 +7,7 @@
   cfg = config.my.profiles.minecraft-server;
   inherit (config.sops) secrets;
 
-  MINECRAFT_VERSION = "1.21.3";
+  MINECRAFT_VERSION = "1.21.4";
 
   SERVER_ICON = "https://github.com/Joaqim/MinecraftModpack/blob/main/icon.jpeg?raw=true";
   SERVER_NAME = "Minecraft Server";

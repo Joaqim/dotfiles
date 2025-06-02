@@ -6,7 +6,7 @@
 }: let
   cfg = config.my.services.minecraft-server;
 
-  DEFAULT_MINECRAFT_VERSION = "1.21.3";
+  DEFAULT_MINECRAFT_VERSION = "1.21.4";
   DEFAULT_SERVER_NAME = "Minecraft Server";
   DEFAULT_SERVER_DATA_DIR = "/srv/minecraft/";
   toStringBool = b:
@@ -25,7 +25,6 @@ in {
     minecraftVersion = mkOption {
       type = types.str;
       default = DEFAULT_MINECRAFT_VERSION;
-      example = "1.21.3";
       description = "Minecraft version";
     };
 

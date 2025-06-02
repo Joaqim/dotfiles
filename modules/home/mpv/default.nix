@@ -23,9 +23,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.file."${cfg.screenshotDirectory}/.keep" = {
-      enable = cfg.screenshotDirectory != null;
-      text = "";
+    home = {
+      file."${cfg.screenshotDirectory}/.keep" = {
+        enable = cfg.screenshotDirectory != null;
+        text = "";
+      };
+      packages = [
+        pkgs.noto-fonts-color-emoji
+      ];
     };
     programs = {
       mpv = {
@@ -81,10 +86,7 @@ in {
               "start"
               "volume"
               "mute"
-              "sub-file"
               "playlist"
-              "skipsilence/enabled"
-              "skipsilence/base_speed"
               "speed"
             ];
         };
