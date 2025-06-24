@@ -12,43 +12,51 @@ in {
     gpuFlavor = mkOption {
       type = with types; nullOr (enum ["amd" "intel" "nvidia"]);
       default = null;
-      example = "intel";
+      example = "amd";
       description = "Which kind of GPU to install driver for";
     };
 
     amd = {
-      enableKernelModule = mkEnableOption "Kernel driver module";
+      enableKernelModule = my.mkDisableOption "Kernel driver module";
 
       amdvlk = lib.mkEnableOption "Use AMDVLK instead of Mesa RADV driver";
-    };
 
-    intel = {
-      enableKernelModule = mkEnableOption "Kernel driver module";
-    };
-
-    nvidia = {
-      enableKernelModule = mkEnableOption "Kernel driver module";
-      # TODO: This might not be correct: https://nixos.wiki/wiki/Nvidia
-      package = mkPackageOption pkgs.nvidiaPackages "nvidia" {
-        default = "stable";
+      overdrive = {
+        enable = mkEnableOption "Overdrive";
+        ppfeaturemask = mkOption {
+          type = types.str;
+          default = "0xffffffff";
+          description = "Overdrive ppfeaturemask";
+        };
       };
     };
 
-    overdrive = {
-      enable = mkEnableOption "Overdrive";
-      ppfeaturemask = mkOption {
-        type = types.str;
-        default = "0xffffffff";
-        description = "Overdrive ppfeaturemask";
+    intel = {
+      enableKernelModule = my.mkDisableOption "Kernel driver module";
+    };
+
+    nvidia = {
+      # TODO: This might not be correct: https://nixos.wiki/wiki/Nvidia
+      package = mkPackageOption pkgs.nvidiaPackages "nvidia" {
+        default = "stable";
       };
     };
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
-      hardware.graphics = {
-        enable = true;
-      };
+      assertions = [
+        {
+          # TODO: Should CoreCtrl be implicitly enabled when using `amd.overdrive`?
+          assertion = cfg.amd.overdrive.enable -> cfg.corectrl.enable;
+          message = ''
+            You probably want to enable option `my.graphics.corectrl` when enabling `my.graphics.amd.overdrive` for overclocking AMD GPU.
+          '';
+        }
+      ];
+    }
+    {
+      hardware.graphics.enable = true;
     }
 
     # AMD GPU
@@ -79,8 +87,15 @@ in {
 
     # Core Ctrl can be used for both CPU & GPU
     # TODO: Move to my.programs.corectrl
-    (lib.mkIf cfg.overdrive.enable {
-      programs.corectrl.enable = true;
+    (lib.mkIf cfg.coreCtrl.enable {
+      programs.corectrl = {
+        enable = true;
+        gpuOverclock = lib.mkIf cfg.coreCtrl.gpuOverclock {
+          enable = true;
+          # TODO: Is this only for amd?
+          ppfeaturemask = lib.optionalString (cfg.gpuFlavor == "amd") cfg.amd.overdrive.ppfeaturemask;
+        };
+      };
       # Allows running corectrl as group @wheel
       security.polkit.extraConfig = ''
         polkit.addRule(function(action, subject) {
