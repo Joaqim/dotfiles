@@ -28,7 +28,7 @@ tasks:
       - 'secrets/**/*'
     cmds: 
       - |-
-        [ -f "/etc/NIXOS" ] && nixos-rebuild switch --use-remote-sudo --flake . --show-trace
+        [ -f "/etc/NIXOS" ] && nixos-rebuild switch --sudo --flake . --show-trace
 
   home-manager:
     aliases: 

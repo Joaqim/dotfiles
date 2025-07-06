@@ -23,7 +23,13 @@ in {
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
     {
-      programs.steam.enable = true;
+      programs.steam = {
+        enable = true;
+        extraCompatPackages = with pkgs; [
+          steam-play-none
+          proton-ge-bin
+        ];
+      };
     }
     # TODO: Make sure this works;
     # should we explicitly make the original `pkgs` available in environment as well?

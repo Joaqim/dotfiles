@@ -84,7 +84,7 @@ in {
       allowedTCPPorts = [cfg.port];
     };
 
-    systemd.services.qbittorrent = {
+    systemd.services."qbittorrent-nix" = {
       # based on the plex.nix service module and
       # https://github.com/qbittorrent/qBittorrent/blob/master/dist/unix/systemd/qbittorrent-nox%40.service.in
       description = "qBittorrent-nox service";
@@ -112,8 +112,7 @@ in {
           '';
         in "!${preStartScript}";
 
-        #ExecStart = "${pkgs.qbittorrent-nox}/bin/qbittorrent-nox";
-        ExecStart = "${cfg.package}/bin/qbittorrent-nox";
+        ExecStart = "${lib.getExe cfg.package} --confirm-legal-notice";
         # To prevent "Quit & shutdown daemon" from working; we want systemd to
         # manage it!
         #Restart = "on-success";
@@ -124,6 +123,7 @@ in {
       environment = {
         QBT_PROFILE = cfg.dataDir;
         QBT_WEBUI_PORT = toString cfg.port;
+        QBT_NO_SPLASH = "1";
       };
     };
 

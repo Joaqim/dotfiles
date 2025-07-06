@@ -10,3 +10,19 @@ https://unix.stackexchange.com/questions/768678/configure-vscode-in-nixos
 - Parse existing `steam` shortcuts: [https://gist.github.com/Joaqim/473c1663bc42e8846c69a94b525a27ff](https://gist.github.com/Joaqim/473c1663bc42e8846c69a94b525a27ff)
 - Minecraft server as a nixos service: [MayNiklas/nixos - modules/minecraft](https://github.com/MayNiklas/nixos/blob/main/modules/minecraft/default.nix)
 - my.system.doas doesn't seem to apply `noPass` for selected programs
+- Fix: 
+```log
+setlocale "en_SE.UTF-8": No such file or directory
+pv-locale-gen: Missing locale en_SE.UTF-8 (found in $LC_MEASUREMENT)
+```
+- Implement [my.services.sunshine](https://github.com/Joaqim/dotfiles/commit/3aea9d5498978f20287f11b3678a686cf63b58e7)
+
+- Fix LC_TIME output: `2025-06-27 07:33:57,878`; I prefer dots over commas for decimal points 
+- Make sure `steam` uses `bash` as its default shell, have seen `nushell` be used for steam launch commands
+
+
+- Investigate fcitx5 failing on many apps: 
+```
+(faugus-launcher:169233): Gtk-WARNING **: 00:11:52.055: Loading IM context type 'fcitx' failed
+(faugus-launcher:169233): Gtk-WARNING **: 00:11:52.055: GModule (/nix/store/lnqv0r2wa8s248yk3lrr9hhxfl1n6knv-fcitx5-with-addons-5.1.12/lib/gtk-3.0/3.0.0/immodules/im-fcitx5.so) initialization check failed: GLib version too old (micro mismatch
+```

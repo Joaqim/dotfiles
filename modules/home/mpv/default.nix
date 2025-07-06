@@ -71,15 +71,15 @@ in {
           af-add = "scaletempo2";
           screenshot-dir = "~/${cfg.screenshotDirectory}";
           screenshot-template = cfg.screenshotTemplate;
-          ytdl-raw-options = lib.concatStringsSep "," [
+          ytdl-raw-options-append = lib.concatStringsSep "," [
             "sub-lang=\"en\""
             "write-sub="
             "write-auto-sub="
+            "cookies-from-browser=firefox"
           ];
           sub-font = "Noto Color Emoji";
           vo = "gpu-next";
           script-opts = "ytdl_hook-ytdl_path=${lib.getExe yt-dlp-git}";
-          ytdl-raw-options-append = "cookies-from-browser=firefox";
           watch-later-options =
             lib.concatStringsSep ","
             [

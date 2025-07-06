@@ -27,6 +27,7 @@ in {
     environment.systemPackages = with pkgs; [
       # Support for external ntfs drives
       ntfsprogs
+      ntfs3g
     ];
   };
 }

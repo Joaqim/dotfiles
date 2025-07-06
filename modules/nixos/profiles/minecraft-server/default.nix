@@ -37,6 +37,7 @@ in {
       minecraftVersion = MINECRAFT_VERSION;
       modrinthModpack = "/run/current-system/sw/share/minecraft-modpacks/${MODPACK_PKG.modpack}";
       modpackName = MODPACK_NAME;
+      levelName = "${SERVER_NAME} World 1";
 
       motd = "Running `${MODPACK_NAME}` version: ${MODPACK_VERSION}";
 
