@@ -41,6 +41,8 @@ in {
         default = "stable";
       };
     };
+
+    coreCtrl.enable = my.mkDisableOption "";
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -48,7 +50,7 @@ in {
       assertions = [
         {
           # TODO: Should CoreCtrl be implicitly enabled when using `amd.overdrive`?
-          assertion = cfg.amd.overdrive.enable -> cfg.corectrl.enable;
+          assertion = cfg.amd.overdrive.enable -> cfg.coreCtrl.enable;
           message = ''
             You probably want to enable option `my.graphics.corectrl` when enabling `my.graphics.amd.overdrive` for overclocking AMD GPU.
           '';
@@ -63,7 +65,10 @@ in {
     (lib.mkIf (cfg.gpuFlavor == "amd") {
       hardware.amdgpu = {
         initrd.enable = cfg.amd.enableKernelModule;
-        inherit (cfg) overdrive;
+        overdrive = {
+          enable = lib.mkForce cfg.amd.overdrive.enable;
+          inherit (cfg.amd.overdrive) ppfeaturemask;
+        };
         # Vulkan
         amdvlk = lib.mkIf cfg.amd.amdvlk {
           enable = true;
@@ -88,14 +93,7 @@ in {
     # Core Ctrl can be used for both CPU & GPU
     # TODO: Move to my.programs.corectrl
     (lib.mkIf cfg.coreCtrl.enable {
-      programs.corectrl = {
-        enable = true;
-        gpuOverclock = lib.mkIf cfg.coreCtrl.gpuOverclock {
-          enable = true;
-          # TODO: Is this only for amd?
-          ppfeaturemask = lib.optionalString (cfg.gpuFlavor == "amd") cfg.amd.overdrive.ppfeaturemask;
-        };
-      };
+      programs.corectrl.enable = true;
       # Allows running corectrl as group @wheel
       security.polkit.extraConfig = ''
         polkit.addRule(function(action, subject) {
