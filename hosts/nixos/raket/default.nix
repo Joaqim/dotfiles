@@ -17,12 +17,20 @@
     ./system.nix
   ];
 
-  # For now, nixos modules that expects name, full name or email will always use this user
-  # This is different from home-manager modules which can be different users
-  # TODO: Have hardcoded `user0` and optional`user1` which we can assign username, full name and, optionally, email
-  my.user = {
-    name = "wilton";
-    fullName = "Wilton";
+  my = {
+    secrets = {
+      enable = true;
+      # See `my.system.impermanence` module
+      sopsDirectory = "/persist/var/lib/sops";
+    };
+
+    # For now, nixos modules that expects name, full name or email will always use this user
+    # This is different from home-manager modules which can be different users
+    # TODO: Have hardcoded `user0` and optional`user1` which we can assign username, full name and, optionally, email
+    user = {
+      name = "wilton";
+      fullName = "Wilton";
+    };
   };
 
   time.timeZone = "Europe/Stockholm";

@@ -24,6 +24,7 @@ in {
           (pkgs.kdePackages)
           partitionmanager
           kolourpaint
+          polkit-kde-agent-1
           ;
       };
     }

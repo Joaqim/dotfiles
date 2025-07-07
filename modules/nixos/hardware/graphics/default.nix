@@ -40,6 +40,8 @@ in {
       package = mkPackageOption pkgs.nvidiaPackages "nvidia" {
         default = "stable";
       };
+
+      coolercontrol = mkEnableOption "Whether to enable CoolerControl GUI & its background services";
     };
 
     coreCtrl.enable = my.mkDisableOption "";
@@ -150,6 +152,9 @@ in {
 
     # Nvidia GPU
     (lib.mkIf (cfg.gpuFlavor == "nvidia") {
+      # Load nvidia driver for Xorg and Wayland
+      services.xserver.videoDrivers = ["nvidia"];
+
       hardware.nvidia = {
         inherit (cfg.nvidia) package;
 
@@ -177,6 +182,23 @@ in {
         # Enable the Nvidia settings menu,
         # accessible via `nvidia-settings`.
         nvidiaSettings = true;
+      };
+
+      nixpkgs.config = {
+        allowUnfreePredicate = pkg:
+          builtins.elem (lib.getName pkg) [
+            "nvidia-x11"
+            "nvidia-settings"
+            "nvidia-persistenced"
+          ];
+        nvidia.acceptLicense = true;
+      };
+      # TODO: Maybe put somewhere else
+      virtualisation.docker.enableNvidia = true;
+
+      programs.coolercontrol = lib.mkIf cfg.nvidia.coolercontrol {
+        enable = true;
+        nvidiaSupport = true;
       };
     })
   ]);

@@ -1,5 +1,6 @@
 {config, ...}: let
   inherit (config.sops) secrets;
+  inherit (config.my.user) name;
 in {
   my.system = {
     docker.enable = false;
@@ -8,11 +9,11 @@ in {
     users = rec {
       enable = true;
       defaultPasswordFile =
-        if builtins.hasAttr "user_hashed_password/jq" secrets
-        then secrets."user_hashed_password/jq".path
+        if builtins.hasAttr "user_hashed_password/${name}" secrets
+        then secrets."user_hashed_password/${name}".path
         else null;
 
-      enableRootAccount = true;
+      enableRootAccount = defaultPasswordFile != null;
       rootPasswordFile = defaultPasswordFile;
     };
     zram = {

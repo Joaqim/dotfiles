@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.my.hardware.firmware;
@@ -23,6 +24,14 @@ in {
       hardware = {
         enableRedistributableFirmware = true;
       };
+    }
+    {
+      # Consider moving this and having it always enabled
+      environment.systemPackages = [
+        # Enables power profiles in KDE Plasma
+        # Just generally useful to have
+        pkgs.power-profiles-daemon
+      ];
     }
 
     # Intel CPU

@@ -50,7 +50,7 @@ in {
         {
           directory = "/var/lib/sops";
           user = "root";
-          group = "wheel";
+            group = "keys";
           mode = "u=rwx,g=rx,o=";
         }
         "/etc/NetworkManager/system-connections"
