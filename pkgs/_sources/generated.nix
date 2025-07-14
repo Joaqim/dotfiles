@@ -52,27 +52,27 @@
   };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
-    version = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+    version = "42e511c52c68c1aa9678e18caea41e43eee9149b";
     src = fetchFromGitHub {
       owner = "ferreum";
       repo = "mpv-skipsilence";
-      rev = "5ae7c3b6f927e728c22fc13007265682d1ecf98c";
+      rev = "42e511c52c68c1aa9678e18caea41e43eee9149b";
       fetchSubmodules = false;
-      sha256 = "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=";
+      sha256 = "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=";
     };
-    date = "2024-05-06";
+    date = "2025-08-03";
   };
   twitchindicator = {
     pname = "twitchindicator";
-    version = "cf60289d5da93c77af42d99c7a5746e2d2adebe3";
+    version = "ebf59f896a876c78715eed3755bdcabc0acd42d6";
     src = fetchFromGitHub {
       owner = "kuunha";
       repo = "twitchindicator";
-      rev = "cf60289d5da93c77af42d99c7a5746e2d2adebe3";
+      rev = "ebf59f896a876c78715eed3755bdcabc0acd42d6";
       fetchSubmodules = false;
-      sha256 = "sha256-ixf0VTV2rfZpKIkiufKNP39TeH4/hU7FlbenSLBV0m4=";
+      sha256 = "sha256-IVnwbWBX4Gi3ZYp1pDaynR2y6XsTGpYKZ9lTTE8Vjas=";
     };
-    date = "2025-04-20";
+    date = "2025-07-29";
   };
   undertaker141 = {
     pname = "undertaker141";
@@ -92,14 +92,14 @@
   };
   yt-dlp = {
     pname = "yt-dlp";
-    version = "a7113722ec33f30fc898caee9242af2b82188a53";
+    version = "d925e92b710153d0d51d030f115b3c87226bc0f0";
     src = fetchFromGitHub {
       owner = "yt-dlp";
       repo = "yt-dlp";
-      rev = "a7113722ec33f30fc898caee9242af2b82188a53";
+      rev = "d925e92b710153d0d51d030f115b3c87226bc0f0";
       fetchSubmodules = false;
-      sha256 = "sha256-CoYH4TuWYhQa1w2XFqWHvnq+W2Oajzm/hy4JfIM4+MI=";
+      sha256 = "sha256-jx+2aXBktbHtP/FCDoFuuft1jQeRcD2fP2N2ASrAHbU=";
     };
-    date = "2025-07-06";
+    date = "2025-08-31";
   };
 }

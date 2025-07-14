@@ -84,7 +84,7 @@ jobs:
           # Needed to specify token for checkout phase, only in pushing phase is too late
           # https://github.com/orgs/community/discussions/27072#discussioncomment-3254515
           token: ${{ steps.publish-token.outputs.token }}
-      - uses: DeterminateSystems/nix-installer-action@7b2eab0f0210922c27b0a3d76c5d768d8962bf30 # v16
+      - uses: DeterminateSystems/nix-installer-action@c723f3a885e3f1d866d91f4f0c33dd44b1fc7c60 # v16
         with:
           # Set download buffer size to 500MB 
           extra-conf: |
