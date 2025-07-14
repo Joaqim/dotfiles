@@ -9,7 +9,7 @@ in {
   options.my.home.boilr = with lib; {
     enable = mkEnableOption "boilr service to automatically add artwork to non-Steam shortcuts";
 
-    runOnStartup = mkEnableOption "add artwork on startup using systemd service";
+    runOnStartup = my.mkDisableOption "add artwork on startup using systemd service";
   };
   config = lib.mkIf cfg.enable {
     home = {

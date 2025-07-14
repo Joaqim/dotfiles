@@ -11,7 +11,7 @@ in {
         then secrets."user_hashed_password/${name}".path
         else null;
 
-      enableRootAccount = true;
+      enableRootAccount = defaultPasswordFile != null;
       rootPasswordFile = defaultPasswordFile;
     };
   };

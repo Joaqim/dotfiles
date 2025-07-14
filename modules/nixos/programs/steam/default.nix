@@ -30,6 +30,12 @@ in {
           proton-ge-bin
         ];
       };
+
+      # Allows for other packages to depend on steam ( lutris )
+      nixpkgs.config.allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) [
+          "steam"
+        ];
     }
     # TODO: Make sure this works;
     # should we explicitly make the original `pkgs` available in environment as well?

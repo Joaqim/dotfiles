@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   my.services = {
     atuin-server.enable = false;
     fail2ban.enable = true;
@@ -6,7 +6,7 @@
     tailscale = {
       enable = true;
       # We shouldn't ever need to reauthenticate on persistent systems
-      autoAuthenticate = true;
+      autoAuthenticate = lib.mkDefault false;
     };
   };
 }

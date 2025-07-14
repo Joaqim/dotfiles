@@ -59,6 +59,7 @@ in {
               "podman" # usage of `podman` socket
               "video" # screen control
               "wheel" # `sudo` for the user.
+              "dialout" # arduino
             ];
             openssh.authorizedKeys.keys = with builtins; let
               keyDir = ./ssh;

@@ -7,7 +7,7 @@
   cfg = config.my.profiles.minecraft-server;
   inherit (config.sops) secrets;
 
-  MINECRAFT_VERSION = "1.21.4";
+  MINECRAFT_VERSION = "1.21.6";
 
   SERVER_ICON = "https://github.com/Joaqim/MinecraftModpack/blob/main/icon.jpeg?raw=true";
   SERVER_NAME = "Minecraft Server";
@@ -42,8 +42,8 @@ in {
       motd = "Running `${MODPACK_NAME}` version: ${MODPACK_VERSION}";
 
       resourcePack = {
-        url = "https://cdn.modrinth.com/data/50dA9Sha/versions/hPLOoHUN/FreshAnimations_v1.9.3.zip";
-        sha1 = "a7a9f528a5f6e7c7b14ad70b514ecba89b982cde";
+        url = "https://cdn.modrinth.com/data/50dA9Sha/versions/9LtDLleW/FreshAnimations_v1.9.4.zip";
+        sha1 = "189ed78802c97efa0902bd1bb909181fba9e2eb9";
         force = true;
       };
 

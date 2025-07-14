@@ -41,7 +41,7 @@ in {
         default = "stable";
       };
 
-      coolercontrol = mkEnableOption "Whether to enable CoolerControl GUI & its background services";
+      coolercontrol = my.mkDisableOption "Whether to enable CoolerControl GUI & its background services";
     };
 
     coreCtrl.enable = my.mkDisableOption "";

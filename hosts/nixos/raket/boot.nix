@@ -8,6 +8,7 @@ in {
   boot = {
     extraModulePackages = [
       config.boot.kernelPackages.v4l2loopback.out
+      config.boot.kernelPackages.nvidiaPackages.legacy_470
     ];
     supportedFilesystems = ["zfs"];
     initrd = {
