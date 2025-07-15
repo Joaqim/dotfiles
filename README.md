@@ -28,7 +28,7 @@
 
 [Misterio77/nix-config](https://github.com/Misterio77/nix-config)
 
-[BRBWaffles/dotfiles](https://gitlab.com/BRBWaffles/dotfiles)
+[upRootNutrition/dotfiles](https://gitlab.com/upRootNutrition/dotfiles)
 
 [Faupi/nixos-configs](https://github.com/Faupi/nixos-configs/tree/master)
 
