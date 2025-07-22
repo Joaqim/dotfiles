@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.my.services.atticd;
@@ -24,6 +25,9 @@ in {
     };
   };
   config = lib.mkIf cfg.enable {
+    environment.systemPackages = [
+      pkgs.attic-client
+    ];
     services.atticd = {
       enable = true;
 
