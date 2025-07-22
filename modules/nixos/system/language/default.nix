@@ -31,6 +31,7 @@ in {
     useEuropeanCurrency = mkEnableOption "Use European currency in the system";
     useA4Paper = mkEnableOption "Use A4 paper in the system";
     useISODate = mkEnableOption "Use ISO date format in the system";
+    useFrenchDecimal = mkEnableOption "Use French decimal numbers (10,000.00) in the system";
   };
 
   config = lib.mkIf cfg.enable {
@@ -61,7 +62,10 @@ in {
           then "en_IE.UTF-8"
           else LANGUAGE;
         LC_NAME = LANGUAGE;
-        LC_NUMERIC = LANGUAGE;
+        LC_NUMERIC =
+          if cfg.useFrenchDecimal
+          then "fr_FR.UTF-8"
+          else LANGUAGE;
         LC_PAPER =
           if cfg.useA4Paper
           then "en_DK.UTF-8"

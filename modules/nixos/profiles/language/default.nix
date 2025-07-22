@@ -22,7 +22,7 @@ in {
       example = ["C.UTF-8/UTF-8" "en_US.UTF-8/UTF-8" "se_SV.UTF-8/UTF-8"];
       description = "List of locales supported by the system";
     };
-    useEuropeanEnglish = mkEnableOption "Override english locale to use metric units, dates and european currency and paper formats in the system";
+    useEuropeanEnglish = mkEnableOption "Override English locale to use European metrics, dates, currency, numerical notations and paper formats";
   };
 
   config = lib.mkIf cfg.enable (lib.mkMerge [
@@ -47,6 +47,7 @@ in {
         useEuropeanCurrency = cfg.useEuropeanEnglish;
         useISODate = cfg.useEuropeanEnglish;
         useMetric = cfg.useEuropeanEnglish;
+        useFrenchDecimal = cfg.useEuropeanEnglish;
       };
     }
   ]);
