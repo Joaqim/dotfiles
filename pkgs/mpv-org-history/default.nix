@@ -1,19 +1,14 @@
-{
-  stdenvNoCC,
-  lib,
-  ...
-}:
-stdenvNoCC.mkDerivation rec {
+{stdenvNoCC, ...}:
+stdenvNoCC.mkDerivation {
   pname = "mpv-org-history";
   version = "1.0.1";
-  src = lib.fileset.toSource {
-    root = ./.;
-    fileset = ./mpv-org-history.lua;
-  };
+  src = ./mpv-org-history.lua;
   dontBuild = true;
   dontUnpack = true;
+  dontCheck = true;
+  preferLocalBuild = true;
   installPhase = ''
-    install -Dm644 ${src}/mpv-org-history.lua $out/share/mpv/scripts/mpv-org-history.lua
+    install -Dm644 $src $out/share/mpv/scripts/mpv-org-history.lua
   '';
   passthru.scriptName = "mpv-org-history.lua";
   meta = {

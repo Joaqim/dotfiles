@@ -1,13 +1,6 @@
--- Not my code: originally from https://redd.it/3t6s7k (author deleted; failed to ask for permission).
--- Only tested on Windows. Date is set to dd/mmm/yy and time to machine-wide format.
--- Save as "mpvhistory.lua" in your mpv scripts dir. Log will be saved to mpv default config directory.
--- Make sure to leave a comment if you make any improvements/changes to the script!
--- https://gist.github.com/garoto/e0eb539b210ee077c980e01fb2daef4a
+-- Taken from: https://gist.github.com/garoto/e0eb539b210ee077c980e01fb2daef4a
 
--- 2022-03-14 Joaqim Planstedt <mail@joaqim.xyz>
--- Personal additions and changes, mainly output mpv history as org mode compatible list with timestamps
-
-local HISTFILE = os.getenv("HOME").."/Documents/org/mpv-history.org";
+local HISTFILE = os.getenv("HOME") .. "/Documents/org/mpv-history.org";
 
 mp.register_event("file-loaded", function()  
   local file = io.open(HISTFILE, "a+") 
