@@ -25,7 +25,7 @@
       inherit (inputs) nixpkgs;
     })
   ];
-  selfHostedAddress = "http://desktop:5000";
+  selfHostedAddress = "http://desktop:8189";
   selfHostedPublicKey = "cache.desktop.org-1:q7OuFth/hRz1k/+PK3Uh3SByMWB3Xh8zDAUXF1pRv4Q=";
 in {
   options.my.home.nix = with lib; {
@@ -38,7 +38,7 @@ in {
     cache = {
       selfHosted = mkEnableOption "self-hosted cache";
       nixGaming = mkEnableOption "nix-gaming cache";
-      nixCommunity = my.mkDisableOption "nix-community cache";
+      extraSubstituters = my.mkDisableOption "nix-community cache";
     };
 
     inputs = {
@@ -48,7 +48,7 @@ in {
 
       addToNixPath = my.mkDisableOption "add inputs and self to nix path";
 
-      overrideNixpkgs = my.mkDisableOption "point nixpkgs to pinned system version";
+      overrideNixpkgs = my.mkDisableOption "point nixpkgs to pinned system version when using `nix run nixpkgs#<whatever>`";
     };
   };
 
@@ -70,7 +70,7 @@ in {
         package = lib.mkDefault pkgs.nix; # NixOS module sets it unconditionally
 
         settings = {
-          experimental-features = ["nix-command" "flakes" "blake3-hashes"];
+          experimental-features = ["nix-command" "flakes"];
         };
       };
     }
@@ -105,15 +105,25 @@ in {
       };
     })
 
-    (lib.mkIf cfg.cache.nixCommunity {
+    (lib.mkIf cfg.cache.extraSubstituters {
       nix = {
         settings = {
           extra-substituters = [
+            "https://cache.nixos.org/"
             "https://nix-community.cachix.org"
+            "https://nixpkgs-unfree.cachix.org"
+            "https://numtide.cachix.org"
+            "https://catppuccin.cachix.org"
+            "https://cache.garnix.io"
           ];
 
           extra-trusted-public-keys = [
+            "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+            "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
+            "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+            "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
           ];
         };
       };

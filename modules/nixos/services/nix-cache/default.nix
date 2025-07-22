@@ -16,7 +16,7 @@ in {
       description = "IP address for serving cache";
     };
 
-    port = mkOption {
+    listenPort = mkOption {
       type = types.port;
       default = 5000;
       example = 8080;
@@ -45,17 +45,11 @@ in {
       enable = true;
 
       settings = {
-        bind = "${cfg.ipAddress}:${toString cfg.port}";
+        bind = "${cfg.ipAddress}:${toString cfg.listenPort}";
         inherit (cfg) priority;
       };
 
       signKeyPaths = [cfg.secretKeyFile];
-    };
-
-    my.services.nginx.virtualHosts = {
-      cache = {
-        inherit (cfg) port;
-      };
     };
   };
 }

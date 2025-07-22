@@ -61,7 +61,7 @@ in {
           port = 8080;
         };
       };
-      # Enable use of my self-hosted cache at `desktop:5000`
+      # Enable use of my self-hosted cache at `desktop:8189`
       system.nix.cache.selfHosted = true;
     };
 
