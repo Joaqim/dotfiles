@@ -3,6 +3,7 @@
   inherit (config.my.user) name;
 in {
   my.system = {
+    doas.enable = false; # Doesn't play nicely with `nixos-rebuild --sudo` which expects `sudo`, not daos shim
     docker.enable = false;
     impermanence.enable = true;
     nix.cache.selfHosted = true;
