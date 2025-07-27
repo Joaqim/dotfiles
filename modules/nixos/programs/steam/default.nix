@@ -15,6 +15,9 @@ in {
       type = types.str;
       default = "$HOME";
       example = "/mnt/steam/";
+      # TODO: Use my.programs.steam.dataDir where applicable in current configs,
+      #       since it's locked to $HOME for now there shouldn't be any issues
+      internal = true;
       description = ''
         Which directory should be used as HOME to run steam.
       '';

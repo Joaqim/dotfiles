@@ -4,6 +4,16 @@
 [![Home Manager Status](https://github.com/Joaqim/dotfiles/actions/workflows/ci-home.yml/badge.svg?branch=main)](https://github.com/Joaqim/dotfiles/actions/workflows/ci-home.yml?query=branch%3Amain+)
 [![Container Status](https://github.com/Joaqim/dotfiles/actions/workflows/container.yml/badge.svg?branch=main)](https://github.com/Joaqim/dotfiles/actions/workflows/container.yml?query=branch%3Amain+)
 
+Credit to [https://github.com/kachick/dotfiles](https://github.com/kachick/dotfiles) for containerized home images
+
+To enter shell of docker container built from [user@container](hosts/homes/user@container/default.nix) home configuration, run:
+```shell
+bash <(curl -fsSL 'https://github.com/Joaqim/dotfiles/raw/refs/heads/main/containers/sandbox-with-ghcr.bash') latest
+```
+Container might not work for systems other than `x86-64-linux`.
+
+# TODO: A lot of theming from catppuccin is installed, even if the relevant application isn't enable
+
 ## Resources
 
 [Nixcademy - Debugging Overlays using nix repl](https://nixcademy.com/posts/mastering-nixpkgs-overlays-techniques-and-best-practice/)
