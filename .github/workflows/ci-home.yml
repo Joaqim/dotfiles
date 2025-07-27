@@ -29,6 +29,9 @@ jobs:
       fail-fast: false
     steps:
       - uses: DeterminateSystems/nix-installer-action@v18
+        with:
+          logger: pretty
+          diagnostic-endpoint: ""
       - name: Print some dotfiles overviews
         run: |
           </etc/nix/nix.conf
