@@ -13,7 +13,7 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       # Nix Language
-      alejandra
+      nixfmt-rfc-style
       nil
 
       material-icons
@@ -128,13 +128,19 @@ in {
 
             ### Nix Language
             "nix.enableLanguageServer" = true;
-            "nix.serverPath" = lib.getExe pkgs.nil;
-            "nix.formatterPath" = lib.getExe pkgs.alejandra;
+            "nix.serverPath" = "nil";
             "[nix]" = {
-              "editor.defaultFormatter" = "kamadorueda.alejandra";
+              "editor.defaultFormatter" = "jnoortheen.nix-ide";
               "editor.formatOnPaste" = true;
               "editor.formatOnSave" = true;
-              "editor.formatOnType" = false;
+              "editor.formatOnType" = true;
+            };
+            "nix.serverSettings" = {
+              "nil" = {
+                "formatting" = {
+                  "command" = [ "nixfmt" ];
+                };
+              };
             };
 
             ## Typescript Formatter
@@ -150,10 +156,8 @@ in {
               "editor.defaultFormatter" = "esbenp.prettier-vscode";
               "editor.formatOnPaste" = true;
               "editor.formatOnSave" = true;
-              "editor.formatOnType" = false;
+              "editor.formatOnType" = true;
             };
-            ## Plugin: kamadorueda.alejandra
-            "alejandra.program" = lib.getExe pkgs.alejandra;
 
             ### GitLens
             "gitlens.telemetry.enabled" = false;
@@ -189,8 +193,7 @@ in {
               esbenp.prettier-vscode
               github.vscode-github-actions
               james-yu.latex-workshop
-              jnoortheen.nix-ide
-              kamadorueda.alejandra
+              jnoortheen.nix-ide # https://github.com/nix-community/vscode-nix-ide
               marp-team.marp-vscode
               mattn.lisp
               mkhl.direnv
