@@ -111,6 +111,7 @@ jobs:
         run: |-
           nix flake update --commit-lock-file --option commit-lockfile-summary "${{ inputs.commit-lockfile-summary }}"
       - name: Update related CI dependencies
+        if: inputs.selfup-commit-message != ''
         id: update-workflows
         run: |
           git ls-files .github | xargs nix develop --command selfup run
