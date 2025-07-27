@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.profiles.plasma;
-in {
+in
+{
   options.my.profiles.plasma = with lib; {
     enable = mkEnableOption "Plasma Window Manager with SDDM login manager and some opinionated configurations";
   };
@@ -39,7 +41,7 @@ in {
     # Personal configuration to exclude some plasma utilities and apps
     environment = {
       # Disable baloo indexer
-      etc."xdg/baloofilerc".source = (pkgs.formats.ini {}).generate "baloorc" {
+      etc."xdg/baloofilerc".source = (pkgs.formats.ini { }).generate "baloorc" {
         "Basic Settings" = {
           "Indexing-Enabled" = false;
         };

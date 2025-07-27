@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.yt-dlp;
   inherit (pkgs.jqpkgs) yt-dlp-git;
-in {
+in
+{
   options.my.home.yt-dlp = with lib; {
     enable = mkEnableOption "yt-dlp";
   };

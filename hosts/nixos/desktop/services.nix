@@ -4,10 +4,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (config.sops) templates;
   inherit (inputs.ccc.packages."x86_64-linux") ccc;
-in {
+in
+{
   my.services = {
     atticd = {
       enable = true;
@@ -38,9 +40,13 @@ in {
   systemd.services."ccc" = {
     enable = true;
     restartIfChanged = true;
-    after = ["docker-minecraft-server.service"];
-    wants = ["docker-minecraft-server.service"];
-    path = [pkgs.tailscale pkgs.docker ccc];
+    after = [ "docker-minecraft-server.service" ];
+    wants = [ "docker-minecraft-server.service" ];
+    path = [
+      pkgs.tailscale
+      pkgs.docker
+      ccc
+    ];
     script = ''
       set -ex
       export PORT=8081

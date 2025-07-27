@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   my.services = {
     atuin-server.enable = false;
     fail2ban.enable = true;

@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  imports = [../jq];
+{ pkgs, ... }:
+{
+  imports = [ ../jq ];
 
   my.home = {
     boilr.enable = true;
@@ -16,19 +17,16 @@
     nm-applet.enable = true;
     nushell.enable = true;
     packages.additionalPackages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         fluent-reader
         headsetcontrol
         jellyfin-mpv-shim
         nh
         ;
-      inherit
-        (pkgs.jqpkgs)
+      inherit (pkgs.jqpkgs)
         mpv-history-launcher
         ;
-      inherit
-        (pkgs.nur.repos.nltch)
+      inherit (pkgs.nur.repos.nltch)
         spotify-adblock
         ;
     };

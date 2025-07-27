@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./atticd
     ./atuin-server

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.power-alert;
-in {
+in
+{
   options.my.home.power-alert = with lib; {
     enable = mkEnableOption "power-alert configuration";
   };

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.flameshot;
-in {
+in
+{
   options.my.home.flameshot = with lib; {
     enable = mkEnableOption "flameshot configuration";
   };

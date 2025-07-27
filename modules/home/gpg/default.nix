@@ -3,13 +3,15 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.gpg;
-in {
+in
+{
   options.my.home.gpg = with lib; {
     enable = my.mkDisableOption "gpg configuration";
 
-    pinentry = mkPackageOption pkgs "pinentry" {default = ["pinentry-gtk2"];};
+    pinentry = mkPackageOption pkgs "pinentry" { default = [ "pinentry-gtk2" ]; };
   };
 
   config = lib.mkIf cfg.enable {

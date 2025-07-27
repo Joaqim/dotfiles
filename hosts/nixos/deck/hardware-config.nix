@@ -6,41 +6,66 @@
   lib,
   modulesPath,
   ...
-}: {
+}:
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
   boot = {
     initrd = {
-      availableKernelModules = ["nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci"];
-      kernelModules = [];
+      availableKernelModules = [
+        "nvme"
+        "xhci_pci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "sdhci_pci"
+      ];
+      kernelModules = [ ];
     };
-    kernelModules = ["kvm-amd"];
-    extraModulePackages = [];
+    kernelModules = [ "kvm-amd" ];
+    extraModulePackages = [ ];
   };
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/f09c6327-5d47-4733-9064-0f9d4b5cb27c";
       fsType = "btrfs";
-      options = ["compress=zstd" "noatime"];
+      options = [
+        "compress=zstd"
+        "noatime"
+      ];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/12CE-A600";
       fsType = "vfat";
-      options = ["fmask=0022" "dmask=022"];
+      options = [
+        "fmask=0022"
+        "dmask=022"
+      ];
     };
 
     "/mnt/holo" = {
       device = "/dev/disk/by-label/holo-home";
       fsType = "ext4";
-      options = ["relatime" "rw" "nofail" "x-systemd.device-timeout=9"];
+      options = [
+        "relatime"
+        "rw"
+        "nofail"
+        "x-systemd.device-timeout=9"
+      ];
     };
     "/run/media/deck/Games" = {
       device = "/dev/disk/by-label/Games";
       fsType = "ntfs";
-      options = ["relatime" "rw" "nofail" "x-systemd.device-timeout=9" "uid=1001"]; # Mount as user 'deck'
+      options = [
+        "relatime"
+        "rw"
+        "nofail"
+        "x-systemd.device-timeout=9"
+        "uid=1001"
+      ]; # Mount as user 'deck'
     };
   };
   swapDevices = [
@@ -50,7 +75,7 @@
   services.btrfs.autoScrub = {
     enable = true;
     interval = "monthly";
-    fileSystems = ["/"];
+    fileSystems = [ "/" ];
   };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

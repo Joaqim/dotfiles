@@ -1,2 +1,1 @@
-{inputs', ...}:
-inputs'.home-manager.packages.home-manager
+{ inputs', ... }: inputs'.home-manager.packages.home-manager

@@ -3,10 +3,12 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.system.impermanence;
-in {
-  imports = [inputs.impermanence.nixosModules.impermanence];
+in
+{
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   options.my.system.impermanence = with lib; {
     enable = mkEnableOption "impermanence configuration";
   };

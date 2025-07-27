@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.zellij;
-in {
+in
+{
   options.my.home.zellij = with lib; {
     enable = my.mkDisableOption "enable zellij";
   };

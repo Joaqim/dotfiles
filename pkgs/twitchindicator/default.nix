@@ -10,7 +10,7 @@
 stdenv.mkDerivation {
   inherit (sources.twitchindicator) pname version src;
   # Adds CMakeLists.txt not provided by upstream
-  patches = [./cmake.patch];
+  patches = [ ./cmake.patch ];
 
   nativeBuildInputs = [
     cmake

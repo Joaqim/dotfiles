@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.services.nix-cache;
-in {
+in
+{
   options.my.services.nix-cache = with lib; {
     enable = mkEnableOption "nix binary cache";
 
@@ -49,7 +51,7 @@ in {
         inherit (cfg) priority;
       };
 
-      signKeyPaths = [cfg.secretKeyFile];
+      signKeyPaths = [ cfg.secretKeyFile ];
     };
   };
 }

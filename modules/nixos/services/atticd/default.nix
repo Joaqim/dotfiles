@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.services.atticd;
-in {
+in
+{
   options.my.services.atticd = with lib; {
     enable = mkEnableOption "attic server";
     ipAddress = mkOption {
@@ -36,7 +38,7 @@ in {
       settings = {
         listen = "${toString cfg.ipAddress}:${toString cfg.listenPort}";
 
-        jwt = {};
+        jwt = { };
       };
     };
   };

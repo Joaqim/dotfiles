@@ -6,13 +6,13 @@
   options,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.system.nix;
 
   channels = lib.my.merge [
     {
-      inherit
-        (inputs)
+      inherit (inputs)
         # Allow me to use my custom package using `nix run self#pkg`
         self
         # Add NUR to run some packages that are only present there
@@ -29,7 +29,8 @@
   # Self-hosted cache, should only be available in VPN
   selfHostedAddress = "http://desktop:8189";
   selfHostedPublicKey = "cache.desktop.org-1:q7OuFth/hRz1k/+PK3Uh3SByMWB3Xh8zDAUXF1pRv4Q=";
-in {
+in
+{
   options.my.system.nix = with lib; {
     enable = my.mkDisableOption "nix configuration";
 
@@ -53,136 +54,147 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable (lib.mkMerge [
-    {
-      assertions = [
-        {
-          assertion = cfg.inputs.addToNixPath -> cfg.inputs.link;
-          message = ''
-            enabling `my.system.nix.inputs.addToNixPath` needs to have
-            `my.system.nix.inputs.link = true`
-          '';
-        }
-      ];
-    }
+  config = lib.mkIf cfg.enable (
+    lib.mkMerge [
+      {
+        assertions = [
+          {
+            assertion = cfg.inputs.addToNixPath -> cfg.inputs.link;
+            message = ''
+              enabling `my.system.nix.inputs.addToNixPath` needs to have
+              `my.system.nix.inputs.link = true`
+            '';
+          }
+        ];
+      }
 
-    {
-      nix = {
-        package = pkgs.nix;
+      {
+        nix = {
+          package = pkgs.nix;
 
-        settings = {
-          experimental-features = ["nix-command" "flakes"];
-          # Trusted users are equivalent to root, and might as well allow wheel
-          trusted-users = ["root" "@wheel"];
-          auto-optimise-store = true;
-          always-allow-substitutes = true;
-          download-buffer-size = 524288000; # 500MB
-        };
-      };
-    }
-
-    {
-      nixpkgs = {
-        config = {
-          allowUnfree = true;
-          allowUnfreePredicate = pkg:
-            builtins.elem (lib.getName pkg) [
-              # Misc
-              "unrar"
-              # Visual Studio code
-              "vscode"
-              "codeium"
-              # Jellyfin
-              "soulseekqt"
+          settings = {
+            experimental-features = [
+              "nix-command"
+              "flakes"
             ];
-          permittedInsecurePackages = [
-            "electron"
-          ];
+            # Trusted users are equivalent to root, and might as well allow wheel
+            trusted-users = [
+              "root"
+              "@wheel"
+            ];
+            auto-optimise-store = true;
+            always-allow-substitutes = true;
+            download-buffer-size = 524288000; # 500MB
+          };
         };
-      };
-    }
+      }
 
-    {programs.nix-ld.enable = true;}
-
-    (lib.mkIf cfg.gc.enable {
-      nix.gc = {
-        automatic = true;
-
-        # Every week, with some wiggle room
-        dates = "weekly";
-        randomizedDelaySec = "10min";
-
-        # Use a persistent timer for e.g: laptops
-        persistent = true;
-
-        # Delete old profiles automatically after 15 days
-        options = "--delete-older-than 15d";
-      };
-    })
-
-    (lib.mkIf cfg.cache.selfHosted {
-      nix = {
-        settings = {
-          extra-substituters = [
-            selfHostedAddress
-          ];
-
-          extra-trusted-public-keys = [
-            selfHostedPublicKey
-          ];
+      {
+        nixpkgs = {
+          config = {
+            allowUnfree = true;
+            allowUnfreePredicate =
+              pkg:
+              builtins.elem (lib.getName pkg) [
+                # Misc
+                "unrar"
+                # Visual Studio code
+                "vscode"
+                "codeium"
+                # Jellyfin
+                "soulseekqt"
+              ];
+            permittedInsecurePackages = [
+              "electron"
+            ];
+          };
         };
-      };
-    })
+      }
 
-    (lib.mkIf cfg.cache.extraSubstituters {
-      nix = {
-        settings = {
-          extra-substituters = [
-            "https://cache.nixos.org/"
-            "https://nix-community.cachix.org"
-            "https://nixpkgs-unfree.cachix.org"
-            "https://numtide.cachix.org"
-            "https://catppuccin.cachix.org"
-            "https://cache.garnix.io"
-          ];
+      { programs.nix-ld.enable = true; }
 
-          extra-trusted-public-keys = [
-            "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-            "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-            "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
-            "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
-            "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
-            "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-          ];
+      (lib.mkIf cfg.gc.enable {
+        nix.gc = {
+          automatic = true;
+
+          # Every week, with some wiggle room
+          dates = "weekly";
+          randomizedDelaySec = "10min";
+
+          # Use a persistent timer for e.g: laptops
+          persistent = true;
+
+          # Delete old profiles automatically after 15 days
+          options = "--delete-older-than 15d";
         };
-      };
-    })
+      })
 
-    (lib.mkIf cfg.inputs.addToRegistry {
-      nix.registry = let
-        makeEntry = v: {flake = v;};
-        makeEntries = lib.mapAttrs (lib.const makeEntry);
-      in
-        makeEntries channels;
-    })
+      (lib.mkIf cfg.cache.selfHosted {
+        nix = {
+          settings = {
+            extra-substituters = [
+              selfHostedAddress
+            ];
 
-    (lib.mkIf cfg.inputs.link {
-      environment.etc = let
-        makeLink = n: v: {
-          name = "nix/inputs/${n}";
-          value = {source = v.outPath;};
+            extra-trusted-public-keys = [
+              selfHostedPublicKey
+            ];
+          };
         };
-        makeLinks = lib.mapAttrs' makeLink;
-      in
-        makeLinks channels;
-    })
+      })
 
-    (lib.mkIf cfg.inputs.addToNixPath {
-      nix.nixPath =
-        [
+      (lib.mkIf cfg.cache.extraSubstituters {
+        nix = {
+          settings = {
+            extra-substituters = [
+              "https://cache.nixos.org/"
+              "https://nix-community.cachix.org"
+              "https://nixpkgs-unfree.cachix.org"
+              "https://numtide.cachix.org"
+              "https://catppuccin.cachix.org"
+              "https://cache.garnix.io"
+            ];
+
+            extra-trusted-public-keys = [
+              "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+              "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+              "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
+              "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
+              "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+              "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+            ];
+          };
+        };
+      })
+
+      (lib.mkIf cfg.inputs.addToRegistry {
+        nix.registry =
+          let
+            makeEntry = v: { flake = v; };
+            makeEntries = lib.mapAttrs (lib.const makeEntry);
+          in
+          makeEntries channels;
+      })
+
+      (lib.mkIf cfg.inputs.link {
+        environment.etc =
+          let
+            makeLink = n: v: {
+              name = "nix/inputs/${n}";
+              value = {
+                source = v.outPath;
+              };
+            };
+            makeLinks = lib.mapAttrs' makeLink;
+          in
+          makeLinks channels;
+      })
+
+      (lib.mkIf cfg.inputs.addToNixPath {
+        nix.nixPath = [
           "/etc/nix/inputs"
-        ]
-        ++ options.nix.nixPath.default;
-    })
-  ]);
+        ] ++ options.nix.nixPath.default;
+      })
+    ]
+  );
 }

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.fzf;
-in {
+in
+{
   options.my.home.fzf = with lib; {
     enable = my.mkDisableOption "fzf configuration";
   };

@@ -3,16 +3,17 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.theme;
-in {
+in
+{
   options.my.home.theme = with lib; {
     enable = my.mkDisableOption "enable theme";
   };
   config = lib.mkIf cfg.enable {
     home.packages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         catppuccin-gtk
         catppuccin
         ;

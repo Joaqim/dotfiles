@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.system.documentation;
-in {
+in
+{
   options.my.system.documentation = with lib; {
     enable = mkEnableOption "Documentation integration";
 
@@ -38,7 +40,8 @@ in {
       nixos.enable = cfg.nixos.enable;
     };
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       lib.optionals cfg.man.linux [
         man-pages
         man-pages-posix

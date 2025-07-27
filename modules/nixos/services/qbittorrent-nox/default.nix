@@ -4,12 +4,14 @@
   pkgs,
   ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.my.services.qbittorrent-nox;
   # Assigned UID and GID when using default "qbittorrent" as user
   UID = 888;
   GID = 888;
-in {
+in
+{
   options.my.services.qbittorrent-nox = {
     enable = mkEnableOption (lib.mdDoc "qBittorrent headless");
 
@@ -81,36 +83,38 @@ in {
 
   config = mkIf cfg.enable {
     networking.firewall = mkIf cfg.openFirewall {
-      allowedTCPPorts = [cfg.port];
+      allowedTCPPorts = [ cfg.port ];
     };
 
     systemd.services."qbittorrent-nix" = {
       # based on the plex.nix service module and
       # https://github.com/qbittorrent/qBittorrent/blob/master/dist/unix/systemd/qbittorrent-nox%40.service.in
       description = "qBittorrent-nox service";
-      documentation = ["man:qbittorrent-nox(1)"];
-      after = ["network.target"];
-      wantedBy = ["multi-user.target"];
+      documentation = [ "man:qbittorrent-nox(1)" ];
+      after = [ "network.target" ];
+      wantedBy = [ "multi-user.target" ];
 
       serviceConfig = {
         Type = "simple";
         User = cfg.user;
         Group = cfg.group;
-        After = ["network.target"];
+        After = [ "network.target" ];
 
         # Run the pre-start script with full permissions (the "!" prefix) so it
         # can create the data directory if necessary.
-        ExecStartPre = let
-          preStartScript = pkgs.writeScript "qbittorrent-run-prestart" ''
-            #!${pkgs.bash}/bin/bash
+        ExecStartPre =
+          let
+            preStartScript = pkgs.writeScript "qbittorrent-run-prestart" ''
+              #!${pkgs.bash}/bin/bash
 
-            # Create data directory if it doesn't exist
-            if ! test -d "$QBT_PROFILE"; then
-              echo "Creating initial qBittorrent data directory in: $QBT_PROFILE"
-              install -d -m 0755 -o "${cfg.user}" -g "${cfg.group}" "$QBT_PROFILE"
-            fi
-          '';
-        in "!${preStartScript}";
+              # Create data directory if it doesn't exist
+              if ! test -d "$QBT_PROFILE"; then
+                echo "Creating initial qBittorrent data directory in: $QBT_PROFILE"
+                install -d -m 0755 -o "${cfg.user}" -g "${cfg.group}" "$QBT_PROFILE"
+              fi
+            '';
+          in
+          "!${preStartScript}";
 
         ExecStart = "${lib.getExe cfg.package} --confirm-legal-notice";
         # To prevent "Quit & shutdown daemon" from working; we want systemd to
@@ -134,7 +138,7 @@ in {
     };
 
     users.groups = mkIf (cfg.group == "qbittorrent") {
-      qbittorrent = {inherit (cfg) gid;};
+      qbittorrent = { inherit (cfg) gid; };
     };
   };
 }

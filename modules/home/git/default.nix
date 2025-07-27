@@ -3,14 +3,16 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.git;
-in {
+in
+{
   options.my.home.git = with lib; {
     enable = mkEnableOption "git configuration";
 
     # I want the full experience by default
-    package = mkPackageOption pkgs "git" {default = ["gitFull"];};
+    package = mkPackageOption pkgs "git" { default = [ "gitFull" ]; };
 
     userEmail = mkOption {
       type = with types; nullOr str;
@@ -29,7 +31,8 @@ in {
     lazygit = my.mkDisableOption "enable lazygit ui";
   };
 
-  config.home.packages = with pkgs;
+  config.home.packages =
+    with pkgs;
     lib.mkIf cfg.enable [
       git-absorb
       git-revise
@@ -56,9 +59,7 @@ in {
         unassume = "update-index --no-assume-unchanged";
         assumed = "!git ls-files -v | grep ^h | cut -c 3-";
         pick = "log -p -G";
-        push-new =
-          "!git push -u origin "
-          + ''"$(git branch | grep '^* ' | cut -f2- -d' ')"'';
+        push-new = "!git push -u origin " + ''"$(git branch | grep '^* ' | cut -f2- -d' ')"'';
         root = "git rev-parse --show-toplevel";
       };
 
@@ -189,13 +190,14 @@ in {
         };
       };
 
-      ignores = let
-        inherit (builtins) readFile;
-        inherit (lib) filter hasPrefix splitString;
-        readLines = file: splitString "\n" (readFile file);
-        removeComments = filter (line: line != "" && !(hasPrefix "#" line));
-        getPaths = file: removeComments (readLines file);
-      in
+      ignores =
+        let
+          inherit (builtins) readFile;
+          inherit (lib) filter hasPrefix splitString;
+          readLines = file: splitString "\n" (readFile file);
+          removeComments = filter (line: line != "" && !(hasPrefix "#" line));
+          getPaths = file: removeComments (readLines file);
+        in
         getPaths ./default.ignore;
     };
     lazygit.enable = cfg.lazygit;

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.udiskie;
-in {
+in
+{
   options.my.home.udiskie = with lib; {
     enable = mkEnableOption "udiskie configuration";
   };

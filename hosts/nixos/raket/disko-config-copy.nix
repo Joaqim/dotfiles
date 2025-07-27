@@ -1,7 +1,8 @@
 # https://github.com/Mic92/dotfiles/blob/main/nixos/turingmachine/modules/disko.nix
 let
   hostName = "raket";
-in {
+in
+{
   disko.devices = {
     disk = {
       "nvme-1tb-${hostName}" = {
@@ -17,7 +18,11 @@ in {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["nofail" "fmask=0022" "dmask=0022"];
+                mountOptions = [
+                  "nofail"
+                  "fmask=0022"
+                  "dmask=0022"
+                ];
               };
             };
             swap = {

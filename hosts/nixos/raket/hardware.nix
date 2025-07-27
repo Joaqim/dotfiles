@@ -3,9 +3,11 @@
   lib,
   modulesPath,
   ...
-}: let
+}:
+let
   inherit (config.networking) hostName;
-in {
+in
+{
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];

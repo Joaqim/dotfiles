@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.hardware.zfs;
-in {
+in
+{
   options.my.hardware.zfs = with lib; {
     enable = mkEnableOption "zfs module for docker virtualization for storage and enable trim and scrub";
 

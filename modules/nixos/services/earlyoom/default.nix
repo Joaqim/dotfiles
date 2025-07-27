@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.services.earlyoom;
-in {
+in
+{
   options.my.services.earlyoom = with lib; {
     enable = mkEnableOption "Enable earlyoom to manage memory better and prevent freezes";
   };

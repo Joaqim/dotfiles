@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.hardware.upower;
-in {
+in
+{
   options.my.hardware.upower = with lib; {
     enable = mkEnableOption "upower configuration";
 

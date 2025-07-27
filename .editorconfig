@@ -9,8 +9,8 @@ insert_final_newline = true
 tab_width = 4
 trim_trailing_whitespace = false
 
-[*.{diff,patch,lock}]
-indent_size = unset
+# Ignore these files and paths
+[*.{diff,patch,lock},/pkgs/_sources/**]
 indent_size = unset
 end_of_line = unset
 insert_final_newline = unset

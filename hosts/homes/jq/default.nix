@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   home = rec {
     file."./justfile".source = lib.mkDefault ./justfile;
     username = "jq";

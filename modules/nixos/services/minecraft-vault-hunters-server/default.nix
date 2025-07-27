@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.my.services.minecraft-vault-hunters-server;
 
   MINECRAFT_VERSION = "1.18.2";
@@ -21,25 +22,26 @@
     "iceberg"
   ];
 
-  EXTRA_MODS = let
-    # Mods in `Vault Hunters` modpack that require manual download
-    # Add to nix store with `nix-store --add-fixed sha256 ...`
-    neoncraft = pkgs.requireFile {
-      name = "neoncraft2-2.2.jar";
-      url = "https://www.curseforge.com/minecraft/mc-mods/neon-craft-ultimate/download/3726051";
-      hash = "sha256-tva1Xb4h/CjMLoqLB9SLo8FHOBgOvzqEaLU4tRBxUp4=";
-    };
-    jewel_sorting = pkgs.requireFile {
-      name = "vault_hunters_jewel_sorting-2.6.0.jar";
-      url = "https://www.curseforge.com/minecraft/mc-mods/vault-hunters-jewel-sorting/download/5585222";
-      hash = "sha256-qwIqVi0wB5nIk/fdV4OgFqxdkitny9JZ9rYy09ojKXk=";
-    };
-    chunky = pkgs.requireFile {
-      name = "Chunky-1.2.164.jar";
-      url = "https://www.curseforge.com/minecraft/mc-mods/chunky-pregenerator-forge/download/3579662";
-      hash = "sha256-1/0ndEeRAaBDWPANdFQSo/gIG//Ph+aVDqUL0yhEQOo=";
-    };
-  in
+  EXTRA_MODS =
+    let
+      # Mods in `Vault Hunters` modpack that require manual download
+      # Add to nix store with `nix-store --add-fixed sha256 ...`
+      neoncraft = pkgs.requireFile {
+        name = "neoncraft2-2.2.jar";
+        url = "https://www.curseforge.com/minecraft/mc-mods/neon-craft-ultimate/download/3726051";
+        hash = "sha256-tva1Xb4h/CjMLoqLB9SLo8FHOBgOvzqEaLU4tRBxUp4=";
+      };
+      jewel_sorting = pkgs.requireFile {
+        name = "vault_hunters_jewel_sorting-2.6.0.jar";
+        url = "https://www.curseforge.com/minecraft/mc-mods/vault-hunters-jewel-sorting/download/5585222";
+        hash = "sha256-qwIqVi0wB5nIk/fdV4OgFqxdkitny9JZ9rYy09ojKXk=";
+      };
+      chunky = pkgs.requireFile {
+        name = "Chunky-1.2.164.jar";
+        url = "https://www.curseforge.com/minecraft/mc-mods/chunky-pregenerator-forge/download/3579662";
+        hash = "sha256-1/0ndEeRAaBDWPANdFQSo/gIG//Ph+aVDqUL0yhEQOo=";
+      };
+    in
     pkgs.stdenvNoCC.mkDerivation {
       pname = "${SERVER_NAME_SLUG}-downloaded-mods";
       version = "1.0.0";
@@ -48,7 +50,7 @@
         jewel_sorting
         chunky
       ];
-      phases = ["installPhase"];
+      phases = [ "installPhase" ];
       installPhase = ''
         mkdir -p $out
         ln -s ${neoncraft} $out/${neoncraft.name}
@@ -58,10 +60,9 @@
     };
 
   # Add list of mods that expect to be downloaded automatically by `itzg/minecraft-server`
-  MODS_FILE_PATH =
-    builtins.toFile "mods.txt" ''
-    '';
-in {
+  MODS_FILE_PATH = builtins.toFile "mods.txt" '''';
+in
+{
   options.my.services.minecraft-vault-hunters-server = with lib; {
     enable = mkEnableOption "Minecraft ${MODPACK_NAME} Server";
   };
@@ -151,47 +152,49 @@ in {
       };
     };
     systemd = {
-      services = let
-        service = "docker-network-${SERVER_NAME_SLUG}_default.service";
-        target = "docker-compose-${SERVER_NAME_SLUG}-root.target";
-      in {
-        "docker-${SERVER_NAME_SLUG}" = {
-          serviceConfig = {
-            Restart = lib.mkOverride 500 "no";
+      services =
+        let
+          service = "docker-network-${SERVER_NAME_SLUG}_default.service";
+          target = "docker-compose-${SERVER_NAME_SLUG}-root.target";
+        in
+        {
+          "docker-${SERVER_NAME_SLUG}" = {
+            serviceConfig = {
+              Restart = lib.mkOverride 500 "no";
+            };
+            restartIfChanged = true;
+            # Aborts restarts of service fails 2 times in under 5 minutes
+            startLimitIntervalSec = 300; # 5 minutes
+            startLimitBurst = 2;
+            after = [
+              service
+            ];
+            requires = [
+              service
+            ];
+            partOf = [
+              target
+            ];
+            wantedBy = [
+              target
+            ];
           };
-          restartIfChanged = true;
-          # Aborts restarts of service fails 2 times in under 5 minutes
-          startLimitIntervalSec = 300; # 5 minutes
-          startLimitBurst = 2;
-          after = [
-            service
-          ];
-          requires = [
-            service
-          ];
-          partOf = [
-            target
-          ];
-          wantedBy = [
-            target
-          ];
-        };
-        # Networks
-        "docker-network-${SERVER_NAME_SLUG}_default" = {
-          path = [pkgs.docker];
-          restartIfChanged = true;
-          serviceConfig = {
-            Type = "oneshot";
-            RemainAfterExit = true;
-            ExecStop = "docker network rm -f ${SERVER_NAME_SLUG}_default";
+          # Networks
+          "docker-network-${SERVER_NAME_SLUG}_default" = {
+            path = [ pkgs.docker ];
+            restartIfChanged = true;
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+              ExecStop = "docker network rm -f ${SERVER_NAME_SLUG}_default";
+            };
+            script = ''
+              docker network inspect ${SERVER_NAME_SLUG}_default || docker network create ${SERVER_NAME_SLUG}_default
+            '';
+            partOf = [ target ];
+            wantedBy = [ target ];
           };
-          script = ''
-            docker network inspect ${SERVER_NAME_SLUG}_default || docker network create ${SERVER_NAME_SLUG}_default
-          '';
-          partOf = [target];
-          wantedBy = [target];
         };
-      };
       # Root service
       # When started, this will automatically create all resources and start
       # the containers. When stopped, this will teardown all resources.
@@ -199,7 +202,7 @@ in {
         unitConfig = {
           Description = "Root target generated by compose2nix.";
         };
-        wantedBy = ["multi-user.target"];
+        wantedBy = [ "multi-user.target" ];
       };
     };
   };

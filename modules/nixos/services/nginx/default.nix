@@ -4,95 +4,101 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.services.nginx;
 
   inherit (config.networking) domain;
 
   inherit (config.my.user) email fullName;
 
-  virtualHostOption = with lib;
-    types.submodule ({name, ...}: {
-      options = {
-        subdomain = mkOption {
-          type = types.str;
-          default = name;
-          example = "dev";
-          description = ''
-            Which subdomain, under config.networking.domain, to use
-            for this virtual host.
-          '';
-        };
-
-        websocketsLocations = mkOption {
-          type = with types; listOf str;
-          default = [];
-          example = ["/socket"];
-          description = ''
-            Which locations on this virtual host should be configured for
-            websockets.
-          '';
-        };
-
-        port = mkOption {
-          type = with types; nullOr port;
-          default = null;
-          example = 8080;
-          description = ''
-            Which port to proxy to, through 127.0.0.1, for this virtual host.
-          '';
-        };
-
-        redirect = mkOption {
-          type = with types; nullOr str;
-          default = null;
-          example = "https://example.com";
-          description = ''
-            Which domain to redirect to (301 response), for this virtual host.
-          '';
-        };
-
-        root = mkOption {
-          type = with types; nullOr path;
-          default = null;
-          example = "/var/www/blog";
-          description = ''
-            The root folder for this virtual host.
-          '';
-        };
-
-        socket = mkOption {
-          type = with types; nullOr path;
-          default = null;
-          example = "FIXME";
-          description = ''
-            The UNIX socket for this virtual host.
-          '';
-        };
-
-        sso = {
-          enable = mkEnableOption "SSO authentication";
-        };
-
-        extraConfig = mkOption {
-          type = types.attrs; # FIXME: forward type of virtualHosts
-          example = {
-            extraConfig = ''
-              add_header X-Clacks-Overhead "GNU Terry Pratchett";
-            '';
-
-            locations."/".extraConfig = ''
-              client_max_body_size 1G;
+  virtualHostOption =
+    with lib;
+    types.submodule (
+      { name, ... }:
+      {
+        options = {
+          subdomain = mkOption {
+            type = types.str;
+            default = name;
+            example = "dev";
+            description = ''
+              Which subdomain, under config.networking.domain, to use
+              for this virtual host.
             '';
           };
-          default = {};
-          description = ''
-            Any extra configuration that should be applied to this virtual host.
-          '';
+
+          websocketsLocations = mkOption {
+            type = with types; listOf str;
+            default = [ ];
+            example = [ "/socket" ];
+            description = ''
+              Which locations on this virtual host should be configured for
+              websockets.
+            '';
+          };
+
+          port = mkOption {
+            type = with types; nullOr port;
+            default = null;
+            example = 8080;
+            description = ''
+              Which port to proxy to, through 127.0.0.1, for this virtual host.
+            '';
+          };
+
+          redirect = mkOption {
+            type = with types; nullOr str;
+            default = null;
+            example = "https://example.com";
+            description = ''
+              Which domain to redirect to (301 response), for this virtual host.
+            '';
+          };
+
+          root = mkOption {
+            type = with types; nullOr path;
+            default = null;
+            example = "/var/www/blog";
+            description = ''
+              The root folder for this virtual host.
+            '';
+          };
+
+          socket = mkOption {
+            type = with types; nullOr path;
+            default = null;
+            example = "FIXME";
+            description = ''
+              The UNIX socket for this virtual host.
+            '';
+          };
+
+          sso = {
+            enable = mkEnableOption "SSO authentication";
+          };
+
+          extraConfig = mkOption {
+            type = types.attrs; # FIXME: forward type of virtualHosts
+            example = {
+              extraConfig = ''
+                add_header X-Clacks-Overhead "GNU Terry Pratchett";
+              '';
+
+              locations."/".extraConfig = ''
+                client_max_body_size 1G;
+              '';
+            };
+            default = { };
+            description = ''
+              Any extra configuration that should be applied to this virtual host.
+            '';
+          };
         };
-      };
-    });
-in {
+      }
+    );
+in
+{
   options.my.services.nginx = with lib; {
     enable = mkEnableOption "Nginx";
 
@@ -112,7 +118,7 @@ in {
 
     virtualHosts = mkOption {
       type = types.attrsOf virtualHostOption;
-      default = {};
+      default = { };
       example = {
         gitea = {
           subdomain = "git";
@@ -123,7 +129,7 @@ in {
         };
         jellyfin = {
           port = 8096;
-          websocketsLocations = ["/socket"];
+          websocketsLocations = [ "/socket" ];
         };
       };
       description = ''
@@ -155,20 +161,22 @@ in {
       };
 
       users = mkOption {
-        type = types.attrsOf (types.submodule {
-          options = {
-            passwordHashFile = mkOption {
-              type = types.str;
-              example = "/var/lib/nginx-sso/alice/password-hash.txt";
-              description = "Path to file containing the user's password hash.";
+        type = types.attrsOf (
+          types.submodule {
+            options = {
+              passwordHashFile = mkOption {
+                type = types.str;
+                example = "/var/lib/nginx-sso/alice/password-hash.txt";
+                description = "Path to file containing the user's password hash.";
+              };
+              totpSecretFile = mkOption {
+                type = types.str;
+                example = "/var/lib/nginx-sso/alice/totp-secret.txt";
+                description = "Path to file containing the user's TOTP secret.";
+              };
             };
-            totpSecretFile = mkOption {
-              type = types.str;
-              example = "/var/lib/nginx-sso/alice/totp-secret.txt";
-              description = "Path to file containing the user's TOTP secret.";
-            };
-          };
-        });
+          }
+        );
         example = {
           alice = {
             passwordHashFile = "/var/lib/nginx-sso/alice/password-hash.txt";
@@ -181,8 +189,11 @@ in {
       groups = mkOption {
         type = with types; attrsOf (listOf str);
         example = {
-          root = ["alice"];
-          users = ["alice" "bob"];
+          root = [ "alice" ];
+          users = [
+            "alice"
+            "bob"
+          ];
         };
         description = "Groups of users";
       };
@@ -191,36 +202,50 @@ in {
 
   config = lib.mkIf cfg.enable {
     assertions =
-      (lib.flip lib.mapAttrsToList cfg.virtualHosts (_: {subdomain, ...} @ args: let
-        conflicts = ["port" "root" "socket" "redirect"];
-        optionsNotNull = builtins.map (v: args.${v} != null) conflicts;
-        optionsSet = lib.filter lib.id optionsNotNull;
-      in {
-        assertion = builtins.length optionsSet == 1;
-        message = ''
-          Subdomain '${subdomain}' must have exactly one of ${
-            lib.concatStringsSep ", " (builtins.map (v: "'${v}'") conflicts)
-          } configured.
-        '';
-      }))
-      ++ (lib.flip lib.mapAttrsToList cfg.virtualHosts (_: {subdomain, ...} @ args: let
-        proxyPass = ["port" "socket"];
-        proxyPassUsed = lib.any (v: args.${v} != null) proxyPass;
-      in {
-        assertion = args.websocketsLocations != [] -> proxyPassUsed;
-        message = ''
-          Subdomain '${subdomain}' can only use 'websocketsLocations' with one of ${
-            lib.concatStringsSep ", " (builtins.map (v: "'${v}'") proxyPass)
-          }.
-        '';
-      }))
+      (lib.flip lib.mapAttrsToList cfg.virtualHosts (
+        _:
+        { subdomain, ... }@args:
+        let
+          conflicts = [
+            "port"
+            "root"
+            "socket"
+            "redirect"
+          ];
+          optionsNotNull = builtins.map (v: args.${v} != null) conflicts;
+          optionsSet = lib.filter lib.id optionsNotNull;
+        in
+        {
+          assertion = builtins.length optionsSet == 1;
+          message = ''
+            Subdomain '${subdomain}' must have exactly one of ${
+              lib.concatStringsSep ", " (builtins.map (v: "'${v}'") conflicts)
+            } configured.
+          '';
+        }
+      ))
+      ++ (lib.flip lib.mapAttrsToList cfg.virtualHosts (
+        _:
+        { subdomain, ... }@args:
+        let
+          proxyPass = [
+            "port"
+            "socket"
+          ];
+          proxyPassUsed = lib.any (v: args.${v} != null) proxyPass;
+        in
+        {
+          assertion = args.websocketsLocations != [ ] -> proxyPassUsed;
+          message = ''
+            Subdomain '${subdomain}' can only use 'websocketsLocations' with one of ${
+              lib.concatStringsSep ", " (builtins.map (v: "'${v}'") proxyPass)
+            }.
+          '';
+        }
+      ))
       ++ (
         let
-          ports =
-            lib.my.mapFilter
-            (v: v != null)
-            ({port, ...}: port)
-            (lib.attrValues cfg.virtualHosts);
+          ports = lib.my.mapFilter (v: v != null) ({ port, ... }: port) (lib.attrValues cfg.virtualHosts);
           portCounts = lib.my.countValues ports;
           nonUniquesCounts = lib.filterAttrs (_: v: v != 1) portCounts;
           nonUniques = builtins.attrNames nonUniquesCounts;
@@ -229,11 +254,11 @@ in {
             message = "Port ${port} cannot appear in multiple virtual hosts.";
           };
         in
-          map mkAssertion nonUniques
+        map mkAssertion nonUniques
       )
       ++ (
         let
-          subs = lib.mapAttrsToList (_: {subdomain, ...}: subdomain) cfg.virtualHosts;
+          subs = lib.mapAttrsToList (_: { subdomain, ... }: subdomain) cfg.virtualHosts;
           subsCounts = lib.my.countValues subs;
           nonUniquesCounts = lib.filterAttrs (_: v: v != 1) subsCounts;
           nonUniques = builtins.attrNames nonUniquesCounts;
@@ -244,7 +269,7 @@ in {
             '';
           };
         in
-          map mkAssertion nonUniques
+        map mkAssertion nonUniques
       );
 
     services.nginx = {
@@ -257,94 +282,99 @@ in {
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
 
-      virtualHosts = let
-        inherit (config.networking) domain;
-        mkProxyPass = {websocketsLocations, ...}: proxyPass: let
-          websockets = lib.genAttrs websocketsLocations (_: {
-            inherit proxyPass;
-            proxyWebsockets = true;
-          });
-        in
-          {"/" = {inherit proxyPass;};} // websockets;
-        mkVHost = {subdomain, ...} @ args:
-          lib.nameValuePair
-          "${subdomain}.${domain}"
-          (lib.my.recursiveMerge [
-            # Base configuration
-            {
-              forceSSL = true;
-              useACMEHost = domain;
-            }
-            # Proxy to port
-            (lib.optionalAttrs (args.port != null) {
-              locations = mkProxyPass args "http://127.0.0.1:${toString args.port}";
-            })
-            # Serve filesystem content
-            (lib.optionalAttrs (args.root != null) {
-              inherit (args) root;
-            })
-            # Serve to UNIX socket
-            (lib.optionalAttrs (args.socket != null) {
-              locations = mkProxyPass args "http://unix:${args.socket}";
-            })
-            # Redirect to a different domain
-            (lib.optionalAttrs (args.redirect != null) {
-              locations."/".return = "301 ${args.redirect}$request_uri";
-            })
-            # VHost specific configuration
-            args.extraConfig
-            # SSO configuration
-            (lib.optionalAttrs args.sso.enable {
-              extraConfig =
-                (args.extraConfig.extraConfig or "")
-                + ''
-                  error_page 401 = @error401;
-                '';
-
-              locations = {
-                "@error401".return = ''
-                  302 https://${cfg.sso.subdomain}.${config.networking.domain}/login?go=$scheme://$http_host$request_uri
-                '';
-
-                "/" = {
+      virtualHosts =
+        let
+          inherit (config.networking) domain;
+          mkProxyPass =
+            { websocketsLocations, ... }:
+            proxyPass:
+            let
+              websockets = lib.genAttrs websocketsLocations (_: {
+                inherit proxyPass;
+                proxyWebsockets = true;
+              });
+            in
+            { "/" = { inherit proxyPass; }; } // websockets;
+          mkVHost =
+            { subdomain, ... }@args:
+            lib.nameValuePair "${subdomain}.${domain}" (
+              lib.my.recursiveMerge [
+                # Base configuration
+                {
+                  forceSSL = true;
+                  useACMEHost = domain;
+                }
+                # Proxy to port
+                (lib.optionalAttrs (args.port != null) {
+                  locations = mkProxyPass args "http://127.0.0.1:${toString args.port}";
+                })
+                # Serve filesystem content
+                (lib.optionalAttrs (args.root != null) {
+                  inherit (args) root;
+                })
+                # Serve to UNIX socket
+                (lib.optionalAttrs (args.socket != null) {
+                  locations = mkProxyPass args "http://unix:${args.socket}";
+                })
+                # Redirect to a different domain
+                (lib.optionalAttrs (args.redirect != null) {
+                  locations."/".return = "301 ${args.redirect}$request_uri";
+                })
+                # VHost specific configuration
+                args.extraConfig
+                # SSO configuration
+                (lib.optionalAttrs args.sso.enable {
                   extraConfig =
-                    # FIXME: check that X-User is dropped otherwise
-                    (args.extraConfig.locations."/".extraConfig or "")
+                    (args.extraConfig.extraConfig or "")
                     + ''
-                      # Use SSO
-                      auth_request /sso-auth;
-
-                      # Set username through header
-                      auth_request_set $username $upstream_http_x_username;
-                      proxy_set_header X-User $username;
-
-                      # Renew SSO cookie on request
-                      auth_request_set $cookie $upstream_http_set_cookie;
-                      add_header Set-Cookie $cookie;
+                      error_page 401 = @error401;
                     '';
-                };
 
-                "/sso-auth" = {
-                  proxyPass = "http://localhost:${toString cfg.sso.port}/auth";
-                  extraConfig = ''
-                    # Do not allow requests from outside
-                    internal;
+                  locations = {
+                    "@error401".return = ''
+                      302 https://${cfg.sso.subdomain}.${config.networking.domain}/login?go=$scheme://$http_host$request_uri
+                    '';
 
-                    # Do not forward the request body
-                    proxy_pass_request_body off;
-                    proxy_set_header Content-Length "";
+                    "/" = {
+                      extraConfig =
+                        # FIXME: check that X-User is dropped otherwise
+                        (args.extraConfig.locations."/".extraConfig or "")
+                        + ''
+                          # Use SSO
+                          auth_request /sso-auth;
 
-                    # Set X-Application according to subdomain for matching
-                    proxy_set_header X-Application "${subdomain}";
+                          # Set username through header
+                          auth_request_set $username $upstream_http_x_username;
+                          proxy_set_header X-User $username;
 
-                    # Set origin URI for matching
-                    proxy_set_header X-Origin-URI $request_uri;
-                  '';
-                };
-              };
-            })
-          ]);
-      in
+                          # Renew SSO cookie on request
+                          auth_request_set $cookie $upstream_http_set_cookie;
+                          add_header Set-Cookie $cookie;
+                        '';
+                    };
+
+                    "/sso-auth" = {
+                      proxyPass = "http://localhost:${toString cfg.sso.port}/auth";
+                      extraConfig = ''
+                        # Do not allow requests from outside
+                        internal;
+
+                        # Do not forward the request body
+                        proxy_pass_request_body off;
+                        proxy_set_header Content-Length "";
+
+                        # Set X-Application according to subdomain for matching
+                        proxy_set_header X-Application "${subdomain}";
+
+                        # Set origin URI for matching
+                        proxy_set_header X-Origin-URI $request_uri;
+                      '';
+                    };
+                  };
+                })
+              ]
+            );
+        in
         lib.my.genAttrs' (lib.attrValues cfg.virtualHosts) mkVHost;
 
       sso = {
@@ -391,24 +421,28 @@ in {
           };
 
           providers = {
-            simple = let
-              applyUsers = lib.flip lib.mapAttrs cfg.sso.users;
-            in {
-              users = applyUsers (_: v: {_secret = v.passwordHashFile;});
+            simple =
+              let
+                applyUsers = lib.flip lib.mapAttrs cfg.sso.users;
+              in
+              {
+                users = applyUsers (_: v: { _secret = v.passwordHashFile; });
 
-              mfa = applyUsers (_: v: [
-                {
-                  provider = "totp";
-                  attributes = {
-                    secret = {
-                      _secret = v.totpSecretFile;
-                    };
-                  };
-                }
-              ]);
+                mfa = applyUsers (
+                  _: v: [
+                    {
+                      provider = "totp";
+                      attributes = {
+                        secret = {
+                          _secret = v.totpSecretFile;
+                        };
+                      };
+                    }
+                  ]
+                );
 
-              inherit (cfg.sso) groups;
-            };
+                inherit (cfg.sso) groups;
+              };
           };
 
           acl = {
@@ -420,7 +454,7 @@ in {
                     present = true;
                   }
                 ];
-                allow = ["@root"];
+                allow = [ "@root" ];
               }
             ];
           };
@@ -434,10 +468,13 @@ in {
       };
     };
 
-    networking.firewall.allowedTCPPorts = [80 443];
+    networking.firewall.allowedTCPPorts = [
+      80
+      443
+    ];
 
     # Nginx needs to be able to read the certificates
-    users.users.nginx.extraGroups = ["acme"];
+    users.users.nginx.extraGroups = [ "acme" ];
 
     security.acme = {
       defaults.email = email;
@@ -446,7 +483,7 @@ in {
       # Use DNS wildcard certificate
       certs = {
         "${domain}" = {
-          extraDomainNames = ["*.${domain}"];
+          extraDomainNames = [ "*.${domain}" ];
           dnsProvider = "ovh";
           dnsPropagationCheck = false; # OVH is slow
           inherit (cfg.acme) credentialsFile;
@@ -483,7 +520,7 @@ in {
             job_name = "nginx";
             static_configs = [
               {
-                targets = ["127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}"];
+                targets = [ "127.0.0.1:${toString config.services.prometheus.exporters.nginx.port}" ];
                 labels = {
                   instance = config.networking.hostName;
                 };

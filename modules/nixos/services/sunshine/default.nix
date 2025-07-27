@@ -3,7 +3,8 @@
   lib,
   config,
   ...
-}: let
+}:
+let
   cfg = config.my.services.sunshine;
   # Helper utility for launching Steam games from Sunshine. This works around
   # issue where Sunshine's security wrapper prevents Steam from launching.
@@ -19,7 +20,8 @@
       pkgs.coreutils # For `id` command
     ];
   };
-in {
+in
+{
   options.my.services.sunshine = with lib; {
     enable = mkEnableOption "Sunshine";
   };
@@ -40,7 +42,7 @@ in {
     };
 
     # Allow running `steam-run-url` from shell for testing purposes
-    environment.systemPackages = [steam-run-url];
+    environment.systemPackages = [ steam-run-url ];
 
     systemd.user.services = {
       sunshine = {
@@ -61,27 +63,29 @@ in {
       steam-run-url-service = {
         enable = true;
         description = "Listen and starts steam games by id";
-        wantedBy = ["graphical-session.target"];
-        partOf = ["graphical-session.target"];
-        wants = ["graphical-session.target"];
-        after = ["graphical-session.target"];
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
         serviceConfig.Restart = "on-failure";
-        script = toString (pkgs.writers.writePython3 "steam-run-url-service" {} ''
-          import os
-          from pathlib import Path
-          import subprocess
+        script = toString (
+          pkgs.writers.writePython3 "steam-run-url-service" { } ''
+            import os
+            from pathlib import Path
+            import subprocess
 
-          pipe_path = Path(f'/run/user/{os.getuid()}/steam-run-url.fifo')
-          try:
-              pipe_path.parent.mkdir(parents=True, exist_ok=True)
-              pipe_path.unlink(missing_ok=True)
-              os.mkfifo(pipe_path, 0o600)
-              while True:
-                  with pipe_path.open(encoding='utf-8') as pipe:
-                      subprocess.Popen(['steam', pipe.read().strip()])
-          finally:
-              pipe_path.unlink(missing_ok=True)
-        '');
+            pipe_path = Path(f'/run/user/{os.getuid()}/steam-run-url.fifo')
+            try:
+                pipe_path.parent.mkdir(parents=True, exist_ok=True)
+                pipe_path.unlink(missing_ok=True)
+                os.mkfifo(pipe_path, 0o600)
+                while True:
+                    with pipe_path.open(encoding='utf-8') as pipe:
+                        subprocess.Popen(['steam', pipe.read().strip()])
+            finally:
+                pipe_path.unlink(missing_ok=True)
+          ''
+        );
         path = [
           pkgs.gamemode
           pkgs.steam

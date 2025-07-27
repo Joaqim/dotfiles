@@ -3,14 +3,16 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.services.caddy;
   inherit (config.networking) domain;
 
   inherit (config.my.user) email;
 
   certloc = "/var/lib/acme/joaqim.com";
-in {
+in
+{
   options.my.services.caddy = with lib; {
     enable = mkEnableOption "enable caddy configuration";
   };
@@ -33,7 +35,7 @@ in {
     services.caddy = {
       enable = true;
       package = pkgs.caddy.withPlugins {
-        plugins = ["github.com/caddy-dns/acmedns@v0.4.1"]; # TODO: Add selfup to automatically update version
+        plugins = [ "github.com/caddy-dns/acmedns@v0.4.1" ]; # TODO: Add selfup to automatically update version
         hash = "";
       };
       virtualHosts = {

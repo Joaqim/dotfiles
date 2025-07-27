@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.zathura;
-in {
+in
+{
   options.my.home.zathura = with lib; {
     enable = mkEnableOption "zathura configuration";
   };

@@ -1,4 +1,4 @@
-{stdenvNoCC, ...}:
+{ stdenvNoCC, ... }:
 stdenvNoCC.mkDerivation {
   pname = "mpv-org-history";
   version = "1.0.1";

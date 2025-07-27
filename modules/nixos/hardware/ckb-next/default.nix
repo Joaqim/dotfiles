@@ -4,9 +4,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.hardware.ckb-next;
-in {
+in
+{
   options.my.hardware.ckb-next = with lib; {
     enable = mkEnableOption "CKB Next keyboard/mouse drivers and user configuration";
 

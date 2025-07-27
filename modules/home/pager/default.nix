@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.pager;
-in {
+in
+{
   options.my.home.pager = with lib; {
     enable = my.mkDisableOption "pager configuration";
   };
