@@ -3,7 +3,8 @@
   stdenvNoCC,
   sources,
   ...
-}: let
+}:
+let
   godot_src = sources.godot.src;
   GodotJS_src = sources.GodotJS.src;
   v8zip = sources.v8zip.src;
@@ -18,7 +19,7 @@
       GodotJS_src
       v8zip
     ];
-    buildInputs = [pkgs.unzip];
+    buildInputs = [ pkgs.unzip ];
     unpackPhase = ''
       mkdir -p ./modules/GodotJS
       chmod 755 ./modules/GodotJS
@@ -35,11 +36,10 @@
     '';
   };
 in
-  pkgs.godot_4_3.overrideAttrs
-  (old: {
-    inherit (sources.godot) version;
-    pname = "godot4-godotjs";
-    src = godot_src_with_godotjs;
-    nativeBuildInputs = old.nativeBuildInputs ++ [pkgs.mold];
-    meta.description = "Free and Open Source 2D and 3D game engine - bundled with GodotJS";
-  })
+pkgs.godot_4_3.overrideAttrs (old: {
+  inherit (sources.godot) version;
+  pname = "godot4-godotjs";
+  src = godot_src_with_godotjs;
+  nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.mold ];
+  meta.description = "Free and Open Source 2D and 3D game engine - bundled with GodotJS";
+})

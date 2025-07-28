@@ -1,2 +1,1 @@
-{rqbit, ...}:
-rqbit
+{ rqbit, ... }: rqbit

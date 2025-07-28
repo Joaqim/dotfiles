@@ -4,9 +4,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.system.docker;
-in {
+in
+{
   options.my.system.docker = with lib; {
     enable = mkEnableOption "docker configuration";
 
@@ -15,38 +17,40 @@ in {
     enableInsecureContainerPolicy = my.mkDisableOption "enable insecure container policy";
   };
 
-  config = lib.mkIf cfg.enable (lib.mkMerge [
-    (lib.mkIf cfg.withContainers {
-      virtualisation.containers = {
-        enable = true;
-        policy = lib.mkIf cfg.enableInsecureContainerPolicy {
-          default = [{type = "insecureAcceptAnything";}];
-          transports = {
-            docker-daemon = {
-              "" = [{type = "insecureAcceptAnything";}];
+  config = lib.mkIf cfg.enable (
+    lib.mkMerge [
+      (lib.mkIf cfg.withContainers {
+        virtualisation.containers = {
+          enable = true;
+          policy = lib.mkIf cfg.enableInsecureContainerPolicy {
+            default = [ { type = "insecureAcceptAnything"; } ];
+            transports = {
+              docker-daemon = {
+                "" = [ { type = "insecureAcceptAnything"; } ];
+              };
             };
           };
         };
-      };
-    })
-    {
-      virtualisation = {
-        docker = {
-          enable = true;
-          extraPackages = lib.mkIf cfg.withDockerCompose [pkgs.docker-compose];
-
-          # Remove unused data on a weekly basis
-          autoPrune = {
+      })
+      {
+        virtualisation = {
+          docker = {
             enable = true;
+            extraPackages = lib.mkIf cfg.withDockerCompose [ pkgs.docker-compose ];
 
-            dates = "weekly";
+            # Remove unused data on a weekly basis
+            autoPrune = {
+              enable = true;
 
-            flags = [
-              "--all"
-            ];
+              dates = "weekly";
+
+              flags = [
+                "--all"
+              ];
+            };
           };
         };
-      };
-    }
-  ]);
+      }
+    ]
+  );
 }

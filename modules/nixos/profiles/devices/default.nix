@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.profiles.devices;
-in {
+in
+{
   options.my.profiles.devices = with lib; {
     enable = mkEnableOption "devices profile";
 

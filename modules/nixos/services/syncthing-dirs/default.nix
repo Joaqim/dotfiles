@@ -2,10 +2,12 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   user = config.my.user.name;
   cfg = config.my.services.syncthing-dirs;
-in {
+in
+{
   options.my.services.syncthing-dirs = with lib; {
     enable = mkEnableOption (mdDoc "Syncthing");
 
@@ -59,7 +61,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     networking.firewall = lib.mkIf cfg.openFirewall {
-      allowedTCPPorts = [cfg.guiPort 22000];
+      allowedTCPPorts = [
+        cfg.guiPort
+        22000
+      ];
     };
 
     services = {
@@ -76,12 +81,18 @@ in {
           folders = {
             "~/Documents" = {
               id = "default-home-Documents";
-              devices = ["node" "desktop"]; # Shared with devices `node` & `desktop`
+              devices = [
+                "node"
+                "desktop"
+              ]; # Shared with devices `node` & `desktop`
               paused = true;
             };
             "~/.local/share/PrismLauncher" = {
               id = "default-PrismLauncher";
-              devices = ["node" "deck"];
+              devices = [
+                "node"
+                "deck"
+              ];
             };
           };
           devices = {

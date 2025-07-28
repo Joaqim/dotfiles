@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.terminal;
-in {
+in
+{
   config = lib.mkIf (cfg.program == "alacritty") {
     programs.alacritty = {
       enable = true;

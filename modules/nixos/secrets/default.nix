@@ -3,13 +3,15 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.secrets;
 
   user0 = "jq";
   user1 = "deck";
   owner = config.my.user.name;
-in {
+in
+{
   imports = [
     inputs.sops-nix.nixosModules.sops
   ];
@@ -30,7 +32,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     # Create a group that should have access to /var/lib/sops
-    users.groups.keys = {};
+    users.groups.keys = { };
 
     sops = {
       defaultSopsFile = ../../../secrets/secrets.yaml;
@@ -41,7 +43,7 @@ in {
         home = cfg.sopsDirectory;
 
         # disable importing host ssh keys
-        sshKeyPaths = [];
+        sshKeyPaths = [ ];
       };
       age.generateKey = false;
       templates = {
@@ -67,7 +69,7 @@ in {
         };
       };
       secrets = {
-        "atticd_server_token" = {};
+        "atticd_server_token" = { };
         "atuin_key/${user0}" = {
           path = "/home/${user0}/.local/share/atuin/key";
           inherit owner;
@@ -96,8 +98,8 @@ in {
           path = "/home/${user0}/.ssh/id_joaqim-ci-bot.pub";
           inherit owner;
         };
-        "private_key/cache-desktop-org" = {};
-        "public_key/cache-desktop-org" = {};
+        "private_key/cache-desktop-org" = { };
+        "public_key/cache-desktop-org" = { };
         "wakatime_api_key/${user0}" = {
           path = "/home/${user0}/.wakatime/api_key.txt";
           inherit owner;

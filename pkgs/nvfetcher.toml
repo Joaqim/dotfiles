@@ -7,7 +7,7 @@ src.git = "https://github.com/yt-dlp/yt-dlp"
 fetch.github = "yt-dlp/yt-dlp"
 
 [twitchindicator]
-src.git = "https://github.com/kuunha/twitchindicator"
+src.manual = "0.6.1"
 fetch.github = "kuunha/twitchindicator"
 
 [chronotube]

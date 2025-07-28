@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.bottom;
-in {
+in
+{
   options.my.home.bottom = with lib; {
     enable = my.mkDisableOption "bottom configuration";
   };
@@ -17,7 +19,14 @@ in {
           tableHeaderColor = "#f4dbd6";
           allCpuColor = "#f4dbd6";
           avgCpuColor = "#ee99a0";
-          cpuCoreColors = ["#ed8796" "#f5a97f" "#eed49f" "#a6da95" "#7dc4e4" "#c6a0f6"];
+          cpuCoreColors = [
+            "#ed8796"
+            "#f5a97f"
+            "#eed49f"
+            "#a6da95"
+            "#7dc4e4"
+            "#c6a0f6"
+          ];
           ramColor = "#a6da95";
           swapColor = "#f5a97f";
           rxColor = "#a6da95";
@@ -33,7 +42,14 @@ in {
           highBatteryColor = "#a6da95";
           mediumBatteryColor = "#eed49f";
           lowBatteryColor = "#ed8796";
-          gpuCoreColors = ["#7dc4e4" "#c6a0f6" "#ed8796" "#f5a97f" "#eed49f" "#a6da95"];
+          gpuCoreColors = [
+            "#7dc4e4"
+            "#c6a0f6"
+            "#ed8796"
+            "#f5a97f"
+            "#eed49f"
+            "#a6da95"
+          ];
           arcColor = "#91d7e3";
         };
       };

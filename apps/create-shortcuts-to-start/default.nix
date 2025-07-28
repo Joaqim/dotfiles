@@ -7,7 +7,7 @@ writeShellApplication rec {
   name = "create-shortcuts-to-start";
   text = builtins.readFile ./${name}.sh;
 
-  runtimeInputs = [steamtinkerlaunch];
+  runtimeInputs = [ steamtinkerlaunch ];
 
   runtimeEnv = {
     # Allows running 'steamtinkerlaunch' from cli without desktop
@@ -17,6 +17,6 @@ writeShellApplication rec {
 
   meta = {
     description = "";
-    platforms = ["x86_64-linux"];
+    platforms = [ "x86_64-linux" ];
   };
 }

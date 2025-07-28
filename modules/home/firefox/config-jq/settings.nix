@@ -4,7 +4,8 @@ let
   # about:preferences pages.
   restorePreviousSessions = 3;
   compact = 3;
-in {
+in
+{
   "general.smoothScroll" = false;
   "font.size.variable.x-western" = 15;
   "font.size.monospace.x-western" = 14;

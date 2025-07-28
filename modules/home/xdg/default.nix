@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.xdg;
-in {
+in
+{
   options.my.home.xdg = with lib; {
     enable = my.mkDisableOption "XDG configuration";
   };
@@ -39,7 +41,8 @@ in {
   };
 
   # Attempt to create a tidier home
-  config.home.sessionVariables = with config.xdg;
+  config.home.sessionVariables =
+    with config.xdg;
     lib.mkIf cfg.enable {
       ANDROID_HOME = "${dataHome}/android";
       ANDROID_USER_HOME = "${configHome}/android";

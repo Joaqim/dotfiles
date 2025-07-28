@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.services.fail2ban;
-in {
+in
+{
   options.my.services.fail2ban = with lib; {
     enable = mkEnableOption "fail2ban daemon";
   };

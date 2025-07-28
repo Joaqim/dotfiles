@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.system.podman;
-in {
+in
+{
   options.my.system.podman = with lib; {
     enable = mkEnableOption "podman configuration";
   };

@@ -3,9 +3,11 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.profiles.steam-deck;
-in {
+in
+{
   options.my.profiles.steam-deck = with lib; {
     enable = mkEnableOption "steam deck configuration";
   };
@@ -61,7 +63,7 @@ in {
           port = 8080;
         };
       };
-      # Enable use of my self-hosted cache at `desktop:5000`
+      # Enable use of my self-hosted cache at `desktop:8189`
       system.nix.cache.selfHosted = true;
     };
 

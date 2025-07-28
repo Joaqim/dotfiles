@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.terminal;
-in {
+in
+{
   config = lib.mkIf (cfg.program == "termite") {
     programs.termite = {
       enable = true;

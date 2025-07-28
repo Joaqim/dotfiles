@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.documentation;
-in {
+in
+{
   options.my.home.documentation = with lib; {
     enable = mkEnableOption "documentation integration";
   };

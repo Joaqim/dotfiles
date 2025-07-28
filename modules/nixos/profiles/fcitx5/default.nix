@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.profiles.fcitx5;
-in {
+in
+{
   options.my.profiles.fcitx5 = with lib; {
     enable = mkEnableOption "fcitx5 configuration";
   };

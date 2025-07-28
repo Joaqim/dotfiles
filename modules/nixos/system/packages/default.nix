@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.system.packages;
-in {
+in
+{
   options.my.system.packages = with lib; {
     enable = my.mkDisableOption "packages configuration";
 
@@ -25,6 +27,9 @@ in {
     nixpkgs.config = {
       inherit (cfg) allowAliases allowUnfree;
     };
-    environment.pathsToLink = lib.mkIf config.my.home.xdg.enable ["/share/xdg-desktop-portal" "/share/applications"];
+    environment.pathsToLink = lib.mkIf config.my.home.xdg.enable [
+      "/share/xdg-desktop-portal"
+      "/share/applications"
+    ];
   };
 }

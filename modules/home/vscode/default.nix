@@ -3,9 +3,11 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.vscode;
-in {
+in
+{
   options.my.home.vscode = with lib; {
     enable = mkEnableOption "vscode configuration";
   };
@@ -13,7 +15,7 @@ in {
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       # Nix Language
-      alejandra
+      nixfmt-rfc-style
       nil
 
       material-icons
@@ -46,7 +48,7 @@ in {
               "**/.DS_Store" = true;
               "**/Thumbs.db" = true;
             };
-            "files.associations" = {};
+            "files.associations" = { };
 
             # Accept linux keymapping
             "keyboard.dispatch" = "keyCode";
@@ -128,13 +130,19 @@ in {
 
             ### Nix Language
             "nix.enableLanguageServer" = true;
-            "nix.serverPath" = lib.getExe pkgs.nil;
-            "nix.formatterPath" = lib.getExe pkgs.alejandra;
+            "nix.serverPath" = "nil";
             "[nix]" = {
-              "editor.defaultFormatter" = "kamadorueda.alejandra";
+              "editor.defaultFormatter" = "jnoortheen.nix-ide";
               "editor.formatOnPaste" = true;
               "editor.formatOnSave" = true;
-              "editor.formatOnType" = false;
+              "editor.formatOnType" = true;
+            };
+            "nix.serverSettings" = {
+              "nil" = {
+                "formatting" = {
+                  "command" = [ "nixfmt" ];
+                };
+              };
             };
 
             ## Typescript Formatter
@@ -150,15 +158,14 @@ in {
               "editor.defaultFormatter" = "esbenp.prettier-vscode";
               "editor.formatOnPaste" = true;
               "editor.formatOnSave" = true;
-              "editor.formatOnType" = false;
+              "editor.formatOnType" = true;
             };
-            ## Plugin: kamadorueda.alejandra
-            "alejandra.program" = lib.getExe pkgs.alejandra;
 
             ### GitLens
             "gitlens.telemetry.enabled" = false;
             "gitlens.ai.experimental.model" = "openai:gpt-3.5-turbo";
-            "gitlens.experimental.generateCommitMessagePrompt" = "Generate a commit message using the Conventional Commits format. Examples: ['feat: Add new feature to the project', 'fix: Fix a bug in the project', 'chore: Update build configuration or task', 'docs: Update project documentation', 'style: Update code formatting or style', 'refactor: Refactor existing code', 'test: Add or update tests', 'perf: Improve performance of the project', 'ci: Update continuous integration configuration', 'build: Make changes related to the build process', 'revert: Revert a previous commit']";
+            "gitlens.experimental.generateCommitMessagePrompt" =
+              "Generate a commit message using the Conventional Commits format. Examples: ['feat: Add new feature to the project', 'fix: Fix a bug in the project', 'chore: Update build configuration or task', 'docs: Update project documentation', 'style: Update code formatting or style', 'refactor: Refactor existing code', 'test: Add or update tests', 'perf: Improve performance of the project', 'ci: Update continuous integration configuration', 'build: Make changes related to the build process', 'revert: Revert a previous commit']";
 
             ### Custom Dictionary
             "cSpell.customDictionaries" = {
@@ -181,7 +188,8 @@ in {
               "jasew.vscode-helix-emulation" = 1;
             };
           };
-          extensions = with pkgs.vscode-extensions;
+          extensions =
+            with pkgs.vscode-extensions;
             [
               catppuccin.catppuccin-vsc
               #codeium.codeium
@@ -189,8 +197,7 @@ in {
               esbenp.prettier-vscode
               github.vscode-github-actions
               james-yu.latex-workshop
-              jnoortheen.nix-ide
-              kamadorueda.alejandra
+              jnoortheen.nix-ide # https://github.com/nix-community/vscode-nix-ide
               marp-team.marp-vscode
               mattn.lisp
               mkhl.direnv

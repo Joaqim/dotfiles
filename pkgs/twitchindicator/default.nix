@@ -1,25 +1,42 @@
 {
-  stdenvNoCC,
   sources,
-  pkgs,
+  lib,
+  stdenv,
+  cmake,
+  extra-cmake-modules,
+  kdePackages,
   ...
 }:
-stdenvNoCC.mkDerivation {
+stdenv.mkDerivation {
   inherit (sources.twitchindicator) pname version src;
-  dontBuild = true;
-  dontUnpack = true;
+  # Adds CMakeLists.txt not provided by upstream
+  patches = [ ./cmake.patch ];
 
-  nativeBuildInputs = with pkgs; [
-    kdePackages.wrapQtAppsHook
+  nativeBuildInputs = [
+    cmake
+    extra-cmake-modules
   ];
 
-  runtimeDependencies = with pkgs.libsForQt5.qt5; [
-    qtgraphicaleffects
-    qtwebengine
+  buildInputs = [
+    kdePackages.plasma-desktop
   ];
 
-  installPhase = ''
-    mkdir -p $out/share/plasma/plasmoids/
-    cp -r $src/package $out/share/plasma/plasmoids/org.github.komorebi.twitchindicator
-  '';
+  strictDeps = true;
+
+  cmakeFlags = [
+    (lib.cmakeBool "INSTALL_PLASMOID" true)
+    (lib.cmakeFeature "Qt6_DIR" "${kdePackages.qtbase}/lib/cmake/Qt6")
+  ];
+
+  dontWrapQtApps = true;
+
+  meta = with lib; {
+    description = "Displays a list of live channels you're following on Twitch";
+    longDescription = ''
+      Displays a list of live channels you're following on Twitch - Plasma6 port of original widget by github:komorebinator
+    '';
+    homepage = "https://github.com/kuunha/twitchindicator";
+    license = licenses.wtfpl;
+    platforms = platforms.linux;
+  };
 }

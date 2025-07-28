@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.cursor;
-in {
+in
+{
   options.my.home.cursor = with lib; {
     enable = my.mkDisableOption "enable themed cursor";
   };

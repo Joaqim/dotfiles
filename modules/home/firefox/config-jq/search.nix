@@ -4,98 +4,116 @@
   engines = {
     ## Nix
     "Nix Packages" = {
-      definedAliases = ["@np"];
+      definedAliases = [ "@np" ];
       icon = ./icons/nx.png;
-      urls = [{template = "https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query={searchTerms}";}];
+      urls = [
+        {
+          template = "https://search.nixos.org/packages?channel=unstable&size=50&sort=relevance&type=packages&query={searchTerms}";
+        }
+      ];
     };
     "Nix Options" = {
-      definedAliases = ["@no"];
+      definedAliases = [ "@no" ];
       icon = ./icons/nx.png;
-      urls = [{template = "https://search.nixos.org/options?channel=unstable&size=50&sort=relevance&type=packages&query={searchTerms}";}];
+      urls = [
+        {
+          template = "https://search.nixos.org/options?channel=unstable&size=50&sort=relevance&type=packages&query={searchTerms}";
+        }
+      ];
     };
     "Nix Wiki" = {
-      definedAliases = ["@nw"];
+      definedAliases = [ "@nw" ];
       icon = ./icons/nx.png;
-      urls = [{template = "https://nixos.wiki/index.php?search={searchTerms}";}];
+      urls = [ { template = "https://nixos.wiki/index.php?search={searchTerms}"; } ];
     };
     "My Nix OS" = {
-      definedAliases = ["@mo"];
+      definedAliases = [ "@mo" ];
       icon = ./icons/mo.png;
-      urls = [{template = "https://mynixos.com/search?q={searchTerms}";}];
+      urls = [ { template = "https://mynixos.com/search?q={searchTerms}"; } ];
     };
     "Noogle" = {
-      definedAliases = ["@ng"];
+      definedAliases = [ "@ng" ];
       icon = ./icons/ng.png;
-      urls = [{template = "https://noogle.dev/q?term={searchTerms}";}];
+      urls = [ { template = "https://noogle.dev/q?term={searchTerms}"; } ];
     };
     ## Torrents
     "The Pirate Bay" = {
-      definedAliases = ["@pi"];
+      definedAliases = [ "@pi" ];
       icon = ./icons/pi.png;
-      urls = [{template = "https://thepiratebay.org/search.php?q={searchTerms}&all=on&search=Pirate+Search&page=0&orderby=";}];
+      urls = [
+        {
+          template = "https://thepiratebay.org/search.php?q={searchTerms}&all=on&search=Pirate+Search&page=0&orderby=";
+        }
+      ];
     };
     "Knaben" = {
-      definedAlias = ["@kn"];
+      definedAlias = [ "@kn" ];
       icon = ./icons/kn.png;
-      urls = [{template = "https://knaben.org/search/{searchTerms}";}];
+      urls = [ { template = "https://knaben.org/search/{searchTerms}"; } ];
     };
     "VSTorrent" = {
-      definedAliases = ["@vs"];
+      definedAliases = [ "@vs" ];
       icon = ./icons/vs.png;
-      urls = [{template = "https://vstorrent.org/?s={searchTerms}";}];
+      urls = [ { template = "https://vstorrent.org/?s={searchTerms}"; } ];
     };
     "1337x" = {
-      definedAliases = ["@13"];
+      definedAliases = [ "@13" ];
       icon = ./icons/13.png;
-      urls = [{template = "https://1337x.to/search/{searchTerms}/1/";}];
+      urls = [ { template = "https://1337x.to/search/{searchTerms}/1/"; } ];
     };
     "TorrentGalaxy" = {
-      definedAliases = ["@tg"];
+      definedAliases = [ "@tg" ];
       icon = ./icons/tg.png;
-      urls = [{template = "https://torrentgalaxy.to/torrents.php?search={searchTerms}";}];
+      urls = [ { template = "https://torrentgalaxy.to/torrents.php?search={searchTerms}"; } ];
     };
     "Cloudtorrents" = {
-      definedAliases = ["@ct"];
+      definedAliases = [ "@ct" ];
       icon = ./icons/ct.png;
-      urls = [{template = "https://cloudtorrents.com/search?query={searchTerms}";}];
+      urls = [ { template = "https://cloudtorrents.com/search?query={searchTerms}"; } ];
     };
     "AnimeTosho" = {
-      definedAliases = ["@at"];
+      definedAliases = [ "@at" ];
       icon = ./icons/at.png;
-      urls = [{template = "https://mirror.animetosho.org/search?q={searchTerms}";}];
+      urls = [ { template = "https://mirror.animetosho.org/search?q={searchTerms}"; } ];
     };
     ## Misc
     "Wikipedia" = {
-      definedAliases = ["@wi"];
+      definedAliases = [ "@wi" ];
       icon = ./icons/wi.png;
-      urls = [{template = "https://en.wikipedia.org/wiki/{searchTerms}";}];
+      urls = [ { template = "https://en.wikipedia.org/wiki/{searchTerms}"; } ];
     };
     "AlternativeTo" = {
-      definedAliases = ["@al"];
+      definedAliases = [ "@al" ];
       icon = ./icons/al.png;
-      urls = [{template = "https://alternativeto.net/browse/search/?q={searchTerms}";}];
+      urls = [ { template = "https://alternativeto.net/browse/search/?q={searchTerms}"; } ];
     };
     ## Social
     "reddit" = {
-      definedAliases = ["@re"];
+      definedAliases = [ "@re" ];
       icon = ./icons/re.png;
-      urls = [{template = "https://www.old.reddit.com/search/?q={searchTerms}";}];
+      urls = [ { template = "https://www.old.reddit.com/search/?q={searchTerms}"; } ];
     };
     "youtube" = {
-      definedAliases = ["@yo"];
+      definedAliases = [ "@yo" ];
       icon = ./icons/yo.png;
-      urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
+      urls = [ { template = "https://www.youtube.com/results?search_query={searchTerms}"; } ];
     };
     ## Books
     "Library Genesis" = {
-      definedAliases = ["@lg" "@lib"];
+      definedAliases = [
+        "@lg"
+        "@lib"
+      ];
       icon = ./icons/lg.png;
-      urls = [{template = "https://libgen.is/fiction/?q={searchTerms}";}];
+      urls = [ { template = "https://libgen.is/fiction/?q={searchTerms}"; } ];
     };
     "Anna's Archive" = {
-      definedAlias = ["@aa" "@ar"];
+      definedAlias = [
+        "@aa"
+        "@ar"
+      ];
       icon = ./icons/aa.png;
-      urls = [{template = "https://annas-archive.org/search?q={searchTerms}";}];
+      urls = [ { template = "https://annas-archive.org/search?q={searchTerms}"; } ];
     };
     # Unused
     "amazondotcom-en".metaData.hidden = true;

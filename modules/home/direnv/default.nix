@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.direnv;
-in {
+in
+{
   options.my.home.direnv = with lib; {
     enable = my.mkDisableOption "direnv configuration";
 
@@ -28,16 +30,14 @@ in {
       };
     };
 
-    xdg.configFile = let
-      libDir = ./lib;
-      contents = builtins.readDir libDir;
-      names = lib.attrNames contents;
-      files = lib.filter (name: contents.${name} == "regular") names;
-      linkLibFile = name:
-        lib.nameValuePair
-        "direnv/lib/${name}"
-        {source = libDir + "/${name}";};
-    in
+    xdg.configFile =
+      let
+        libDir = ./lib;
+        contents = builtins.readDir libDir;
+        names = lib.attrNames contents;
+        files = lib.filter (name: contents.${name} == "regular") names;
+        linkLibFile = name: lib.nameValuePair "direnv/lib/${name}" { source = libDir + "/${name}"; };
+      in
       lib.my.genAttrs' files linkLibFile;
 
     home.sessionVariables = lib.mkIf (cfg.defaultFlake != null) {

@@ -3,13 +3,15 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.wget;
-in {
+in
+{
   options.my.home.wget = with lib; {
     enable = my.mkDisableOption "wget configuration";
 
-    package = mkPackageOption pkgs "wget" {};
+    package = mkPackageOption pkgs "wget" { };
   };
 
   config = lib.mkIf cfg.enable {

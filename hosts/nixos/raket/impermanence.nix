@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (config.networking) hostName;
-in {
+in
+{
   boot.initrd.postDeviceCommands = lib.mkAfter ''
     zpool import zroot-${hostName} ; zfs rollback -r zroot-${hostName}/local/root@blank
   '';

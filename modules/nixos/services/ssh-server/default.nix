@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.services.ssh-server;
-in {
+in
+{
   options.my.services.ssh-server = {
     enable = lib.mkEnableOption "SSH Server using 'mosh'";
   };

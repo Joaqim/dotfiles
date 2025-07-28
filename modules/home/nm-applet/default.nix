@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.nm-applet;
-in {
+in
+{
   options.my.home.nm-applet = with lib; {
     enable = mkEnableOption "network-manager-applet configuration";
   };

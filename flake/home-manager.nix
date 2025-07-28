@@ -3,7 +3,8 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   defaultModules = [
     # Include generic settings
     "${self}/modules/home"
@@ -23,7 +24,8 @@
     }
   ];
 
-  mkHome = name: system:
+  mkHome =
+    name: system:
     inputs.home-manager.lib.homeManagerConfiguration {
       # Work-around for home-manager
       # * not letting me set `lib` as an extraSpecialArgs
@@ -32,18 +34,14 @@
       pkgs = import inputs.nixpkgs {
         inherit system;
 
-        overlays =
-          (lib.attrValues self.overlays)
-          ++ [
-            inputs.nur.overlays.default
-          ];
+        overlays = (lib.attrValues self.overlays) ++ [
+          inputs.nur.overlays.default
+        ];
       };
 
-      modules =
-        defaultModules
-        ++ [
-          "${self}/hosts/homes/${name}"
-        ];
+      modules = defaultModules ++ [
+        "${self}/hosts/homes/${name}"
+      ];
 
       extraSpecialArgs = {
         # Inject inputs to use them in global registry
@@ -62,21 +60,21 @@
     "user@container" = "x86_64-linux";
     "wilton@raket" = "x86_64-linux";
   };
-in {
-  perSystem = {system, ...}: {
-    # Work-around for https://github.com/nix-community/home-manager/issues/3075
-    legacyPackages.homeConfigurations = let
-      filteredHomes = lib.filterAttrs (_: hostSystem:
-        hostSystem == system)
-      homes;
+in
+{
+  perSystem =
+    { system, ... }:
+    {
+      # Work-around for https://github.com/nix-community/home-manager/issues/3075
+      legacyPackages.homeConfigurations =
+        let
+          filteredHomes = lib.filterAttrs (_: hostSystem: hostSystem == system) homes;
 
-      allHomes =
-        filteredHomes
-        // {
-          # Default configuration
-          "jq" = system;
-        };
-    in
-      lib.mapAttrs mkHome allHomes;
-  };
+          allHomes = filteredHomes // {
+            # Default configuration
+            "jq" = system;
+          };
+        in
+        lib.mapAttrs mkHome allHomes;
+    };
 }

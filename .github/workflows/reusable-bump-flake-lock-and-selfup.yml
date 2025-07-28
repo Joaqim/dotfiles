@@ -86,6 +86,8 @@ jobs:
           token: ${{ steps.publish-token.outputs.token }}
       - uses: DeterminateSystems/nix-installer-action@c723f3a885e3f1d866d91f4f0c33dd44b1fc7c60 # v16
         with:
+          logger: pretty
+          diagnostic-endpoint: ""
           # Set download buffer size to 500MB 
           extra-conf: |
             download-buffer-size = 524288000
@@ -111,6 +113,7 @@ jobs:
         run: |-
           nix flake update --commit-lock-file --option commit-lockfile-summary "${{ inputs.commit-lockfile-summary }}"
       - name: Update related CI dependencies
+        if: inputs.selfup-commit-message != ''
         id: update-workflows
         run: |
           git ls-files .github | xargs nix develop --command selfup run
