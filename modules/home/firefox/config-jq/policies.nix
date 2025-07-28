@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   ExtensionUpdate = false;
   "3rdparty".Extensions = {
     # # https://github.com/libredirect/browser_extension/blob/b3457faf1bdcca0b17872e30b379a7ae55bc8fd0/src/config.json

@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.bluetooth;
-in {
+in
+{
   options.my.home.bluetooth = with lib; {
     enable = mkEnableOption "bluetooth configuration";
   };

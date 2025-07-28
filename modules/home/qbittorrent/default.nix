@@ -3,14 +3,16 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.qbittorrent;
-in {
+in
+{
   options.my.home.qbittorrent = with lib; {
     enable = mkEnableOption "qbittorrent configuration";
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [pkgs.qbittorrent];
+    home.packages = [ pkgs.qbittorrent ];
   };
 }

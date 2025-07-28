@@ -3,10 +3,12 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.services.jellyfin;
   inherit (inputs) jellyfin-plugins;
-in {
+in
+{
   imports = [
     jellyfin-plugins.nixosModules.jellyfin-plugins
   ];

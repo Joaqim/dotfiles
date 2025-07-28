@@ -3,12 +3,23 @@
   inputs,
   lib,
   ...
-}: let
-  actualPath = ["home-manager" "users" config.my.user.name "my" "home"];
-  aliasPath = ["my" "home"];
+}:
+let
+  actualPath = [
+    "home-manager"
+    "users"
+    config.my.user.name
+    "my"
+    "home"
+  ];
+  aliasPath = [
+    "my"
+    "home"
+  ];
 
   cfg = config.my.user.home;
-in {
+in
+{
   imports = [
     inputs.home-manager.nixosModules.home-manager # enable home-manager options
     (lib.mkAliasOptionModule aliasPath actualPath) # simplify setting home options

@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   my = {
     user = {
       name = "runner";

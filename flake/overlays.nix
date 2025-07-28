@@ -2,22 +2,26 @@
   inputs,
   self,
   ...
-}: let
+}:
+let
   default-overlays = import "${self}/overlays";
 
   additional-overlays = {
     # Expose my expanded library
-    lib = _final: _prev: {inherit (self) lib;};
+    lib = _final: _prev: { inherit (self) lib; };
 
     # Expose my custom packages
     pkgs = _final: prev: {
-      jqpkgs = prev.recurseIntoAttrs (import "${self}/pkgs" {
-        inherit self;
-        pkgs = prev;
-        flake-inputs = inputs;
-      });
+      jqpkgs = prev.recurseIntoAttrs (
+        import "${self}/pkgs" {
+          inherit self;
+          pkgs = prev;
+          flake-inputs = inputs;
+        }
+      );
     };
   };
-in {
+in
+{
   flake.overlays = default-overlays // additional-overlays;
 }

@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.firefox;
   user = config.home.username;
-in {
+in
+{
   options.my.home.firefox = with lib; {
     enable = mkEnableOption "firefox configuration";
   };
@@ -14,7 +16,10 @@ in {
   config = lib.mkIf cfg.enable {
     programs.firefox = {
       enable = true;
-      languagePacks = lib.mkDefault ["en-US" "sv-SE"];
+      languagePacks = lib.mkDefault [
+        "en-US"
+        "sv-SE"
+      ];
       nativeMessagingHosts = [
         pkgs.ff2mpv
       ];
@@ -24,7 +29,7 @@ in {
           search = import ./config-${user}/search.nix;
           bookmarks = import ./config-${user}/bookmarks.nix;
           settings = import ./config-${user}/settings.nix;
-          extensions.packages = import ./config-${user}/extensions.nix {inherit pkgs;};
+          extensions.packages = import ./config-${user}/extensions.nix { inherit pkgs; };
           userChrome = builtins.readFile ./config-${user}/userChrome.css;
 
           # Darker background for new tabs (to not blast eyes with blinding white).

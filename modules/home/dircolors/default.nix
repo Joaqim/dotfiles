@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.dircolors;
-in {
+in
+{
   options.my.home.dircolors = with lib; {
     enable = my.mkDisableOption "dircolors configuration";
   };

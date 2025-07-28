@@ -129,6 +129,11 @@ tasks:
       - nix run .#commit-selfup
       - nix run .#commit-nvfetcher -L
 
+  pre-commit-all:
+    desc: Run pre-commit hooks on all files, including autoformatting
+    cmds:
+      - pre-commit run --all-files
+
   help:
     desc: List available tasks
     cmds:

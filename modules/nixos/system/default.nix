@@ -1,5 +1,6 @@
 # System-related modules
-{...}: {
+{ ... }:
+{
   imports = [
     #./boot
     ./doas

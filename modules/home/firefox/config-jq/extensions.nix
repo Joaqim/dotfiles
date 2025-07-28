@@ -1,7 +1,6 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 builtins.attrValues {
-  inherit
-    (pkgs.nur.repos.rycee.firefox-addons)
+  inherit (pkgs.nur.repos.rycee.firefox-addons)
     bitwarden
     clearurls
     consent-o-matic
@@ -25,4 +24,3 @@ builtins.attrValues {
   inherit (pkgs.jqpkgs) chronotube;
 }
 # https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix
-

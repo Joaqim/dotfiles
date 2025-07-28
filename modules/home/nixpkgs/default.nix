@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.nixpkgs;
-in {
+in
+{
   options.my.home.nixpkgs = with lib; {
     enable = mkEnableOption "nixpkgs configuration";
   };
@@ -16,10 +18,10 @@ in {
     ];
 
     /*
-       home.sessionVariables = {
-      GITHUB_TOKEN = ''$(cat "${config.sops.secrets."github/token".path}")'';
-      GITHUB_API_TOKEN = ''$(cat "${config.sops.secrets."github/token".path}")'';
-    };
+         home.sessionVariables = {
+        GITHUB_TOKEN = ''$(cat "${config.sops.secrets."github/token".path}")'';
+        GITHUB_API_TOKEN = ''$(cat "${config.sops.secrets."github/token".path}")'';
+      };
     */
   };
 }

@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.boilr;
-in {
+in
+{
   options.my.home.boilr = with lib; {
     enable = mkEnableOption "boilr service to automatically add artwork to non-Steam shortcuts";
 
@@ -30,7 +32,10 @@ in {
     systemd.user.services.boilr = lib.mkIf cfg.runOnStartup {
       Unit = {
         Description = "Run Boilr without gui to automatically add artwork to non-Steam shortcuts.";
-        After = ["NetworkManager.target" "sops-nix.service"];
+        After = [
+          "NetworkManager.target"
+          "sops-nix.service"
+        ];
       };
       Service = {
         ExecStart = "${lib.getExe pkgs.boilr} --no-ui";
@@ -38,7 +43,7 @@ in {
         Type = "oneshot";
       };
       Install = {
-        WantedBy = ["multi-user.target"];
+        WantedBy = [ "multi-user.target" ];
       };
     };
   };

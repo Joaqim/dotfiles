@@ -4,10 +4,12 @@
   pkgs,
   osConfig,
   ...
-}: let
+}:
+let
   cfg = config.my.home.packages;
   useGlobalPkgs = osConfig.home-manager.useGlobalPkgs or false;
-in {
+in
+{
   options.my.home.packages = with lib; {
     enable = my.mkDisableOption "user packages";
 
@@ -17,7 +19,7 @@ in {
 
     additionalPackages = mkOption {
       type = with types; listOf package;
-      default = [];
+      default = [ ];
       example = literalExample ''
         with pkgs; [
           quasselClient
@@ -27,13 +29,17 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; ([
-        fd
-        file
-        ripgrep
-        tree
-      ]
-      ++ cfg.additionalPackages);
+    home.packages =
+      with pkgs;
+      (
+        [
+          fd
+          file
+          ripgrep
+          tree
+        ]
+        ++ cfg.additionalPackages
+      );
 
     nixpkgs.config = lib.mkIf (!useGlobalPkgs) {
       inherit (cfg) allowAliases allowUnfree;

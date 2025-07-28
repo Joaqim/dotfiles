@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.zoxide;
-in {
+in
+{
   options.my.home.zoxide = with lib; {
     enable = my.mkDisableOption "enable zoxide";
   };

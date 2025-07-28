@@ -19,6 +19,6 @@ writeShellApplication rec {
 
   meta = {
     description = "";
-    platforms = ["x86_64-linux"];
+    platforms = [ "x86_64-linux" ];
   };
 }

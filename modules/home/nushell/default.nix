@@ -3,9 +3,11 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.nushell;
-in {
+in
+{
   options.my.home.nushell = with lib; {
     enable = my.mkDisableOption "nushell configuration";
   };

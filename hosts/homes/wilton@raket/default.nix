@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   home = rec {
     username = "wilton";
     homeDirectory = "/home/${username}";
@@ -6,15 +7,13 @@
 
   my.home = {
     packages.additionalPackages = builtins.attrValues {
-      inherit
-        (pkgs)
+      inherit (pkgs)
         # TODO: Is this still needed?
         # KDE complains, even if nvidia doesn't seem to provide power profiles ?
         power-profiles-daemon
         discord
         ;
-      inherit
-        (pkgs.nur.repos.nltch)
+      inherit (pkgs.nur.repos.nltch)
         spotify-adblock
         ;
     };

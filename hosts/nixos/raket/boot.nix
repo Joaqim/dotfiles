@@ -2,22 +2,31 @@
   pkgs,
   config,
   ...
-}: let
+}:
+let
   inherit (config.networking) hostName;
-in {
+in
+{
   boot = {
     extraModulePackages = [
       config.boot.kernelPackages.v4l2loopback.out
       config.boot.kernelPackages.nvidiaPackages.legacy_470
     ];
-    supportedFilesystems = ["zfs"];
+    supportedFilesystems = [ "zfs" ];
     initrd = {
       network.openvpn.enable = true;
-      availableKernelModules = ["nvme" "ahci" "xhci_pci" "usb_storage" "usbhid" "sd_mod"];
+      availableKernelModules = [
+        "nvme"
+        "ahci"
+        "xhci_pci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
+      ];
     };
 
     zfs = {
-      extraPools = ["zpool-${hostName}"];
+      extraPools = [ "zpool-${hostName}" ];
       # https://discourse.nixos.org/t/21-05-zfs-root-install-cant-import-pool-on-boot/13652/7
       #devNodes = "/dev/disk/by-uuid";
     };

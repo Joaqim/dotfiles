@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ./atticd
     ./atuin-server
@@ -12,6 +13,7 @@
     ./nix-cache
     ./qbittorrent-nox
     ./ssh-server
+    ./sunshine
     ./syncthing-dirs
     ./tailscale
     ./xserver

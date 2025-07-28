@@ -3,31 +3,29 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   defaultModules = [
     {
       # Let 'nixos-version --json' know about the Git revision
       system.configurationRevision = self.rev or "dirty";
     }
     {
-      nixpkgs.overlays =
-        (lib.attrValues self.overlays)
-        ++ [
-          inputs.nur.overlays.default
-        ];
+      nixpkgs.overlays = (lib.attrValues self.overlays) ++ [
+        inputs.nur.overlays.default
+      ];
     }
     # Include generic settings
     "${self}/modules/nixos"
   ];
 
-  buildHost = name: system:
+  buildHost =
+    name: system:
     lib.nixosSystem {
       inherit system;
-      modules =
-        defaultModules
-        ++ [
-          "${self}/hosts/nixos/${name}"
-        ];
+      modules = defaultModules ++ [
+        "${self}/hosts/nixos/${name}"
+      ];
       specialArgs = {
         # Use my extended lib in NixOS configuration
         inherit (self) lib;
@@ -35,7 +33,8 @@
         inherit inputs;
       };
     };
-in {
+in
+{
   flake.nixosConfigurations = lib.mapAttrs buildHost {
     container = "x86_64-linux";
     deck = "x86_64-linux";

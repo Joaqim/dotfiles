@@ -3,15 +3,17 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.discord;
 
-  jsonFormat = pkgs.formats.json {};
-in {
+  jsonFormat = pkgs.formats.json { };
+in
+{
   options.my.home.discord = with lib; {
     enable = mkEnableOption "discord configuration";
 
-    package = mkPackageOption pkgs "discord" {};
+    package = mkPackageOption pkgs "discord" { };
   };
 
   config = lib.mkIf cfg.enable {

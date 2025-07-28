@@ -2,9 +2,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.profiles.bluetooth;
-in {
+in
+{
   options.my.profiles.bluetooth = with lib; {
     enable = mkEnableOption "bluetooth profile";
   };

@@ -3,10 +3,12 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.mpv;
   inherit (pkgs.jqpkgs) yt-dlp-git;
-in {
+in
+{
   options.my.home.mpv = with lib; {
     enable = mkEnableOption "mpv configuration";
 
@@ -35,10 +37,10 @@ in {
     programs = {
       mpv = {
         enable = true;
-        scripts = with pkgs;
+        scripts =
+          with pkgs;
           builtins.attrValues {
-            inherit
-              (mpvScripts)
+            inherit (mpvScripts)
               mpris
               sponsorblock
               modernx
@@ -46,15 +48,13 @@ in {
               webtorrent-mpv-hook
               reload
               ;
-            inherit
-              (mpvScripts.builtins)
+            inherit (mpvScripts.builtins)
               autocrop
               autodeint
               ;
             inherit (mpvScripts.eisa01) smartskip; # https://github.com/Eisa01/mpv-scripts#smartskip
             inherit (mpvScripts.occivink) blacklistExtensions;
-            inherit
-              (jqpkgs)
+            inherit (jqpkgs)
               mpv-org-history
               mpv-skipsilence
               ;
@@ -78,15 +78,13 @@ in {
           ];
           sub-font = "Noto Color Emoji";
           vo = "gpu-next";
-          watch-later-options =
-            lib.concatStringsSep ","
-            [
-              "start"
-              "volume"
-              "mute"
-              "playlist"
-              "speed"
-            ];
+          watch-later-options = lib.concatStringsSep "," [
+            "start"
+            "volume"
+            "mute"
+            "playlist"
+            "speed"
+          ];
         };
         scriptOpts = {
           # For restarting playback when a Live Twitch VOD reaches current end

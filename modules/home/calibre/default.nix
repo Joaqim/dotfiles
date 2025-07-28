@@ -3,13 +3,15 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   cfg = config.my.home.calibre;
-in {
+in
+{
   options.my.home.calibre = with lib; {
     enable = mkEnableOption "calibre configuration";
 
-    package = mkPackageOption pkgs "calibre" {};
+    package = mkPackageOption pkgs "calibre" { };
   };
 
   config = lib.mkIf cfg.enable {

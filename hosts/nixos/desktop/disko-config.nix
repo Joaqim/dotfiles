@@ -1,7 +1,9 @@
 # https://github.com/Mic92/dotfiles/blob/main/nixos/turingmachine/modules/disko.nix
-{config, ...}: let
+{ config, ... }:
+let
   inherit (config.networking) hostName;
-in {
+in
+{
   fileSystems."/persist".neededForBoot = true;
   disko.devices = {
     disk = {
@@ -18,7 +20,11 @@ in {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["nofail" "fmask=0022" "dmask=0022"];
+                mountOptions = [
+                  "nofail"
+                  "fmask=0022"
+                  "dmask=0022"
+                ];
               };
             };
             swap = {

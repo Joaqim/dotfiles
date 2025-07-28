@@ -3,9 +3,11 @@
   inputs,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.home.secrets;
-in {
+in
+{
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
@@ -33,7 +35,7 @@ in {
         home = cfg.sopsDirectory;
 
         # disable importing host ssh keys
-        sshKeyPaths = [];
+        sshKeyPaths = [ ];
       };
       age.generateKey = false;
       secrets = {

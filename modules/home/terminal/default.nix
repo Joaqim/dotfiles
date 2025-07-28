@@ -2,17 +2,20 @@
   config,
   lib,
   ...
-}: let
-  mkColorOption = with lib;
+}:
+let
+  mkColorOption =
+    with lib;
     description: default:
-      mkOption {
-        inherit description default;
-        example = "#abcdef";
-        type = types.strMatching "#[0-9a-f]{6}";
-      };
+    mkOption {
+      inherit description default;
+      example = "#abcdef";
+      type = types.strMatching "#[0-9a-f]{6}";
+    };
 
   cfg = config.my.home.terminal;
-in {
+in
+{
   imports = [
     ./alacritty
     ./kitty
@@ -23,7 +26,14 @@ in {
   options.my.home = with lib; {
     terminal = {
       program = mkOption {
-        type = with types; nullOr (enum ["alacritty" "kitty" "termite" "wezterm"]);
+        type =
+          with types;
+          nullOr (enum [
+            "alacritty"
+            "kitty"
+            "termite"
+            "wezterm"
+          ]);
         default = null;
         example = "termite";
         description = "Which terminal to use for home session";

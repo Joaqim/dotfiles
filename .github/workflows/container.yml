@@ -103,6 +103,8 @@ jobs:
           set -euxo pipefail
           podman exec --user=user -it '${{ steps.start-systemd.outputs.container_id }}' /provisioner/needs_systemd.bash
           podman exec --user=root -it '${{ steps.start-systemd.outputs.container_id }}' rm -rf /provisioner
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Verify no personal username in home configurations
         run: |
           # https://unix.stackexchange.com/a/340729

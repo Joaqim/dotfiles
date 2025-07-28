@@ -1,4 +1,4 @@
-{writeShellApplication, ...}:
+{ writeShellApplication, ... }:
 writeShellApplication rec {
   name = "dry-activate";
   text = builtins.readFile ./${name}.sh;

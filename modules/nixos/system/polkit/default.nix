@@ -3,9 +3,11 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   cfg = config.my.system.polkit;
-in {
+in
+{
   options.my.system.polkit = with lib; {
     enable = my.mkDisableOption "polkit configuration";
   };
