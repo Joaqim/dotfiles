@@ -11,20 +11,24 @@ let
 in
 {
   my.services = {
-    atticd = {
-      enable = true;
-      environmentFile = templates."atticd.env".path;
-      ipAddress = "0.0.0.0";
-      listenPort = 8080;
-    };
     atuin-server.enable = true;
     earlyoom.enable = true;
     fail2ban.enable = true;
     jellyfin.enable = true;
     nix-cache = {
       enable = true;
-      secretKeyFile = config.sops.secrets."private_key/cache-desktop-org".path;
-      ipAddress = "0.0.0.0"; # Only allow VPN access to cache
+      harmonia = {
+        secretKeyFile = config.sops.secrets."private_key/cache-desktop-org".path;
+        ipAddress = "0.0.0.0"; # Only allow VPN access to cache
+        listenPort = 8189;
+      };
+      atticd = {
+        enable = true;
+        secretKeyFile = templates."atticd.env".path;
+        ipAddress = "0.0.0.0"; # Only allow VPN access to cache
+        listenPort = 8190;
+        apiEndpoint = "http://desktop:8190/";
+      };
     };
     ssh-server.enable = true;
     tailscale = {
