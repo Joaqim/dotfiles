@@ -1,14 +1,11 @@
 { pkgs, ... }:
 builtins.attrValues {
   inherit (pkgs.nur.repos.rycee.firefox-addons)
-    bitwarden
-    clearurls
     consent-o-matic
     cookie-autodelete
     darkreader
     ff2mpv
     form-history-control
-    greasemonkey
     plasma-integration
     reddit-comment-collapser
     reddit-enhancement-suite
@@ -20,6 +17,7 @@ builtins.attrValues {
     umatrix
     unpaywall
     vimium-c
+    violentmonkey
     ;
   inherit (pkgs.jqpkgs) chronotube;
 }
