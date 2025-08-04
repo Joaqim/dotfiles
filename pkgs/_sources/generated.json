@@ -94,7 +94,7 @@
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
-        "date": "2024-05-06",
+        "date": "2025-08-03",
         "extract": null,
         "name": "mpv-skipsilence",
         "passthru": null,
@@ -106,16 +106,16 @@
             "name": null,
             "owner": "ferreum",
             "repo": "mpv-skipsilence",
-            "rev": "5ae7c3b6f927e728c22fc13007265682d1ecf98c",
-            "sha256": "sha256-fg8vfeb68nr0bTBIvr0FnRnoB48/kV957pn22tWcz1g=",
+            "rev": "42e511c52c68c1aa9678e18caea41e43eee9149b",
+            "sha256": "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "5ae7c3b6f927e728c22fc13007265682d1ecf98c"
+        "version": "42e511c52c68c1aa9678e18caea41e43eee9149b"
     },
     "twitchindicator": {
         "cargoLocks": null,
-        "date": "2025-04-20",
+        "date": "2025-07-29",
         "extract": null,
         "name": "twitchindicator",
         "passthru": null,
@@ -127,12 +127,12 @@
             "name": null,
             "owner": "kuunha",
             "repo": "twitchindicator",
-            "rev": "cf60289d5da93c77af42d99c7a5746e2d2adebe3",
-            "sha256": "sha256-ixf0VTV2rfZpKIkiufKNP39TeH4/hU7FlbenSLBV0m4=",
+            "rev": "ebf59f896a876c78715eed3755bdcabc0acd42d6",
+            "sha256": "sha256-IVnwbWBX4Gi3ZYp1pDaynR2y6XsTGpYKZ9lTTE8Vjas=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "cf60289d5da93c77af42d99c7a5746e2d2adebe3"
+        "version": "ebf59f896a876c78715eed3755bdcabc0acd42d6"
     },
     "undertaker141": {
         "cargoLocks": null,
@@ -166,7 +166,7 @@
     },
     "yt-dlp": {
         "cargoLocks": null,
-        "date": "2025-07-27",
+        "date": "2025-08-03",
         "extract": null,
         "name": "yt-dlp",
         "passthru": null,
@@ -178,11 +178,11 @@
             "name": null,
             "owner": "yt-dlp",
             "repo": "yt-dlp",
-            "rev": "682334e4b35112f7a5798decdcb5cb12230ef948",
-            "sha256": "sha256-qNYFmlekdiSgJK31axNKjVa621bzziGPiX9eyOZIJ54=",
+            "rev": "38c2bf40260f7788efb5a7f5e8eba8e5cb43f741",
+            "sha256": "sha256-sqomp610FDHQ7AKz7znDLZgr4s11gdwruF8NRgu7Big=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "682334e4b35112f7a5798decdcb5cb12230ef948"
+        "version": "38c2bf40260f7788efb5a7f5e8eba8e5cb43f741"
     }
 }
