@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -13,5 +14,10 @@ in
 
   config.services.flameshot = lib.mkIf cfg.enable {
     enable = true;
+    package = pkgs.flameshot.override { enableWlrSupport = true; };
+    settings.General = {
+      disabledTrayIcon = true;
+      showStartupLaunchMessage = false;
+    };
   };
 }
