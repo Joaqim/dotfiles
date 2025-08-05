@@ -84,7 +84,7 @@ jobs:
           # Needed to specify token for checkout phase, only in pushing phase is too late
           # https://github.com/orgs/community/discussions/27072#discussioncomment-3254515
           token: ${{ steps.publish-token.outputs.token }}
-      - uses: DeterminateSystems/nix-installer-action@c723f3a885e3f1d866d91f4f0c33dd44b1fc7c60 # v16
+      - uses: DeterminateSystems/nix-installer-action@428f3c64a3f56011a8bfb3044a519374aff8e7df # v16
         with:
           logger: pretty
           diagnostic-endpoint: ""
