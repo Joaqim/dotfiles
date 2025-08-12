@@ -36,7 +36,7 @@ jobs:
         run: |
           </etc/nix/nix.conf
           ls -alh ~
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: nix develop --command echo 'This step should be done before any other "nix develop" steps because of measuring Nix build time'
       # https://www.reddit.com/r/Nix/comments/1443k3o/comment/jr9ht5g
       - run: mkdir -p ~/.local/state/nix/profiles
