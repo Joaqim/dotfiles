@@ -94,7 +94,7 @@
     },
     "mpv-skipsilence": {
         "cargoLocks": null,
-        "date": "2025-08-03",
+        "date": "2025-09-06",
         "extract": null,
         "name": "mpv-skipsilence",
         "passthru": null,
@@ -106,12 +106,12 @@
             "name": null,
             "owner": "ferreum",
             "repo": "mpv-skipsilence",
-            "rev": "42e511c52c68c1aa9678e18caea41e43eee9149b",
-            "sha256": "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=",
+            "rev": "75e1334e513682f0ece6790c614c1fcbd82257cc",
+            "sha256": "sha256-XmrVZRJAQctIiuznw/fQzs+9+QKOyTnJI2JOEWBWnVA=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "42e511c52c68c1aa9678e18caea41e43eee9149b"
+        "version": "75e1334e513682f0ece6790c614c1fcbd82257cc"
     },
     "twitchindicator": {
         "cargoLocks": null,
@@ -166,7 +166,7 @@
     },
     "yt-dlp": {
         "cargoLocks": null,
-        "date": "2025-08-31",
+        "date": "2025-09-07",
         "extract": null,
         "name": "yt-dlp",
         "passthru": null,
@@ -178,11 +178,11 @@
             "name": null,
             "owner": "yt-dlp",
             "repo": "yt-dlp",
-            "rev": "d925e92b710153d0d51d030f115b3c87226bc0f0",
-            "sha256": "sha256-jx+2aXBktbHtP/FCDoFuuft1jQeRcD2fP2N2ASrAHbU=",
+            "rev": "a183837ec8bb5e28fe6eb3a9d77ea2d0d7a106bd",
+            "sha256": "sha256-UGl5peD1WgShYanjpKXs5qlqHncF/gsGFd6EG4mvOhM=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "d925e92b710153d0d51d030f115b3c87226bc0f0"
+        "version": "a183837ec8bb5e28fe6eb3a9d77ea2d0d7a106bd"
     }
 }
