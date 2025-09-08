@@ -52,15 +52,15 @@
   };
   mpv-skipsilence = {
     pname = "mpv-skipsilence";
-    version = "42e511c52c68c1aa9678e18caea41e43eee9149b";
+    version = "75e1334e513682f0ece6790c614c1fcbd82257cc";
     src = fetchFromGitHub {
       owner = "ferreum";
       repo = "mpv-skipsilence";
-      rev = "42e511c52c68c1aa9678e18caea41e43eee9149b";
+      rev = "75e1334e513682f0ece6790c614c1fcbd82257cc";
       fetchSubmodules = false;
-      sha256 = "sha256-+sOMWFFumJUk5gFE1iCTvWub3PWzYOkulXJLCGS4fYA=";
+      sha256 = "sha256-XmrVZRJAQctIiuznw/fQzs+9+QKOyTnJI2JOEWBWnVA=";
     };
-    date = "2025-08-03";
+    date = "2025-09-06";
   };
   twitchindicator = {
     pname = "twitchindicator";
@@ -92,14 +92,14 @@
   };
   yt-dlp = {
     pname = "yt-dlp";
-    version = "d925e92b710153d0d51d030f115b3c87226bc0f0";
+    version = "a183837ec8bb5e28fe6eb3a9d77ea2d0d7a106bd";
     src = fetchFromGitHub {
       owner = "yt-dlp";
       repo = "yt-dlp";
-      rev = "d925e92b710153d0d51d030f115b3c87226bc0f0";
+      rev = "a183837ec8bb5e28fe6eb3a9d77ea2d0d7a106bd";
       fetchSubmodules = false;
-      sha256 = "sha256-jx+2aXBktbHtP/FCDoFuuft1jQeRcD2fP2N2ASrAHbU=";
+      sha256 = "sha256-UGl5peD1WgShYanjpKXs5qlqHncF/gsGFd6EG4mvOhM=";
     };
-    date = "2025-08-31";
+    date = "2025-09-07";
   };
 }
