@@ -116,7 +116,7 @@ jobs:
         if: inputs.selfup-commit-message != ''
         id: update-workflows
         run: |
-          git ls-files .github | xargs nix develop --command selfup run
+          git ls-files .github | xargs nix develop --command selfup run || true
           if [ $(git status --porcelain | wc -l) -gt 0 ]; then
             echo "changed=true" | tee -a "$GITHUB_OUTPUT"
             git commit -m '${{ inputs.selfup-commit-message }}' .github
