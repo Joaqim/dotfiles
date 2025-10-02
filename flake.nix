@@ -56,7 +56,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     selfup = {
-      url = "github:kachick/selfup/v1.1.9";
+      url = "github:kachick/selfup";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     sops-nix = {

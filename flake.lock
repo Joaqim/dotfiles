@@ -710,16 +710,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1736841604,
-        "narHash": "sha256-iEBjUiwg4H2eCfnPuQf+lXSsVmRHi/RvC6EE798NYy8=",
+        "lastModified": 1759428051,
+        "narHash": "sha256-k1r0XWA9slqRb1ocEsoB9CbTRNhfNlRuzqyE/9Gu9OU=",
         "owner": "kachick",
         "repo": "selfup",
-        "rev": "78de5a4e1c137f05d5c510c038fe868b49924c46",
+        "rev": "e1a658cf6d5aec57566b38ac026a35916fe5276f",
         "type": "github"
       },
       "original": {
         "owner": "kachick",
-        "ref": "v1.1.9",
         "repo": "selfup",
         "type": "github"
       }
