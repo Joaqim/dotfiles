@@ -69,15 +69,15 @@
   };
   twitchindicator = {
     pname = "twitchindicator";
-    version = "ebf59f896a876c78715eed3755bdcabc0acd42d6";
+    version = "eb476b851ab81c86b349a7015112d81571b6ffb7";
     src = fetchFromGitHub {
       owner = "kuunha";
       repo = "twitchindicator";
-      rev = "ebf59f896a876c78715eed3755bdcabc0acd42d6";
+      rev = "eb476b851ab81c86b349a7015112d81571b6ffb7";
       fetchSubmodules = false;
-      sha256 = "sha256-IVnwbWBX4Gi3ZYp1pDaynR2y6XsTGpYKZ9lTTE8Vjas=";
+      sha256 = "sha256-fYO2UMwcCBc2XvdyOlEKkIAMkOEWhM92kFh1G47wTCE=";
     };
-    date = "2025-07-29";
+    date = "2025-09-09";
   };
   undertaker141 = {
     pname = "undertaker141";
