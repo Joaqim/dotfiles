@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./atticd
     ./atuin-server
     ./caddy
     ./earlyoom

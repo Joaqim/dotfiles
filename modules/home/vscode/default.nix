@@ -15,14 +15,22 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       # Nix Language
-      nixfmt-rfc-style
+      nixfmt
       nil
+
+      # Rust
+      ### https://dprint.dev
+      dprint
 
       material-icons
       material-design-icons
 
       # https://mynixos.com/nixpkgs/package/codeium
       codeium
+
+      # Used by 'Github Local Actions'
+      # also required, but out of this scope: docker virtualization
+      act
     ];
 
     programs = {
@@ -117,14 +125,6 @@ in
 
             ### Rust Language
 
-            ## Plugin: Rust Analyzer
-            "rust-analyzer.cargo.extraEnv" = {
-              "RUSTFLAGS" = "-Clinker=clang -Clink-arg=-fuse-ld=mold";
-            };
-            "rust-analyzer.diagnostics.disabled" = [
-              "macro-error"
-            ];
-
             ## Plugin: lldb
             "lldb.suppressUpdateNotifications" = true;
 
@@ -192,7 +192,6 @@ in
             with pkgs.vscode-extensions;
             [
               catppuccin.catppuccin-vsc
-              #codeium.codeium
               eamodio.gitlens
               esbenp.prettier-vscode
               github.vscode-github-actions
@@ -205,33 +204,36 @@ in
               myriad-dreamin.tinymist
               pkief.material-icon-theme
               pkief.material-product-icons
-              #rust-lang.rust-analyzer
+              rust-lang.rust-analyzer
               signageos.signageos-vscode-sops
               streetsidesoftware.code-spell-checker
               tamasfe.even-better-toml
               thenuprojectcontributors.vscode-nushell-lang
-              #vadimcn.vscode-lldb
               wakatime.vscode-wakatime
               yzhang.markdown-all-in-one
+              # TODO: Doesn't play well with my keyboard shenanigans using fcitx5
+              # vscodevim.vim
             ]
+            # TODO: Use selfup to update these
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
               {
                 name = "codeium";
                 publisher = "Codeium";
-                version = "1.9.86";
-                sha256 = "sha256-1r6lUD7mM12NGb3l279HzSNRi7VLVe/zrQdBVAJtPyw=";
+                version = "1.49.2";
+                sha256 = "sha256-fLDR0Gb8J9DkKTwFm0oMHB1GENKH/Cj2jMb1AsP0ZpQ=";
               }
-              {
-                name = "vscode-tailscale";
-                publisher = "Tailscale";
-                version = "1.0.0";
-                sha256 = "sha256-MKiCZ4Vu+0HS2Kl5+60cWnOtb3udyEriwc+qb/7qgUg=";
-              }
+
               {
                 name = "vscode-helix-emulation";
                 publisher = "jasew";
-                version = "0.6.2";
-                sha256 = "sha256-V/7Tu1Ze/CYRmtxwU2+cQLOxLwH7YRYYeHSUGbGTb5I=";
+                version = "0.7.0";
+                sha256 = "sha256-gYyIVnXG9Atmik0c1FsRKO2idFnufwl26nOiH3DYPLY=";
+              }
+              {
+                name = "github-local-actions";
+                publisher = "SanjulaGanepola";
+                version = "1.2.5";
+                sha256 = "sha256-gc3iOB/ibu4YBRdeyE6nmG72RbAsV0WIhiD8x2HNCfY=";
               }
             ];
         };

@@ -74,6 +74,10 @@ in
 
       # AMD GPU
       (lib.mkIf (cfg.gpuFlavor == "amd") {
+        services.xserver.videoDrivers = [
+          "amdgpu"
+        ];
+
         hardware.amdgpu = {
           initrd.enable = cfg.amd.enableKernelModule;
           overdrive = {
@@ -94,11 +98,18 @@ in
             # OpenCL
             rocmPackages.clr
             rocmPackages.clr.icd
+            libva
+            libva-utils
+            vdpauinfo
           ];
           extraPackages32 = lib.mkIf cfg.amd.amdvlk [
             pkgs.driversi686Linux.amdvlk
           ];
         };
+
+        systemd.tmpfiles.rules = [
+          "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+        ];
       })
 
       # Core Ctrl can be used for both CPU & GPU
@@ -163,6 +174,27 @@ in
       (lib.mkIf (cfg.gpuFlavor == "nvidia") {
         # Load nvidia driver for Xorg and Wayland
         services.xserver.videoDrivers = [ "nvidia" ];
+
+        # https://github.com/hlissner/dotfiles/blob/254aea2230e1350409a7ae7b6566bcd98f5b5360/modules/profiles/hardware/gpu/nvidia.nix#L42C5-L60C7
+        environment = {
+          systemPackages =
+            with pkgs;
+            builtins.map lib.hiPrio [
+              # Respect XDG conventions, damn it!
+              (pkgs.writeShellScriptBin "nvidia-settings" ''
+                mkdir -p "$XDG_CONFIG_HOME/nvidia"
+                ${lib.getExe' cfg.nvidia.package.settings "nvidia-settings"} --config="$XDG_CONFIG_HOME/nvidia/rc.conf" "$@"
+              '')
+              libva
+            ];
+          sessionVariables = {
+            LIBVA_DRIVER_NAME = "nvidia";
+            WLR_NO_HARDWARE_CURSORS = "1";
+
+            # May cause Firefox crashes
+            GBM_BACKEND = "nvidia-drm";
+          };
+        };
 
         hardware.nvidia = {
           inherit (cfg.nvidia) package;

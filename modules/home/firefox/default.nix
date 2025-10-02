@@ -14,6 +14,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    # https://abishekmuthian.com/play-youtube-video-from-firefox-on-mpv/
+    home.packages = [
+      # https://github.com/NixOS/nixpkgs/blob/62e0f05ede1da0d54515d4ea8ce9c733f12d9f08/pkgs/by-name/mp/mpv-handler/package.nix#L33
+      (pkgs.mpv-handler.override {
+        # Don't wrap mpv & yt-dlp, use binaries from PATH instead
+        # These derivations are only used in makeBinPath,
+        # so we can replace them with empty paths
+        mpv = "";
+        yt-dlp = "";
+      })
+    ];
+
     programs.firefox = {
       enable = true;
       languagePacks = lib.mkDefault [

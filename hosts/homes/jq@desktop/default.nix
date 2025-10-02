@@ -16,6 +16,7 @@
     mpv.enable = true;
     nm-applet.enable = true;
     nushell.enable = true;
+    obs-studio.enable = true;
     packages.additionalPackages = builtins.attrValues {
       inherit (pkgs)
         fluent-reader
