@@ -20,12 +20,9 @@ in
       ];
     };
     sops.templates."boilr-config.toml" = {
-      content =
-        builtins.readFile ./config.toml
-        + ''
-
-          auth_key = "${config.sops.placeholder."steamgrid_db_auth_key"}"
-        '';
+      content = builtins.readFile ./config.toml + ''
+        auth_key = "${config.sops.placeholder."steamgrid_db_auth_key"}"
+      '';
       path = "${config.home.homeDirectory}/.config/boilr/config.toml";
     };
 

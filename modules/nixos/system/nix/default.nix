@@ -193,7 +193,8 @@ in
       (lib.mkIf cfg.inputs.addToNixPath {
         nix.nixPath = [
           "/etc/nix/inputs"
-        ] ++ options.nix.nixPath.default;
+        ]
+        ++ options.nix.nixPath.default;
       })
     ]
   );

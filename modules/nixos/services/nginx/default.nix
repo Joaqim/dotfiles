@@ -324,11 +324,9 @@ in
                 args.extraConfig
                 # SSO configuration
                 (lib.optionalAttrs args.sso.enable {
-                  extraConfig =
-                    (args.extraConfig.extraConfig or "")
-                    + ''
-                      error_page 401 = @error401;
-                    '';
+                  extraConfig = (args.extraConfig.extraConfig or "") + ''
+                    error_page 401 = @error401;
+                  '';
 
                   locations = {
                     "@error401".return = ''
@@ -338,8 +336,7 @@ in
                     "/" = {
                       extraConfig =
                         # FIXME: check that X-User is dropped otherwise
-                        (args.extraConfig.locations."/".extraConfig or "")
-                        + ''
+                        (args.extraConfig.locations."/".extraConfig or "") + ''
                           # Use SSO
                           auth_request /sso-auth;
 

@@ -266,15 +266,14 @@ in
                 environmentFiles = lib.lists.optional (
                   cfg.rconWebAdminEnvironmentFilePath != null
                 ) cfg.rconWebAdminEnvironmentFilePath;
-                volumes =
-                  [
-                    "${SERVER_DATA_DIR}:/data:rw"
-                    "/etc/localtime:/etc/localtime:ro"
-                    "/etc/timezone:/etc/timezone:ro"
-                    "${MODS_FILE_PATH}:/extras/mods.txt:ro"
-                  ]
-                  ++ lib.optional (cfg.whiteListFilePath != null) "${cfg.whiteListFilePath}:${WHITELIST_FILE}:ro"
-                  ++ lib.optional (MODRINTH_MODPACK != "") "${cfg.modrinthModpack}:${MODRINTH_MODPACK}:ro";
+                volumes = [
+                  "${SERVER_DATA_DIR}:/data:rw"
+                  "/etc/localtime:/etc/localtime:ro"
+                  "/etc/timezone:/etc/timezone:ro"
+                  "${MODS_FILE_PATH}:/extras/mods.txt:ro"
+                ]
+                ++ lib.optional (cfg.whiteListFilePath != null) "${cfg.whiteListFilePath}:${WHITELIST_FILE}:ro"
+                ++ lib.optional (MODRINTH_MODPACK != "") "${cfg.modrinthModpack}:${MODRINTH_MODPACK}:ro";
                 ports = [
                   "25565:25565/tcp"
                   "25575:25575/tcp"
