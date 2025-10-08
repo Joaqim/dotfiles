@@ -20,7 +20,7 @@ jobs:
         with:
           send-statistics: false
       - name: Install Nix
-        uses: DeterminateSystems/nix-installer-action@v19
+        uses: DeterminateSystems/nix-installer-action@v20
         with:
           logger: pretty
           diagnostic-endpoint: ""
