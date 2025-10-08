@@ -27,8 +27,6 @@ in
     amd = {
       enableKernelModule = my.mkDisableOption "Kernel driver module";
 
-      amdvlk = lib.mkEnableOption "Use AMDVLK instead of Mesa RADV driver";
-
       overdrive = {
         enable = mkEnableOption "Overdrive";
         ppfeaturemask = mkOption {
@@ -84,13 +82,6 @@ in
             enable = lib.mkForce cfg.amd.overdrive.enable;
             inherit (cfg.amd.overdrive) ppfeaturemask;
           };
-          # Vulkan
-          amdvlk = lib.mkIf cfg.amd.amdvlk {
-            enable = true;
-            support32Bit = {
-              enable = true;
-            };
-          };
         };
 
         hardware.graphics = {
@@ -101,9 +92,6 @@ in
             libva
             libva-utils
             vdpauinfo
-          ];
-          extraPackages32 = lib.mkIf cfg.amd.amdvlk [
-            pkgs.driversi686Linux.amdvlk
           ];
         };
 

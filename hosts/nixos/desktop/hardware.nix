@@ -20,7 +20,6 @@ in
     graphics = {
       enable = true;
       gpuFlavor = "amd";
-      amd.amdvlk = true;
       amd.overdrive.enable = true;
     };
     sound = {

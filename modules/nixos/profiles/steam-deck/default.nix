@@ -41,7 +41,6 @@ in
         graphics = {
           enable = true;
           gpuFlavor = "amd";
-          amd.amdvlk = true;
         };
         sound.pipewire.enable = true;
       };
