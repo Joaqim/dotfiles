@@ -7,6 +7,7 @@
     ./graphics
     ./liquidctl
     ./networking
+    ./openrgb
     ./sound
     ./upower
     ./zfs

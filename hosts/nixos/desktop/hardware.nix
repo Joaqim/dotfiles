@@ -22,6 +22,7 @@ in
       gpuFlavor = "amd";
       amd.overdrive.enable = true;
     };
+    openrgb.enable = true;
     sound = {
       pipewire.enable = true;
     };
