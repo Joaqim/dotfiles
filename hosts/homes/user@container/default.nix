@@ -10,6 +10,7 @@
     atuin.enable = false;
     git = {
       enable = true;
+      userName = "user";
       userEmail = "dummy@mail.com";
     };
     # TODO: gpg-agent doesn't work in github environment

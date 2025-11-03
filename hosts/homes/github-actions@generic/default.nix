@@ -9,6 +9,7 @@
   my.home = {
     git = {
       enable = true;
+      userName = "runner";
       userEmail = "dummy@mail.com";
     };
     # TODO: gpg-agent doesn't work in github environment
