@@ -228,7 +228,6 @@ in
 
         programs.coolercontrol = lib.mkIf cfg.nvidia.coolercontrol {
           enable = true;
-          nvidiaSupport = true;
         };
       })
     ]

@@ -15,7 +15,7 @@ in
     package = mkPackageOption pkgs "git" { default = [ "gitFull" ]; };
 
     userEmail = mkOption {
-      type = with types; nullOr str;
+      type = types.str;
       default = null;
       example = "mail@example.org";
       description = "email used by git";
@@ -40,10 +40,39 @@ in
     ];
 
   config.programs = lib.mkIf cfg.enable {
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+
+      options = {
+        features = "diff-highlight decorations";
+
+        # Less jarring style for `diff-highlight` emulation
+        diff-highlight = {
+          minus-style = "red";
+          minus-non-emph-style = "red";
+          minus-emph-style = "bold red 52";
+
+          plus-style = "green";
+          plus-non-emph-style = "green";
+          plus-emph-style = "bold green 22";
+
+          whitespace-error-style = "reverse red";
+        };
+
+        # Personal preference for easier reading
+        decorations = {
+          commit-style = "raw"; # Do not recolor meta information
+          keep-plus-minus-markers = true;
+          paging = "always";
+        };
+      };
+    };
+
     git = {
       enable = true;
 
-      inherit (cfg) package userEmail userName;
+      inherit (cfg) package;
 
       signing = {
         key = lib.mkDefault null;
@@ -51,50 +80,28 @@ in
         format = "ssh";
       };
 
-      aliases = {
-        git = "!git";
-        lol = "log --graph --decorate --pretty=oneline --abbrev-commit --topo-order";
-        lola = "lol --all";
-        assume = "update-index --assume-unchanged";
-        unassume = "update-index --no-assume-unchanged";
-        assumed = "!git ls-files -v | grep ^h | cut -c 3-";
-        pick = "log -p -G";
-        push-new = "!git push -u origin " + ''"$(git branch | grep '^* ' | cut -f2- -d' ')"'';
-        root = "git rev-parse --show-toplevel";
-      };
-
       lfs.enable = true;
 
-      delta = {
-        enable = true;
-
-        options = {
-          features = "diff-highlight decorations";
-
-          # Less jarring style for `diff-highlight` emulation
-          diff-highlight = {
-            minus-style = "red";
-            minus-non-emph-style = "red";
-            minus-emph-style = "bold red 52";
-
-            plus-style = "green";
-            plus-non-emph-style = "green";
-            plus-emph-style = "bold green 22";
-
-            whitespace-error-style = "reverse red";
-          };
-
-          # Personal preference for easier reading
-          decorations = {
-            commit-style = "raw"; # Do not recolor meta information
-            keep-plus-minus-markers = true;
-            paging = "always";
-          };
+      settings = {
+        user = {
+          name = cfg.userName;
+          email = cfg.userEmail;
         };
-      };
 
-      # There's more
-      extraConfig = {
+        alias = {
+          git = "!git";
+          lol = "log --graph --decorate --pretty=oneline --abbrev-commit --topo-order";
+          lola = "lol --all";
+          assume = "update-index --assume-unchanged";
+          unassume = "update-index --no-assume-unchanged";
+          assumed = "!git ls-files -v | grep ^h | cut -c 3-";
+          pick = "log -p -G";
+          push-new = "!git push -u origin " + ''"$(git branch | grep '^* ' | cut -f2- -d' ')"'';
+          root = "git rev-parse --show-toplevel";
+        };
+
+        # There's more
+
         # Makes it a bit more readable
         blame = {
           coloring = "repeatedLines";
@@ -188,6 +195,7 @@ in
             pushInsteadOf = "https://";
           };
         };
+
       };
 
       ignores =
