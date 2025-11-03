@@ -1,6 +1,7 @@
 {
   inputs,
   self,
+  lib,
   ...
 }:
 let
@@ -12,7 +13,7 @@ let
 
     # Expose my custom packages
     pkgs = _final: prev: {
-      jqpkgs = prev.recurseIntoAttrs (
+      jqpkgs = lib.recurseIntoAttrs (
         import "${self}/pkgs" {
           inherit self;
           pkgs = prev;
