@@ -8,7 +8,10 @@
 
   my.home = {
     atuin.enable = false;
-    git.enable = true;
+    git = {
+      enable = true;
+      userEmail = "dummy@mail.com";
+    };
     # TODO: gpg-agent doesn't work in github environment
     gpg.enable = false;
     nix.enable = true;

@@ -7,7 +7,10 @@
   targets.genericLinux.enable = true;
 
   my.home = {
-    git.enable = true;
+    git = {
+      enable = true;
+      userEmail = "dummy@mail.com";
+    };
     # TODO: gpg-agent doesn't work in github environment
     gpg.enable = false;
     # Important to reduce home manager archive size created in github workflow: `ci-home`:

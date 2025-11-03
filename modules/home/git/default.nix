@@ -15,7 +15,7 @@ in
     package = mkPackageOption pkgs "git" { default = [ "gitFull" ]; };
 
     userEmail = mkOption {
-      type = with types; nullOr str;
+      type = types.str;
       default = null;
       example = "mail@example.org";
       description = "email used by git";
