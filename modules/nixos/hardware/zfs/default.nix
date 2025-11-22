@@ -1,10 +1,24 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
   cfg = config.my.hardware.zfs;
+  # https://wiki.nixos.org/wiki/ZFS#Selecting_the_latest_ZFS-compatible_Kernel
+  zfsCompatibleKernelPackages = lib.filterAttrs (
+    name: kernelPackages:
+    (builtins.match "linux_[0-9]+_[0-9]+" name) != null
+    && (builtins.tryEval kernelPackages).success
+    && (!kernelPackages.${config.boot.zfs.package.kernelModuleAttribute}.meta.broken)
+  ) pkgs.linuxKernel.packages;
+  latestKernelPackage = lib.last (
+    lib.sort (a: b: (lib.versionOlder a.kernel.version b.kernel.version)) (
+      builtins.attrValues zfsCompatibleKernelPackages
+    )
+  );
+
 in
 {
   options.my.hardware.zfs = with lib; {
@@ -31,6 +45,12 @@ in
     services.zfs = {
       autoScrub.enable = cfg.autoScrub;
       trim.enable = cfg.trim;
+    };
+    boot = {
+      # Note this might jump back and forth as kernels are added or removed.
+      kernelPackages = lib.mkForce latestKernelPackage;
+      supportedFilesystems = [ "zfs" ];
+      loader.grub.zfsSupport = lib.mkDefault true;
     };
   };
 }
