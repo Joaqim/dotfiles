@@ -49,10 +49,10 @@
   };
   minecraft-modpack = {
     pname = "minecraft-modpack";
-    version = "v2025.07.05-rc2";
+    version = "v2025.11.22-rc2";
     src = fetchurl {
-      url = "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.07.05-rc2/Minecraft-Modpack-v2025.07.05-rc2.mrpack";
-      sha256 = "sha256-zaC4TqEODK7aihTuMXzV1MmEQGjTkwxTjA7EV5Dogn8=";
+      url = "https://github.com/Joaqim/MinecraftModpack/releases/download/v2025.11.22-rc2/Minecraft-Modpack-v2025.11.22-rc2.mrpack";
+      sha256 = "sha256-T3qwWxQI/Z5eohxzoeXdU8X58Ls2nIyV639GoRG3zzA=";
     };
   };
   mpv-skipsilence = {
@@ -97,14 +97,14 @@
   };
   yt-dlp = {
     pname = "yt-dlp";
-    version = "854fded114f3b7b33693c2d3418575d04014aa4b";
+    version = "e564b4a8080cff48fa0c28f20272c05085ee6130";
     src = fetchFromGitHub {
       owner = "yt-dlp";
       repo = "yt-dlp";
-      rev = "854fded114f3b7b33693c2d3418575d04014aa4b";
+      rev = "e564b4a8080cff48fa0c28f20272c05085ee6130";
       fetchSubmodules = false;
-      sha256 = "sha256-s5QNfzkMljufh2xSvNGmxmAS4O4JevzTyoBm0fSVubA=";
+      sha256 = "sha256-Pt0/S6A3uSQk3l7nBFihxWDtyXR+kHoxUxj/fjhSjtw=";
     };
-    date = "2025-11-17";
+    date = "2025-11-24";
   };
 }
