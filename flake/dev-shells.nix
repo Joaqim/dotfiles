@@ -18,6 +18,7 @@
             inputs'.nvfetcher.packages.default
             inputs'.sops-nix.packages.sops-import-keys-hook
             nixpkgs-fmt
+            pre-commit
             sops
             ssh-to-age
           ];
