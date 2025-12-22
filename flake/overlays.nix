@@ -20,7 +20,7 @@ let
         }
       );
       # Polyfill pkgs.recurseIntoAttrs for when it's not accessed from lib
-      recurseIntoAttrs = lib.recurseIntoAttrs;
+      inherit (lib) recurseIntoAttrs;
     };
   };
 in
