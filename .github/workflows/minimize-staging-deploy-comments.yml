@@ -17,7 +17,7 @@ jobs:
     timeout-minutes: 15
     steps:
       # Need checkout before using gh and repo placeholders
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Minimize old deploy comments
         env:
           GITHUB_TOKEN: ${{ github.token }}
