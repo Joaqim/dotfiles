@@ -37,6 +37,39 @@ in
       default = null;
     };
 
+    curseForgeModpack = mkOption {
+      type = types.bool;
+      default = false;
+    };
+
+    curseForgeFilenameMatcher = mkOption {
+      type = with types; nullOr str;
+      default = null;
+      example = "9.1.13";
+    };
+
+    curseForgeSlug = mkOption {
+      type = with types; nullOr str;
+      default = null;
+      example = "the-pixelmon-modpack";
+    };
+
+    curseForgeExcludeMods = mkOption {
+      type = with types; nullOr (listOf str);
+      default = null;
+      description = ''
+        Mods can be excluded by passing a list of project slugs or IDs
+      '';
+    };
+
+    curseForgeIncludeMods = mkOption {
+      type = with types; nullOr (listOf str);
+      default = null;
+      description = ''
+        Mods can be included by passing a list of project slugs or IDs
+      '';
+    };
+
     modpackName = mkOption {
       type = with types; nullOr str;
       default = null;
@@ -101,15 +134,20 @@ in
     };
 
     whiteListFilePath = mkOption {
-      type = with types; nullOr str;
-      default = null;
+      type = types.path;
+      default = builtins.toFile "whitelist.json" (
+        builtins.toJSON [
+        ]
+      );
       example = literalExample ''
-        builtins.toFile "whitelist.json" builtins.toJSON [
+        builtins.toFile "whitelist.json" (
+          builtins.toJSON [
           {
             name = "Steve";
             uuid = "b5d2d2d2-1111-1111-1111-111111111111";
           }
         ]
+        );
       '';
     };
   };
@@ -127,6 +165,22 @@ in
         else
           toString cfg.modrinthModpackRemote;
 
+      # CurseForge Modpack
+      MODPACK_PLATFORM = if cfg.curseForgeModpack != null then "AUTO_CURSEFORGE" else "";
+      CF_FILENAME_MATCHER =
+        if cfg.curseForgeFilenameMatcher != null then cfg.curseForgeFilenameMatcher else "";
+      CF_SLUG = if cfg.curseForgeSlug != null then cfg.curseForgeSlug else "";
+      CF_EXCLUDE_MODS =
+        if cfg.curseForgeExcludeMods != null then
+          (lib.strings.concatStringsSep "," cfg.curseForgeExcludeMods)
+        else
+          "";
+      CF_FORCE_INCLUDE_MODS =
+        if cfg.curseForgeIncludeMods != null then
+          (lib.strings.concatStringsSep "," cfg.curseForgeIncludeMods)
+        else
+          "";
+
       RESOURCE_PACK = toString cfg.resourcePack.url;
       RESOURCE_PACK_ENFORCE = toStringBool cfg.resourcePack.force;
       RESOURCE_PACK_SHA1 = toString cfg.resourcePack.sha1;
@@ -134,12 +188,11 @@ in
       WHITELIST = lib.strings.optionalString (cfg.whiteList != null) (
         lib.concatStringsSep "," cfg.whiteList
       );
-      WHITELIST_FILE =
-        if (cfg.whiteListFilePath != null) then "/extras/whitelist.json" else "/data/whitelist.json";
 
       ENABLE_WHITELIST = toStringBool (cfg.whiteList != null || cfg.whiteListFilePath != null);
 
-      MODS_FILE_PATH = builtins.toFile "mods.txt" '''';
+      MODS_FILE_PATH = builtins.toFile "mods.txt" "";
+      WHITELIST_FILE_PATH = "/extras/whitelist.json";
     in
     lib.mkIf cfg.enable (
       lib.mkMerge [
@@ -171,11 +224,11 @@ in
             }
             {
               # TODO: The file needs to be valid json, minimally: `[]`
-              assertion = cfg.whiteList != null -> builtins.pathExists "${SERVER_DATA_DIR}/whitelist.json";
+              assertion = ENABLE_WHITELIST == "TRUE" -> builtins.pathExists cfg.whiteListFilePath;
 
               message = ''
                 `config.my.services.minecraft-server.whiteList` requires
-                read-and-writable `${SERVER_DATA_DIR}/whitelist.json` to exist.
+                read-and-writable `${cfg.whiteListFilePath}` to exist.
               '';
             }
           ];
@@ -208,18 +261,21 @@ in
               };
 
               "${SERVER_NAME_SLUG}" = {
-                image = "itzg/minecraft-server:java21-graalvm";
+                image = "itzg/minecraft-server:java21";
                 # https://docker-minecraft-server.readthedocs.io/en/latest/variables/
                 environment = {
                   inherit
+                    CF_FILENAME_MATCHER
+                    CF_SLUG
+                    CF_EXCLUDE_MODS
+                    CF_FORCE_INCLUDE_MODS
                     ENABLE_WHITELIST
                     LEVEL
+                    MODPACK_PLATFORM
                     MODRINTH_MODPACK
                     RESOURCE_PACK
                     RESOURCE_PACK_ENFORCE
                     RESOURCE_PACK_SHA1
-                    WHITELIST
-                    WHITELIST_FILE
                     ;
                   RCON_PASSWORD = "hunter2";
                   ALLOW_FLIGHT = "TRUE";
@@ -232,6 +288,7 @@ in
                   DIFFICULTY = "easy";
                   ENABLE_AUTOPAUSE = "TRUE";
                   EULA = "TRUE";
+                  ENABLE_ROLLING_LOGS = "TRUE";
 
                   MAX_PLAYERS = "10";
                   MAX_TICK_TIME = "-1";
@@ -252,28 +309,33 @@ in
                         gamerule doInsomnia false
                         gamerule disableElytraMovementCheck true
                       '';
-                  SEED = "8016074285773694051";
                   SERVER_NAME = cfg.serverName;
                   SERVER_ICON = cfg.serverIcon;
                   SNOOPER_ENABLED = "FALSE";
                   SPAWN_PROTECTION = "0";
-                  TYPE = "MODRINTH";
+                  TYPE = if cfg.modrinthModpack != null then "MODRINTH" else "";
                   TZ = toString cfg.timeZone;
                   USE_AIKAR_FLAGS = "TRUE";
                   VERSION = cfg.minecraftVersion;
                   VIEW_DISTANCE = "20";
+                  WHITELIST_FILE = WHITELIST_FILE_PATH;
                 };
-                environmentFiles = lib.lists.optional (
-                  cfg.rconWebAdminEnvironmentFilePath != null
-                ) cfg.rconWebAdminEnvironmentFilePath;
+                environmentFiles = [
+                  config.sops.secrets."rcon_web_admin_env".path
+                  config.sops.templates."minecraft_CF_API_KEY.env".path
+                ];
                 volumes = [
                   "${SERVER_DATA_DIR}:/data:rw"
                   "/etc/localtime:/etc/localtime:ro"
-                  "/etc/timezone:/etc/timezone:ro"
                   "${MODS_FILE_PATH}:/extras/mods.txt:ro"
                 ]
-                ++ lib.optional (cfg.whiteListFilePath != null) "${cfg.whiteListFilePath}:${WHITELIST_FILE}:ro"
+                ++
+                  lib.optional (ENABLE_WHITELIST == "TRUE")
+                    "${
+                      if cfg.whiteListFilePath != null then cfg.whiteListFilePath else WHITELIST
+                    }:${WHITELIST_FILE_PATH}:rw"
                 ++ lib.optional (MODRINTH_MODPACK != "") "${cfg.modrinthModpack}:${MODRINTH_MODPACK}:ro";
+
                 ports = [
                   "25565:25565/tcp"
                   "25575:25575/tcp"

@@ -60,7 +60,7 @@ let
     };
 
   # Add list of mods that expect to be downloaded automatically by `itzg/minecraft-server`
-  MODS_FILE_PATH = builtins.toFile "mods.txt" '''';
+  MODS_FILE_PATH = builtins.toFile "mods.txt" "";
 in
 {
   options.my.services.minecraft-vault-hunters-server = with lib; {

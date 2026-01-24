@@ -8,6 +8,7 @@
     ./language
     #./laptop
     ./minecraft-server
+    ./minecraft-server-lucky-world-invasion
     ./plasma
     ./steam-deck
     ./xkb
