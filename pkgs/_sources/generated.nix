@@ -97,14 +97,14 @@
   };
   yt-dlp = {
     pname = "yt-dlp";
-    version = "9ab4777b97b5280ae1f53d1fe1b8ac542727238b";
+    version = "e3f0d8b731b40176bcc632bf92cfe5149402b202";
     src = fetchFromGitHub {
       owner = "yt-dlp";
       repo = "yt-dlp";
-      rev = "9ab4777b97b5280ae1f53d1fe1b8ac542727238b";
+      rev = "e3f0d8b731b40176bcc632bf92cfe5149402b202";
       fetchSubmodules = false;
-      sha256 = "sha256-L13EYb5W4haMkPaBeetGfTv+WZnrQxpZup+ioNKHaNA=";
+      sha256 = "sha256-kiyOKMwxQo3p8PPk4NZuplxgARd7RZHin1bxGg/4TQI=";
     };
-    date = "2026-01-18";
+    date = "2026-01-25";
   };
 }
