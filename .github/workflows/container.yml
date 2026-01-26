@@ -80,7 +80,7 @@ jobs:
           podman version
           crun --version
           buildah version
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.2
       - name: Build base Image
         uses: redhat-actions/buildah-build@v2
         with:
