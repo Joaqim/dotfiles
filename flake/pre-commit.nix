@@ -17,7 +17,7 @@
             excludes = [ "_sources" ];
           in
           {
-            nixfmt-rfc-style = {
+            nixfmt = {
               enable = true;
               inherit excludes;
             };
