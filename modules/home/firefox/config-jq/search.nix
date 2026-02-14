@@ -113,7 +113,14 @@
         "@ar"
       ];
       icon = ./icons/aa.png;
-      urls = [ { template = "https://annas-archive.org/search?q={searchTerms}"; } ];
+      urls = [ { template = "https://annas-archive.pm/search?q={searchTerms}"; } ];
+    };
+    "WeLib" = {
+      definedAlias = [
+        "@wl"
+      ];
+      icon = ./icons/welib.png;
+      urls = [ { template = "https://welib.org/search?q={searchTerms}"; } ];
     };
     # Unused
     "amazondotcom-en".metaData.hidden = true;
@@ -128,6 +135,8 @@
     "My Nix OS"
     "Knaben"
     "TorrentGalaxy"
+    "Anna's Archive"
+    "WeLib"
     "Library Genesis"
     "The Pirate Bay"
     "AnimeTosho"

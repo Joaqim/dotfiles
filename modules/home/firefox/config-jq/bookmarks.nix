@@ -114,6 +114,15 @@
         }
         # Gaming
         {
+          name = "Anker Games";
+          url = "https://ankergames.net/";
+          tags = [
+            "anker"
+            "games"
+          ];
+          keyword = "anker";
+        }
+        {
           name = "Chess.com";
           url = "https://www.chess.com/home";
           tags = [ "chess" ];
@@ -149,7 +158,7 @@
         }
         {
           name = "Sunshine";
-          url = "http://node:47990";
+          url = "http://localhost:47990";
           tags = [ "sunshine" ];
           keyword = "SN";
         }

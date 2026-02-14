@@ -47,6 +47,17 @@
       sha256 = "sha256-v2lBD3GEL8CoIwBl3UoLam0dJxkLGX0oneH6DiWkEsM=";
     };
   };
+  mindcraft = {
+    pname = "mindcraft";
+    version = "v0.1.3";
+    src = fetchFromGitHub {
+      owner = "mindcraft-bots";
+      repo = "mindcraft";
+      rev = "v0.1.3";
+      fetchSubmodules = false;
+      sha256 = "sha256-1dpiWELP8agZPwn5JSW35E9zrxMzx1w1GcF9vAy17bU=";
+    };
+  };
   minecraft-modpack = {
     pname = "minecraft-modpack";
     version = "v2025.11.22-rc2";
