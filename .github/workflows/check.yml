@@ -14,7 +14,7 @@ jobs:
     name: Run flake checks
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6.0.2
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@v12
         with:
