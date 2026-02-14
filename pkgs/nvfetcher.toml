@@ -46,7 +46,3 @@ fetch.url = "https://github.com/Joaqim/MinecraftModpack/releases/download/$ver/M
 [fluent-reader]
 src.github_tag = "yang991178/fluent-reader"
 fetch.github = "yang991178/fluent-reader"
-
-[mindcraft]
-src.github_tag = "mindcraft-bots/mindcraft"
-fetch.github = "mindcraft-bots/mindcraft"
