@@ -105,6 +105,7 @@ in
           checkReversePath = false;
         };
       })
+
       (lib.mkIf cfg.enableExitNode {
         # If internet stops working:
         #networking.firewall.checkReversePath = "loose";
@@ -113,6 +114,48 @@ in
           # https://github.com/tailscale/tailscale/issues/4254#issuecomment-1075318898
           resolved.enable = true;
         };
+      })
+
+      (lib.mkIf cfg.enableExitNode {
+        # If internet stops working:
+        #networking.firewall.checkReversePath = "loose";
+        services = {
+          tailscale = {
+            inherit (cfg) useRoutingFeatures;
+            # Tailscale Exit Nodes expect a powerful modern CPU, this could hammer your CPU with enough traffic!
+            #interfaceName = lib.mkIf cfg.enableExitNode "userspace-networking";
+          };
+
+          # https://github.com/tailscale/tailscale/issues/4254#issuecomment-1075318898
+          resolved.enable = true;
+
+          # https://discourse.nixos.org/t/nixos-tailscale-exit-node-issue/57695/2
+          # Set Tailscale UDP as they do not stick and I have not figured out how to make ethtool settings stick.
+          networkd-dispatcher = {
+            enable = false; # if exitnode
+
+            rules."50-tailscale" = {
+              onState = [ "routable" ];
+              # We can dynamically retrieve the network interface name that is used to reach 8.8.8.8.
+              # $(ip -o route get 8.8.8.8 | cut -f 5 -d " ")
+              # Equals "wlp6s0" or "enp5s0" on my system depending on wifi or ethernet connection
+              script =
+                let
+                  ethtool = lib.getExe pkgs.ethtool;
+                  ip = lib.getExe' pkgs.iproute2 "ip";
+                  cut = lib.getExe' pkgs.toybox "cut";
+                in
+                ''
+                  ${ethtool} -K "$(${ip} -o route get 8.8.8.8 | ${cut} -f 5 -d " ")" rx-udp-gro-forwarding on rx-gro-list off
+                '';
+            };
+          };
+        };
+
+        environment.systemPackages = with pkgs; [
+          ethtool
+          networkd-dispatcher
+        ];
       })
     ]
   );
