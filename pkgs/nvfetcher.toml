@@ -2,10 +2,6 @@
 src.git = "https://github.com/ferreum/mpv-skipsilence"
 fetch.github = "ferreum/mpv-skipsilence"
 
-[yt-dlp]
-src.git = "https://github.com/yt-dlp/yt-dlp"
-fetch.github = "yt-dlp/yt-dlp"
-
 [twitchindicator]
 src.git = "https://github.com/kuunha/twitchindicator"
 fetch.github = "kuunha/twitchindicator"
@@ -46,3 +42,15 @@ fetch.url = "https://github.com/Joaqim/MinecraftModpack/releases/download/$ver/M
 [fluent-reader]
 src.github_tag = "yang991178/fluent-reader"
 fetch.github = "yang991178/fluent-reader"
+
+[mindcraft]
+src.github_tag = "mindcraft-bots/mindcraft"
+fetch.github = "mindcraft-bots/mindcraft"
+fetch.force = true
+
+#fetch.tarball = "https://github.com/mindcraft-bots/mindcraft/archive/refs/tags/v$ver.tar.gz"
+
+# From v1.0.0 -> 1.0.0
+#src.from_pattern = 'v([\d.]+)'
+#src.to_pattern = '\1'
+

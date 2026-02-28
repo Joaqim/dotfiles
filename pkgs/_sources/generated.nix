@@ -95,16 +95,4 @@
       sha256 = "sha256-v+0iW9kveu3tD/QFEX+wKhZ3vbmSTVVCErY1LYfW904=";
     };
   };
-  yt-dlp = {
-    pname = "yt-dlp";
-    version = "e3118604aa99a5514342d6a002c9b4a3fe1235b4";
-    src = fetchFromGitHub {
-      owner = "yt-dlp";
-      repo = "yt-dlp";
-      rev = "e3118604aa99a5514342d6a002c9b4a3fe1235b4";
-      fetchSubmodules = false;
-      sha256 = "sha256-/wRhO2hMxte3LptrP08Pyndzvf/mu5YyUo4Vvq8Vabg=";
-    };
-    date = "2026-02-22";
-  };
 }

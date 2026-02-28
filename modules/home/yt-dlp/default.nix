@@ -6,7 +6,6 @@
 }:
 let
   cfg = config.my.home.yt-dlp;
-  inherit (pkgs.jqpkgs) yt-dlp-git;
 in
 {
   options.my.home.yt-dlp = with lib; {
@@ -16,7 +15,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.yt-dlp = {
       enable = true;
-      package = yt-dlp-git;
+      package = lib.mkDefault pkgs.yt-dlp;
       settings = {
         no-part = true; # Do not use .part files - write directly into output file
       };

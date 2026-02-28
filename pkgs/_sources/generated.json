@@ -163,26 +163,5 @@
             "url": "https://github.com/ialex32x/GodotJS-Dependencies/releases/download/v8_12.4.254.21_r13/v8_12.4.254.21_r13.zip"
         },
         "version": "v8_12.4.254.21_r13"
-    },
-    "yt-dlp": {
-        "cargoLock": null,
-        "date": "2026-02-22",
-        "extract": null,
-        "name": "yt-dlp",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "yt-dlp",
-            "repo": "yt-dlp",
-            "rev": "e3118604aa99a5514342d6a002c9b4a3fe1235b4",
-            "sha256": "sha256-/wRhO2hMxte3LptrP08Pyndzvf/mu5YyUo4Vvq8Vabg=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "e3118604aa99a5514342d6a002c9b4a3fe1235b4"
     }
 }
