@@ -41,5 +41,6 @@ in
     desktop = "x86_64-linux";
     generic = "x86_64-linux";
     raket = "x86_64-linux";
+    qb = "x86_64-linux";
   };
 }
