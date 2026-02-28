@@ -37,6 +37,10 @@
     jellyfin-plugins.url = "github:Joaqim/jellyfin-plugins-nix";
     jovian.url = "github:Jovian-Experiments/Jovian-NixOS";
     json2steamshortcut.url = "github:ChrisOboe/json2steamshortcut";
+    jqpkgs = {
+      url = "github:Joaqim/pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur = {
@@ -66,6 +70,7 @@
       };
     };
     systems.url = "github:nix-systems/default";
+    ucodenix.url = "github:e-tho/ucodenix";
   };
   outputs = inputs: import ./flake inputs;
 }

@@ -51,6 +51,23 @@
         "type": "github"
       }
     },
+    "cpu-microcodes": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771074201,
+        "narHash": "sha256-imbOaha38ZFij7c6+foZK57zKdPeM+sXOiKPcYhtJyY=",
+        "owner": "platomav",
+        "repo": "CPUMicrocodes",
+        "rev": "8554c59e05ae66661ebd4b33770679313888574f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "platomav",
+        "repo": "CPUMicrocodes",
+        "rev": "8554c59e05ae66661ebd4b33770679313888574f",
+        "type": "github"
+      }
+    },
     "deadnix": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -415,6 +432,26 @@
         "type": "github"
       }
     },
+    "jqpkgs": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759444214,
+        "narHash": "sha256-O6vdO+HFrwtJLq5RRVI/5FFvnqfM6oBijCIFQuN8jGs=",
+        "owner": "Joaqim",
+        "repo": "pkgs",
+        "rev": "d7959418a16a95b029a1cfa8ae3b8fb327e9c4a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Joaqim",
+        "repo": "pkgs",
+        "type": "github"
+      }
+    },
     "json2steamshortcut": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -734,6 +771,7 @@
         "impermanence": "impermanence",
         "jellyfin-plugins": "jellyfin-plugins",
         "jovian": "jovian",
+        "jqpkgs": "jqpkgs",
         "json2steamshortcut": "json2steamshortcut",
         "nix-gaming": "nix-gaming",
         "nixpkgs": "nixpkgs_7",
@@ -742,7 +780,8 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "selfup": "selfup",
         "sops-nix": "sops-nix",
-        "systems": "systems_4"
+        "systems": "systems_4",
+        "ucodenix": "ucodenix"
       }
     },
     "selfup": {
@@ -886,6 +925,24 @@
       "original": {
         "owner": "emmanuelrosa",
         "repo": "tiny_audio_player",
+        "type": "github"
+      }
+    },
+    "ucodenix": {
+      "inputs": {
+        "cpu-microcodes": "cpu-microcodes"
+      },
+      "locked": {
+        "lastModified": 1771256690,
+        "narHash": "sha256-CIRT6IBEfUDJaqZNH77A+kb+f0ajopSTNSpMT2Ae95U=",
+        "owner": "e-tho",
+        "repo": "ucodenix",
+        "rev": "a2b36038ce5276cb32a3b5db20423992ecddf3f9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "e-tho",
+        "repo": "ucodenix",
         "type": "github"
       }
     },
