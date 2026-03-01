@@ -30,6 +30,7 @@
     };
     qbittorrent.enable = true;
     starship.enable = true;
+    vira.enable = true;
     vscode.enable = true;
     yt-dlp.enable = true;
     zathura.enable = true;
