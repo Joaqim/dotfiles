@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   inputs,
   ...
 }:
@@ -26,7 +27,7 @@ in
       hostname = "0.0.0.0";
       port = 8087;
       https = false;
-      package = vira.packages."x86_64-linux".default;
+      package = vira.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
       # Initial state configuration with repositories and settings
       initialState.repositories = {
