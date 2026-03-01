@@ -77,6 +77,7 @@
     };
     systems.url = "github:nix-systems/default";
     ucodenix.url = "github:e-tho/ucodenix";
+    vira.url = "github:juspay/vira";
   };
   outputs = inputs: import ./flake inputs;
 }
