@@ -27,9 +27,6 @@
       inherit (pkgs.jqpkgs)
         mpv-history-launcher
         ;
-      inherit (pkgs.nur.repos.nltch)
-        spotify-adblock
-        ;
     };
     qbittorrent.enable = true;
     starship.enable = true;

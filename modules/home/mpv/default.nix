@@ -6,7 +6,6 @@
 }:
 let
   cfg = config.my.home.mpv;
-  inherit (pkgs.jqpkgs) yt-dlp-git;
 in
 {
   options.my.home.mpv = with lib; {
@@ -89,7 +88,7 @@ in
         scriptOpts = {
           # For restarting playback when a Live Twitch VOD reaches current end
           reload.reload_eof_enabled = "yes";
-          ytdl_hook.ytdl_path = "${lib.getExe yt-dlp-git}";
+          ytdl_hook.ytdl_path = "${lib.getExe config.programs.yt-dlp.package}";
         };
       };
     };
