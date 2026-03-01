@@ -12,6 +12,31 @@
         "url": "https://github.com/9p4/jellyfin-plugin-sso/releases/download/v3.5.2.4/sso-authentication_3.5.2.4.zip"
       }
     },
+    "agenix": {
+      "inputs": {
+        "darwin": "darwin",
+        "home-manager": [
+          "home-manager"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1770165109,
+        "narHash": "sha256-9VnK6Oqai65puVJ4WYtCTvlJeXxMzAp/69HhQuTdl/I=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "b027ee29d959fda4b60b57566d64c98a202e0feb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
     "ani-sync": {
       "flake": false,
       "locked": {
@@ -65,6 +90,28 @@
         "owner": "platomav",
         "repo": "CPUMicrocodes",
         "rev": "8554c59e05ae66661ebd4b33770679313888574f",
+        "type": "github"
+      }
+    },
+    "darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "agenix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1744478979,
+        "narHash": "sha256-dyN+teG9G82G+m+PX/aSAagkC+vUv0SgUw3XkPhQodQ=",
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "rev": "43975d782b418ebf4969e9ccba82466728c2851b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lnl7",
+        "ref": "master",
+        "repo": "nix-darwin",
         "type": "github"
       }
     },
@@ -277,7 +324,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_2"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1710146030,
@@ -295,7 +342,7 @@
     },
     "flake-utils_3": {
       "inputs": {
-        "systems": "systems_3"
+        "systems": "systems_4"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -308,6 +355,21 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "github-nix-ci": {
+      "locked": {
+        "lastModified": 1772384971,
+        "narHash": "sha256-otXznV95hY9j8Iz8hJso684Wlsok9FQnK+J3X5eA2nI=",
+        "owner": "Joaqim",
+        "repo": "github-nix-ci",
+        "rev": "85876589b42c205abf94be46460e8eb7e7b96841",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Joaqim",
+        "repo": "github-nix-ci",
         "type": "github"
       }
     },
@@ -761,12 +823,14 @@
     },
     "root": {
       "inputs": {
+        "agenix": "agenix",
         "ccc": "ccc",
         "deadnix": "deadnix",
         "disko": "disko",
         "erosanix": "erosanix",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils",
+        "github-nix-ci": "github-nix-ci",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "jellyfin-plugins": "jellyfin-plugins",
@@ -780,7 +844,7 @@
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "selfup": "selfup",
         "sops-nix": "sops-nix",
-        "systems": "systems_4",
+        "systems": "systems_5",
         "ucodenix": "ucodenix"
       }
     },
@@ -907,6 +971,21 @@
         "type": "github"
       }
     },
+    "systems_5": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "tiny-audio-player": {
       "inputs": {
         "nixpkgs": [
@@ -948,7 +1027,7 @@
     },
     "utils": {
       "inputs": {
-        "systems": "systems"
+        "systems": "systems_2"
       },
       "locked": {
         "lastModified": 1731533236,

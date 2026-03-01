@@ -2,6 +2,11 @@
   description = "My NixOS Configurations";
 
   inputs = {
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs = {
+      home-manager.follows = "home-manager";
+      nixpkgs.follows = "nixpkgs";
+    };
     ccc = {
       url = "github:Joaqim/ccc-nix";
       inputs = {
@@ -27,6 +32,7 @@
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
+    github-nix-ci.url = "github:Joaqim/github-nix-ci";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

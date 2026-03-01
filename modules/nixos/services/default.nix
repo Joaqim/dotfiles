@@ -5,6 +5,7 @@
     ./caddy
     ./earlyoom
     ./fail2ban
+    ./github-runner
     ./jellyfin
     ./minecraft-server
     ./minecraft-vault-hunters-server
