@@ -2,10 +2,10 @@
   description = "My NixOS Configurations";
 
   inputs = {
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs = {
-      home-manager.follows = "home-manager";
-      nixpkgs.follows = "nixpkgs";
+    self.submodules = true;
+    AI = {
+      url = "path:vendor/AI";
+      flake = false;
     };
     ccc = {
       url = "github:Joaqim/ccc-nix";

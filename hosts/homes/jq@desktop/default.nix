@@ -1,10 +1,15 @@
 { pkgs, ... }:
 {
-  imports = [ ../jq ];
-
+  # For Claudo Code AI configuration
+  home.sessionVariables = {
+    ANTHROPIC_BASE_URL = "http://desktop:11434";
+    ANTHROPIC_AUTH_TOKEN = "ollama";
+    ANTHROPIC_MODEL = "qwen2.5-coder:latest";
+  };
   my.home = {
     boilr.enable = true;
     calibre.enable = true;
+    claude-code.enable = true;
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;
