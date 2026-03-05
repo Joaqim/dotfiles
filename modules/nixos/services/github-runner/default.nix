@@ -10,7 +10,6 @@ in
 {
   imports = [
     inputs.github-nix-ci.nixosModules.default
-    inputs.agenix.nixosModules.default
   ];
 
   options.my.services.github-runner = with lib; {
