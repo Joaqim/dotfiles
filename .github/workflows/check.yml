@@ -17,11 +17,6 @@ jobs:
       - uses: actions/checkout@v6.0.2
         with:
           submodules: 'true'
-      - name: Move to dotfiles directory
-        run: |
-          # checkout seems to put us in submodules git directory
-          # let's hard-code path to dotfiles directory for now
-          cd /home/runner/work/dotfiles/dotfiles/
       - name: Check Nix flake inputs
         uses: DeterminateSystems/flake-checker-action@v12
         with:
@@ -33,11 +28,10 @@ jobs:
           diagnostic-endpoint: ""
       - name: Inspect flake outputs
         run: |
-          flake="$(nix flake show . --json --legacy 2>/dev/null)"
-          
+          flake="$(nix flake show . --json 2>/dev/null)"
           jq -r '
-              "Available packages:", ((.packages."x86_64-linux" // {}) | to_entries[] | "  \(.key) # \(.value.description)"),
-              "\nAvailable overlays:", (.overlays | keys[] | "  \(.)"),
-              "\nAvailable apps:", ((.apps."x86_64-linux" // {}) | keys[] | "  \(.)")
+              "Available packages:",(.inventory.packages.output.children."x86_64-linux".children | to_entries[] | "\t\(.key)   - \(.value.shortDescription)"),
+              "\nAvailable overlays:",(.inventory.overlays.output.children | keys[] | "\t\(.)"),
+              "\nAvailable apps:",(.inventory.apps.output.children."x86_64-linux".children | keys[]  | "\t\(.)")
           ' <<< "$flake" || { echo "Warning: could not parse flake output" ; jq <<< "$flake"; }
       - run: nix flake check
