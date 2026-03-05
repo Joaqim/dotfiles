@@ -81,6 +81,8 @@ jobs:
           crun --version
           buildah version
       - uses: actions/checkout@v6.0.2
+        with:
+          submodules: 'true'
       - name: Build base Image
         uses: redhat-actions/buildah-build@v2
         with:
