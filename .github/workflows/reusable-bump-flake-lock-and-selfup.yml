@@ -101,7 +101,7 @@ jobs:
           count="$(gh pr list --author "@me" --author "app/update-dependencies-runner" --state open --head bot-update-flake-lock --json number --jq 'length')"
           echo "count=${count}" | tee -a "$GITHUB_OUTPUT"
       - name: Prepare Git user
-        uses: crazy-max/ghaction-import-gpg@v6
+        uses: crazy-max/ghaction-import-gpg@v7
         with:
           gpg_private_key: ${{ secrets.gpg-signing-key }}
           git_user_signingkey: ${{ secrets.gpg-signing-key != null }}
