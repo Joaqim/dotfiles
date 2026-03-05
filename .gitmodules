@@ -1,0 +1,3 @@
+[submodule "vendor/AI"]
+	path = vendor/AI
+	url = https://github.com/Joaqim/AI.git

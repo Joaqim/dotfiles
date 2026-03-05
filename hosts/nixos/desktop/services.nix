@@ -14,6 +14,7 @@ in
     atuin-server.enable = true;
     earlyoom.enable = true;
     fail2ban.enable = true;
+    github-runner.enable = true;
     jellyfin.enable = true;
     nix-cache = {
       enable = true;

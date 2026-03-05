@@ -74,6 +74,9 @@ in
           path = "/home/${user0}/.local/share/atuin/key";
           inherit owner;
         };
+        "github_token/github-runner-desktop" = {
+          inherit owner;
+        };
         "private_key/${user0}" = {
           path = "/home/${user0}/.ssh/id_ed25519";
           inherit owner;

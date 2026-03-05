@@ -2,6 +2,11 @@
   description = "My NixOS Configurations";
 
   inputs = {
+    self.submodules = true;
+    AI = {
+      url = "path:vendor/AI";
+      flake = false;
+    };
     ccc = {
       url = "github:Joaqim/ccc-nix";
       inputs = {
@@ -27,6 +32,7 @@
       url = "github:numtide/flake-utils";
       inputs.systems.follows = "systems";
     };
+    github-nix-ci.url = "github:Joaqim/github-nix-ci";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -71,6 +77,7 @@
     };
     systems.url = "github:nix-systems/default";
     ucodenix.url = "github:e-tho/ucodenix";
+    vira.url = "github:juspay/vira";
   };
   outputs = inputs: import ./flake inputs;
 }
