@@ -409,11 +409,11 @@
     },
     "github-nix-ci": {
       "locked": {
-        "lastModified": 1772384971,
-        "narHash": "sha256-otXznV95hY9j8Iz8hJso684Wlsok9FQnK+J3X5eA2nI=",
+        "lastModified": 1772709781,
+        "narHash": "sha256-kcFGPN9sjZYJiEdbIEvWnxcy7O8XMz3nDaR8uL6C1fU=",
         "owner": "Joaqim",
         "repo": "github-nix-ci",
-        "rev": "85876589b42c205abf94be46460e8eb7e7b96841",
+        "rev": "e35ab8f39a03ef61ff90b6ec8ee56c294b3feefb",
         "type": "github"
       },
       "original": {
