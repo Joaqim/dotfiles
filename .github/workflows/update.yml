@@ -2,17 +2,12 @@
 # [1]: https://github.com/kachick/dotfiles/blob/main/.github/workflows/update-flake-lock-and-ci.yml
 name: 🤖🆙❄️
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/update.yml'
-      - '.github/workflows/reusable-bump-flake-lock-and-selfup.yml'
   # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
   schedule:
     - cron: '5 3 * * 1' # Every Monday at 03:05 UTC
   workflow_dispatch:
 jobs:
   update:
-    if: (github.event_name != 'pull_request') || (!github.event.pull_request.draft) || (github.triggering_actor != 'dependabot[bot]')
     uses: ./.github/workflows/reusable-bump-flake-lock-and-selfup.yml
     with:
       app-id: ${{ vars.APP_ID }}
