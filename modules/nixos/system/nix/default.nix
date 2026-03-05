@@ -103,9 +103,12 @@ in
                 "codeium"
                 # Jellyfin
                 "soulseekqt"
+                # Claude Code
+                "claude-code"
               ];
             permittedInsecurePackages = [
               "electron"
+              "python3.13-beaker-1.13.0" # For jqpkgs.chimera - beaker, https://github.com/bbangert/beaker/issues/229
             ];
           };
         };

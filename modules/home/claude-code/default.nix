@@ -25,6 +25,7 @@ in
     # GitHub and Code specific packages are included with landrunModules, see /apps/landrun-apps/claude-sandboxed
     home.packages = with pkgs; [
       tree
+      ollama
     ];
     programs.claude-code = {
       inherit (cfg) enable;

@@ -15,7 +15,7 @@ in
     enable = mkEnableOption "Tailscale";
     autoAuthenticate = mkEnableOption "Automatically authenticate new devices to Tailscale";
     configureFirewall = my.mkDisableOption "Configure firewall for tailscale";
-    enableExitNode = mkEnableOption "Enable exit node for this machine";
+    enableExitNode = mkEnableOption "Enable exit node for this machine"; # TODO: This might require re-generating authorization key if enabled
     useRoutingFeatures = mkOption {
       type =
         with types;
@@ -103,16 +103,6 @@ in
 
           #  Do not filter DHCP packets.
           checkReversePath = false;
-        };
-      })
-
-      (lib.mkIf cfg.enableExitNode {
-        # If internet stops working:
-        #networking.firewall.checkReversePath = "loose";
-        services = {
-          tailscale = { inherit (cfg) useRoutingFeatures; };
-          # https://github.com/tailscale/tailscale/issues/4254#issuecomment-1075318898
-          resolved.enable = true;
         };
       })
 

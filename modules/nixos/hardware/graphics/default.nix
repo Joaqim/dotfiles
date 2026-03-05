@@ -29,9 +29,18 @@ in
 
       overdrive = {
         enable = mkEnableOption "Overdrive";
+        longDescription = ''
+          # https://wiki.archlinux.org/title/AMDGPU#Boot_parameter
+          Setting all 32 bits may enable unstable features that cause problems such as screen flicker or broken resume from suspend.
+          It should be sufficient to set the PP_OVERDRIVE_MASK bit, 0x4000, in combination with the default ppfeaturemask. 
+          To compute a reasonable parameter for your system, execute: 
+          ```bash
+          printf 'amdgpu.ppfeaturemask=0x%x\n' "$(($(cat /sys/module/amdgpu/parameters/ppfeaturemask) | 0x4000))"
+          ```
+        '';
         ppfeaturemask = mkOption {
           type = types.str;
-          default = "0xffffffff";
+          default = "0xfff7ffff";
           description = "Overdrive ppfeaturemask";
         };
       };
@@ -72,9 +81,15 @@ in
 
       # AMD GPU
       (lib.mkIf (cfg.gpuFlavor == "amd") {
-        services.xserver.videoDrivers = [
-          "amdgpu"
-        ];
+        services.xserver = {
+          videoDrivers = [
+            "amdgpu"
+          ];
+          # https://wiki.parabola.nu/ATI
+          deviceSection = ''
+            Option "TearFree" "true"
+          '';
+        };
 
         hardware.amdgpu = {
           initrd.enable = cfg.amd.enableKernelModule;

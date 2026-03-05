@@ -39,7 +39,7 @@ in
         curseForgeSlug = "lucky-world-invasion";
         curseForgeFilenameMatcher = "${MODPACK_VERSION}";
         # TODO:
-        #curseForgeAPIKeyFile = sops.templates."minecraft_CF_API_KEY.env".path;
+        curseForgeAPIKeyFile = sops.templates."minecraft_CF_API_KEY.env".path;
         curseForgeExcludeMods = [
           "nolijium"
         ];

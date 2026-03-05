@@ -138,6 +138,7 @@ in
     };
 
     sso = {
+      enable = mkEnableOption "SSO authentication";
       authKeyFile = mkOption {
         type = types.str;
         example = "/var/lib/nginx-sso/auth-key.txt";
@@ -374,7 +375,7 @@ in
         in
         lib.my.genAttrs' (lib.attrValues cfg.virtualHosts) mkVHost;
 
-      sso = {
+      sso = lib.mkIf cfg.sso.enable {
         enable = true;
 
         configuration = {

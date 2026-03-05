@@ -42,6 +42,11 @@ in
       default = false;
     };
 
+    # TODO:
+    curseForgeAPIKeyFile = mkOption {
+      type = with types; nullOr path;
+      default = null;
+    };
     curseForgeFilenameMatcher = mkOption {
       type = with types; nullOr str;
       default = null;
@@ -122,6 +127,8 @@ in
       example = "America/New_York";
     };
 
+    enableWhiteList = mkEnableOption "enable server whitelist";
+
     whiteList = mkOption {
       type = with types; nullOr (listOf str);
       default = null;
@@ -142,11 +149,11 @@ in
       example = literalExample ''
         builtins.toFile "whitelist.json" (
           builtins.toJSON [
-          {
-            name = "Steve";
-            uuid = "b5d2d2d2-1111-1111-1111-111111111111";
-          }
-        ]
+            {
+              name = "Steve";
+              uuid = "b5d2d2d2-1111-1111-1111-111111111111";
+            }
+          ]
         );
       '';
     };
@@ -189,7 +196,7 @@ in
         lib.concatStringsSep "," cfg.whiteList
       );
 
-      ENABLE_WHITELIST = toStringBool (cfg.whiteList != null || cfg.whiteListFilePath != null);
+      ENABLE_WHITELIST = toStringBool cfg.enableWhiteList;
 
       MODS_FILE_PATH = builtins.toFile "mods.txt" "";
       WHITELIST_FILE_PATH = "/extras/whitelist.json";
@@ -224,11 +231,17 @@ in
             }
             {
               # TODO: The file needs to be valid json, minimally: `[]`
-              assertion = ENABLE_WHITELIST == "TRUE" -> builtins.pathExists cfg.whiteListFilePath;
+              assertion = cfg.enableWhiteList -> builtins.pathExists cfg.whiteListFilePath;
 
               message = ''
                 `config.my.services.minecraft-server.whiteList` requires
                 read-and-writable `${cfg.whiteListFilePath}` to exist.
+              '';
+            }
+            {
+              assertion = cfg.curseForgeModpack != null -> cfg.curseForgeAPIKeyFile != null;
+              message = ''
+                CurseForge API key is required for CurseForge modpacks.
               '';
             }
           ];
@@ -290,6 +303,8 @@ in
                   EULA = "TRUE";
                   ENABLE_ROLLING_LOGS = "TRUE";
 
+                  #CF_FORCE_SYNCHRONIZE = "TRUE";
+
                   MAX_PLAYERS = "10";
                   MAX_TICK_TIME = "-1";
                   MEMORY = "16G";
@@ -318,22 +333,27 @@ in
                   USE_AIKAR_FLAGS = "TRUE";
                   VERSION = cfg.minecraftVersion;
                   VIEW_DISTANCE = "20";
-                  WHITELIST_FILE = WHITELIST_FILE_PATH;
+                  WHITELIST_FILE = if cfg.enableWhiteList then WHITELIST_FILE_PATH else "";
                 };
                 environmentFiles = [
                   config.sops.secrets."rcon_web_admin_env".path
                   config.sops.templates."minecraft_CF_API_KEY.env".path
                 ];
+                /*
+                  # TODO: Is lib.optional necessary for null values ?
+                  environmentFiles =
+                    [ ]
+                    ++ lib.optional (cfg.rconWebAdminEnvironmentFilePath != null) cfg.rconWebAdminEnvironmentFilePath
+                    ++ lib.optional (cfg.curseForgeAPIKeyFile != null) cfg.curseForgeAPIKeyFile;
+                */
                 volumes = [
                   "${SERVER_DATA_DIR}:/data:rw"
                   "/etc/localtime:/etc/localtime:ro"
                   "${MODS_FILE_PATH}:/extras/mods.txt:ro"
                 ]
-                ++
-                  lib.optional (ENABLE_WHITELIST == "TRUE")
-                    "${
-                      if cfg.whiteListFilePath != null then cfg.whiteListFilePath else WHITELIST
-                    }:${WHITELIST_FILE_PATH}:rw"
+                ++ lib.optional cfg.enableWhiteList "${
+                  if cfg.whiteListFilePath != null then cfg.whiteListFilePath else WHITELIST
+                }:${WHITELIST_FILE_PATH}:rw"
                 ++ lib.optional (MODRINTH_MODPACK != "") "${cfg.modrinthModpack}:${MODRINTH_MODPACK}:ro";
 
                 ports = [

@@ -6,9 +6,8 @@
 }:
 let
   cfg = config.my.hardware.openrgb;
-  no-rgb = pkgs.writeScriptBin "no-rgb" ''
-    #!/bin/sh
-    NUM_DEVICES=$(${pkgs.openrgb}/bin/openrgb --noautoconnect --list-devices | grep -E '^[0-9]+: ' | wc -l)
+  no-rgb = pkgs.writeShellScriptBin "no-rgb" ''
+    NUM_DEVICES="$(${pkgs.openrgb}/bin/openrgb --noautoconnect --list-devices | grep -E '^[0-9]+: ' | wc -l)"
 
     for i in $(seq 0 $(($NUM_DEVICES - 1))); do
       ${pkgs.openrgb}/bin/openrgb --noautoconnect --device $i --mode static --color 000000
@@ -28,6 +27,7 @@ in
     hardware.i2c.enable = true;
 
     systemd.services.no-rgb = {
+      enable = lib.mkDefault true;
       description = "no-rgb";
       serviceConfig = {
         ExecStart = "${no-rgb}/bin/no-rgb";

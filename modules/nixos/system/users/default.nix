@@ -20,6 +20,11 @@ in
       default = null;
     };
 
+    initialPassword = mkOption {
+      type = with types; nullOr str;
+      default = null;
+    };
+
     enableRootAccount = mkEnableOption "enable root account";
     rootPasswordFile = mkOption {
       type = with types; nullOr str;
@@ -50,6 +55,7 @@ in
           users = {
             "${name}" = {
               hashedPasswordFile = cfg.defaultPasswordFile;
+              inherit (cfg) initialPassword;
               description = fullName;
               isNormalUser = true;
               shell = pkgs.nushell;
@@ -63,6 +69,9 @@ in
                 "video" # screen control
                 "wheel" # `sudo` for the user.
                 "dialout" # arduino
+                "ollama" # for locally hosted LLMs
+                "adbusers" # Android Debug Bridge
+                "kvm" # Hardware virtualization
               ];
               openssh.authorizedKeys.keys =
                 with builtins;

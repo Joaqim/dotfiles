@@ -30,7 +30,7 @@ in
     services.sunshine = {
       enable = true;
       autoStart = true;
-      openFirewall = true;
+      openFirewall = false; # Not needed for LAN/WLAN
       capSysAdmin = true;
     };
 

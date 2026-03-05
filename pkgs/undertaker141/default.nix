@@ -24,10 +24,8 @@ let
       python311
       fontconfig
       libuuid
-      ;
-    inherit (pkgs.xorg)
-      libX11
-      libXrender
+      libx11
+      libxrender
       ;
     inherit (pkgs.stdenv.cc.cc)
       lib

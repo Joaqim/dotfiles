@@ -3,7 +3,7 @@ _HISTORY_FILE="/home/jq/Documents/org/mpv-history.org"
 _LINK_CAPTURE_REGEX="^\*\*\* (.*)(\W:)(.*):<(.*)>:<(.*)>:<(.*)>:.*$"
 [ -z "$_HISTORY_FILE" ] && echo "Missing history file at: $_HISTORY_FILE" && exit 1
 
-mapfile -t history <<< "$(tail "$_HISTORY_FILE" -n 150)"
+mapfile -t history <<< "$(tail "$_HISTORY_FILE" -n 1500)"
 options=()
 for (( i = ${#history[@]}; i--; )); do
     if [[ "${history[i]}" =~ $_LINK_CAPTURE_REGEX ]]; then
@@ -15,6 +15,10 @@ for (( i = ${#history[@]}; i--; )); do
 
         if [ $((runtime_in_sec - current_time_in_sec)) -lt $_THRESHOLD_IN_SEC ]; then
             continue
+        fi
+        # Skip over empty entries
+        if [[ "${BASH_REMATCH[1]}" = "" ]]; then
+          continue
         fi
         options+=("${BASH_REMATCH[1]}")
         options+=("${BASH_REMATCH[1]} - ${BASH_REMATCH[3]} - $current_time/$runtime")

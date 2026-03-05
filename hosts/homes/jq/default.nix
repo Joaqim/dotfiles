@@ -11,8 +11,8 @@
   };
 
   my.home = {
-    packages.additionalPackages = [
-      pkgs.just
+    packages.additionalPackages = with pkgs; [
+      just
     ];
     git = {
       enable = true;

@@ -1,7 +1,11 @@
-{ config, ... }:
+{
+  config,
+
+  ...
+}:
 let
   inherit (config.sops) secrets;
-  inherit (config.my.user) name;
+  name = "jq"; # override for now to allow root password
 in
 {
   my.system = {

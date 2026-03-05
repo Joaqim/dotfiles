@@ -14,16 +14,14 @@ in
     ];
     supportedFilesystems = [ "zfs" ];
     initrd = {
-      network.openvpn.enable = true;
       availableKernelModules = [
-        "nvme"
+        "ehci_pci"
         "ahci"
-        "xhci_pci"
-        "usb_storage"
+        "nvme"
         "usbhid"
-        "sd_mod"
       ];
     };
+    kernelModules = [ "kvm-intel" ];
 
     zfs = {
       extraPools = [ "zpool-${hostName}" ];
