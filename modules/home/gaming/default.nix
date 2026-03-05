@@ -19,10 +19,8 @@ in
             inherit (pkgs)
               bottles
               bubblewrap
-              dwarfs
               fuse-overlayfs
               heroic
-              lutris
               mangohud
               prismlauncher
               protonup-qt

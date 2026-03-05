@@ -53,7 +53,7 @@ in
               ;
             inherit (mpvScripts.eisa01) smartskip; # https://github.com/Eisa01/mpv-scripts#smartskip
             inherit (mpvScripts.occivink) blacklistExtensions;
-            inherit (jqpkgs)
+            inherit (my)
               mpv-org-history
               mpv-skipsilence
               ;

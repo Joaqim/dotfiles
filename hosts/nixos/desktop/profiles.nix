@@ -6,7 +6,7 @@
     devices = {
       enable = true;
       useCkbNext = true;
-      useLiquidCtl = true;
+      useLiquidCtl = false;
     };
     # My custom fcitx5 configuration
     fcitx5.enable = true;
@@ -18,7 +18,8 @@
       ];
       useEuropeanEnglish = true;
     };
-    minecraft-server.enable = true;
+    minecraft-server.enable = false;
+    minecraft-server-lucky-world-invasion.enable = false;
     # Plasma Window Manager
     plasma.enable = true;
     xkb = {

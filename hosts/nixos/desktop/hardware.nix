@@ -20,9 +20,9 @@ in
     graphics = {
       enable = true;
       gpuFlavor = "amd";
-      amd.overdrive.enable = true;
+      amd.overdrive.enable = false;
     };
-    openrgb.enable = true;
+    openrgb.enable = false;
     sound = {
       pipewire.enable = true;
     };

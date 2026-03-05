@@ -8,7 +8,7 @@ let
   cfg = config.my.profiles.minecraft-server;
   inherit (config.sops) secrets;
 
-  MINECRAFT_VERSION = "1.21.6";
+  MINECRAFT_VERSION = "1.21.9";
 
   SERVER_ICON = "https://github.com/Joaqim/MinecraftModpack/blob/main/icon.jpeg?raw=true";
   SERVER_NAME = "Minecraft Server";
@@ -41,15 +41,18 @@ in
         minecraftVersion = MINECRAFT_VERSION;
         modrinthModpack = "/run/current-system/sw/share/minecraft-modpacks/${MODPACK_PKG.modpack}";
         modpackName = MODPACK_NAME;
-        levelName = "${SERVER_NAME} World 1";
+        #levelName = "${SERVER_NAME} World 1";
+        levelName = "${SERVER_NAME} World 2025-07-05";
 
         motd = "Running `${MODPACK_NAME}` version: ${MODPACK_VERSION}";
 
         resourcePack = {
-          url = "https://cdn.modrinth.com/data/50dA9Sha/versions/9LtDLleW/FreshAnimations_v1.9.4.zip";
-          sha1 = "189ed78802c97efa0902bd1bb909181fba9e2eb9";
+          url = "https://cdn.modrinth.com/data/50dA9Sha/versions/kJAJJOwD/FreshAnimations_v1.10.2.zip";
+          # nix hash file ~/Downloads/FreshAnimations_v1.10.2.zip --type sha1 --base16
+          sha1 = "2976d7e921cc8d0bd7643741a95ed31bbe36458b";
           force = true;
         };
+        timeZone = "Europe/Stockholm";
 
         serverIcon = SERVER_ICON;
         serverName = SERVER_NAME;

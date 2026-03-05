@@ -19,6 +19,6 @@ builtins.attrValues {
     vimium-c
     violentmonkey
     ;
-  inherit (pkgs.jqpkgs) chronotube;
+  inherit (pkgs.my) chronotube;
 }
 # https://github.com/nix-community/nur-combined/blob/master/repos/rycee/pkgs/firefox-addons/generated-firefox-addons.nix

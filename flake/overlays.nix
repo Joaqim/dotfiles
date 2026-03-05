@@ -9,10 +9,14 @@ let
   additional-overlays = {
     # Expose my expanded library
     lib = _final: _prev: { inherit (self) lib; };
-
     pkgs = _final: prev: {
+
+      imports = [
+        inputs.steam-shortcuts.overlays.default
+        inputs.jqpkgs.overlays.default
+      ];
       # Expose my custom packages
-      jqpkgs = lib.recurseIntoAttrs (
+      my = lib.recurseIntoAttrs (
         import "${self}/pkgs" {
           inherit self;
           pkgs = prev;

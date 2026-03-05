@@ -1,5 +1,16 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    ../jq
+    inputs.jqpkgs.homeModules.default
+  ];
+
+  jqpkgs.cache.enable = true;
+
   # For Claudo Code AI configuration
   home.sessionVariables = {
     ANTHROPIC_BASE_URL = "http://desktop:11434";
@@ -19,7 +30,7 @@
     kde.enable = true;
     terminal.program = "kitty";
     mpv.enable = true;
-    nm-applet.enable = true;
+    nm-applet.enable = false;
     nushell.enable = true;
     obs-studio.enable = true;
     packages.additionalPackages = builtins.attrValues {
@@ -28,8 +39,18 @@
         headsetcontrol
         jellyfin-mpv-shim
         nh
+        rqbit
+        cataclysm-dda
+        lm_sensors
+        wl-clipboard
+        cavasik # Simple audio visualizer
         ;
-      inherit (pkgs.jqpkgs)
+      /*
+        inherit (pkgs.kdePackages)
+        kdenlive
+        ;
+      */
+      inherit (pkgs.my)
         mpv-history-launcher
         ;
     };

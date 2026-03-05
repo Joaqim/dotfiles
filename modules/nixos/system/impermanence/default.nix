@@ -16,6 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     environment.persistence."/persist" = {
       hideMounts = true;
+      allowTrash = true;
       directories = [
         "/etc/ssh"
         "/var/log"

@@ -15,6 +15,11 @@
         systems.follows = "systems";
       };
     };
+    steam-shortcuts = {
+      url = "github:Joaqim/json2steamshortcut";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     deadnix.url = "github:astro/deadnix";
     disko = {
       url = "github:nix-community/disko/latest";

@@ -1,7 +1,7 @@
 { stdenvNoCC, ... }:
 stdenvNoCC.mkDerivation {
   pname = "mpv-org-history";
-  version = "1.0.1";
+  version = "1.0.2";
   src = ./mpv-org-history.lua;
   dontBuild = true;
   dontUnpack = true;

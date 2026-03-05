@@ -7,9 +7,18 @@
 }:
 let
   inherit (self.lib.my) mapModules;
-  callPackage = pkgs.lib.callPackageWith (pkgs // { inherit inputs' lib self; });
+  callPackage = pkgs.lib.callPackageWith (
+    pkgs
+    // {
+      inherit
+        inputs'
+        lib
+        self
+        ;
+    }
+  );
 in
-mapModules ./. (app: {
+mapModules ./. (appPath: {
   type = "app";
-  program = lib.getExe (callPackage app { });
+  program = lib.getExe (callPackage appPath { });
 })

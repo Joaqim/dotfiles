@@ -10,12 +10,19 @@ let
   inherit (inputs.ccc.packages."x86_64-linux") ccc;
 in
 {
+  imports = [
+    inputs.ucodenix.nixosModules.default
+  ];
+  services.ucodenix = {
+    enable = true;
+    cpuModelId = "00B40F40";
+  };
   my.services = {
-    atuin-server.enable = true;
+    caddy.enable = false;
     earlyoom.enable = true;
     fail2ban.enable = true;
     github-runner.enable = true;
-    jellyfin.enable = true;
+    jellyfin.enable = false;
     nix-cache = {
       enable = true;
       harmonia = {
@@ -32,6 +39,7 @@ in
       };
     };
     ssh-server.enable = true;
+    sunshine.enable = false;
     tailscale = {
       enable = true;
       # We shouldn't ever need to reauthenticate on persistent systems
@@ -43,7 +51,7 @@ in
   };
 
   systemd.services."ccc" = {
-    enable = true;
+    enable = false;
     restartIfChanged = true;
     after = [ "docker-minecraft-server.service" ];
     wants = [ "docker-minecraft-server.service" ];

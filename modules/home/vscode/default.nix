@@ -24,10 +24,6 @@ in
 
       material-icons
       material-design-icons
-
-      # https://mynixos.com/nixpkgs/package/codeium
-      codeium
-
       # Used by 'Github Local Actions'
       # also required, but out of this scope: docker virtualization
       act
@@ -167,6 +163,12 @@ in
             "gitlens.experimental.generateCommitMessagePrompt" =
               "Generate a commit message using the Conventional Commits format. Examples: ['feat: Add new feature to the project', 'fix: Fix a bug in the project', 'chore: Update build configuration or task', 'docs: Update project documentation', 'style: Update code formatting or style', 'refactor: Refactor existing code', 'test: Add or update tests', 'perf: Improve performance of the project', 'ci: Update continuous integration configuration', 'build: Make changes related to the build process', 'revert: Revert a previous commit']";
 
+            ### GitHub Copilot
+            "github.copilot.enable" = {
+              # Don't use Tokens for completions
+              "*" = false;
+            };
+
             ### Custom Dictionary
             "cSpell.customDictionaries" = {
               "custom-dictionary-user" = {
@@ -183,15 +185,21 @@ in
               "nix" = true;
             };
 
+            ### VSCode Ollama
+            "vscode-ollama.baseUrl" = "http://0.0.0.0:11434";
+            "vscode-ollama.model" = "qwen2.5-coder:latest";
+
             ### VSCode Helix Emulation
             "extensions.experimental.affinity" = {
               "jasew.vscode-helix-emulation" = 1;
             };
           };
+
           extensions =
             with pkgs.vscode-extensions;
             [
               catppuccin.catppuccin-vsc
+              continue.continue
               eamodio.gitlens
               esbenp.prettier-vscode
               github.vscode-github-actions
@@ -216,12 +224,6 @@ in
             ]
             # TODO: Use selfup to update these
             ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
-              {
-                name = "codeium";
-                publisher = "Codeium";
-                version = "1.49.2";
-                sha256 = "sha256-fLDR0Gb8J9DkKTwFm0oMHB1GENKH/Cj2jMb1AsP0ZpQ=";
-              }
 
               {
                 name = "vscode-helix-emulation";

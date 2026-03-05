@@ -15,17 +15,23 @@ in
     initrd = {
       network.openvpn.enable = true;
       availableKernelModules = [
-        "nvme"
         "ahci"
-        "xhci_pci"
+        "nvme"
+        "sd_mod"
+        "thunderbolt"
+        "uas"
         "usb_storage"
         "usbhid"
-        "sd_mod"
+        "xhci_pci"
       ];
       kernelModules = [ "amdgpu" ];
     };
 
-    kernelParams = [ "video=card1-DP-3:3440x1440@100" ];
+    kernelParams = [
+      "video=card1-DP-3:3440x1440@100"
+      # Disable Kernel microcode checksum verification for use with ucodenix
+      "microcode.amd_sha_check=off"
+    ];
     kernelModules = [
       "kvm-amd"
       "v4l2loopback"
