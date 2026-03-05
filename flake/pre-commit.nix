@@ -13,8 +13,12 @@
       pre-commit = {
         settings.hooks =
           let
-            # Exclude generated _sources by nvfetcher
-            excludes = [ "_sources" ];
+            excludes = [
+              # Exclude generated _sources by nvfetcher
+              "_sources"
+              # Exclude git submodules
+              "vendor/.*/"
+            ];
           in
           {
             nixfmt = {
