@@ -103,9 +103,8 @@ in
 
       # Harmonia configuration
       (lib.mkIf cfg.harmonia.enable {
-        services.harmonia = {
+        services.harmonia.cache = {
           enable = true;
-
           settings = {
             bind = "${cfg.harmonia.ipAddress}:${toString cfg.harmonia.listenPort}";
             inherit (cfg.harmonia) priority;
