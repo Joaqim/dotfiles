@@ -24,7 +24,7 @@ in
             gvfs
             hardinfo2
             ncdu
-            neofetch
+            fastfetch
             neovim
             p7zip
             pciutils
