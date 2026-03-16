@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -13,9 +14,21 @@ in
 
     androidTools = mkEnableOption "enable android tools";
   };
+
+  imports = [
+    inputs.nix-index-database.homeModules.nix-index
+  ];
+
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
+        programs = {
+          nix-index = {
+            enable = true;
+            enableNushellIntegration = true;
+          };
+          nix-index-database.comma.enable = true;
+        };
         home.packages = builtins.attrValues {
           inherit (pkgs)
             dtrx # Do The Right Extraction
