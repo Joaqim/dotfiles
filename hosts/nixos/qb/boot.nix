@@ -15,14 +15,11 @@ in
     initrd = {
       network.openvpn.enable = true;
       availableKernelModules = [
-        "ahci"
         "nvme"
-        "sd_mod"
-        "thunderbolt"
-        "uas"
+        "xhci_pci"
         "usb_storage"
         "usbhid"
-        "xhci_pci"
+        "sd_mod"
       ];
       kernelModules = [ "amdgpu" ];
     };
