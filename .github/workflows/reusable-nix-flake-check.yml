@@ -1,0 +1,31 @@
+name: '[Reusable] Nix Flake Check'
+on:
+  workflow_call:
+
+
+jobs:
+  check:
+    name: Run flake check
+    runs-on: ubuntu-slim
+    steps:
+      - uses: actions/checkout@v6.0.2
+        with:
+          submodules: 'true'
+      - name: Check Nix flake inputs
+        uses: DeterminateSystems/flake-checker-action@v12
+        with:
+          send-statistics: false
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v21
+        with:
+          logger: pretty
+          diagnostic-endpoint: ""
+      - name: Inspect flake outputs
+        run: |
+          flake="$(nix flake show . --json 2>/dev/null)"
+          jq -r '
+              "Available packages:",(.inventory.packages.output.children."x86_64-linux".children | to_entries[] | "\t\(.key)   - \(.value.shortDescription)"),
+              "\nAvailable overlays:",(.inventory.overlays.output.children | keys[] | "\t\(.)"),
+              "\nAvailable apps:",(.inventory.apps.output.children."x86_64-linux".children | keys[]  | "\t\(.)")
+          ' <<< "$flake" || { echo "Warning: could not parse flake output" ; jq <<< "$flake"; }
+      - run: nix flake check
