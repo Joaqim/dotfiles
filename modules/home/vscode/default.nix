@@ -186,8 +186,12 @@ in
             };
 
             ### VSCode Ollama
-            "vscode-ollama.baseUrl" = "http://0.0.0.0:11434";
+            "vscode-ollama.baseUrl" = "http://desktop:11434";
             "vscode-ollama.model" = "qwen2.5-coder:latest";
+
+            "gitlens.ai.ollama.url" = "http://desktop:11434";
+            "ollama-autocoder.endpoint" = "http://desktop:11434/api/generate";
+            "ollama-autocoder.model" = "qwen2.5-coder:latest";
 
             ### VSCode Helix Emulation
             "extensions.experimental.affinity" = {
