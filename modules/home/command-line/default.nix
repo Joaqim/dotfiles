@@ -34,6 +34,7 @@ in
             dtrx # Do The Right Extraction
             file
             flac
+            gh
             gvfs
             hardinfo2
             ncdu
@@ -49,6 +50,13 @@ in
             unzip
             usbutils
             zip
+
+            # Useful for Nix development
+            omnix
+            nixpkgs-fmt
+            just
+            watchexec
+            fswatch
             ;
         };
       }

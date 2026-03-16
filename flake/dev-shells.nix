@@ -22,6 +22,7 @@
             sops
             ssh-to-age
             nixfmt
+            gitMinimal
           ];
 
           buildInputs = with pkgs; [
