@@ -63,7 +63,13 @@ in
           group = "colord";
           mode = "u=rwx,g=rx,o=";
         }
-      ];
+      ]
+      ++ (lib.optional config.my.services.qbittorrent-nox.enable {
+        directory = config.my.services.qbittorrent-nox.dataDir;
+        inherit (config.my.services.qbittorrent-nox) user group;
+        mode = "u=rwx,g=rx,o=rx";
+      });
+
       files = [
         "/etc/machine-id"
       ];
