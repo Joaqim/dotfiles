@@ -33,6 +33,13 @@
     nm-applet.enable = false;
     nushell.enable = true;
     obs-studio.enable = true;
+    opencode = {
+      enable = true;
+      autoWireDirs = with inputs; [
+        AI-opencode-backend-skill
+        AI-opencode-frontend-skill
+      ];
+    };
     packages.additionalPackages = builtins.attrValues {
       inherit (pkgs)
         fluent-reader

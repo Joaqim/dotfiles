@@ -7,6 +7,14 @@
       url = "path:vendor/AI";
       flake = false;
     };
+    AI-opencode-backend-skill = {
+      url = "https://github.com/mayanklau/backend-skill";
+      flake = false;
+    };
+    AI-opencode-frontend-skill = {
+      url = "https://github.com/mayanklau/frontend-coding";
+      flake = false;
+    };
     ccc = {
       url = "github:Joaqim/ccc-nix";
       inputs = {
@@ -56,6 +64,7 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-agent-wire.url = "github:srid/nix-agent-wire";
     nix-gaming.url = "github:fufexan/nix-gaming";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nvf = {
