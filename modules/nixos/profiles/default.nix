@@ -5,6 +5,7 @@
     ./bluetooth
     ./devices
     ./fcitx5
+    ./hyprland
     ./language
     #./laptop
     ./minecraft-server
