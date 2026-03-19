@@ -25,7 +25,7 @@
     ssh-server.enable = true;
     tailscale = {
       enable = true;
-      autoAuthenticate = lib.mkForce true;
+      autoAuthenticate = lib.mkForce false;
     };
     xserver.enable = true;
   };

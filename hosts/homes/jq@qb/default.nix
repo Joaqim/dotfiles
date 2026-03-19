@@ -12,6 +12,7 @@
   jqpkgs.cache.enable = true;
 
   my.home = {
+    secrets.enable = true;
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;
