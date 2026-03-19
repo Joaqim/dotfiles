@@ -20,6 +20,7 @@
     kde.enable = true;
     terminal.program = "kitty";
     mpv.enable = true;
+    nvf.enable = true;
     nushell.enable = true;
     obs-studio.enable = false;
     packages.additionalPackages = builtins.attrValues {
