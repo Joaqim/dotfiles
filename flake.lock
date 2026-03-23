@@ -12,6 +12,30 @@
       },
       "parent": []
     },
+    "AI-opencode-backend-skill": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-l7dH1MKaVSH6Th4LIxEbY4BU93fc4G114for8lZtST8=",
+        "type": "file",
+        "url": "https://github.com/mayanklau/backend-skill"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/mayanklau/backend-skill"
+      }
+    },
+    "AI-opencode-frontend-skill": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-LTd9rW0MzS08MXagQ7ZnDdyal4Wo8kt5fsMgHaWksR0=",
+        "type": "file",
+        "url": "https://github.com/mayanklau/frontend-coding"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/mayanklau/frontend-coding"
+      }
+    },
     "SSO-Auth": {
       "flake": false,
       "locked": {
@@ -792,6 +816,21 @@
         "type": "github"
       }
     },
+    "nix-agent-wire": {
+      "locked": {
+        "lastModified": 1773881002,
+        "narHash": "sha256-YiOXMLnjkmUcubkxPWx5vRl+OaQwaJvrjiAVw8pp+u8=",
+        "owner": "srid",
+        "repo": "nix-agent-wire",
+        "rev": "dff0e61fa1bc8457815c8cd61808ea07b514502b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "srid",
+        "repo": "nix-agent-wire",
+        "type": "github"
+      }
+    },
     "nix-gaming": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -1210,6 +1249,8 @@
     "root": {
       "inputs": {
         "AI": "AI",
+        "AI-opencode-backend-skill": "AI-opencode-backend-skill",
+        "AI-opencode-frontend-skill": "AI-opencode-frontend-skill",
         "ccc": "ccc",
         "deadnix": "deadnix",
         "disko": "disko",
@@ -1223,6 +1264,7 @@
         "jovian": "jovian",
         "jqpkgs": "jqpkgs",
         "json2steamshortcut": "json2steamshortcut",
+        "nix-agent-wire": "nix-agent-wire",
         "nix-gaming": "nix-gaming",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs_7",
