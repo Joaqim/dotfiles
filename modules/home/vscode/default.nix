@@ -16,7 +16,7 @@ in
     home.packages = with pkgs; [
       # Nix Language
       nixfmt
-      nil
+      nixd
 
       # Rust
       ### https://dprint.dev
@@ -126,19 +126,12 @@ in
 
             ### Nix Language
             "nix.enableLanguageServer" = true;
-            "nix.serverPath" = "nil";
+            "nix.serverPath" = "nixd";
             "[nix]" = {
               "editor.defaultFormatter" = "jnoortheen.nix-ide";
               "editor.formatOnPaste" = true;
               "editor.formatOnSave" = true;
               "editor.formatOnType" = true;
-            };
-            "nix.serverSettings" = {
-              "nil" = {
-                "formatting" = {
-                  "command" = [ "nixfmt" ];
-                };
-              };
             };
 
             ## Typescript Formatter
@@ -196,6 +189,16 @@ in
             ### VSCode Helix Emulation
             "extensions.experimental.affinity" = {
               "jasew.vscode-helix-emulation" = 1;
+            };
+
+            ### Trusted domains for downloading schemas
+            "json.schemaDownload.trustedDomains" = {
+              "https://schemastore.azurewebsites.net/" = true;
+              "https://raw.githubusercontent.com/" = false;
+              "https://www.schemastore.org/" = true;
+              "https://json.schemastore.org/" = true;
+              "https://json-schema.org/" = true;
+              "https://plugins.dprint.dev" = true;
             };
           };
 

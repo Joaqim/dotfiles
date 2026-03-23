@@ -6,17 +6,24 @@
   ...
 }:
 let
-  inherit (inputs) AI;
   cfg = config.my.home.claude-code;
 in
 {
 
-  imports = [
-    "${AI}/nix/home-manager-module.nix"
+  imports = with inputs; [
+    nix-agent-wire.homeModules.claude-code
   ];
 
   options.my.home.claude-code = with lib; {
     enable = mkEnableOption "Claude Code configuration";
+    autoWireDirs = lib.mkOption {
+      type = lib.types.listOf lib.types.path;
+      default = with inputs; [ AI ];
+      description = ''
+        List of directories containing agents/, commands/, skills/, mcp/ and memory.md.
+        All directories are merged, with later directories taking precedence.
+      '';
+    };
   };
 
   # Importing AI home manager module without setting
@@ -33,7 +40,7 @@ in
       #package = inputs.claude-sandbox.packages.${pkgs.stdenv.hostPlatform.system}.claude;
       package = pkgs.claude-code;
 
-      autoWire.dir = AI;
+      autoWire.dirs = cfg.autoWireDirs;
     };
   };
 }

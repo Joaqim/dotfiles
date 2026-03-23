@@ -17,6 +17,8 @@
     ./system.nix
   ];
 
+  my.secrets.enable = true;
+
   my.user = {
     name = "jq";
     fullName = "Joaqim Planstedt";

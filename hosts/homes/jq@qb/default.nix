@@ -12,6 +12,7 @@
   jqpkgs.cache.enable = true;
 
   my.home = {
+    secrets.enable = true;
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;
@@ -20,6 +21,7 @@
     kde.enable = true;
     terminal.program = "kitty";
     mpv.enable = true;
+    nvf.enable = true;
     nushell.enable = true;
     obs-studio.enable = false;
     packages.additionalPackages = builtins.attrValues {
