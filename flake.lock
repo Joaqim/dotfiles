@@ -1,17 +1,5 @@
 {
   "nodes": {
-    "AI": {
-      "flake": false,
-      "locked": {
-        "path": "vendor/AI",
-        "type": "path"
-      },
-      "original": {
-        "path": "vendor/AI",
-        "type": "path"
-      },
-      "parent": []
-    },
     "AI-opencode-backend-skill": {
       "flake": false,
       "locked": {
@@ -1280,7 +1268,6 @@
     },
     "root": {
       "inputs": {
-        "AI": "AI",
         "AI-opencode-backend-skill": "AI-opencode-backend-skill",
         "AI-opencode-frontend-skill": "AI-opencode-frontend-skill",
         "ccc": "ccc",

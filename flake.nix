@@ -2,11 +2,6 @@
   description = "My NixOS Configurations";
 
   inputs = {
-    self.submodules = true;
-    AI = {
-      url = "path:vendor/AI";
-      flake = false;
-    };
     AI-opencode-backend-skill = {
       url = "https://github.com/mayanklau/backend-skill";
       flake = false;
