@@ -735,11 +735,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774100340,
-        "narHash": "sha256-Hs1XJj2yOiVNNXfdR5ARnCxUmtO9NLUsYVwWVgEPvkk=",
+        "lastModified": 1774305992,
+        "narHash": "sha256-7ZflwcL6YURdvt+ZNBRMUJBEd+Akxft1zsQhZuM5EvU=",
         "owner": "Joaqim",
         "repo": "pkgs",
-        "rev": "e8f6f805e33600f7afcd9c29d4216ba2bdd74cf6",
+        "rev": "4cf8e9892b29a2881eb29738c83ad96173611b9a",
         "type": "github"
       },
       "original": {
