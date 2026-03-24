@@ -15,7 +15,7 @@
     "AI-opencode-backend-skill": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-l7dH1MKaVSH6Th4LIxEbY4BU93fc4G114for8lZtST8=",
+        "narHash": "sha256-R5C+wOuFLji1FWv7EyoqZMpCthWMn23vXcmUuoNlXTQ=",
         "type": "file",
         "url": "https://github.com/mayanklau/backend-skill"
       },
@@ -27,7 +27,7 @@
     "AI-opencode-frontend-skill": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-LTd9rW0MzS08MXagQ7ZnDdyal4Wo8kt5fsMgHaWksR0=",
+        "narHash": "sha256-1IOE65YTvUFBrJXQVZzsB3RLFES8QDbowqayzkuulSw=",
         "type": "file",
         "url": "https://github.com/mayanklau/frontend-coding"
       },
@@ -1152,6 +1152,38 @@
         "type": "github"
       }
     },
+    "nvim-plugin-claude-code": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1772649360,
+        "narHash": "sha256-r8hAUpSsr8zNm+av8Mu5oILaTfEsXEnJmkzRmvi9pF8=",
+        "owner": "coder",
+        "repo": "claudecode.nvim",
+        "rev": "432121f0f5b9bda041030d1e9e83b7ba3a93dd8f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "coder",
+        "repo": "claudecode.nvim",
+        "type": "github"
+      }
+    },
+    "nvim-plugin-octo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774305042,
+        "narHash": "sha256-MgTLcSeESeIKajpGiJDNV1hQsjn0hcFP5OyV6kYFTNM=",
+        "owner": "pwntester",
+        "repo": "octo.nvim",
+        "rev": "6f09b9269b18c32d837bbfe20eb4ec70859581c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pwntester",
+        "repo": "octo.nvim",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": "flake-compat_6",
@@ -1271,11 +1303,14 @@
         "nur": "nur",
         "nvf": "nvf",
         "nvfetcher": "nvfetcher",
+        "nvim-plugin-claude-code": "nvim-plugin-claude-code",
+        "nvim-plugin-octo": "nvim-plugin-octo",
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
         "selfup": "selfup",
         "sops-nix": "sops-nix",
         "steam-shortcuts": "steam-shortcuts",
         "systems": "systems_5",
+        "timvim": "timvim",
         "ucodenix": "ucodenix",
         "vira": "vira"
       }
@@ -1470,6 +1505,22 @@
       "original": {
         "owner": "juspay",
         "repo": "tabler-icons-hs",
+        "type": "github"
+      }
+    },
+    "timvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1774266257,
+        "narHash": "sha256-4/ngzs73hGeWyzPID2e81YoH1cXvfRv8OP8+fjby+AQ=",
+        "owner": "timlinux",
+        "repo": "nix-vim",
+        "rev": "3969c718457f2c0e874ebd9cea71e9abc9c74b9c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "timlinux",
+        "repo": "nix-vim",
         "type": "github"
       }
     },
