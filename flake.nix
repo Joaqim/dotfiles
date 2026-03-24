@@ -66,6 +66,18 @@
     };
     nix-agent-wire.url = "github:srid/nix-agent-wire";
     nix-gaming.url = "github:fufexan/nix-gaming";
+    timvim = {
+      url = "github:timlinux/nix-vim";
+      flake = false;
+    };
+    nvim-plugin-claude-code = {
+      url = "github:coder/claudecode.nvim";
+      flake = false;
+    };
+    nvim-plugin-octo = {
+      url = "github:pwntester/octo.nvim";
+      flake = false;
+    };
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nvf = {
       url = "github:notashelf/nvf";
