@@ -16,7 +16,6 @@
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;
-    flameshot.enable = true;
     gtk.enable = true;
     kde.enable = true;
     terminal.program = "kitty";

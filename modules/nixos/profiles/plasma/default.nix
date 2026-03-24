@@ -52,7 +52,6 @@ in
         khelpcenter
         konsole
         oxygen
-        spectacle
       ];
     };
   };

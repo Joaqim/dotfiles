@@ -24,7 +24,6 @@
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;
-    flameshot.enable = true;
     gaming.enable = true;
     gtk.enable = true;
     kde.enable = true;
@@ -32,6 +31,7 @@
     mpv.enable = true;
     nm-applet.enable = false;
     nushell.enable = true;
+    nvf.enable = true;
     obs-studio.enable = true;
     opencode = {
       enable = true;

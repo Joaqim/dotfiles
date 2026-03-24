@@ -42,10 +42,12 @@ in
             inherit (mpvScripts)
               mpris
               sponsorblock
-              modernx
+              uosc
               mpv-playlistmanager
               webtorrent-mpv-hook
               reload
+              thumbfast
+              thumbnail
               ;
             inherit (mpvScripts.builtins)
               autocrop
@@ -68,6 +70,9 @@ in
           image-display-duration = 5;
           # https://github.com/ferreum/mpv-skipsilence/tree/master?tab=readme-ov-file#fix-clicking-soundsgaps-when-switching-to-and-from-1x-speed
           af-add = "scaletempo2";
+          alang = "jap,jp,eng,en,us,original";
+          slang = "eng,en,us";
+          osc = "no";
           screenshot-dir = "~/${cfg.screenshotDirectory}";
           screenshot-template = cfg.screenshotTemplate;
           ytdl-raw-options = lib.concatStringsSep "," [
@@ -76,6 +81,7 @@ in
             "write-auto-sub="
           ];
           sub-font = "Noto Color Emoji";
+          video-sync = "display-resample";
           vo = "gpu-next";
           watch-later-options = lib.concatStringsSep "," [
             "start"

@@ -29,14 +29,24 @@ in
   config = lib.mkIf cfg.enable (
     lib.mkMerge [
       {
-        programs.steam = {
-          enable = true;
-          extraCompatPackages = with pkgs; [
-            steam-play-none
-            proton-ge-bin
-          ];
-        };
+        programs = {
+          fuse.userAllowOther = true; # Allow non-root users to access nix-store mounted in user-space
+          steam = {
+            enable = true;
 
+            package = pkgs.steam.override {
+              extraBwrapArgs = [
+                "--cap-add cap_sys_admin+eip"
+                "--cap-add cap_setuid,cap_setgid+eip"
+              ];
+            };
+
+            extraCompatPackages = with pkgs; [
+              steam-play-none
+              proton-ge-bin
+            ];
+          };
+        };
         # Allows for other packages to depend on steam ( lutris )
         nixpkgs.config.allowUnfreePredicate =
           pkg:

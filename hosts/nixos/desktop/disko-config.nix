@@ -95,6 +95,8 @@ in
             mountpoint = "/tmp";
             options.sync = "disabled";
           };
+          # TODO: zpool create -o reservation=10% zpool-${hostName}/reserved
+          # and ? zfs snapshot zpool-${hostName}/reserved@blank
         };
       };
     };
