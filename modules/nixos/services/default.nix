@@ -16,6 +16,7 @@
     ./sunshine
     ./syncthing-dirs
     ./tailscale
+    ./qdrant
     ./xserver
   ];
 }
