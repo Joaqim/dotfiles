@@ -34,13 +34,6 @@ in
           steam = {
             enable = true;
 
-            package = pkgs.steam.override {
-              extraBwrapArgs = [
-                "--cap-add cap_sys_admin+eip"
-                "--cap-add cap_setuid,cap_setgid+eip"
-              ];
-            };
-
             extraCompatPackages = with pkgs; [
               steam-play-none
               proton-ge-bin
@@ -57,7 +50,7 @@ in
       # TODO: Make sure this works;
       # should we explicitly make the original `pkgs` available in environment as well?
       (lib.mkIf (cfg.dataDir != "$HOME") {
-        environment.systemPackages = builtins.map lib.hiPrio [
+        environment.systemPackages = map lib.hiPrio [
           # Respect XDG conventions, leave my HOME alone
           (pkgs.writeShellScriptBin "steam" ''
             mkdir -p "${cfg.dataDir}"
