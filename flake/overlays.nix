@@ -13,8 +13,14 @@ let
 
       imports = [
         inputs.steam-shortcuts.overlays.default
-        inputs.jqpkgs.overlays.default
       ];
+
+      # Provide scoped `pkgs.jqpkgs`
+      jqpkgs = lib.recurseIntoAttrs (
+        inputs.jqpkgs.overlays.default null # _final remains unused
+          prev
+      );
+
       # Expose my custom packages
       my = lib.recurseIntoAttrs (
         import "${self}/pkgs" {

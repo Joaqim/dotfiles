@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -18,8 +17,8 @@ in
       enable = true;
       type = "fcitx5";
       fcitx5 = {
-        addons = [
-          inputs.jqpkgs.packages.${pkgs.stdenv.hostPlatform.system}.fcitx5-jqwerty
+        addons = with pkgs; [
+          jqpkgs.fcitx5-jqwerty
         ];
 
         ignoreUserConfig = true;
