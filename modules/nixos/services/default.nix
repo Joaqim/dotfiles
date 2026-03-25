@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./alexandria
     ./atuin-server
     ./caddy
     ./earlyoom

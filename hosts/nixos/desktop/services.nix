@@ -18,6 +18,7 @@ in
     cpuModelId = "00B40F40";
   };
   my.services = {
+    alexandria.enable = true;
     caddy.enable = false;
     earlyoom.enable = true;
     fail2ban.enable = true;
@@ -47,6 +48,7 @@ in
       enableExitNode = true;
       useRoutingFeatures = "server";
     };
+    qdrant.enable = true;
     xserver.enable = true;
   };
 

@@ -12,6 +12,7 @@ in
 
   imports = with inputs; [
     nix-agent-wire.homeModules.claude-code
+    alexandria.homeModules.default
   ];
 
   options.my.home.claude-code = with lib; {
@@ -26,17 +27,23 @@ in
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
       tree
       ollama
     ];
     programs.claude-code = {
-      inherit (cfg) enable;
+      enable = true;
 
       package = pkgs.claude-code;
 
       autoWire.dirs = cfg.autoWireDirs;
+    };
+    # Mostly for providing ~/.config/mcp/
+    programs.alexandria = {
+      enable = true;
+      # Enable MCP explicitly; should be enabled by default
+      enableMcpIntegration = true;
     };
   };
 }

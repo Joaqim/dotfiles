@@ -10,6 +10,10 @@
       url = "https://github.com/mayanklau/frontend-coding";
       flake = false;
     };
+    alexandria = {
+      url = "github:Joaqim/alexandria";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ccc = {
       url = "github:Joaqim/ccc-nix";
       inputs = {
