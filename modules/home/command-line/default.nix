@@ -28,6 +28,14 @@ in
             enableNushellIntegration = true;
           };
           nix-index-database.comma.enable = true;
+          pay-respects = {
+            enable = true;
+            enableNushellIntegration = true;
+            options = [
+              "--alias"
+              "f"
+            ];
+          };
         };
         home.packages = builtins.attrValues {
           inherit (pkgs)
