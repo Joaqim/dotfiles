@@ -65,6 +65,10 @@
     };
     nix-agent-wire.url = "github:srid/nix-agent-wire";
     nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-minecraft = {
+      url = "github:Infinidoge/nix-minecraft";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     timvim = {
       url = "github:timlinux/nix-vim";
       flake = false;

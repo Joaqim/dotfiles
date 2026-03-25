@@ -12,6 +12,8 @@ let
     pkgs = _final: prev: {
 
       imports = [
+        # TODO: Overlays not working ?
+        inputs.nix-minecraft.overlays.default
         inputs.steam-shortcuts.overlays.default
       ];
 
