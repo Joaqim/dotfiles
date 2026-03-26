@@ -58,23 +58,22 @@ in
       enable = true;
       eula = true;
       servers = {
-        "${lib.strings.sanitizeDerivationName "Minecraft Server - ${modpack.manifest.name} ${modpack.manifest.version}"}" =
-          {
-            enable = true;
-            package = pkgs."${loader}Servers"."${minecraftServerPackage}".override {
-              # TODO: The pack provides Fabric API version in place of Fabric, disabling for now.
-              #inherit loaderVersion;
-            };
-            serverProperties = {
-              online-mode = false;
-              resource-pack-sha1 = resourcePack.sha1;
-            };
-            symlinks = {
-              "resourcepacks/FreshAnimations_v1.10.2.zip" = pkgs.fetchurl {
-                inherit (resourcePack) url sha1;
-              };
+        "${lib.strings.sanitizeDerivationName "${modpack.manifest.name} ${modpack.manifest.version}"}" = {
+          enable = true;
+          package = pkgs."${loader}Servers"."${minecraftServerPackage}".override {
+            # TODO: The pack provides Fabric API version in place of Fabric, disabling for now.
+            #inherit loaderVersion;
+          };
+          serverProperties = {
+            online-mode = false;
+            resource-pack-sha1 = resourcePack.sha1;
+          };
+          symlinks = {
+            "resourcepacks/FreshAnimations_v1.10.2.zip" = pkgs.fetchurl {
+              inherit (resourcePack) url sha1;
             };
           };
+        };
       };
     };
   };
