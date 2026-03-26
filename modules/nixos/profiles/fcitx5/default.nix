@@ -22,13 +22,17 @@ in
         ];
 
         ignoreUserConfig = true;
+        waylandFrontend = true;
+        quickPhrase = {
+          smile = "（・∀・）";
+          angry = "(￣ー￣)";
+          yes = ":+1:";
+        };
 
-        settings = {
-          globalOptions = {
-            Behaviour = {
-              CustomXkbOption = "caps:escape";
-              EnableAddons = "jqwerty";
-            };
+        settings.globalOptions = {
+          Behaviour = {
+            CustomXkbOption = "caps:escape";
+            EnableAddons = "jqwerty";
           };
         };
       };

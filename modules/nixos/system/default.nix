@@ -1,18 +1,10 @@
 # System-related modules
-{ ... }:
+{ lib, ... }:
+# Automatically import all system modules in the directory
+let
+  files = builtins.readDir ./.;
+  modules = builtins.removeAttrs files [ "default.nix" ];
+in
 {
-  imports = [
-    #./boot
-    ./doas
-    ./docker
-    ./documentation
-    ./impermanence
-    ./language
-    ./nix
-    ./packages
-    ./podman
-    ./polkit
-    ./users
-    ./zram
-  ];
+  imports = lib.mapAttrsToList (name: _: ./${name}) modules;
 }

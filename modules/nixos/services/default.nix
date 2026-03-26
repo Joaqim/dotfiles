@@ -1,31 +1,9 @@
-{ ... }:
+{ lib, ... }:
+# Automatically import all service modules in the directory
+let
+  files = builtins.readDir ./.;
+  modules = builtins.removeAttrs files [ "default.nix" ];
+in
 {
-  imports = [
-    ./alexandria
-    ./atuin-server
-    ./caddy
-    ./ccc
-    ./chimera
-    ./cross-seed
-    ./earlyoom
-    ./fail2ban
-    ./flatpak
-    ./github-runner
-    ./jellyfin
-    ./komga
-    ./minecraft-server
-    ./minecraft-vault-hunters-server
-    ./nginx
-    ./nix-cache
-    ./ollama
-    ./open-webui
-    ./qbittorrent-nox
-    ./qdrant
-    ./ssh-server
-    ./sunshine
-    ./syncthing-dirs
-    ./tailscale
-    ./ucodenix
-    ./xserver
-  ];
+  imports = lib.mapAttrsToList (name: _: ./${name}) modules;
 }

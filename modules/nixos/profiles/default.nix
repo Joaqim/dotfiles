@@ -1,17 +1,10 @@
 # Configuration that spans across system and home, or are collections of modules
-{ ... }:
+{ lib, ... }:
+# Automatically import all profile modules in the directory
+let
+  files = builtins.readDir ./.;
+  modules = builtins.removeAttrs files [ "default.nix" ];
+in
 {
-  imports = [
-    ./bluetooth
-    ./devices
-    ./fcitx5
-    ./hyprland
-    ./language
-    #./laptop
-    ./minecraft-server
-    ./minecraft-server-lucky-world-invasion
-    ./plasma
-    ./steam-deck
-    ./xkb
-  ];
+  imports = lib.mapAttrsToList (name: _: ./${name}) modules;
 }

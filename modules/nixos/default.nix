@@ -1,15 +1,12 @@
 # Common modules
 { lib, ... }:
+# Automatically import all top-level module directories
+let
+  files = builtins.readDir ./.;
+  modules = builtins.removeAttrs files [ "default.nix" ];
+in
 {
-  imports = [
-    ./hardware
-    ./home
-    ./profiles
-    ./programs
-    ./secrets
-    ./services
-    ./system
-  ];
+  imports = lib.mapAttrsToList (name: _: ./${name}) modules;
 
   # TODO: Move this when we have fixed declarative use of `user0` and `user1` for
   # nixos modules which will use `user0` as the primary user
