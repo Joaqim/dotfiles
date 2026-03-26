@@ -3,11 +3,11 @@
 
   inputs = {
     AI-opencode-backend-skill = {
-      url = "https://github.com/mayanklau/backend-skill";
+      url = "github:mayanklau/backend-skill";
       flake = false;
     };
     AI-opencode-frontend-skill = {
-      url = "https://github.com/mayanklau/frontend-coding";
+      url = "github:mayanklau/frontend-coding";
       flake = false;
     };
     alexandria = {

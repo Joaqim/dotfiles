@@ -13,13 +13,7 @@
 
   my.home = {
     secrets.enable = true;
-    claude-code = {
-      enable = true;
-      autoWireDirs = with inputs; [
-        AI-opencode-frontend-skill
-        AI-opencode-backend-skill
-      ];
-    };
+    claude-code.enable = true;
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;

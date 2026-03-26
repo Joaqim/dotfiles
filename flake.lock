@@ -3,25 +3,33 @@
     "AI-opencode-backend-skill": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-R5C+wOuFLji1FWv7EyoqZMpCthWMn23vXcmUuoNlXTQ=",
-        "type": "file",
-        "url": "https://github.com/mayanklau/backend-skill"
+        "lastModified": 1773553014,
+        "narHash": "sha256-KnrVb6tByHJVMF+QhpW+tUcZjB2+ctLEtukXW4FkLGw=",
+        "owner": "mayanklau",
+        "repo": "backend-skill",
+        "rev": "7bf789d5b622090692d7d85b714cfb2f5773d279",
+        "type": "github"
       },
       "original": {
-        "type": "file",
-        "url": "https://github.com/mayanklau/backend-skill"
+        "owner": "mayanklau",
+        "repo": "backend-skill",
+        "type": "github"
       }
     },
     "AI-opencode-frontend-skill": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-1IOE65YTvUFBrJXQVZzsB3RLFES8QDbowqayzkuulSw=",
-        "type": "file",
-        "url": "https://github.com/mayanklau/frontend-coding"
+        "lastModified": 1773473373,
+        "narHash": "sha256-E/51iuOiwKTuO/WoRgIdCNM0N4mpDzZnxlBKaDA1UIw=",
+        "owner": "mayanklau",
+        "repo": "frontend-coding",
+        "rev": "f803b46d19a7c7378a8fba27631d0d5ce2c5f6cb",
+        "type": "github"
       },
       "original": {
-        "type": "file",
-        "url": "https://github.com/mayanklau/frontend-coding"
+        "owner": "mayanklau",
+        "repo": "frontend-coding",
+        "type": "github"
       }
     },
     "SSO-Auth": {
