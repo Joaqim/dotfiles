@@ -100,7 +100,6 @@ in
                 "unrar"
                 # Visual Studio code
                 "vscode"
-                "codeium"
                 # Jellyfin
                 "soulseekqt"
                 # Claude Code

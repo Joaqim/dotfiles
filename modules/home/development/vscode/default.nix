@@ -172,12 +172,6 @@ in
               };
             };
 
-            ### Codeium
-            "codeium.enableConfig" = {
-              "*" = true;
-              "nix" = true;
-            };
-
             ### VSCode Ollama
             "vscode-ollama.baseUrl" = "http://desktop:11434";
             "vscode-ollama.model" = "qwen2.5-coder:latest";
