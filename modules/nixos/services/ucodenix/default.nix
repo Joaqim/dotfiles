@@ -16,7 +16,8 @@ in
     enable = lib.mkEnableOption "ucodenix CPU microcode updates";
 
     cpuModelId = lib.mkOption {
-      type = lib.types.str;
+      type = lib.types.nullOr lib.types.str;
+      default = null;
       description = lib.mdDoc ''
         CPU model ID for microcode updates.
       '';
@@ -24,9 +25,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.ucodenix = {
-      enable = true;
-      inherit (cfg) cpuModelId;
-    };
+    services.ucodenix = lib.mkMerge [
+      { enable = true; }
+      (lib.mkIf (cfg.cpuModelId != null) {
+        inherit (cfg) cpuModelId;
+      })
+    ];
   };
 }

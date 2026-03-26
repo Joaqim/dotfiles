@@ -13,10 +13,6 @@ in
     atuin-server.enable = false;
     caddy.enable = false;
     ccc.enable = false;
-    chimera = {
-      enable = false;
-      user = "jq";
-    };
     cross-seed = {
       enable = false;
       user = config.my.user.name;
