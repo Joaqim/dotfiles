@@ -1,6 +1,17 @@
 https://wiki.nixos.org/wiki/Platformio
 https://unix.stackexchange.com/questions/768678/configure-vscode-in-nixos
 
+## Recent Work Follow-ups
+
+- Verify autoWire bug fix (b513adf): Test that autoWire dirs are now supplied with correct derivation after critical fix
+- Add pre-commit hook to catch invalid flake URLs (b513adf): Prevent invalid URLs from being committed
+- Consider upstreaming feature to nix-agent-wire: Add validation for invalid paths to catch issues earlier
+- Apply service module refactoring pattern to other hosts: desktop, deck, raket could benefit from my.services.* modules (see e7fc6c0, 8d047c6)
+- Test claude-code configuration after recent updates: Verify that skills input conforms to nix-agent-wire directory structure (4ceef39, 3ccdc25)
+- Verify all hosts build after auto-import conversion: Ensure barrel file → auto-import refactoring didn't break anything (8d047c6)
+
+## Configuration TODOs
+
 - Add automatic tailscale authentication using non-expiring key in nixos/modules/tailscale.nix
 - Is `home.packages = [gvfs]` redundant while using `services.gvfs.enable` ?
 - Move `fcitx5` configuration from `nixos/modules/locale.nix`
