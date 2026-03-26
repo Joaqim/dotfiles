@@ -9,14 +9,14 @@ let
   additional-overlays = {
     # Expose my expanded library
     lib = _final: _prev: { inherit (self) lib; };
+
+    # Add nix-minecraft overlay
+    nix-minecraft = inputs.nix-minecraft.overlays.default;
+
+    # Add steam-shortcuts overlay
+    steam-shortcuts = inputs.steam-shortcuts.overlays.default;
+
     pkgs = _final: prev: {
-
-      imports = [
-        # TODO: Overlays not working ?
-        inputs.nix-minecraft.overlays.default
-        inputs.steam-shortcuts.overlays.default
-      ];
-
       # Provide scoped `pkgs.jqpkgs`
       jqpkgs = lib.recurseIntoAttrs (
         inputs.jqpkgs.overlays.default null # _final remains unused

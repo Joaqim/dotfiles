@@ -1,5 +1,7 @@
 {
   my.profiles = {
+    # Audio Pipewire configuration for Arctis 7P+ pro
+    #audio.enable = true;
     # Bluetooth configuration and mpris service
     bluetooth.enable = true;
     # External devices configuration
@@ -18,7 +20,7 @@
       ];
       useEuropeanEnglish = true;
     };
-    minecraft-server.enable = false;
+    minecraft-server.enable = true;
     minecraft-server-lucky-world-invasion.enable = false;
     # Plasma Window Manager
     plasma.enable = true;

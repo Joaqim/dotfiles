@@ -8,12 +8,7 @@
 let
   cfg = config.my.profiles.minecraft-server;
 
-  # TODO: Use overlays, see /flake/overlays.nix
-  nixMinecraftPkgs = inputs.nix-minecraft.legacyPackages.${pkgs.stdenv.hostPlatform.system};
-
-  inherit (nixMinecraftPkgs) fetchPackwizModpack;
-
-  modpack = fetchPackwizModpack {
+  modpack = pkgs.fetchPackwizModpack {
     url = "https://github.com/Joaqim/MinecraftModpack/raw/refs/tags/v2025.11.22-rc2/pack.toml";
     packHash = "sha256-VPlpir6daMJufcIxulKHlw15J+kXoD8JCnbwX1O/P10=";
   };
@@ -66,7 +61,7 @@ in
         "${lib.strings.sanitizeDerivationName "Minecraft Server - ${modpack.manifest.name} ${modpack.manifest.version}"}" =
           {
             enable = true;
-            package = nixMinecraftPkgs."${loader}Servers"."${minecraftServerPackage}".override {
+            package = pkgs."${loader}Servers"."${minecraftServerPackage}".override {
               # TODO: The pack provides Fabric API version in place of Fabric, disabling for now.
               #inherit loaderVersion;
             };

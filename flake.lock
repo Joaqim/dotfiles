@@ -1470,15 +1470,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1711218459,
-        "narHash": "sha256-KtkEinjtOvCW8sAhGpImDQuKbS3RcpZ7lcxjLH4sY8I=",
-        "owner": "Joaqim",
+        "lastModified": 1763116114,
+        "narHash": "sha256-0gI7PnQUDZTFjhHgg0eP1SCJOvW5gw3sQ2UAMspipnQ=",
+        "owner": "ChrisOboe",
         "repo": "json2steamshortcut",
-        "rev": "7d43d5b6e198542649c712573b91f27247068aed",
+        "rev": "b829fe2871fd1736d2406724e4abbb492527cb08",
         "type": "github"
       },
       "original": {
-        "owner": "Joaqim",
+        "owner": "ChrisOboe",
         "repo": "json2steamshortcut",
         "type": "github"
       }
