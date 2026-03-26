@@ -4,20 +4,28 @@
     ./alexandria
     ./atuin-server
     ./caddy
+    ./ccc
+    ./chimera
+    ./cross-seed
     ./earlyoom
     ./fail2ban
+    ./flatpak
     ./github-runner
     ./jellyfin
+    ./komga
     ./minecraft-server
     ./minecraft-vault-hunters-server
     ./nginx
     ./nix-cache
+    ./ollama
+    ./open-webui
     ./qbittorrent-nox
+    ./qdrant
     ./ssh-server
     ./sunshine
     ./syncthing-dirs
     ./tailscale
-    ./qdrant
+    ./ucodenix
     ./xserver
   ];
 }
