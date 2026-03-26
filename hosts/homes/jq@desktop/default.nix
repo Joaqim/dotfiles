@@ -20,7 +20,13 @@
   my.home = {
     boilr.enable = true;
     calibre.enable = true;
-    claude-code.enable = true;
+    claude-code = {
+      enable = true;
+      autoWireDirs = with inputs; [
+        AI-opencode-backend-skill
+        AI-opencode-frontend-skill
+      ];
+    };
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;
@@ -33,13 +39,6 @@
     nushell.enable = true;
     nvf.enable = true;
     obs-studio.enable = true;
-    opencode = {
-      enable = true;
-      autoWireDirs = with inputs; [
-        AI-opencode-backend-skill
-        AI-opencode-frontend-skill
-      ];
-    };
     packages.additionalPackages = builtins.attrValues {
       inherit (pkgs)
         fluent-reader
@@ -52,11 +51,6 @@
         wl-clipboard
         cavasik # Simple audio visualizer
         ;
-      /*
-        inherit (pkgs.kdePackages)
-        kdenlive
-        ;
-      */
       inherit (pkgs.my)
         mpv-history-launcher
         ;
