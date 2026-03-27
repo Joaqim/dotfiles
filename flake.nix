@@ -69,6 +69,10 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-pai = {
+      url = "github:zmre/nix-pai";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     timvim = {
       url = "github:timlinux/nix-vim";
       flake = false;
