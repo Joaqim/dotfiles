@@ -69,9 +69,19 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fabric = {
+      url = "github:danielmiessler/fabric";
+      flake = false;
+    };
+    nix-ai-tools.url = "github:numtide/llm-agents.nix";
     nix-pai = {
       url = "github:zmre/nix-pai";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nix-ai-tools.follows = "nix-ai-tools";
+        flake-parts.follows = "flake-parts";
+        fabric.follows = "fabric";
+      };
     };
     timvim = {
       url = "github:timlinux/nix-vim";

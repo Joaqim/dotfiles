@@ -13,7 +13,6 @@
 
   my.home = {
     secrets.enable = true;
-    claude-code.enable = true;
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;

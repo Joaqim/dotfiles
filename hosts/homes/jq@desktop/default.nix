@@ -14,7 +14,6 @@
   my.home = {
     boilr.enable = true;
     calibre.enable = true;
-    claude-code.enable = false;
     discord.enable = true;
     documentation.enable = true;
     firefox.enable = true;

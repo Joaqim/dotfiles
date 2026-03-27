@@ -10,6 +10,7 @@
       enableRenice = true;
       enableGpuOptimisations = true;
     };
+    pai.enable = true;
     steam = {
       enable = true;
       #dataDir = "$XDG_DATA_HOME/steamlib";

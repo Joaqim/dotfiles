@@ -4,11 +4,10 @@
     inputs.flake-parts.flakeModules.flakeModules
     inputs.nix-pai.flakeModules.default
   ];
-  perSystem =
-    { ... }:
-    {
-      imports = [
-        "${self}/modules/pai"
-      ];
-    };
+  perSystem = _: {
+    _module.args.flakeInputs = inputs;
+    imports = [
+      "${self}/modules/pai"
+    ];
+  };
 }
