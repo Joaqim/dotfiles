@@ -60,7 +60,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jqwerty = {
-      url = "git+file:///home/jq/Documents/Code/jqwerty";
+      url = "github:Joaqim/jqwerty";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-index-database = {
