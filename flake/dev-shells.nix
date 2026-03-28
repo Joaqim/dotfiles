@@ -21,6 +21,7 @@
             pre-commit
             sops
             ssh-to-age
+            statix
             nixfmt
             gitMinimal
           ];

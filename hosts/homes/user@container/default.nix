@@ -1,35 +1,15 @@
+{ ... }:
 {
+  imports = [
+    ./development.nix
+    ./shell.nix
+    ./system.nix
+  ];
+
   home = rec {
     username = "user";
     homeDirectory = "/home/${username}";
   };
 
   targets.genericLinux.enable = true;
-
-  my.home = {
-    development = {
-      git = {
-        enable = true;
-        userName = "user";
-        userEmail = "dummy@mail.com";
-      };
-      nix.enable = true;
-    };
-
-    shell = {
-      atuin.enable = false;
-    };
-
-    system = {
-      # TODO: gpg-agent doesn't work in github environment
-      gpg.enable = false;
-      # We don't expect to use unfree packages in this container
-      packages.allowUnfree = false;
-
-      # We don't want to use secrets in containers
-      # As a safety measure, we also run `gitleaks`
-      # on built container before uploading to ghcr.io
-      secrets.enable = false;
-    };
-  };
 }
