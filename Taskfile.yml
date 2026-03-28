@@ -159,42 +159,9 @@ tasks:
         fi
 
   commit:
-    desc: Smart commit - auto-formats, retries on linting failures
+    desc: Smart commit - auto-formats, retries on linting failures. Usage task commit -- [git args]
     cmds:
-      - |
-        set +e  # Don't exit on error
-        MAX_ATTEMPTS=3
-        ATTEMPT=1
-
-        while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
-          echo "Commit attempt $ATTEMPT/$MAX_ATTEMPTS..."
-
-          # Try to commit
-          git commit "$@"
-          EXIT_CODE=$?
-
-          if [ $EXIT_CODE -eq 0 ]; then
-            echo "✓ Commit successful!"
-            exit 0
-          fi
-
-          # Check if it was a formatting failure
-          if [ $ATTEMPT -lt $MAX_ATTEMPTS ]; then
-            echo "Pre-commit hooks modified files. Auto-formatting and retrying..."
-
-            # Get modified files and re-stage them
-            MODIFIED_FILES=$(git diff --name-only | grep '\.nix$' || true)
-            if [ -n "$MODIFIED_FILES" ]; then
-              echo "$MODIFIED_FILES" | xargs git add
-              echo "Re-staged formatted files"
-            fi
-
-            ATTEMPT=$((ATTEMPT + 1))
-          else
-            echo "❌ Commit failed after $MAX_ATTEMPTS attempts"
-            exit $EXIT_CODE
-          fi
-        done
+      - bash scripts/git-smart-commit.sh {{.CLI_ARGS}}
 
   test-incremental:
     aliases:
