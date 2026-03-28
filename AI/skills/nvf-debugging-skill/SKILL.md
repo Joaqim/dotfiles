@@ -282,4 +282,4 @@ See `workflows/` for detailed guides:
 ## Related Skills
 
 - `claude:nix` - General Nix/NixOS/home-manager troubleshooting
-- `claude:create-skill` - Creating new skills for PAI
+- `claude:create-skill` - Creating new Claude Code skills

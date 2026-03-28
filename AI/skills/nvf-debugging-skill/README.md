@@ -174,30 +174,26 @@ nvim --headless +"lua print(require('claudecode').state.config.command)" +qa 2>&
 # Result: Configuration working correctly!
 ```
 
-## Integration with PAI
+## Integration with Claude Code
 
-This skill is designed for use with the Personal AI Infrastructure (PAI) system.
+This skill is automatically loaded when relevant keywords are detected in the conversation.
 
-### Adding to PAI
+### Activation Triggers
 
-```nix
-# In modules/pai/iris/default.nix or similar
-extraSkills = [
-  ./path/to/nvf-debugging-skill
-];
-```
+The skill activates automatically when discussing:
+- NVF or neovim configuration issues
+- setupOpts not applying
+- Plugin configuration debugging
+- Nix-to-Lua translation problems
 
-### Using the Skill
+### Adding to Your Repository
 
-When troubleshooting nvf/neovim issues, the skill will be available via:
-- Automatic activation when "nvf", "neovim config", "setupOpts" mentioned
-- Manual trigger via skill loader
-- Reference from other Nix-related skills
+Place this skill directory in your project's skills location (e.g., `AI/skills/` or `dotfiles/skills/`) where Claude Code can discover it.
 
 ## Related Skills
 
 - `claude:nix` - General Nix/NixOS troubleshooting
-- `claude:create-skill` - Creating new PAI skills
+- `claude:create-skill` - Creating new Claude Code skills
 
 ## Contributing
 
