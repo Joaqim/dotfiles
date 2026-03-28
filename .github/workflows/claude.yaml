@@ -119,7 +119,13 @@ jobs:
           # Explicitly DO NOT pass GITHUB_TOKEN or GH_TOKEN to Claude
           GITHUB_TOKEN: ""
           GH_TOKEN: ""
-          ANTHROPIC_FOUNDRY_BASE_URL: "https://${{ vars.ANTHROPIC_FOUNDRY_RESOURCE }}.services.ai.azure.com"
+          ANTHROPIC_FOUNDRY_RESOURCE:
+            ${{ vars.ANTHROPIC_FOUNDRY_RESOURCE }}
+            # Explicitly pass identity so DefaultAzureCredential picks them up
+          AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          # OIDC federated token file is set automatically by azure/login
+          AZURE_FEDERATED_TOKEN_FILE: ${{ env.AZURE_FEDERATED_TOKEN_FILE }}
         with:
           use_foundry: "true"
           claude_args: |
