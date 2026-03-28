@@ -1,5 +1,5 @@
 { lib, ... }:
-# Auto-import all gaming-related modules
+# Auto-import all system configuration and core modules
 let
   files = builtins.readDir ./.;
   modules = builtins.removeAttrs files [ "default.nix" ];
