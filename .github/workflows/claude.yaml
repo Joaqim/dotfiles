@@ -48,14 +48,14 @@ jobs:
             extra-platforms = ${{ matrix.system }}
             extra-substituters = ${{ vars.MY_BINARY_CACHE }}?priority=43
             extra-trusted-public-keys = ${{ vars.MY_BINARY_CACHE_PUBLIC_KEY }}
-          
+
           tailscale-oauth-client-id: ${{ vars.TS_OAUTH_CLIENT_ID }}
-          
+
           # Secrets
           tailscale-oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           attic-token: ${{ secrets.ATTIC_TOKEN }}
           github-token: ${{ secrets.GH_READ_TOKEN }}
-      
+
       - name: Sanity check that attic-actions output in /tmp/store-paths exists
         run: |
           ls -lh /tmp/store-paths
@@ -122,8 +122,10 @@ jobs:
         with:
           use_foundry: "true"
           claude_args: |
-            "--model ${{ vars.ANTHROPIC_DEFAULT_SONNET_MODEL }}"
-            "--allowed-tools Bash,Read,Write,Edit,Glob,Grep,WebFetch(*.github.com,${{ vars.ATTIC_ENDPOINT }},${{ vars.MY_BINARY_CACHE }},*.nixos.org)"
+            "--model" 
+            "${{ vars.ANTHROPIC_DEFAULT_SONNET_MODEL }}"
+            "--allowed-tools"
+            "Bash,Read,Write,Edit,Glob,Grep,WebFetch(*.github.com,${{ vars.ATTIC_ENDPOINT }},${{ vars.MY_BINARY_CACHE }},*.nixos.org)"
           prompt: |
             ${{ github.event.client_payload.prompt }}
 
