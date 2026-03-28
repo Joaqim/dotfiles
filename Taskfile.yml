@@ -134,6 +134,19 @@ tasks:
     cmds:
       - pre-commit run --all-files
 
+  test-incremental:
+    aliases:
+      - test-inc
+      - inc
+    desc: Incrementally test only changed flake outputs (faster)
+    cmds:
+      - nix run path:.#test-changes -- test --eval-only
+
+  test-changes:
+    desc: Analyze which outputs are affected by current changes
+    cmds:
+      - nix run path:.#test-changes -- analyze
+
   help:
     desc: List available tasks
     cmds:
