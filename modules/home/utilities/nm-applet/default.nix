@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.nm-applet;
+  cfg = config.my.home.utilities.nm-applet;
 in
 {
-  options.my.home.nm-applet = with lib; {
+  options.my.home.utilities.nm-applet = with lib; {
     enable = mkEnableOption "network-manager-applet configuration";
   };
 

@@ -59,6 +59,10 @@
       url = "github:Joaqim/pkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    jqwerty = {
+      url = "git+file:///home/jq/Documents/Code/jqwerty";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";

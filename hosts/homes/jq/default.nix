@@ -11,13 +11,14 @@
   };
 
   my.home = {
-    packages.additionalPackages = with pkgs; [
-      just
-    ];
-    git = {
+    development.git = {
       enable = true;
       userName = "Joaqim Planstedt";
       userEmail = "mail@joaqim.xyz";
     };
+
+    system.packages.additionalPackages = with pkgs; [
+      just
+    ];
   };
 }

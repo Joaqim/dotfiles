@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = config.my.home.nvf;
+  cfg = config.my.home.development.nvf;
 
   claude-code-plugin = pkgs.vimUtils.buildVimPlugin {
     name = "claudecode.nvim";
@@ -36,14 +36,34 @@ let
           viAlias = false;
           vimAlias = true;
           # TODO: Maybe consider auto configuring API key using sops secrets
-          utility.vim-wakatime.enable = true;
+          utility = {
+            vim-wakatime.enable = true;
+            motion.precognition.setupOpts.startVisible = lib.mkForce t.precognition;
+            outline.aerial-nvim.setupOpts = {
+              open_automatic = lib.mkForce t.codeOutline;
+              default_direction = "prefer_left";
+            };
+          };
 
           binds.hardtime-nvim.setupOpts.enabled = lib.mkForce t.hardtime;
           #binds.terminal-vim.setupOpts.enabled = lib.mkForce t.terminal;
           visuals.indent-blankline.setupOpts.enabled = lib.mkForce t.indentGuides;
           minimap.codewindow.enable = lib.mkForce t.codeOutline;
           treesitter.context.setupOpts.enable = lib.mkForce t.treesitterContext;
-          utility.motion.precognition.setupOpts.startVisible = lib.mkForce t.precognition;
+
+          extraPlugins.claude-code.setup = lib.mkForce ''
+            require('claudecode').setup({
+              -- Optional configuration
+              server = {
+                host = "localhost",
+                port = 9000,
+              },
+              -- Enable automatic startup of the server
+              auto_start = true,
+              -- Claude command to use
+              command = "${cfg.claudeCode.command}",
+            })
+          '';
 
           luaConfigRC.whichkey_toggle_icons = lib.mkForce ''
             -- Dynamic toggle icons: gray off icon when disabled, colored on icon when enabled
@@ -103,9 +123,19 @@ let
 in
 {
 
-  options.my.home.nvf = with lib; {
+  options.my.home.development.nvf = with lib; {
     enable = mkEnableOption "nvf configuration";
 
+    claudeCode.command = mkOption {
+      type = types.str;
+      default = "claude";
+      example = "claude-sandbox";
+      description = ''
+        Optionally override the claude command to use.
+      '';
+    };
+
+    # TODO: Refer to actual nvim plugin used
     toggles = {
       terminal = mkOption {
         type = types.bool;
@@ -128,6 +158,7 @@ in
         default = false;
         description = "Default state for the Indent Guides toggle (<leader>ti).";
       };
+      # vim.utility.outline.aerial-nvim
       codeOutline = mkOption {
         type = types.bool;
         default = false;
@@ -148,7 +179,7 @@ in
       };
       precognition = mkOption {
         type = types.bool;
-        default = true;
+        default = false;
         description = "Default state for the Precognition toggle (<leader>tp).";
       };
       harperGrammar = mkOption {
@@ -190,27 +221,6 @@ in
       prettier # markdown/mdx etc
       rustfmt # rust
     ];
-    /*
-      programs.nvf = {
-        enable = true;
-        settings = {
-          vim = {
-            languages.markdown.extensions.markview-nvim.enable = true;
-            viAlias = false;
-            vimAlias = true;
-            lsp.enable = true;
-            spellcheck = {
-              enable = true;
-              languages = [
-                "en"
-                "sv"
-              ];
-              #programmingWordlist.enable = true;
-            };
-          };
-        };
-      };
-    */
     xdg.configFile = {
       # https://neovim.io/doc/user/plugins.html#spellfile.lua
       # TODO: Consider using a unified spell root directory and adding to additionalRuntimePaths:  https://nvf.notashelf.dev/options.html#option-vim-additionalRuntimePaths

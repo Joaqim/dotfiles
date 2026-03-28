@@ -127,7 +127,7 @@ dotfiles/
 ### Development & Tools
 
 - **Neovim** (`my.home.nvf`) - nvf framework with extensive plugin support
-- **Claude Code** (`my.home.claude-code`) - AI-assisted development with Alexandria MCP
+- **Pai** (`my.programs.pai`) - Personal AI Agent
 - **VSCode** (`my.home.vscode`) - Visual Studio Code configuration
 - **Command Line** (`my.home.command-line`) - Comprehensive CLI toolkit:
   - Modern alternatives: `bat`, `eza`, `fd`, `ripgrep`, `bottom`

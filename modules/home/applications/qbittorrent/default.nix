@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.qbittorrent;
+  cfg = config.my.home.applications.qbittorrent;
 in
 {
-  options.my.home.qbittorrent = with lib; {
+  options.my.home.applications.qbittorrent = with lib; {
     enable = mkEnableOption "qbittorrent configuration";
   };
 

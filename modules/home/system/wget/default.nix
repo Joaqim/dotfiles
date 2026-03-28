@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.wget;
+  cfg = config.my.home.system.wget;
 in
 {
-  options.my.home.wget = with lib; {
+  options.my.home.system.wget = with lib; {
     enable = my.mkDisableOption "wget configuration";
 
     package = mkPackageOption pkgs "wget" { };

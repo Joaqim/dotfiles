@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.nix-index;
+  cfg = config.my.home.development.nix-index;
 in
 {
-  options.my.home.nix-index = with lib; {
+  options.my.home.development.nix-index = with lib; {
     enable = my.mkDisableOption "nix-index configuration";
   };
 

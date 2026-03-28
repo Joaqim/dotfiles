@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.nixpkgs;
+  cfg = config.my.home.development.nixpkgs;
 in
 {
-  options.my.home.nixpkgs = with lib; {
+  options.my.home.development.nixpkgs = with lib; {
     enable = mkEnableOption "nixpkgs configuration";
   };
 

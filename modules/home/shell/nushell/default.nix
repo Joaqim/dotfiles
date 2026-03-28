@@ -5,17 +5,17 @@
   ...
 }:
 let
-  cfg = config.my.home.nushell;
+  cfg = config.my.home.shell.nushell;
 in
 {
-  options.my.home.nushell = with lib; {
+  options.my.home.shell.nushell = with lib; {
     enable = my.mkDisableOption "nushell configuration";
   };
 
   config = lib.mkIf cfg.enable {
     programs.nushell = {
       enable = true;
-      environmentVariables = lib.mkIf config.my.home.packages.enable {
+      environmentVariables = lib.mkIf config.my.home.system.packages.enable {
         PATH = lib.hm.nushell.mkNushellInline ''
           ($env.PATH |
             split row (char esep) |

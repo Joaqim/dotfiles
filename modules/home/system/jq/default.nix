@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.jq;
+  cfg = config.my.home.system.jq;
 in
 {
-  options.my.home.jq = with lib; {
+  options.my.home.system.jq = with lib; {
     enable = my.mkDisableOption "jq configuration";
   };
 

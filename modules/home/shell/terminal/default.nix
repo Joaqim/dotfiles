@@ -13,7 +13,7 @@ let
       type = types.strMatching "#[0-9a-f]{6}";
     };
 
-  cfg = config.my.home.terminal;
+  cfg = config.my.home.shell.terminal;
 in
 {
   imports = [
@@ -23,7 +23,7 @@ in
     ./wezterm
   ];
 
-  options.my.home = with lib; {
+  options.my.home.shell = with lib; {
     terminal = {
       program = mkOption {
         type =

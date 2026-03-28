@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.gaming;
+  cfg = config.my.home.gaming.bundle;
 in
 {
-  options.my.home.gaming = with lib; {
+  options.my.home.gaming.bundle = with lib; {
     enable = mkEnableOption "gaming configuration";
   };
   config = lib.mkIf cfg.enable (
@@ -31,7 +31,7 @@ in
           };
         };
 
-        my.home.nix.cache.nixGaming = lib.mkDefault true;
+        my.home.development.nix.cache.nixGaming = lib.mkDefault true;
       }
       # Steam executable is provided by module my.programs.steam
       # TODO: Make this work:

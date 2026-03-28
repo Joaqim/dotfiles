@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.starship;
+  cfg = config.my.home.shell.starship;
 in
 {
-  options.my.home.starship = with lib; {
+  options.my.home.shell.starship = with lib; {
     enable = mkEnableOption "starship configuration";
   };
 

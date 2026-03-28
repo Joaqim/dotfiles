@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.zellij;
+  cfg = config.my.home.shell.zellij;
 in
 {
-  options.my.home.zellij = with lib; {
+  options.my.home.shell.zellij = with lib; {
     enable = my.mkDisableOption "enable zellij";
   };
 

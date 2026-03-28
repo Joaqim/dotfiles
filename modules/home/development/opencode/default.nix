@@ -5,13 +5,13 @@
   ...
 }:
 let
-  cfg = config.my.home.opencode;
+  cfg = config.my.home.development.opencode;
 in
 {
   imports = [
     inputs.nix-agent-wire.homeModules.opencode
   ];
-  options.my.home.opencode = with lib; {
+  options.my.home.development.opencode = with lib; {
     enable = mkEnableOption "automatically wire up commands, skills, agents, MCP servers, and rules using `nix-agent-wire`";
     autoWireDirs = lib.mkOption {
       type = lib.types.listOf lib.types.path;

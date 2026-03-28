@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.xdg;
+  cfg = config.my.home.desktop.xdg;
 in
 {
-  options.my.home.xdg = with lib; {
+  options.my.home.desktop.xdg = with lib; {
     enable = my.mkDisableOption "XDG configuration";
   };
 

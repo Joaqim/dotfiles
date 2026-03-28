@@ -7,16 +7,21 @@
   targets.genericLinux.enable = true;
 
   my.home = {
-    git = {
-      enable = true;
-      userName = "runner";
-      userEmail = "dummy@mail.com";
+    development = {
+      git = {
+        enable = true;
+        userName = "runner";
+        userEmail = "dummy@mail.com";
+      };
+      # Important to reduce home manager archive size created in github workflow: `ci-home`:
+      nix.enable = false;
     };
-    # TODO: gpg-agent doesn't work in github environment
-    gpg.enable = false;
-    # Important to reduce home manager archive size created in github workflow: `ci-home`:
-    nix.enable = false;
-    # For now, we don't use sops in github environment
-    secrets.enable = false;
+
+    system = {
+      # TODO: gpg-agent doesn't work in github environment
+      gpg.enable = false;
+      # For now, we don't use sops in github environment
+      secrets.enable = false;
+    };
   };
 }

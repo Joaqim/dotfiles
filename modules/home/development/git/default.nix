@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.git;
+  cfg = config.my.home.development.git;
 in
 {
-  options.my.home.git = with lib; {
+  options.my.home.development.git = with lib; {
     enable = mkEnableOption "git configuration";
 
     # I want the full experience by default

@@ -24,7 +24,7 @@ in
         liquidctl.enable = cfg.useLiquidCtl;
       };
       #  Automatically mount external drives configured in fstab
-      home.udiskie.enable = cfg.useExternalDrives;
+      home.utilities.udiskie.enable = cfg.useExternalDrives;
     };
     environment.systemPackages = with pkgs; [
       # Support for external ntfs drives

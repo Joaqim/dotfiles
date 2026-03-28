@@ -5,11 +5,11 @@
   ...
 }:
 let
-  cfg = config.my.home.firefox;
+  cfg = config.my.home.applications.firefox;
   user = config.home.username;
 in
 {
-  options.my.home.firefox = with lib; {
+  options.my.home.applications.firefox = with lib; {
     enable = mkEnableOption "firefox configuration";
   };
 

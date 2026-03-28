@@ -5,6 +5,9 @@
   lib,
   ...
 }:
+let
+  aperant = flakeInputs.nix-ai-tools.packages.${pkgs.stdenv.hostPlatform.system}.auto-claude;
+in
 {
   pai = {
     assistantName = "Iris";
@@ -15,6 +18,7 @@
       tree
       fd
       azure-cli
+      aperant
     ];
     extraSkills = [
       (
@@ -67,11 +71,48 @@
         ANTHROPIC_FOUNDRY_RESOURCE = "agentic-workspace-resource";
       };
       # TODO: pai overrides default, this sets it back
-      #attribution = "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>";
+      attribution = rec {
+        commit = "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>";
+        pr = commit;
+      };
 
       ollamaServer = "http://desktop:11434";
     };
-    privateModel = "gpt-oss:20b";
+    # Claude Code Router (CCR)
+    ccrSettings = {
+      # Don't overwrite default Ollama instance
+      Providers = lib.mkAfter [
+        {
+          name = "azure";
+          # TODO: Maybe get from environment: ANTHROPIC_FOUNDRY_RESOURCE
+          api_base_url = "http://agentic-workspace-resource.openai.azure.com";
+          # api_key = "";
+          models = [
+            "claude-sonnet-4-5"
+            "gpt-4"
+          ];
+        }
+      ];
+      Router = {
+        # Default model for routing
+        default = "gpt-4";
+
+        # Model for thinking tasks (provider,model format)
+        think = "gpt-4o";
+
+        # Model for long context tasks
+        longContext = "claude-sonnet-4-5";
+        # Token threshold for switching to long context model
+        longContextThreshold = 40000;
+        # Model for background tasks
+        # Model for web search tasks
+        # Model for image tasks (leave empty to disable)"
+        image = "";
+      };
+    };
+    # Ideally, if you have the hardware
+    #privateModel = "gpt-oss:20b";
+    privateModel = "qwen2.5-coder:latest";
 
     otherTools = {
       enableCodex = false;

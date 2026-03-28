@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.cursor;
+  cfg = config.my.home.development.cursor;
 in
 {
-  options.my.home.cursor = with lib; {
+  options.my.home.development.cursor = with lib; {
     enable = my.mkDisableOption "enable themed cursor";
   };
   config = lib.mkIf cfg.enable {

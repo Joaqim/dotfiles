@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.mpv;
+  cfg = config.my.home.media.mpv;
 in
 {
-  options.my.home.mpv = with lib; {
+  options.my.home.media.mpv = with lib; {
     enable = mkEnableOption "mpv configuration";
 
     screenshotDirectory = mkOption {
@@ -36,6 +36,10 @@ in
     programs = {
       mpv = {
         enable = true;
+        extraInput = ''
+          Alt+r script-binding mpv-org-history/log_entry
+          k script-binding mpv-skipsilence/toggle
+        '';
         scripts =
           with pkgs;
           builtins.attrValues {
@@ -95,6 +99,26 @@ in
           # For restarting playback when a Live Twitch VOD reaches current end
           reload.reload_eof_enabled = "yes";
           ytdl_hook.ytdl_path = "${lib.getExe config.programs.yt-dlp.package}";
+        };
+
+        profiles = {
+          "twitch.tv" = {
+            profile-cond = ''get("path", ""):find("^https://www.twitch.tv/(.*)") ~= nil'';
+            profile-restore = "copy";
+            #script-opts-add = "ytdl_hook-use_manifests=yes";
+            #ytdl-raw-options-append = "live-from-start=";
+          };
+          "watch.dropout.tv" = {
+            profile-cond = ''get("path", ""):find("^https://.*dropout.tv/(.*)") ~= nil'';
+            profile-restore = "copy";
+            ytdl-raw-options-append = "cookies-from-browser=firefox";
+          };
+          "youtube.com" = {
+            # TODO: Also youtu.be
+            profile-cond = ''get("path", ""):find("^https://youtube.com/(.*)") ~= nil'';
+            profile-restore = "copy";
+            ytdl-raw-options-append = "cookies-from-browser=firefox,cookies=~/tmp/cookies.firefox-private.txt,extractor-args='youtube:player_js_version=actual'";
+          };
         };
       };
     };

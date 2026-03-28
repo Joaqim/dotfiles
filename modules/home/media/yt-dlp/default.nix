@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.yt-dlp;
+  cfg = config.my.home.media.yt-dlp;
 in
 {
-  options.my.home.yt-dlp = with lib; {
+  options.my.home.media.yt-dlp = with lib; {
     enable = mkEnableOption "yt-dlp";
   };
 

@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.udiskie;
+  cfg = config.my.home.utilities.udiskie;
 in
 {
-  options.my.home.udiskie = with lib; {
+  options.my.home.utilities.udiskie = with lib; {
     enable = mkEnableOption "udiskie configuration";
   };
 

@@ -5,12 +5,12 @@
   ...
 }:
 let
-  cfg = config.my.home.discord;
+  cfg = config.my.home.applications.discord;
 
   jsonFormat = pkgs.formats.json { };
 in
 {
-  options.my.home.discord = with lib; {
+  options.my.home.applications.discord = with lib; {
     enable = mkEnableOption "discord configuration";
 
     package = mkPackageOption pkgs "discord" { };

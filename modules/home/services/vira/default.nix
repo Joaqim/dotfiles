@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = config.my.home.vira;
+  cfg = config.my.home.services.vira;
   inherit (inputs) vira;
 in
 {
@@ -14,7 +14,7 @@ in
     vira.homeManagerModules.vira
   ];
 
-  options.my.home.vira = with lib; {
+  options.my.home.services.vira = with lib; {
     enable = mkEnableOption "Vira Web Portal";
   };
   ## TODO: Add assertion for Lingering to be enabled: users.users.<username>.linger = true;

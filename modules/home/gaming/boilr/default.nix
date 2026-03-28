@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.boilr;
+  cfg = config.my.home.gaming.boilr;
 in
 {
-  options.my.home.boilr = with lib; {
+  options.my.home.gaming.boilr = with lib; {
     enable = mkEnableOption "boilr service to automatically add artwork to non-Steam shortcuts";
 
     runOnStartup = my.mkDisableOption "add artwork on startup using systemd service";

@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.zathura;
+  cfg = config.my.home.media.zathura;
 in
 {
-  options.my.home.zathura = with lib; {
+  options.my.home.media.zathura = with lib; {
     enable = mkEnableOption "zathura configuration";
   };
 

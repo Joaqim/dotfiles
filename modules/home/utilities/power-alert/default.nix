@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.power-alert;
+  cfg = config.my.home.utilities.power-alert;
 in
 {
-  options.my.home.power-alert = with lib; {
+  options.my.home.utilities.power-alert = with lib; {
     enable = mkEnableOption "power-alert configuration";
   };
 

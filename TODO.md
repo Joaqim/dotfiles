@@ -22,7 +22,6 @@ https://unix.stackexchange.com/questions/768678/configure-vscode-in-nixos
 setlocale "en_SE.UTF-8": No such file or directory
 pv-locale-gen: Missing locale en_SE.UTF-8 (found in $LC_MEASUREMENT)
 ```
-- Implement [my.services.sunshine](https://github.com/Joaqim/dotfiles/commit/3aea9d5498978f20287f11b3678a686cf63b58e7)
 
 - Fix LC_TIME output: `2025-06-27 07:33:57,878`; I prefer dots over commas for decimal points 
 - Make sure `steam` uses `bash` as its default shell, have seen `nushell` be used for steam launch commands
@@ -31,5 +30,22 @@ pv-locale-gen: Missing locale en_SE.UTF-8 (found in $LC_MEASUREMENT)
 - Investigate fcitx5 failing on many apps: 
 ```
 (faugus-launcher:169233): Gtk-WARNING **: 00:11:52.055: Loading IM context type 'fcitx' failed
-(faugus-launcher:169233): Gtk-WARNING **: 00:11:52.055: GModule (/nix/store/lnqv0r2wa8s248yk3lrr9hhxfl1n6knv-fcitx5-with-addons-5.1.12/lib/gtk-3.0/3.0.0/immodules/im-fcitx5.so) initialization check failed: GLib version too old (micro mismatch
+
 ```
+
+
+Declaratively configure: https://abishekmuthian.com/play-youtube-video-from-firefox-on-mpv/
+
+
+- Tailscale nginx
+    https://vpetersson.com/2022/12/23/securing-services-with-tailscale.html
+
+
+[Lily58 Pro - Programmer Dvorak](https://github.com/MasseGuillaume/qmk_firmware/blob/master/keyboards/metal2/keymaps/default/keymap.c)
+
+
+https://github.com/willbou1/nixfiles/blob/master/linux-amd/virtualisation/default.nix
+
+
+- nvfetcher allows for sparse checkout, apply if necessary
+  Example: https://github.com/ulic-youthlic/flakes/blob/2300f302af955f67868c6ec690a6b43169932a2a/nvfetcher.toml

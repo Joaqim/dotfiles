@@ -5,14 +5,14 @@
   ...
 }:
 let
-  cfg = config.my.home.secrets;
+  cfg = config.my.home.system.secrets;
 in
 {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
 
-  options.my.home.secrets = with lib; {
+  options.my.home.system.secrets = with lib; {
     enable = my.mkDisableOption "secrets configuration";
     sopsDirectory = mkOption {
       type = types.str;

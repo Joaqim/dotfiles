@@ -5,7 +5,7 @@
   ...
 }:
 let
-  cfg = config.my.home.terminal;
+  cfg = config.my.home.shell.terminal;
 in
 {
   config = lib.mkIf (cfg.program == "termite") {

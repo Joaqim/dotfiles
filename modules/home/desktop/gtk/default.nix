@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.gtk;
+  cfg = config.my.home.desktop.gtk;
 in
 {
-  options.my.home.gtk = with lib; {
+  options.my.home.desktop.gtk = with lib; {
     enable = mkEnableOption "GTK configuration";
     useFcitx5 = mkEnableOption "use fcitx5 module";
   };
@@ -60,7 +60,7 @@ in
           gtk4.extraConfig.gtk-im-module = "fcitx";
         };
       })
-      (lib.mkIf config.my.home.xdg.enable {
+      (lib.mkIf config.my.home.desktop.xdg.enable {
         xdg.portal = {
           enable = true;
           configPackages = [ pkgs.xdg-desktop-portal-gtk ];

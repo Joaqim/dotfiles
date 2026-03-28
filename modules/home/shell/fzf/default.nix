@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.fzf;
+  cfg = config.my.home.shell.fzf;
 in
 {
-  options.my.home.fzf = with lib; {
+  options.my.home.shell.fzf = with lib; {
     enable = my.mkDisableOption "fzf configuration";
   };
 

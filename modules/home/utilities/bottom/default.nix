@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.bottom;
+  cfg = config.my.home.utilities.bottom;
 in
 {
-  options.my.home.bottom = with lib; {
+  options.my.home.utilities.bottom = with lib; {
     enable = my.mkDisableOption "bottom configuration";
   };
 

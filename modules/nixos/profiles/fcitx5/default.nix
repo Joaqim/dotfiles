@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -13,12 +14,18 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    environment.sessionVariables = {
+      FCITX_DEBUG = "*";
+    };
     i18n.inputMethod = {
       enable = true;
       type = "fcitx5";
       fcitx5 = {
         addons = with pkgs; [
-          jqpkgs.fcitx5-jqwerty
+          #jqpkgs.fcitx5-jqwerty
+          (inputs.jqwerty.packages."x86_64-linux".default.override {
+            buildType = "Debug";
+          })
         ];
 
         ignoreUserConfig = true;
@@ -37,6 +44,6 @@ in
         };
       };
     };
-    my.home.gtk.useFcitx5 = true;
+    my.home.desktop.gtk.useFcitx5 = true;
   };
 }

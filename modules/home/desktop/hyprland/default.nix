@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.hyprland;
+  cfg = config.my.home.desktop.hyprland;
 in
 {
-  options.my.home.hyprland = with lib; {
+  options.my.home.desktop.hyprland = with lib; {
     enable = mkEnableOption "hyprland configuration";
   };
 
@@ -56,7 +56,7 @@ in
             ;
         };
       }
-      (lib.mkIf config.my.home.xdg.enable {
+      (lib.mkIf config.my.home.desktop.xdg.enable {
         xdg.portal = {
           enable = true;
           configPackages = [ pkgs.kdePackages.xdg-desktop-portal-kde ];

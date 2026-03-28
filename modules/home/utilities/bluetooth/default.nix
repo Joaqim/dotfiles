@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.bluetooth;
+  cfg = config.my.home.utilities.bluetooth;
 in
 {
-  options.my.home.bluetooth = with lib; {
+  options.my.home.utilities.bluetooth = with lib; {
     enable = mkEnableOption "bluetooth configuration";
   };
 

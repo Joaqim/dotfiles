@@ -4,24 +4,38 @@
     homeDirectory = "/home/${username}";
   };
   my.home = {
-    atuin.enable = false;
-    boilr.enable = true;
-    command-line.enable = false;
-    gaming.enable = true;
-    nix.cache.selfHosted = true;
-    bottom.enable = false;
-    direnv.enable = false;
-    documentation.enable = false;
-    fzf.enable = false;
-    git.enable = false;
-    jq.enable = false;
-    nushell.enable = false;
-    pager.enable = false;
-    starship.enable = false;
-    vscode.enable = false;
-    secrets = {
-      enable = true;
-      sopsDirectory = "/var/lib/sops";
+    development = {
+      direnv.enable = false;
+      git.enable = false;
+      nix.cache.selfHosted = true;
+      vscode.enable = false;
+    };
+
+    gaming = {
+      boilr.enable = true;
+      bundle.enable = true;
+    };
+
+    shell = {
+      atuin.enable = false;
+      command-line.enable = false;
+      fzf.enable = false;
+      nushell.enable = false;
+      pager.enable = false;
+      starship.enable = false;
+    };
+
+    system = {
+      documentation.enable = false;
+      jq.enable = false;
+      secrets = {
+        enable = true;
+        sopsDirectory = "/var/lib/sops";
+      };
+    };
+
+    utilities = {
+      bottom.enable = false;
     };
   };
 }

@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.gpg;
+  cfg = config.my.home.system.gpg;
 in
 {
-  options.my.home.gpg = with lib; {
+  options.my.home.system.gpg = with lib; {
     enable = my.mkDisableOption "gpg configuration";
 
     pinentry = mkPackageOption pkgs "pinentry" { default = [ "pinentry-gtk2" ]; };

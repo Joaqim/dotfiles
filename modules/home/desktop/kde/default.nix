@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.kde;
+  cfg = config.my.home.desktop.kde;
 in
 {
-  options.my.home.kde = with lib; {
+  options.my.home.desktop.kde = with lib; {
     enable = mkEnableOption "KDE configuration";
   };
 
@@ -30,7 +30,7 @@ in
             ;
         };
       }
-      (lib.mkIf config.my.home.xdg.enable {
+      (lib.mkIf config.my.home.desktop.xdg.enable {
         xdg.portal = {
           enable = true;
           configPackages = [ pkgs.kdePackages.xdg-desktop-portal-kde ];

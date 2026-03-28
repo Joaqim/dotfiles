@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.my.home.packages;
+  cfg = config.my.home.system.packages;
   useGlobalPkgs = osConfig.home-manager.useGlobalPkgs or false;
 in
 {
-  options.my.home.packages = with lib; {
+  options.my.home.system.packages = with lib; {
     enable = my.mkDisableOption "user packages";
 
     allowAliases = mkEnableOption "allow package aliases";

@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.direnv;
+  cfg = config.my.home.development.direnv;
 in
 {
-  options.my.home.direnv = with lib; {
+  options.my.home.development.direnv = with lib; {
     enable = my.mkDisableOption "direnv configuration";
 
     defaultFlake = mkOption {

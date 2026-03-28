@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.flameshot;
+  cfg = config.my.home.utilities.flameshot;
 in
 {
-  options.my.home.flameshot = with lib; {
+  options.my.home.utilities.flameshot = with lib; {
     enable = mkEnableOption "flameshot configuration";
   };
 

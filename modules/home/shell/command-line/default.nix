@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.my.home.command-line;
+  cfg = config.my.home.shell.command-line;
 in
 {
-  options.my.home.command-line = with lib; {
+  options.my.home.shell.command-line = with lib; {
     enable = my.mkDisableOption "enable command line utilities";
 
     androidTools = mkEnableOption "enable android tools";
@@ -35,6 +35,15 @@ in
               "--alias"
               "f"
             ];
+            # TODO: Define in nixos module
+            # Use Ollama LLM as fallback
+            /*
+              aiIntegration = {
+                locale = "en";
+                model = "llama3";
+                url = "http://desktop:11434/v1/chat/completions";
+              };
+            */
           };
         };
         home.packages = builtins.attrValues {
@@ -68,7 +77,7 @@ in
             ;
         };
       }
-      (lib.mkIf config.my.home.command-line.androidTools {
+      (lib.mkIf config.my.home.shell.command-line.androidTools {
         home.packages = builtins.attrValues {
           inherit (pkgs)
             android-file-transfer

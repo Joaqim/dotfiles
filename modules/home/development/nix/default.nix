@@ -7,7 +7,7 @@
   ...
 }:
 let
-  cfg = config.my.home.nix;
+  cfg = config.my.home.development.nix;
 
   channels = lib.my.merge [
     {
@@ -29,7 +29,7 @@ let
   selfHostedPublicKey = "cache.desktop.org-1:q7OuFth/hRz1k/+PK3Uh3SByMWB3Xh8zDAUXF1pRv4Q=";
 in
 {
-  options.my.home.nix = with lib; {
+  options.my.home.development.nix = with lib; {
     enable = my.mkDisableOption "nix configuration";
 
     gc = {
@@ -39,7 +39,7 @@ in
     cache = {
       selfHosted = mkEnableOption "self-hosted cache";
       nixGaming = mkEnableOption "nix-gaming cache";
-      extraSubstituters = my.mkDisableOption "nix-community cache";
+      extraSubstituters = mkEnableOption "nix-community cache";
     };
 
     inputs = {

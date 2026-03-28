@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.documentation;
+  cfg = config.my.home.system.documentation;
 in
 {
-  options.my.home.documentation = with lib; {
+  options.my.home.system.documentation = with lib; {
     enable = mkEnableOption "documentation integration";
   };
 

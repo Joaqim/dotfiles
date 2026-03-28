@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.vscode;
+  cfg = config.my.home.development.vscode;
 in
 {
-  options.my.home.vscode = with lib; {
+  options.my.home.development.vscode = with lib; {
     enable = mkEnableOption "vscode configuration";
   };
 

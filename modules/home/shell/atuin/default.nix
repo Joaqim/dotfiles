@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.atuin;
+  cfg = config.my.home.shell.atuin;
 in
 {
-  options.my.home.atuin = with lib; {
+  options.my.home.shell.atuin = with lib; {
     enable = my.mkDisableOption "atuin configuration";
     enableBashIntegration = my.mkDisableOption "atuin bash integration";
     enableNushellIntegration = my.mkDisableOption "atuin nushell integration";

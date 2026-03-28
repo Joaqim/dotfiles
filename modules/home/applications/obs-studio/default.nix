@@ -5,10 +5,10 @@
   ...
 }:
 let
-  cfg = config.my.home.obs-studio;
+  cfg = config.my.home.applications.obs-studio;
 in
 {
-  options.my.home.obs-studio = with lib; {
+  options.my.home.applications.obs-studio = with lib; {
     enable = mkEnableOption "obs-studio configuration";
   };
   # TODO: dynamic Nvidia/AMD support https://wiki.nixos.org/w/index.php?title=OBS_Studio

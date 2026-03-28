@@ -12,28 +12,49 @@
   jqpkgs.cache.enable = true;
 
   my.home = {
-    secrets.enable = true;
-    discord.enable = true;
-    documentation.enable = true;
-    firefox.enable = true;
-    gtk.enable = true;
-    kde.enable = true;
-    terminal.program = "kitty";
-    mpv.enable = true;
-    nvf.enable = true;
-    nushell.enable = true;
-    obs-studio.enable = false;
-    packages.additionalPackages = builtins.attrValues {
-      inherit (pkgs)
-        nh
-        lm_sensors
-        wl-clipboard
-        ;
+    applications = {
+      discord.enable = true;
+      firefox.enable = true;
+      obs-studio.enable = false;
     };
-    starship.enable = true;
-    vscode.enable = true;
-    yt-dlp.enable = true;
-    zathura.enable = true;
-    zoxide.enable = true;
+
+    desktop = {
+      gtk.enable = true;
+      kde.enable = true;
+    };
+
+    development = {
+      nix.cache.extraSubstituters = false;
+      nvf = {
+        enable = true;
+        claudeCode.command = "i"; # Use our AI Agent Iris
+      };
+      vscode.enable = true;
+    };
+
+    media = {
+      mpv.enable = true;
+      yt-dlp.enable = true;
+      zathura.enable = true;
+    };
+
+    shell = {
+      nushell.enable = true;
+      starship.enable = true;
+      terminal.program = "kitty";
+      zoxide.enable = true;
+    };
+
+    system = {
+      documentation.enable = true;
+      packages.additionalPackages = builtins.attrValues {
+        inherit (pkgs)
+          nh
+          lm_sensors
+          wl-clipboard
+          ;
+      };
+      secrets.enable = true;
+    };
   };
 }

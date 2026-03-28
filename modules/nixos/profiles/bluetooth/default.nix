@@ -14,6 +14,6 @@ in
   config = lib.mkIf cfg.enable {
     my.hardware.bluetooth.enable = true;
 
-    my.home.bluetooth.enable = true;
+    my.home.utilities.bluetooth.enable = true;
   };
 }

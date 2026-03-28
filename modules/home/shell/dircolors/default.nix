@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.dircolors;
+  cfg = config.my.home.shell.dircolors;
 in
 {
-  options.my.home.dircolors = with lib; {
+  options.my.home.shell.dircolors = with lib; {
     enable = my.mkDisableOption "dircolors configuration";
   };
 

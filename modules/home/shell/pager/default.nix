@@ -4,10 +4,10 @@
   ...
 }:
 let
-  cfg = config.my.home.pager;
+  cfg = config.my.home.shell.pager;
 in
 {
-  options.my.home.pager = with lib; {
+  options.my.home.shell.pager = with lib; {
     enable = my.mkDisableOption "pager configuration";
   };
 
