@@ -1,0 +1,175 @@
+# Taken from [1]:
+# [1]: https://github.com/Mic92/dotfiles/blob/453cb79493ea5667a7144516e17359aeee89a2a2/.github/workflows/claude.yaml
+name: Claude Code
+on:
+  repository_dispatch:
+    types: [claude-trigger]
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened, assigned]
+  pull_request_review:
+    types: [submitted]
+jobs:
+  claude:
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude'))) ||
+      github.event_name == 'repository_dispatch'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      id-token: write
+      actions: read # Required for Claude to read CI results on PRs
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Install Nix and Configure Attic Binary Cache
+        uses: Joaqim/pkgs/.github/actions/install-nix-with-attic-cache@main
+        with:
+          attic-endpoint: ${{ vars.ATTIC_ENDPOINT }}
+          attic-cache-name: jqpkgs
+          extra-nix-config: |
+            substituters = https://nix-community.cachix.org?priority=41 https://numtide.cachix.org?priority=42 https://cache.nixos.org/
+            trusted-public-keys = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+            fallback = true
+            http-connections = 128
+            max-substitution-jobs = 128
+            download-buffer-size = 524288000
+            extra-platforms = ${{ matrix.system }}
+            extra-substituters = ${{ vars.MY_BINARY_CACHE }}?priority=43
+            extra-trusted-public-keys = ${{ vars.MY_BINARY_CACHE_PUBLIC_KEY }}
+          
+          tailscale-oauth-client-id: ${{ vars.TS_OAUTH_CLIENT_ID }}
+          
+          # Secrets
+          tailscale-oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          attic-token: ${{ secrets.ATTIC_TOKEN }}
+          github-token: ${{ secrets.GH_READ_TOKEN }}
+      
+      - name: Sanity check that attic-actions output in /tmp/store-paths exists
+        run: |
+          ls -lh /tmp/store-paths
+
+      - name: Determine PR number
+        if: |
+          github.event_name == 'repository_dispatch' ||
+          github.event_name == 'issue_comment' ||
+          github.event_name == 'pull_request_review_comment' ||
+          github.event_name == 'pull_request_review'
+        run: |
+          # Determine PR number based on event type
+          case "${{ github.event_name }}" in
+            repository_dispatch)
+              PR_NUMBER="${{ github.event.client_payload.pr_number }}"
+              ;;
+            issue_comment)
+              PR_NUMBER="${{ github.event.issue.number }}"
+              ;;
+            pull_request_review_comment|pull_request_review)
+              PR_NUMBER="${{ github.event.pull_request.number }}"
+              ;;
+          esac
+
+          echo "PR_NUMBER=$PR_NUMBER" >> "$GITHUB_ENV"
+      - name: Checkout PR branch and gather build info
+        if: env.PR_NUMBER != ''
+        run: |
+          gh pr checkout "${{ env.PR_NUMBER }}"
+          BASE_BRANCH="$(git branch --show-current)"
+
+          # Get buildbot check results
+          PR_URL="https://github.com/${{ github.repository }}/pull/${{ env.PR_NUMBER }}"
+          nix build github:Mic92/dotfiles#buildbot-pr-check --log-format bar-with-logs
+          BUILDBOT_OUTPUT=$(./result/bin/buildbot-pr-check "$PR_URL" 2>&1 || true)
+
+          {
+            echo "BASE_BRANCH=$BASE_BRANCH"
+            echo "BUILDBOT_OUTPUT<<EOF"
+            echo "$BUILDBOT_OUTPUT"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - name: Authenticate to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      - name: Configure git for Claude
+        if: env.BASE_BRANCH != ''
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Run Claude Code
+        id: claude
+        uses: anthropics/claude-code-action@v1
+        env:
+          # Explicitly DO NOT pass GITHUB_TOKEN or GH_TOKEN to Claude
+          GITHUB_TOKEN: ""
+          GH_TOKEN: ""
+          ANTHROPIC_FOUNDRY_BASE_URL: "https://${{ vars.ANTHROPIC_FOUNDRY_RESOURCE }}.services.ai.azure.com"
+        with:
+          use_foundry: "true"
+          claude_args: |
+            "--model ${{ vars.ANTHROPIC_DEFAULT_SONNET_MODEL }}"
+            "--allowed-tools Bash,Read,Write,Edit,Glob,Grep,WebFetch(*.github.com,${{ vars.ATTIC_ENDPOINT }},${{ vars.MY_BINARY_CACHE }},*.nixos.org)"
+          prompt: |
+            ${{ github.event.client_payload.prompt }}
+
+            Buildbot CI check results:
+            ${{ env.BUILDBOT_OUTPUT }}
+
+            Make the necessary fixes to resolve the build failures. You can commit your changes locally, but do not try to push or create pull requests - that will be handled automatically after you finish.
+
+            IMPORTANT: Do NOT act on CI infrastructure issues such as remote builders being unreachable or unavailable.
+            If the build failure is caused by infrastructure issues rather than code problems, simply explain this in your output (visible in the action log) and do not attempt any fixes.
+
+            IMPORTANT: Do NOT downgrade flake inputs (e.g., reverting flake.lock changes) as a fix for build failures.
+            If the only way to fix the build would be to downgrade a flake input, do nothing and explain the situation in your output instead.
+      - name: Clean up temporary files
+        if: env.BASE_BRANCH != ''
+        run: rm -f output.txt
+      - name: Create Pull Request with fixes
+        if: env.BASE_BRANCH != ''
+        uses: peter-evans/create-pull-request@v8
+        id: cpr
+        with:
+          commit-message: "Fix CI failures"
+          branch: claude-fix-${{ github.run_id }}
+          delete-branch: true
+          title: "Fix CI failures in ${{ env.BASE_BRANCH }}"
+          body: |
+            Automated fixes by Claude Code for CI failures.
+
+            Base branch: ${{ env.BASE_BRANCH }}
+            Workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            ## Buildbot Results
+            ```
+            ${{ env.BUILDBOT_OUTPUT }}
+            ```
+          base: ${{ env.BASE_BRANCH }}
+      - name: Comment on original PR with results
+        if: env.BASE_BRANCH != ''
+        run: |
+          # Build comment with conditional PR link
+          FIX_PR="${{ steps.cpr.outputs.pull-request-number }}"
+
+          gh pr comment "${{ env.PR_NUMBER }}" --body-file - <<EOF
+          🤖 Claude Code analysis complete: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          ${FIX_PR:+
+          Created fix PR: #${FIX_PR}}
+          EOF
+        env:
+          GH_TOKEN: ${{ github.token }}
