@@ -22,6 +22,13 @@ This is a NixOS flake-based configuration repository (dotfiles) using a modular 
 - `task apply` - Apply both NixOS and home-manager ( should only be run if
   explicitly stated by user )
 
+**Committing changes:**
+
+- `task commit` - Smart commit that auto-fixes formatting and retries (recommended)
+- `./scripts/git-smart-commit.sh -m "message"` - Direct script usage
+- `git commit` - Standard commit (may require manual restaging if formatters modify files)
+- `task format` - Manually format and re-stage files before commit
+
 **Maintenance:**
 
 - `task update` - Update flake.lock, run selfup, and nvfetcher

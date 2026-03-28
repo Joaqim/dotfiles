@@ -134,6 +134,68 @@ tasks:
     cmds:
       - pre-commit run --all-files
 
+  format:
+    desc: Auto-format staged files and re-stage them (run before commit)
+    cmds:
+      - |
+        # Get list of staged Nix files
+        STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.nix$' || true)
+
+        if [ -n "$STAGED_FILES" ]; then
+          echo "Formatting staged Nix files..."
+
+          # Run nixfmt on staged files
+          echo "$STAGED_FILES" | xargs nixfmt 2>/dev/null || true
+
+          # Run statix fix on staged files
+          echo "$STAGED_FILES" | xargs statix fix 2>/dev/null || true
+
+          # Re-stage the formatted files
+          echo "$STAGED_FILES" | xargs git add
+
+          echo "✓ Formatted and re-staged files"
+        else
+          echo "No staged Nix files to format"
+        fi
+
+  commit:
+    desc: Smart commit - auto-formats, retries on linting failures
+    cmds:
+      - |
+        set +e  # Don't exit on error
+        MAX_ATTEMPTS=3
+        ATTEMPT=1
+
+        while [ $ATTEMPT -le $MAX_ATTEMPTS ]; do
+          echo "Commit attempt $ATTEMPT/$MAX_ATTEMPTS..."
+
+          # Try to commit
+          git commit "$@"
+          EXIT_CODE=$?
+
+          if [ $EXIT_CODE -eq 0 ]; then
+            echo "✓ Commit successful!"
+            exit 0
+          fi
+
+          # Check if it was a formatting failure
+          if [ $ATTEMPT -lt $MAX_ATTEMPTS ]; then
+            echo "Pre-commit hooks modified files. Auto-formatting and retrying..."
+
+            # Get modified files and re-stage them
+            MODIFIED_FILES=$(git diff --name-only | grep '\.nix$' || true)
+            if [ -n "$MODIFIED_FILES" ]; then
+              echo "$MODIFIED_FILES" | xargs git add
+              echo "Re-staged formatted files"
+            fi
+
+            ATTEMPT=$((ATTEMPT + 1))
+          else
+            echo "❌ Commit failed after $MAX_ATTEMPTS attempts"
+            exit $EXIT_CODE
+          fi
+        done
+
   test-incremental:
     aliases:
       - test-inc

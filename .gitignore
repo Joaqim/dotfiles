@@ -10,3 +10,4 @@ result
 .env*
 result-man
 *.secret
+.githooks/
