@@ -87,15 +87,13 @@ jobs:
           gh pr checkout "${{ env.PR_NUMBER }}"
           BASE_BRANCH="$(git branch --show-current)"
 
-          # Get buildbot check results
+          # Get nix flake check results
           PR_URL="https://github.com/${{ github.repository }}/pull/${{ env.PR_NUMBER }}"
-          nix build github:Mic92/dotfiles#buildbot-pr-check --log-format bar-with-logs
-          BUILDBOT_OUTPUT=$(./result/bin/buildbot-pr-check "$PR_URL" 2>&1 || true)
-
+          BUILD_OUTPUT=$(nix run .#ci-nix-check 2>&1 || true)
           {
             echo "BASE_BRANCH=$BASE_BRANCH"
-            echo "BUILDBOT_OUTPUT<<EOF"
-            echo "$BUILDBOT_OUTPUT"
+            echo "BUILD_OUTPUT<<EOF"
+            echo "$BUILD_OUTPUT"
             echo "EOF"
           } >> "$GITHUB_ENV"
         env:
@@ -137,7 +135,7 @@ jobs:
             ${{ github.event.client_payload.prompt }}
 
             Buildbot CI check results:
-            ${{ env.BUILDBOT_OUTPUT }}
+            ${{ env.BUILD_OUTPUT }}
 
             Make the necessary fixes to resolve the build failures. You can commit your changes locally, but do not try to push or create pull requests - that will be handled automatically after you finish.
 
@@ -166,7 +164,7 @@ jobs:
 
             ## Buildbot Results
             ```
-            ${{ env.BUILDBOT_OUTPUT }}
+            ${{ env.BUILD_OUTPUT }}
             ```
           base: ${{ env.BASE_BRANCH }}
       - name: Comment on original PR with results
