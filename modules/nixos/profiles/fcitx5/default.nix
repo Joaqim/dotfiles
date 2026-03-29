@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -22,10 +21,7 @@ in
       type = "fcitx5";
       fcitx5 = {
         addons = with pkgs; [
-          #jqpkgs.fcitx5-jqwerty
-          (inputs.jqwerty.packages."x86_64-linux".default.override {
-            buildType = "Debug";
-          })
+          jqpkgs.fcitx5-jqwerty
         ];
 
         ignoreUserConfig = true;
