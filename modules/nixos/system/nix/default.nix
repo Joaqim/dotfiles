@@ -152,10 +152,10 @@ in
             extra-substituters = [
               "https://cache.nixos.org/"
               "https://nix-community.cachix.org"
-              "https://nixpkgs-unfree.cachix.org"
               "https://numtide.cachix.org"
-              "https://catppuccin.cachix.org"
-              "https://cache.garnix.io"
+              #"https://nixpkgs-unfree.cachix.org"
+              #"https://catppuccin.cachix.org"
+              #"https://cache.garnix.io"
             ];
 
             extra-trusted-public-keys = [
