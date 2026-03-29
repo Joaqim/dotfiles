@@ -43,6 +43,7 @@ Add the following inputs to your `flake.nix`:
 ```
 
 **Note:** The `nix-pai` flake has dependencies on:
+
 - `nix-ai-tools` - Provides claude-code and other AI development tools
 - `fabric` - Provides AI prompt patterns
 - `flake-parts` - Framework for composable flakes (you likely already have this)
@@ -55,7 +56,6 @@ Create a file `flake/pai.nix` (or similar) to import the nix-pai flakeModule:
 { self, inputs, ... }:
 {
   imports = [
-    inputs.flake-parts.flakeModules.flakeModules
     inputs.nix-pai.flakeModules.default
   ];
 
