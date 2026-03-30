@@ -79,7 +79,7 @@
     };
     nix-ai-tools.url = "github:numtide/llm-agents.nix";
     nix-pai = {
-      url = "github:zmre/nix-pai";
+      url = "github:Joaqim/nix-pai";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         nix-ai-tools.follows = "nix-ai-tools";

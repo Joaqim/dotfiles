@@ -40,7 +40,8 @@ in
       companyAnnouncements = [ "Welcome! I'm Iris, ready to help." ];
       assistantColor = "red";
       commandName = "i"; # Used to invoke assistant
-
+      fabric.enable = true;
+      rtk.enable = true;
       permissions = {
         defaultMode = "default";
         # Add to default allow list
@@ -49,7 +50,7 @@ in
         ];
       };
 
-      # Claude plugins, see https://claude.com/p
+      # Claude plugins, see https://claude.com/plugins
       enabledPlugins = {
         "typescript-lsp@claude-plugins-official" = true;
         "rust-analyzer-lsp@claude-plugins-official" = true;
@@ -66,9 +67,16 @@ in
 
         # Use Azure Foundry
         # Disables /login, requires defining ANTHROPIC_FOUNDRY_API_KEY or pre-running `az login`
-        CLAUDE_CODE_USE_FOUNDRY = "1";
-        ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-5";
-        ANTHROPIC_FOUNDRY_RESOURCE = "agentic-workspace-resource";
+        #CLAUDE_CODE_USE_FOUNDRY = "1";
+        #ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-5";
+        #ANTHROPIC_FOUNDRY_RESOURCE = "agentic-workspace-resource";
+
+        ANTHROPIC_DEFAULT_OPUS_MODEL = "GLM-4.7";
+        ANTHROPIC_DEFAULT_SONNET_MODEL = "GLM-4.7";
+        ANTHROPIC_DEFAULT_HAIKU_MODEL = "GLM-4.5-Air";
+
+        ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic";
+        API_TIMEOUT_MS = "3000000";
       };
       # TODO: pai overrides default, this sets it back
       attribution = rec {
@@ -131,6 +139,44 @@ in
         type = "stdio";
         command = "alex";
         args = [ "serve" ];
+      };
+
+      zai-mcp-server = {
+        type = "stdio";
+        command = "npx";
+        args = [
+          "-y"
+          "@z_ai/mcp-server"
+        ];
+        env = {
+          #Z_AI_API_KEY = zAiApiKey;
+          Z_AI_API_KEY = "\${Z_AI_API_KEY}";
+          Z_AI_MODE = "ZAI";
+        };
+      };
+
+      web-search-prime = {
+        type = "http";
+        url = "https://api.z.ai/api/mcp/web_search_prime/mcp";
+        headers = {
+          Authorization = "Bearer \${Z_AI_API_KEY}";
+        };
+      };
+
+      web-reader = {
+        type = "http";
+        url = "https://api.z.ai/api/mcp/web_reader/mcp";
+        headers = {
+          Authorization = "Bearer \${Z_AI_API_KEY}";
+        };
+      };
+
+      zread = {
+        type = "http";
+        url = "https://api.z.ai/api/mcp/zread/mcp";
+        headers = {
+          Authorization = "Bearer \${Z_AI_API_KEY}";
+        };
       };
     };
   };

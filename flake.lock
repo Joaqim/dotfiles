@@ -1155,15 +1155,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1773288421,
-        "narHash": "sha256-n+jRXzqFiHp3/OMNiDPLc8GDjFdrHr0tpn4/p0T8+X0=",
-        "owner": "zmre",
+        "lastModified": 1774870642,
+        "narHash": "sha256-LhzAqA2NDl36mNHO1z6flUlfPbjvUIrv4myNIdnuipw=",
+        "owner": "Joaqim",
         "repo": "nix-pai",
-        "rev": "af7950e28a63ca2e3125d776eb10b750ea48e9c9",
+        "rev": "2109904a905b99912af79ab316c7c398b37882b4",
         "type": "github"
       },
       "original": {
-        "owner": "zmre",
+        "owner": "Joaqim",
         "repo": "nix-pai",
         "type": "github"
       }

@@ -34,14 +34,13 @@ in
       (cfg.package.overrideAttrs (prev: {
         # Don't add claude to environment
         # We will instead use alias to our `pai` package
-        # TODO: This should be optional
         buildInputs = builtins.filter (pkg: (lib.getName pkg) != "claude") prev.buildInputs;
       }))
     ]
     ++ map lib.hiPrio [
       (pkgs.writeShellScriptBin "claude" ''
         # Simple hack to auto-magically prompt azure authentication instead of anthropic when using /login
-        # Maybe also utilize ANTHROPIC_FOUNDRY_RESOURCE for figuring out which subscription ?
+        # Maybe also utilize ANTHROPIC_FOUNDRY_RESOURCE for figuring out which default subscription to use ?
         if [ "$CLAUDE_CODE_USE_FOUNDRY" = "1" ] && [ "$1" = "/login" ]; then
           ${lib.getExe pkgs.azure-cli} login
           exit "$?"
