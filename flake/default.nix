@@ -15,6 +15,7 @@ flake-parts.lib.mkFlake { inherit inputs; } {
     ./dev-shells.nix
     ./home-manager.nix
     ./lib.nix
+    ./modules.nix
     ./nixos.nix
     ./overlays.nix
     ./packages.nix

@@ -6,9 +6,9 @@
 
 A comprehensive, modular NixOS configuration managing multiple hosts with a unified `my.*` namespace. Features declarative system configurations, extensive home-manager modules, custom packages, and containerized environments.
 
-> **⚠️ AI-Generated Documentation Disclaimer**
+> **⚠️ AI-Assisted Documentation**
 >
-> This README was written by Claude because I was too lazy to document my own config. Most features were adapted from the excellent projects listed in [#inspirations](#-resources--inspiration) below. Everything here is subject to change on a whim as I experiment and break things. Your mileage may vary.
+> This README was written with AI assistance. Most features were adapted from the excellent projects listed in [#inspirations](#-resources--inspiration) below. The configuration is actively developed and may evolve as new patterns and tools are discovered. Your mileage may vary.
 
 ---
 
@@ -65,6 +65,65 @@ All custom options use a unified `my.*` namespace for consistency and clarity:
 
 - `my.home.*` - User-level programs and configurations (48+ modules)
 - Auto-imported from all subdirectories
+
+## 🔌 Using Modules in Other Flakes
+
+This flake exports reusable NixOS and home-manager modules that can be imported by other flakes:
+
+### NixOS Modules
+
+```nix
+# In your flake.nix
+{
+  inputs = {
+    dotfiles.url = "github:Joaqim/dotfiles";
+    # ...
+  };
+
+  outputs = { self, dotfiles, ... }: {
+    nixosConfigurations.myhost = nixpkgs.lib.nixosSystem {
+      modules = [
+        dotfiles.nixosModules.profiles    # All profile modules
+        dotfiles.nixosModules.services     # All service modules
+        dotfiles.nixosModules.hardware     # All hardware modules
+        # Or import specific categories:
+        # dotfiles.nixosModules.default  # All modules
+        # dotfiles.nixosModules.programs
+        # dotfiles.nixosModules.system
+        # dotfiles.nixosModules.secrets
+        # dotfiles.nixosModules.home
+        ./my-config.nix
+      ];
+    };
+  };
+}
+```
+
+### Home-Manager Modules
+
+```nix
+# In your flake.nix
+{
+  outputs = { self, dotfiles, ... }: {
+    homeConfigurations.myuser = home-manager.lib.homeManagerConfiguration {
+      modules = [
+        dotfiles.homeManagerModules.desktop      # Desktop environment modules
+        dotfiles.homeManagerModules.shell       # Shell and CLI tools
+        dotfiles.homeManagerModules.development # Development tools
+        # Or import specific categories:
+        # dotfiles.homeManagerModules.default   # All modules
+        # dotfiles.homeManagerModules.applications
+        # dotfiles.homeManagerModules.gaming
+        # dotfiles.homeManagerModules.media
+        # dotfiles.homeManagerModules.services
+        # dotfiles.homeManagerModules.system
+        # dotfiles.homeManagerModules.utilities
+        ./my-home.nix
+      ];
+    };
+  };
+}
+```
 
 ### Directory Structure
 
