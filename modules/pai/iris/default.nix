@@ -76,13 +76,16 @@ in
         ANTHROPIC_DEFAULT_HAIKU_MODEL = "GLM-4.5-Air";
 
         ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic";
+
         API_TIMEOUT_MS = "3000000";
       };
       # TODO: pai overrides default, this sets it back
-      attribution = rec {
-        commit = "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>";
-        pr = commit;
-      };
+      /*
+        attribution = rec {
+          commit = "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>";
+          pr = commit;
+        };
+      */
 
       ollamaServer = "http://desktop:11434";
     };
@@ -133,6 +136,11 @@ in
       theme = "catppuccin";
     };
 
+    extraSecrets = rec {
+      Z_AI_API_KEY = builtins.getEnv "Z_AI_API_KEY";
+      ANTHROPIC_AUTH_TOKEN = Z_AI_API_KEY;
+    };
+
     # Override or extend MCP servers
     mcpServers = {
       alexandria = {
@@ -149,7 +157,6 @@ in
           "@z_ai/mcp-server"
         ];
         env = {
-          #Z_AI_API_KEY = zAiApiKey;
           Z_AI_API_KEY = "\${Z_AI_API_KEY}";
           Z_AI_MODE = "ZAI";
         };

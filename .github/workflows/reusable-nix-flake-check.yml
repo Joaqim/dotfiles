@@ -22,10 +22,10 @@ jobs:
           diagnostic-endpoint: ""
       - name: Inspect flake outputs
         run: |
-          flake="$(nix flake show . --json 2>/dev/null)"
+          flake="$(nix flake show . --json 2>/dev/null)" || { echo "Warning: nix flake show failed"; exit 0; }
           jq -r '
-              "Available packages:",(.inventory.packages.output.children."x86_64-linux".children | to_entries[] | "\t\(.key)   - \(.value.shortDescription)"),
-              "\nAvailable overlays:",(.inventory.overlays.output.children | keys[] | "\t\(.)"),
-              "\nAvailable apps:",(.inventory.apps.output.children."x86_64-linux".children | keys[]  | "\t\(.)")
-          ' <<< "$flake" || { echo "Warning: could not parse flake output" ; jq <<< "$flake"; }
+              "Available packages:",(.packages."x86_64-linux"? // {} | to_entries[] | "\t\(.key)   - \(.value.shortDescription // "")"),
+              "\nAvailable overlays:",(.overlays? // {} | keys[] | "\t\(.)"),
+              "\nAvailable apps:",(.apps."x86_64-linux"? // {} | keys[] | "\t\(.)")
+          ' <<< "$flake" 2>/dev/null || { echo "Warning: could not parse flake output for display"; exit 0; }
       - run: nix flake check
