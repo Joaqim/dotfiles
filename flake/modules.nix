@@ -1,33 +1,37 @@
-self: {
+{
+  self,
+  ...
+}:
+{
   # NixOS module exports - category-level imports without 'my.' prefix
   flake.nixosModules = {
     # Import all NixOS modules as a set
-    default = "${self}/modules/nixos";
+    default = import "${self.outPath}/modules/nixos";
 
     # Category-level exports - import specific categories
-    profiles = "${self}/modules/nixos/profiles";
-    programs = "${self}/modules/nixos/programs";
-    services = "${self}/modules/nixos/services";
-    hardware = "${self}/modules/nixos/hardware";
-    system = "${self}/modules/nixos/system";
-    secrets = "${self}/modules/nixos/secrets";
-    home = "${self}/modules/nixos/home";
+    profiles = import "${self.outPath}/modules/nixos/profiles";
+    programs = import "${self.outPath}/modules/nixos/programs";
+    services = import "${self.outPath}/modules/nixos/services";
+    hardware = import "${self.outPath}/modules/nixos/hardware";
+    system = import "${self.outPath}/modules/nixos/system";
+    secrets = import "${self.outPath}/modules/nixos/secrets";
+    home = import "${self.outPath}/modules/nixos/home";
   };
 
   # Home-manager module exports - category-level imports
   flake.homeManagerModules = {
     # Import all home modules as a set
-    default = "${self}/modules/home";
+    default = import "${self.outPath}/modules/home";
 
     # Category-level exports
-    applications = "${self}/modules/home/applications";
-    desktop = "${self}/modules/home/desktop";
-    development = "${self}/modules/home/development";
-    gaming = "${self}/modules/home/gaming";
-    media = "${self}/modules/home/media";
-    services = "${self}/modules/home/services";
-    shell = "${self}/modules/home/shell";
-    system = "${self}/modules/home/system";
-    utilities = "${self}/modules/home/utilities";
+    applications = import "${self.outPath}/modules/home/applications";
+    desktop = import "${self.outPath}/modules/home/desktop";
+    development = import "${self.outPath}/modules/home/development";
+    gaming = import "${self.outPath}/modules/home/gaming";
+    media = import "${self.outPath}/modules/home/media";
+    services = import "${self.outPath}/modules/home/services";
+    shell = import "${self.outPath}/modules/home/shell";
+    system = import "${self.outPath}/modules/home/system";
+    utilities = import "${self.outPath}/modules/home/utilities";
   };
 }
