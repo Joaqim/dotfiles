@@ -153,5 +153,6 @@ in
       cpuModelId = "00B40F40";
     };
     xserver.enable = true;
+    zt-services-trust.enable = true;
   };
 }
