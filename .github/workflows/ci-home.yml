@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: DeterminateSystems/nix-installer-action@v21
+      - uses: DeterminateSystems/nix-installer-action@v22
         with:
           logger: pretty
           diagnostic-endpoint: ""
