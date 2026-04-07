@@ -16,5 +16,6 @@
       #cpuModelId = "00000000"; # Placeholder
     };
     xserver.enable = true;
+    zerotier.enable = true;
   };
 }

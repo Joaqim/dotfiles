@@ -154,5 +154,6 @@ in
     };
     xserver.enable = true;
     zt-services-trust.enable = true;
+    zerotier.enable = true;
   };
 }

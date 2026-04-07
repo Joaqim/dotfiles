@@ -134,6 +134,14 @@ in
           mode = "400";
           inherit owner;
         };
+        "zerotier_network_id" = {
+          mode = "400";
+          inherit owner;
+        };
+        "z_ai_api_key" = {
+          mode = "400";
+          inherit owner;
+        };
       };
     };
   };
