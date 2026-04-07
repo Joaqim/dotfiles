@@ -11,6 +11,17 @@
     useDHCP = false;
 
     firewall.enable = true;
+
+    # Connect to VPS peer
+    extraHosts = ''
+      10.242.37.1 openclaw.zt
+      10.242.37.1 matrix.zt
+      10.242.37.1 node.zt
+       galaxy.zt
+      10.242.37.1 www.openclaw.zt
+      10.242.37.1 www.matrix.zt
+      10.242.37.1 www.node.zt
+    '';
   };
 
   my.hardware.networking = {
