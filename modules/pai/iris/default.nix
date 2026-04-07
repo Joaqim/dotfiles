@@ -19,6 +19,7 @@ in
       fd
       azure-cli
       aperant
+      uv
     ];
     extraSkills = [
       (
@@ -52,11 +53,26 @@ in
 
       # Claude plugins, see https://claude.com/plugins
       enabledPlugins = {
-        "typescript-lsp@claude-plugins-official" = true;
-        "rust-analyzer-lsp@claude-plugins-official" = true;
-        "swift-lsp@claude-plugins-official" = true;
-        "pyright-lsp@claude-plugins-official" = true;
-        "lua-lsp@claude-plugins-official" = true;
+        #"typescript-lsp@claude-plugins-official" = true;
+        #"rust-analyzer-lsp@claude-plugins-official" = true;
+        #"swift-lsp@claude-plugins-official" = true;
+        #"pyright-lsp@claude-plugins-official" = true;
+        #"lua-lsp@claude-plugins-official" = true;
+
+        # MCP for LSP
+        #   "serena@claude-plugins-official" = true;
+
+        "skill-creator@claude-plugins-official" = true;
+
+        "claude-md-management@claude-plugins-official" = true;
+        "feature-dev@claude-plugins-official" = true;
+
+        "github@claude-plugins-official" = true;
+
+        "code-review@claude-plugins-official" = true;
+
+        "context7@claude-plugins-official" = true;
+        "superpowers@claude-plugins-official" = true;
       };
 
       env = {
@@ -65,12 +81,15 @@ in
         CLAUDE_CODE_ENABLE_TELEMETRY = "0";
         ENABLE_LSP_TOOL = "1";
 
+        RTK_TELEMETRY_DISABLED = "1";
+
         # Use Azure Foundry
         # Disables /login, requires defining ANTHROPIC_FOUNDRY_API_KEY or pre-running `az login`
         #CLAUDE_CODE_USE_FOUNDRY = "1";
         #ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-5";
         #ANTHROPIC_FOUNDRY_RESOURCE = "agentic-workspace-resource";
 
+        # Use z.ai
         ANTHROPIC_DEFAULT_OPUS_MODEL = "GLM-4.7";
         ANTHROPIC_DEFAULT_SONNET_MODEL = "GLM-4.7";
         ANTHROPIC_DEFAULT_HAIKU_MODEL = "GLM-4.5-Air";
@@ -78,6 +97,11 @@ in
         ANTHROPIC_BASE_URL = "https://api.z.ai/api/anthropic";
 
         API_TIMEOUT_MS = "3000000";
+
+        #ANTHROPIC_DEFAULT_SONNET_MODEL = "claude-sonnet-4-5";
+        #ANTHROPIC_DEFAULT_HAIKU_MODEL = "claude-haiku-4-5";
+        #ANTHROPIC_DEFAULT_OPUS_MODEL = "claude-opus-4-5";
+
       };
       # TODO: pai overrides default, this sets it back
       /*
@@ -137,6 +161,7 @@ in
     };
 
     extraSecrets = rec {
+      # TODO:
       Z_AI_API_KEY = builtins.getEnv "Z_AI_API_KEY";
       ANTHROPIC_AUTH_TOKEN = Z_AI_API_KEY;
     };
@@ -147,6 +172,13 @@ in
         type = "stdio";
         command = "alex";
         args = [ "serve" ];
+      };
+      nixos = {
+        type = "stdio";
+        command = "uv";
+        args = [
+          "mcp-nixos"
+        ];
       };
 
       zai-mcp-server = {
