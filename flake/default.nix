@@ -12,6 +12,7 @@ flake-parts.lib.mkFlake { inherit inputs; } {
   imports = [
     inputs.home-manager.flakeModules.home-manager
     ./apps.nix
+    ./checks.nix
     ./dev-shells.nix
     ./home-manager.nix
     ./lib.nix
