@@ -49,12 +49,12 @@
             "name": null,
             "owner": "yang991178",
             "repo": "fluent-reader",
-            "rev": "v1.1.4",
-            "sha256": "sha256-/VBXm6KiwJC/JTKp8m/dkmGmPZ2x2fHYiX9ylw8eDvY=",
+            "rev": "v1.2.0",
+            "sha256": "sha256-/qBhBM5lz1ohc/xtP2Ytjt5cYF8mXCLYC8EMm55G2bw=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.1.4"
+        "version": "v1.2.0"
     },
     "godot": {
         "cargoLock": null,
@@ -143,11 +143,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-LBt0or2sH/wyluPbRlhYVP/TqUlJYK34MKfFo8Y8pZU=",
+            "sha256": "sha256-u5tZtO46jJa7SQuAEtYal/DszdqLGY5ZgRm9xabQDyY=",
             "type": "url",
             "url": "https://github.com/AbdelrhmanNile/UnderTaker141/releases/download/latest/UnderTaker141.AppImage"
         },
-        "version": "v2.10.0"
+        "version": "v2.12.0"
     },
     "v8zip": {
         "cargoLock": null,
