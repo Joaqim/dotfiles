@@ -27,13 +27,13 @@
   };
   fluent-reader = {
     pname = "fluent-reader";
-    version = "v1.2.0";
+    version = "v1.2.1";
     src = fetchFromGitHub {
       owner = "yang991178";
       repo = "fluent-reader";
-      rev = "v1.2.0";
+      rev = "v1.2.1";
       fetchSubmodules = false;
-      sha256 = "sha256-/qBhBM5lz1ohc/xtP2Ytjt5cYF8mXCLYC8EMm55G2bw=";
+      sha256 = "sha256-yO/x1eX+pqrM5guT+Y140lgdg+JS41BfsWnDOPIJyyU=";
     };
   };
   godot = {

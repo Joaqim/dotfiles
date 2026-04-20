@@ -49,12 +49,12 @@
             "name": null,
             "owner": "yang991178",
             "repo": "fluent-reader",
-            "rev": "v1.2.0",
-            "sha256": "sha256-/qBhBM5lz1ohc/xtP2Ytjt5cYF8mXCLYC8EMm55G2bw=",
+            "rev": "v1.2.1",
+            "sha256": "sha256-yO/x1eX+pqrM5guT+Y140lgdg+JS41BfsWnDOPIJyyU=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.2.0"
+        "version": "v1.2.1"
     },
     "godot": {
         "cargoLock": null,
