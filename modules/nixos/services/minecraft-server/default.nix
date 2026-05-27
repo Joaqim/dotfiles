@@ -112,8 +112,8 @@ in
     };
 
     serverIcon = mkOption {
-      type = types.str;
-      default = DEFAULT_SERVER_ICON;
+      type = with types; nullOr str;
+      default = null;
     };
 
     serverName = mkOption {
@@ -125,6 +125,14 @@ in
       type = with types; nullOr str;
       default = null;
       example = "America/New_York";
+    };
+
+    environmentFiles = mkOption {
+      type = with types; listOf str;
+      default = [
+        config.sops.secrets."rcon_web_admin_env".path
+        config.sops.templates."minecraft_CF_API_KEY.env".path
+      ];
     };
 
     enableWhiteList = mkEnableOption "enable server whitelist";
@@ -325,7 +333,7 @@ in
                         gamerule disableElytraMovementCheck true
                       '';
                   SERVER_NAME = cfg.serverName;
-                  SERVER_ICON = cfg.serverIcon;
+                  SERVER_ICON = if cfg.serverIcon != null then cfg.serverIcon else "";
                   SNOOPER_ENABLED = "FALSE";
                   SPAWN_PROTECTION = "0";
                   TYPE = if cfg.modrinthModpack != null then "MODRINTH" else "";
@@ -335,17 +343,12 @@ in
                   VIEW_DISTANCE = "20";
                   WHITELIST_FILE = if cfg.enableWhiteList then WHITELIST_FILE_PATH else "";
                 };
-                environmentFiles = [
-                  config.sops.secrets."rcon_web_admin_env".path
-                  config.sops.templates."minecraft_CF_API_KEY.env".path
-                ];
-                /*
-                  # TODO: Is lib.optional necessary for null values ?
-                  environmentFiles =
-                    [ ]
-                    ++ lib.optional (cfg.rconWebAdminEnvironmentFilePath != null) cfg.rconWebAdminEnvironmentFilePath
-                    ++ lib.optional (cfg.curseForgeAPIKeyFile != null) cfg.curseForgeAPIKeyFile;
-                */
+
+                environmentFiles =
+                  cfg.environmentFiles
+                  ++ lib.optional (cfg.rconWebAdminEnvironmentFilePath != null) cfg.rconWebAdminEnvironmentFilePath
+                  ++ lib.optional (cfg.curseForgeAPIKeyFile != null) cfg.curseForgeAPIKeyFile;
+
                 volumes = [
                   "${SERVER_DATA_DIR}:/data:rw"
                   "/etc/localtime:/etc/localtime:ro"
