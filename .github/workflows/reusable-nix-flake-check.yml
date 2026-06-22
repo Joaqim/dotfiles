@@ -8,7 +8,7 @@ jobs:
     name: Run flake check
     runs-on: ubuntu-slim
     steps:
-      - uses: actions/checkout@v6.0.2
+      - uses: actions/checkout@v7
         with:
           submodules: 'true'
       - name: Check Nix flake inputs
