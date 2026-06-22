@@ -27,13 +27,13 @@
   };
   fluent-reader = {
     pname = "fluent-reader";
-    version = "v1.1.4";
+    version = "v1.2.2";
     src = fetchFromGitHub {
       owner = "yang991178";
       repo = "fluent-reader";
-      rev = "v1.1.4";
+      rev = "v1.2.2";
       fetchSubmodules = false;
-      sha256 = "sha256-/VBXm6KiwJC/JTKp8m/dkmGmPZ2x2fHYiX9ylw8eDvY=";
+      sha256 = "sha256-5PSo94xjk9Fee7s3y9sEJCoF0ie+7GJvN/dlKY7T4qs=";
     };
   };
   godot = {
@@ -81,10 +81,10 @@
   };
   undertaker141 = {
     pname = "undertaker141";
-    version = "v2.10.0";
+    version = "v2.12.0";
     src = fetchurl {
       url = "https://github.com/AbdelrhmanNile/UnderTaker141/releases/download/latest/UnderTaker141.AppImage";
-      sha256 = "sha256-LBt0or2sH/wyluPbRlhYVP/TqUlJYK34MKfFo8Y8pZU=";
+      sha256 = "sha256-u5tZtO46jJa7SQuAEtYal/DszdqLGY5ZgRm9xabQDyY=";
     };
   };
   v8zip = {
