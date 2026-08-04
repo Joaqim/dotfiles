@@ -936,17 +936,14 @@
         ]
       },
       "locked": {
-        "lastModified": 1774380636,
-        "narHash": "sha256-RHwe234yvssnGVgCsvOe8xjWsgzmmez0Bh0wbBpC2S4=",
-        "owner": "Joaqim",
-        "repo": "jqwerty",
-        "rev": "1165204073b1400c42133a12ce0cf2c4a3822688",
-        "type": "github"
+        "lastModified": 1774651846,
+        "narHash": "sha256-7giFRJnE01WNwFno0+Y1AyDxxZeDxUqofdU5YvsaVh8=",
+        "path": "/home/jq/Documents/Code/jqwerty",
+        "type": "path"
       },
       "original": {
-        "owner": "Joaqim",
-        "repo": "jqwerty",
-        "type": "github"
+        "path": "/home/jq/Documents/Code/jqwerty",
+        "type": "path"
       }
     },
     "json2steamshortcut": {

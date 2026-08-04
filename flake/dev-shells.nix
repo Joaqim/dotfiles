@@ -23,6 +23,7 @@
             ssh-to-age
             statix
             nixfmt
+            nix-fast-build
             gitMinimal
           ];
 
